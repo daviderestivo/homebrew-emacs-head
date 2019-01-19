@@ -1,0 +1,49 @@
+* Emacs Head
+
+Emacs Head is a GNU Emacs formulae based on the original Homebrew
+=emacs= [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][formulae]].
+
+** Why yet another Homebrew Emacs formula?
+Since the option "--with-cocoa" is not available in the latest Emacs
+homebrew-core formulae (see [[https://github.com/Homebrew/homebrew-core/pull/36070][pull request]]), I decided to build my own
+formula.
+
+This formula currently supports:
+- GNU Emacs 26.1
+- GNU Emacs HEAD (currently 27.x)
+
+No bottles are available.
+
+** Installation
+You can install this formula using:
+
+*** GNU Emacs 26.1
+#+begin_src bash
+brew tap daviderestivo/emacs-head
+brew install emacs-head --with-cocoa
+#+end_src>
+
+*** GNU Emacs HEAD
+#+begin_src bash
+brew tap daviderestivo/emacs-head
+brew install emacs-head --HEAD --with-cocoa
+#+end_src>
+
+** Compilation options
+The following compiling options are available:
+
+| Option               | Description                                           |
+|----------------------+-------------------------------------------------------|
+| --with-cocoa         | Build a Cocoa version of emacs                        |
+| --with-ctags         | Don't remove the ctags executable that emacs provides |
+| --with-dbus          | Build with dbus support                               |
+| --with-imagemagick@6 | Build with imagemagick@6 support                      |
+| --with-librsvg       | Build with librsvg support                            |
+| --with-mailutils     | Build with mailutils support                          |
+| --with-modules       | Compile with dynamic modules support                  |
+| --without-libxml2    | Don't build with libxml2 support                      |
+
+For the terminal version only of GNU Emacs please omit "--with-cocoa".
+
+** Collaborating
+If you are interested in collaborating please open a Pull Request.

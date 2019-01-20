@@ -1,11 +1,11 @@
 * Emacs Head
 
-Emacs Head is a GNU Emacs formulae based on the original Homebrew
-=emacs= [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][formulae]].
+Emacs Head is a GNU Emacs formula based on the original Homebrew
+=emacs= [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][formula]].
 
 ** Why yet another Homebrew Emacs formula?
 Since the option "--with-cocoa" is not available in the latest Emacs
-homebrew-core formulae (see [[https://github.com/Homebrew/homebrew-core/pull/36070][pull request]]), I decided to build my own
+homebrew-core formula (see [[https://github.com/Homebrew/homebrew-core/pull/36070][pull request]]), I decided to build my own
 formula.
 
 This formula currently supports:

@@ -18,6 +18,7 @@ class EmacsHead < Formula
   option "with-ctags", "Don't remove the ctags executable that emacs provides"
   option "without-libxml2", "Don't build with libxml2 support"
   option "with-modules", "Compile with dynamic modules support"
+  option "with-no-frame-refocus", "Disables frame re-focus (ie. closing one frame does not refocus another one)"
 
   depends_on "pkg-config" => :build
   depends_on "gnutls"
@@ -42,6 +43,19 @@ class EmacsHead < Formula
         url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-Fix-deprecation-warning.patch"
         sha256 "07aa87fe0c56c65de44c5e56c1d5e1d79402560b13e12fa7e00c7ba846637ea6"
       end
+    end
+  end
+
+  # When closing a frame, Emacs automatically focuses another frame.
+  # This re-focus has an additional side-effect: when closing a frame
+  # from one desktop/space, one gets automatically moved to another
+  # desktop/space where the refocused frame lives. The below patch
+  # disable this behaviour.
+  # Reference: https://github.com/d12frosted/homebrew-emacs-plus/issues/119
+  if build.with? "no-frame-refocus"
+    patch do
+      url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-No-frame-refocus-cocoa.patch"
+      sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
     end
   end
 

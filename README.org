@@ -14,6 +14,11 @@ This formula currently supports:
 
 No bottles are available.
 
+** Screenshots
+*** GNU Emacs running in terminal mode (27.x)
+[[/images/emacs-head-terminal.png]]
+*** GNU Emacs running in GUI mode (27.x)
+[[/images/emacs-head-cocoa.png]]
 ** Installation
 You can install this formula using:
 

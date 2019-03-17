@@ -38,6 +38,7 @@ The following compiling options are available:
 | --with-ctags            | Don't remove the ctags executable that emacs provides |
 | --with-dbus             | Build with dbus support                               |
 | --with-imagemagick@6    | Build with imagemagick@6 support                      |
+| --with-imagemagick@7    | Build with imagemagick@7 support (only HEAD)          |
 | --with-librsvg          | Build with librsvg support                            |
 | --with-mailutils        | Build with mailutils support                          |
 | --with-modules          | Compile with dynamic modules support                  |

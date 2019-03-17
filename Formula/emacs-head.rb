@@ -23,9 +23,11 @@ class EmacsHead < Formula
   depends_on "pkg-config" => :build
   depends_on "gnutls"
   depends_on "dbus" => :optional
-  # Emacs does not support ImageMagick 7:
+  # Emacs 26.x does not support ImageMagick 7:
   # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
   depends_on "imagemagick@6" => :optional
+  # Emacs 27.x (current HEAD) does support ImageMagick 7:
+  depends_on "imagemagick@7" => :optional
   depends_on "librsvg" => :optional
   depends_on "mailutils" => :optional
 
@@ -82,13 +84,33 @@ class EmacsHead < Formula
       args << "--without-dbus"
     end
 
+    if build.with?("imagemagick@6") && build.with?("imagemagick@7")
+      odie "--with-imagemagick@6 and --with-imagemagick@7 are mutually exclusive"
+    end
+
     # Note that if ./configure is passed --with-imagemagick but can't find the
     # library it does not fail but imagemagick support will not be available.
     # See: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=24455
-    if build.with? "imagemagick@6"
+    if build.with?("imagemagick@6") || build.with?("imagemagick@7")
       args << "--with-imagemagick"
     else
       args << "--without-imagemagick"
+    end
+
+    if build.with? "imagemagick@6"
+      imagemagick_lib_path =  Formula["imagemagick@6"].opt_lib/"pkgconfig"
+      ohai "ImageMagick PKG_CONFIG_PATH: ", imagemagick_lib_path
+      ENV.prepend_path "PKG_CONFIG_PATH", imagemagick_lib_path
+    end
+
+    # Emacs 27.x (current HEAD) supports imagemagick7 but not Emacs 26.x
+    if build.with? "imagemagick@7"
+      imagemagick_lib_path =  Formula["imagemagick@7"].opt_lib/"pkgconfig"
+      unless build.head?
+        odie "--with-imagemagick@7 is supported only on --HEAD"
+      end
+        ohai "ImageMagick PKG_CONFIG_PATH: ", imagemagick_lib_path
+        ENV.prepend_path "PKG_CONFIG_PATH", imagemagick_lib_path
     end
 
     args << "--with-modules" if build.with? "modules"

@@ -19,6 +19,7 @@ class EmacsHead < Formula
   option "without-libxml2", "Don't build with libxml2 support"
   option "with-modules", "Compile with dynamic modules support"
   option "with-no-frame-refocus", "Disables frame re-focus (ie. closing one frame does not refocus another one)"
+  option "with-jansson", "jansson support"
 
   depends_on "pkg-config" => :build
   depends_on "gnutls"
@@ -30,6 +31,7 @@ class EmacsHead < Formula
   depends_on "imagemagick@7" => :optional
   depends_on "librsvg" => :optional
   depends_on "mailutils" => :optional
+  depends_on "jansson" => :optional
 
   # Apply critical rendering fixes for macOS Mojave
   # More info:
@@ -118,6 +120,10 @@ class EmacsHead < Formula
     args << "--without-pop" if build.with? "mailutils"
 
     if build.head?
+      if build.with? "jansson"
+        args << "--with-json"
+      end
+
       ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
       system "./autogen.sh"
     end

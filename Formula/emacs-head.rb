@@ -19,7 +19,7 @@ class EmacsHead < Formula
   option "without-libxml2", "Don't build with libxml2 support"
   option "with-modules", "Compile with dynamic modules support"
   option "with-no-frame-refocus", "Disables frame re-focus (ie. closing one frame does not refocus another one)"
-  option "with-jansson", "jansson support"
+  option "with-jansson", "Enable jansson support"
 
   depends_on "pkg-config" => :build
   depends_on "gnutls"

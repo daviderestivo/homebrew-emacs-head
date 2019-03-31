@@ -111,8 +111,8 @@ class EmacsHead < Formula
       unless build.head?
         odie "--with-imagemagick@7 is supported only on --HEAD"
       end
-        ohai "ImageMagick PKG_CONFIG_PATH: ", imagemagick_lib_path
-        ENV.prepend_path "PKG_CONFIG_PATH", imagemagick_lib_path
+      ohai "ImageMagick PKG_CONFIG_PATH: ", imagemagick_lib_path
+      ENV.prepend_path "PKG_CONFIG_PATH", imagemagick_lib_path
     end
 
     args << "--with-modules" if build.with? "modules"

@@ -47,6 +47,7 @@ The following compiling options are available:
 | --with-jansson          | Enable jansson support                                |
 | --with-librsvg          | Build with librsvg support                            |
 | --with-mailutils        | Build with mailutils support                          |
+| --with-multicolor-fonts | Enable multicolor fonts on macOS                      |
 | --with-modules          | Compile with dynamic modules support                  |
 | --with-no-frame-refocus | Disables frame re-focus                               |
 | --without-libxml2       | Don't build with libxml2 support                      |

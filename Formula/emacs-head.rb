@@ -18,6 +18,7 @@ class EmacsHead < Formula
   option "with-ctags", "Don't remove the ctags executable that emacs provides"
   option "without-libxml2", "Don't build with libxml2 support"
   option "with-modules", "Compile with dynamic modules support"
+  option "with-multicolor-fonts", "Enable multicolor fonts on macOS"
   option "with-no-frame-refocus", "Disables frame re-focus (ie. closing one frame does not refocus another one)"
   option "with-jansson", "Enable jansson support"
 
@@ -132,6 +133,13 @@ class EmacsHead < Formula
       args << "--with-ns" << "--disable-ns-self-contained"
     else
       args << "--without-ns"
+    end
+
+    if build.with? "multicolor-fonts"
+      patch do
+        url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-Patch-multicolor-font.diff"
+        sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
+      end
     end
 
     system "./configure", *args

@@ -69,6 +69,13 @@ class EmacsHead < Formula
     end
   end
 
+  if build.with? "multicolor-fonts"
+    patch do
+      url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-Patch-multicolor-font.diff"
+      sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
+    end
+  end
+
   def install
     args = %W[
       --disable-dependency-tracking
@@ -129,7 +136,6 @@ class EmacsHead < Formula
       if build.with? "jansson"
         args << "--with-json"
       end
-
       ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
       system "./autogen.sh"
     end
@@ -138,13 +144,6 @@ class EmacsHead < Formula
       args << "--with-ns" << "--disable-ns-self-contained"
     else
       args << "--without-ns"
-    end
-
-    if build.with? "multicolor-fonts"
-      patch do
-        url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-Patch-multicolor-font.diff"
-        sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
-      end
     end
 
     system "./configure", *args

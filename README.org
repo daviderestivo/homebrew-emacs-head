@@ -1,4 +1,5 @@
 * Emacs Head
+[[https://travis-ci.com/daviderestivo/homebrew-emacs-head.svg?branch=master]]
 
 Emacs Head is a GNU Emacs formula based on the original Homebrew
 =emacs= [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][formula]].

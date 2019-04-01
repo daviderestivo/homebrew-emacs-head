@@ -28,16 +28,11 @@ class EmacsHead < Formula
   depends_on "librsvg" => :optional
   depends_on "mailutils" => :optional
   depends_on "jansson" => :optional
-
-  if build.head?
-    # Emacs 27.x (current HEAD) does support ImageMagick 7
-    depends_on "imagemagick@7" => :recommended
-    depends_on "imagemagick@6" => :optional
-  else
-    # Emacs 26.x does not support ImageMagick 7:
-    # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
-    depends_on "imagemagick@6" => :recommended
-  end
+  # Emacs 26.x does not support ImageMagick 7:
+  # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
+  depends_on "imagemagick@6" => :optional
+  # Emacs 27.x (current HEAD) does support ImageMagick 7
+  depends_on "imagemagick@7" => :optional
 
   # Apply critical rendering fixes for macOS Mojave
   # More info:

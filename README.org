@@ -44,7 +44,7 @@ The following compiling options are available:
 | --with-dbus             | Build with dbus support                               |
 | --with-imagemagick@6    | Build with imagemagick@6 support                      |
 | --with-imagemagick@7    | Build with imagemagick@7 support (only HEAD)          |
-| --with-jansson          | Enable jansson support                                |
+| --with-jansson          | Enable jansson support (only HEAD)                    |
 | --with-librsvg          | Build with librsvg support                            |
 | --with-mailutils        | Build with mailutils support                          |
 | --with-multicolor-fonts | Enable multicolor fonts on macOS                      |

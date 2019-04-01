@@ -128,14 +128,18 @@ class EmacsHead < Formula
       ENV.prepend_path "PKG_CONFIG_PATH", imagemagick_lib_path
     end
 
+    if build.with? "jansson"
+      unless build.head?
+        odie "--with-jansson is supported only on --HEAD"
+      end
+      args << "--with-json"
+    end
+
     args << "--with-modules" if build.with? "modules"
     args << "--with-rsvg" if build.with? "librsvg"
     args << "--without-pop" if build.with? "mailutils"
 
     if build.head?
-      if build.with? "jansson"
-        args << "--with-json"
-      end
       ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
       system "./autogen.sh"
     end

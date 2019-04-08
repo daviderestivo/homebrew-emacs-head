@@ -64,6 +64,8 @@ class EmacsHead < Formula
     end
   end
 
+  # Multicolor font support for macoOS has been disabled on master branch
+  # https://github.com/emacs-mirror/emacs/commit/9344612d3cd164317170b6189ec43175757e4231
   if build.with? "multicolor-fonts"
     patch do
       url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-Patch-multicolor-font.diff"

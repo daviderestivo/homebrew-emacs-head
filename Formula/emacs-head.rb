@@ -34,23 +34,6 @@ class EmacsHead < Formula
   # Emacs 27.x (current HEAD) does support ImageMagick 7
   depends_on "imagemagick@7" => :optional
 
-  # Apply critical rendering fixes for macOS Mojave
-  # More info:
-  # http://emacs.1067599.n8.nabble.com/bug-31904-27-0-50-Emacs-doesn-t-render-text-modeline-Mac-OSX-10-14-Mojave-tc458613.html
-  # https://lists.gnu.org/archive/html/emacs-devel/2018-09/msg00900.html
-  if MacOS.full_version >= "10.14"
-    unless build.head?
-      patch do
-        url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-Make-all-NS-drawing-be-done-from-drawRect.patch"
-        sha256 "0839b070fc698f4efddb6e9dc2fe30f7afb75925b9ff875d1a026b1e283ab28d"
-      end
-      patch do
-        url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-Fix-deprecation-warning.patch"
-        sha256 "07aa87fe0c56c65de44c5e56c1d5e1d79402560b13e12fa7e00c7ba846637ea6"
-      end
-    end
-  end
-
   # When closing a frame, Emacs automatically focuses another frame.
   # This re-focus has an additional side-effect: when closing a frame
   # from one desktop/space, one gets automatically moved to another

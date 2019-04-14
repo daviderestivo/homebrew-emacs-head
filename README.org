@@ -10,7 +10,7 @@ homebrew-core formula (see [[https://github.com/Homebrew/homebrew-core/pull/3607
 formula.
 
 This formula currently supports:
-- GNU Emacs 26.1
+- GNU Emacs 26.2
 - GNU Emacs HEAD (currently 27.x)
 
 No bottles are available.
@@ -23,7 +23,7 @@ No bottles are available.
 ** Installation
 You can install this formula using:
 
-*** GNU Emacs 26.1
+*** GNU Emacs 26.2
 #+begin_src bash
 brew tap daviderestivo/emacs-head
 brew install emacs-head --with-cocoa

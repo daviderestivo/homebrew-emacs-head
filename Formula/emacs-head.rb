@@ -180,7 +180,7 @@ class EmacsHead < Formula
     <<~EOS
       Emacs.app was installed to:
         #{prefix}
-      To link the application to default Homebrew App location:
+      To link the application:
         ln -s #{prefix}/Emacs.app /Applications
     EOS
   end

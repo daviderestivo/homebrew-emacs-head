@@ -1,9 +1,5 @@
 language: generic
 
-branches:
-  only:
-    - master
-
 os:
   - osx
 

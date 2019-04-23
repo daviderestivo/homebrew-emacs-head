@@ -150,15 +150,11 @@ class EmacsHead < Formula
 
     if build.with? "cocoa"
       args << "--with-ns" << "--disable-ns-self-contained"
-    else
-      args << "--without-ns"
-    end
 
-    system "./configure", *args
-    system "make"
-    system "make", "install"
+      system "./configure", *args
+      system "make"
+      system "make", "install"
 
-    if build.with? "cocoa"
       prefix.install "nextstep/Emacs.app"
 
       # Replace the symlink with one that avoids starting Cocoa.
@@ -167,6 +163,12 @@ class EmacsHead < Formula
         #!/bin/bash
         exec #{prefix}/Emacs.app/Contents/MacOS/Emacs "$@"
       EOS
+    else
+      args << "--without-ns"
+
+      system "./configure", *args
+      system "make"
+      system "make", "install"
     end
 
     # Follow MacPorts and don't install ctags from Emacs. This allows Vim

@@ -14,17 +14,36 @@ class EmacsHead < Formula
     depends_on "texinfo" => :build
   end
 
-  option "with-cocoa", "Build a Cocoa version of emacs"
-  option "with-ctags", "Don't remove the ctags executable that emacs provides"
-  option "without-libxml2", "Don't build with libxml2 support"
-  option "with-modules", "Compile with dynamic modules support"
-  option "with-multicolor-fonts", "Enable multicolor fonts on macOS"
-  option "with-no-frame-refocus", "Disables frame re-focus (ie. closing one frame does not refocus another one)"
-  option "with-jansson", "Enable jansson support"
+  option "with-cocoa",
+         "Build a Cocoa version of GNU Emacs"
+  option "with-ctags",
+         "Don't remove the ctags executable that GNU Emacs provides"
+  option "with-dbus",
+         "Build with dbus support"
+  option "with-gnutls",
+         "Build with gnutls support"
+  option "with-imagemagick@6",
+         "Build with imagemagick@6 support"
+  option "with-imagemagick@7",
+         "Build with imagemagick@7 support (only HEAD)"
+  option "with-jansson",
+         "Enable jansson support (only HEAD"
+  option "with-librsvg",
+         "Build with librsvg support"
+  option "with-mailutils",
+         "Build with mailutils support"
+  option "with-multicolor-fonts",
+         "Enable multicolor fonts on macOS"
+  option "with-modules",
+         "Build with dynamic modules support"
+  option "with-no-frame-refocus",
+         "Disables frame re-focus (ie. closing one frame does not refocus another one)"
+  option "with-libxml2",
+         "Build with libxml2 support"
 
   depends_on "pkg-config" => :build
-  depends_on "gnutls"
   depends_on "dbus" => :optional
+  depends_on "gnutls" => :optional
   depends_on "librsvg" => :optional
   depends_on "mailutils" => :optional
   depends_on "jansson" => :optional
@@ -63,7 +82,6 @@ class EmacsHead < Formula
       --enable-locallisppath=#{HOMEBREW_PREFIX}/share/emacs/site-lisp
       --infodir=#{info}/emacs
       --prefix=#{prefix}
-      --with-gnutls
       --without-x
     ]
 
@@ -77,6 +95,12 @@ class EmacsHead < Formula
       args << "--with-dbus"
     else
       args << "--without-dbus"
+    end
+
+    if build.with? "gnutls"
+      args << "--with-gnutls"
+    else
+      args << "--without-gnutls"
     end
 
     if build.with?("imagemagick@6") && build.with?("imagemagick@7")

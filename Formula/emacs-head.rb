@@ -44,7 +44,7 @@ class EmacsHead < Formula
   option "with-imagemagick@7",
          "Build with imagemagick@7 support (only HEAD)"
   option "with-jansson",
-         "Enable jansson support (only HEAD"
+         "Enable jansson support (only HEAD)"
   option "with-librsvg",
          "Build with librsvg support"
   option "with-mailutils",
@@ -54,7 +54,7 @@ class EmacsHead < Formula
   option "with-modules",
          "Build with dynamic modules support"
   option "with-no-frame-refocus",
-         "Disables frame re-focus (ie. closing one frame does not refocus another one)"
+         "Disables frame re-focus (i.e. closing one frame does not refocus another one)"
   option "with-libxml2",
          "Build with libxml2 support"
 
@@ -79,7 +79,7 @@ class EmacsHead < Formula
   # https://github.com/emacs-mirror/emacs/commit/9344612d3cd164317170b6189ec43175757e4231
   if build.with? "multicolor-fonts"
     patch do
-      url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-Patch-multicolor-font.diff"
+      url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0002-Patch-multicolor-font.diff"
       sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
     end
   end

@@ -6,6 +6,12 @@ class EmacsHead < Formula
   sha256 "151ce69dbe5b809d4492ffae4a4b153b2778459de6deb26f35691e1281a9c58e"
   revision 1
 
+  bottle do
+    rebuild 1
+    root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
+    sha256 "e295c624c1cc1fe15e4a0edf0bebd0a6208c23408c73d16a84696d47145ea12c" => :mojave
+  end
+
   head do
     url "https://github.com/emacs-mirror/emacs.git"
 

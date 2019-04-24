@@ -18,6 +18,17 @@ class EmacsHead < Formula
     depends_on "autoconf" => :build
     depends_on "gnu-sed" => :build
     depends_on "texinfo" => :build
+    depends_on "pkg-config" => :build
+    depends_on "dbus" => :optional
+    depends_on "gnutls" => :optional
+    depends_on "librsvg" => :optional
+    depends_on "mailutils" => :optional
+    depends_on "jansson" => :optional
+    # Emacs 26.x does not support ImageMagick 7:
+    # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
+    depends_on "imagemagick@6" => :optional
+    # Emacs 27.x (current HEAD) does support ImageMagick 7
+    depends_on "imagemagick@7" => :optional
   end
 
   option "with-cocoa",
@@ -47,18 +58,10 @@ class EmacsHead < Formula
   option "with-libxml2",
          "Build with libxml2 support"
 
-  depends_on "pkg-config" => :build
-  depends_on "dbus" => :optional
-  depends_on "gnutls" => :optional
-  depends_on "librsvg" => :optional
-  depends_on "mailutils" => :optional
-  depends_on "jansson" => :optional
-  # Emacs 26.x does not support ImageMagick 7:
-  # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
-  depends_on "imagemagick@6" => :optional
-  # Emacs 27.x (current HEAD) does support ImageMagick 7
-  depends_on "imagemagick@7" => :optional
-
+  depends_on "gnutls"
+  depends_on "imagemagick@6"
+  depends_on "librsvg"
+  
   # When closing a frame, Emacs automatically focuses another frame.
   # This re-focus has an additional side-effect: when closing a frame
   # from one desktop/space, one gets automatically moved to another

@@ -56,5 +56,12 @@ The following compiling options are available:
 
 For the terminal version only of GNU Emacs please omit "--with-cocoa".
 
+By default:
+- gnutls
+- librsvg
+- libxml2
+
+are enabled. If you want to disable them please use the above "—-without-*" options.
+
 ** Collaborating
 If you are interested in collaborating please open a Pull Request.

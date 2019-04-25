@@ -43,16 +43,16 @@ The following compiling options are available:
 | --with-cocoa            | Build a Cocoa version of GNU Emacs                                           |
 | --with-ctags            | Don't remove the ctags executable that GNU Emacs provides                    |
 | --with-dbus             | Build with dbus support                                                      |
-| --with-gnutls           | Build with gnutls support                                                    |
+| --without-gnutls        | Disable gnutls support                                                       |
 | --with-imagemagick@6    | Build with imagemagick@6 support                                             |
 | --with-imagemagick@7    | Build with imagemagick@7 support (only HEAD)                                 |
 | --with-jansson          | Enable jansson support (only HEAD)                                           |
-| --with-librsvg          | Build with librsvg support                                                   |
+| --without-librsvg       | Disable librsvg support                                                      |
 | --with-mailutils        | Build with mailutils support                                                 |
 | --with-multicolor-fonts | Enable multicolor fonts on macOS                                             |
 | --with-modules          | Build with dynamic modules support                                           |
 | --with-no-frame-refocus | Disables frame re-focus (ie. closing one frame does not refocus another one) |
-| --with-libxml2          | Don't build with libxml2 support                                             |
+| --without-libxml2       | Disable libxml2 support                                                      |
 
 For the terminal version only of GNU Emacs please omit "--with-cocoa".
 

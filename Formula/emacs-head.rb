@@ -18,17 +18,6 @@ class EmacsHead < Formula
     depends_on "autoconf" => :build
     depends_on "gnu-sed" => :build
     depends_on "texinfo" => :build
-    depends_on "pkg-config" => :build
-    depends_on "dbus" => :optional
-    depends_on "gnutls" => :optional
-    depends_on "librsvg" => :optional
-    depends_on "mailutils" => :optional
-    depends_on "jansson" => :optional
-    # Emacs 26.x does not support ImageMagick 7:
-    # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
-    depends_on "imagemagick@6" => :optional
-    # Emacs 27.x (current HEAD) does support ImageMagick 7
-    depends_on "imagemagick@7" => :optional
   end
 
   option "with-cocoa",
@@ -37,16 +26,16 @@ class EmacsHead < Formula
          "Don't remove the ctags executable that GNU Emacs provides"
   option "with-dbus",
          "Build with dbus support"
-  option "with-gnutls",
-         "Build with gnutls support"
+  option "without-gnutls",
+         "Disable gnutls support"
   option "with-imagemagick@6",
          "Build with imagemagick@6 support"
   option "with-imagemagick@7",
          "Build with imagemagick@7 support (only HEAD)"
   option "with-jansson",
          "Enable jansson support (only HEAD)"
-  option "with-librsvg",
-         "Build with librsvg support"
+  option "without-librsvg",
+         "Disable librsvg support"
   option "with-mailutils",
          "Build with mailutils support"
   option "with-multicolor-fonts",
@@ -55,13 +44,22 @@ class EmacsHead < Formula
          "Build with dynamic modules support"
   option "with-no-frame-refocus",
          "Disables frame re-focus (i.e. closing one frame does not refocus another one)"
-  option "with-libxml2",
-         "Build with libxml2 support"
+  option "without-libxml2",
+         "Disable libxml2 support"
 
+  depends_on "pkg-config" => :build
+  depends_on "dbus" => :optional
+  depends_on "mailutils" => :optional
+  depends_on "jansson" => :optional
   depends_on "gnutls"
-  depends_on "imagemagick@6"
   depends_on "librsvg"
-  
+  depends_on "libxml2"
+  # Emacs 26.x does not support ImageMagick 7:
+  # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
+  depends_on "imagemagick@6"
+  # Emacs 27.x (current HEAD) does support ImageMagick 7
+  depends_on "imagemagick@7" => :optional
+
   # When closing a frame, Emacs automatically focuses another frame.
   # This re-focus has an additional side-effect: when closing a frame
   # from one desktop/space, one gets automatically moved to another
@@ -94,22 +92,10 @@ class EmacsHead < Formula
       --without-x
     ]
 
-    if build.with? "libxml2"
-      args << "--with-xml2"
-    else
-      args << "--without-xml2"
-    end
-
     if build.with? "dbus"
       args << "--with-dbus"
     else
       args << "--without-dbus"
-    end
-
-    if build.with? "gnutls"
-      args << "--with-gnutls"
-    else
-      args << "--without-gnutls"
     end
 
     if build.with?("imagemagick@6") && build.with?("imagemagick@7")
@@ -149,8 +135,10 @@ class EmacsHead < Formula
     end
 
     args << "--with-modules" if build.with? "modules"
-    args << "--with-rsvg" if build.with? "librsvg"
-    args << "--without-pop" if build.with? "mailutils"
+    args << "--without-pop"  if build.with? "mailutils"
+    args << "--with-gnutls"  unless build.without? "gnutls"
+    args << "--with-rsvg"    unless build.without? "librsvg"
+    args << "--with-xml2"    unless build.without? "libxml2"
 
     if build.head?
       ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"

@@ -50,7 +50,7 @@ The following compiling options are available:
 | --without-librsvg       | Disable librsvg support                                                      |
 | --with-mailutils        | Build with mailutils support                                                 |
 | --with-multicolor-fonts | Enable multicolor fonts on macOS                                             |
-| --with-modules          | Build with dynamic modules support                                           |
+| --without-modules       | Disable dynamic modules support                                              |
 | --with-no-frame-refocus | Disables frame re-focus (ie. closing one frame does not refocus another one) |
 | --without-libxml2       | Disable libxml2 support                                                      |
 
@@ -60,8 +60,9 @@ By default:
 - gnutls
 - librsvg
 - libxml2
+- dynamic modules support
 
-are enabled. If you want to disable them please use the above "—-without-*" options.
+are enabled. If you want to disable them please use the above "--without-*" options.
 
 ** Collaborating
 If you are interested in collaborating please open a Pull Request.

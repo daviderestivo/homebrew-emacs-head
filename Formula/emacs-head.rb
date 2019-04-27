@@ -40,8 +40,8 @@ class EmacsHead < Formula
          "Build with mailutils support"
   option "with-multicolor-fonts",
          "Enable multicolor fonts on macOS"
-  option "with-modules",
-         "Build with dynamic modules support"
+  option "without-modules",
+         "Disable dynamic modules support"
   option "with-no-frame-refocus",
          "Disables frame re-focus (i.e. closing one frame does not refocus another one)"
   option "without-libxml2",
@@ -134,7 +134,7 @@ class EmacsHead < Formula
       args << "--with-json"
     end
 
-    args << "--with-modules" if build.with? "modules"
+    args << "--with-modules" unless build.without? "modules"
     args << "--without-pop"  if build.with? "mailutils"
     args << "--with-gnutls"  unless build.without? "gnutls"
     args << "--with-rsvg"    unless build.without? "librsvg"

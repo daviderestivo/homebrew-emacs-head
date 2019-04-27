@@ -49,7 +49,7 @@ The following compiling options are available:
 | --with-jansson          | Enable jansson support (only HEAD)                                           |
 | --without-librsvg       | Disable librsvg support                                                      |
 | --with-mailutils        | Build with mailutils support                                                 |
-| --with-multicolor-fonts | Enable multicolor fonts on macOS                                             |
+| --with-multicolor-fonts | Enable multicolor fonts support on macOS (only for Emacs 26.2)               |
 | --without-modules       | Disable dynamic modules support                                              |
 | --with-no-frame-refocus | Disables frame re-focus (ie. closing one frame does not refocus another one) |
 | --without-libxml2       | Disable libxml2 support                                                      |
@@ -60,7 +60,7 @@ By default:
 - gnutls
 - librsvg
 - libxml2
-- dynamic modules support
+- dynamic modules
 
 are enabled. If you want to disable them please use the above "--without-*" options.
 

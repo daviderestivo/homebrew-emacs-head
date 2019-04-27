@@ -73,9 +73,15 @@ class EmacsHead < Formula
     end
   end
 
-  # Multicolor font support for macoOS has been disabled on master branch
-  # https://github.com/emacs-mirror/emacs/commit/9344612d3cd164317170b6189ec43175757e4231
-  if build.with? "multicolor-fonts"
+  # Multicolor font support for macoOS has been re-enable on GNU Emacs
+  # master branch:
+  # https://github.com/emacs-mirror/emacs/commit/28220664714c50996d8318788289e1c69d69b8ab
+  if build.head? && build.with?("multicolor-fonts")
+    odie "Multicolor font support has been re-enabled on GNU Emacs HEAD. Please remove --with-multicolor-fonts."
+  end
+
+  # The multicolor-fonts patch is only needed on GNU Emacs 26.2
+  if (not build.head?) && build.with?("multicolor-fonts")
     patch do
       url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0002-Patch-multicolor-font.diff"
       sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
@@ -135,7 +141,7 @@ class EmacsHead < Formula
     end
 
     args << "--with-modules" unless build.without? "modules"
-    args << "--without-pop"  if build.with? "mailutils"
+    args << "--without-pop"  if     build.with?    "mailutils"
     args << "--with-gnutls"  unless build.without? "gnutls"
     args << "--with-rsvg"    unless build.without? "librsvg"
     args << "--with-xml2"    unless build.without? "libxml2"

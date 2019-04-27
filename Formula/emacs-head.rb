@@ -48,17 +48,17 @@ class EmacsHead < Formula
          "Disable libxml2 support"
 
   depends_on "pkg-config" => :build
-  depends_on "dbus" => :optional
-  depends_on "mailutils" => :optional
-  depends_on "jansson" => :optional
   depends_on "gnutls"
   depends_on "librsvg"
   depends_on "libxml2"
+  depends_on "dbus" => :optional
   # Emacs 26.x does not support ImageMagick 7:
   # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
   depends_on "imagemagick@6"
   # Emacs 27.x (current HEAD) does support ImageMagick 7
   depends_on "imagemagick@7" => :optional
+  depends_on "jansson" => :optional
+  depends_on "mailutils" => :optional
 
   # When closing a frame, Emacs automatically focuses another frame.
   # This re-focus has an additional side-effect: when closing a frame
@@ -81,7 +81,7 @@ class EmacsHead < Formula
   end
 
   # The multicolor-fonts patch is only needed on GNU Emacs 26.2
-  if (not build.head?) && build.with?("multicolor-fonts")
+  if !build.head? && build.with?("multicolor-fonts")
     patch do
       url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0002-Patch-multicolor-font.diff"
       sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
@@ -118,14 +118,14 @@ class EmacsHead < Formula
     end
 
     if build.with? "imagemagick@6"
-      imagemagick_lib_path =  Formula["imagemagick@6"].opt_lib/"pkgconfig"
+      imagemagick_lib_path = Formula["imagemagick@6"].opt_lib/"pkgconfig"
       ohai "ImageMagick PKG_CONFIG_PATH: ", imagemagick_lib_path
       ENV.prepend_path "PKG_CONFIG_PATH", imagemagick_lib_path
     end
 
     # Emacs 27.x (current HEAD) supports imagemagick7 but not Emacs 26.x
     if build.with? "imagemagick@7"
-      imagemagick_lib_path =  Formula["imagemagick@7"].opt_lib/"pkgconfig"
+      imagemagick_lib_path = Formula["imagemagick@7"].opt_lib/"pkgconfig"
       unless build.head?
         odie "--with-imagemagick@7 is supported only on --HEAD"
       end
@@ -182,6 +182,15 @@ class EmacsHead < Formula
     end
   end
 
+  def caveats
+    <<~EOS
+      Emacs.app was installed to:
+        #{prefix}
+      To link the application:
+        ln -s #{prefix}/Emacs.app /Applications
+    EOS
+  end
+
   plist_options :manual => "emacs"
 
   def plist; <<~EOS
@@ -203,15 +212,6 @@ class EmacsHead < Formula
     </dict>
     </plist>
   EOS
-  end
-
-  def caveats
-    <<~EOS
-      Emacs.app was installed to:
-        #{prefix}
-      To link the application:
-        ln -s #{prefix}/Emacs.app /Applications
-    EOS
   end
 
   test do

@@ -5,22 +5,31 @@ os:
 
 matrix:
   include:
-    # Emacs 26.x on High Sierra   (10.13)
+    # Emacs 26.x on Sierra      (10.12)
+    - env: BUILD_OPTIONS=""
+      osx_image: xcode9.2
+    # Emacs 26.x on High Sierra (10.13)
     - env: BUILD_OPTIONS=""
       osx_image: xcode10.1
-    # Emacs 26.x on Mojave        (10.14)
+    # Emacs 26.x on Mojave      (10.14)
     - env: BUILD_OPTIONS=""
       osx_image: xcode10.2
-    # Emacs 26.x on High Sierra   (10.13) - All options (imagemagick@6)
+      # Emacs 26.x on Sierra    (10.12) - All options (imagemagick@6)
+    - env: BUILD_OPTIONS="--with-cocoa --with-no-frame-refocus --with-imagemagick@6 --with-multicolor-fonts"
+      osx_image: xcode9.2
+      # Emacs 27.x on Sierra    (10.12) - All options (imagemagick@7)
+    - env: BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick@7 --with-jansson"
+      osx_image: xcode9.2
+    # Emacs 26.x on High Sierra (10.13) - All options (imagemagick@6)
     - env: BUILD_OPTIONS="--with-cocoa --with-no-frame-refocus --with-imagemagick@6 --with-multicolor-fonts"
       osx_image: xcode10.1
-    # Emacs 27.x on High Sierra   (10.13) - All options (imagemagick@7)
+    # Emacs 27.x on High Sierra (10.13) - All options (imagemagick@7)
     - env: BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick@7 --with-jansson"
       osx_image: xcode10.1
-    # Emacs 26.x on Mojave        (10.14) - All options (imagemagick@6)
+    # Emacs 26.x on Mojave      (10.14) - All options (imagemagick@6)
     - env: BUILD_OPTIONS="--with-cocoa --with-no-frame-refocus --with-imagemagick@6 --with-multicolor-fonts"
       osx_image: xcode10.2
-    # Emacs 27.x on Mojave        (10.14) - All options (imagemagick@7)
+    # Emacs 27.x on Mojave      (10.14) - All options (imagemagick@7)
     - env: BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick@7 --with-jansson"
       osx_image: xcode10.2
 

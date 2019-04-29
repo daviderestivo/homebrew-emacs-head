@@ -56,7 +56,8 @@ class EmacsHead < Formula
   depends_on "dbus" => :optional
   # Emacs 26.x does not support ImageMagick 7:
   # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
-  depends_on "imagemagick@6"
+  # Set recommended so that HEAD can install with v7 only, but non-head behaves as before.
+  depends_on "imagemagick@6" => :recommended
   # Emacs 27.x (current HEAD) does support ImageMagick 7
   depends_on "imagemagick@7" => :optional
   depends_on "jansson" => :optional

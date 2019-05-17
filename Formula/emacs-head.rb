@@ -55,9 +55,9 @@ class EmacsHead < Formula
   depends_on "jansson" => :optional
   depends_on "mailutils" => :optional
 
-  # Emacs 26.x does not support ImageMagick 7:
-  # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
   stable do
+    # Emacs 26.x does not support ImageMagick 7:
+    # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
     depends_on "imagemagick@6" => :recommended
   end
 
@@ -65,7 +65,6 @@ class EmacsHead < Formula
     # Emacs 27.x (current HEAD) does support ImageMagick 7
     depends_on "imagemagick@7" => :recommended
   end
-
 
   # When closing a frame, Emacs automatically focuses another frame.
   # This re-focus has an additional side-effect: when closing a frame

@@ -15,7 +15,11 @@ This formula currently supports:
 - GNU Emacs 26.2
 - GNU Emacs HEAD (currently 27.x)
 
-No bottles are available.
+Bottles (26.2) are available for the following macOS versions:
+- Mojave
+- High Sierra
+- Sierra
+if you need support for an older macOS version open an issue.
 
 ** Screenshots
 *** GNU Emacs running in terminal mode (27.x)

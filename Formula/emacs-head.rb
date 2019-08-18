@@ -89,7 +89,7 @@ class EmacsHead < Formula
   # The multicolor-fonts patch is only needed on GNU Emacs 26.2
   if !build.head? && build.with?("multicolor-fonts")
     patch do
-      url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0002-Patch-multicolor-font.diff"
+      url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0002-Patch-multicolor-font.patch"
       sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
     end
   end

@@ -46,6 +46,8 @@ class EmacsHead < Formula
          "Disables frame re-focus (i.e. closing one frame does not refocus another one)"
   option "without-libxml2",
          "Disable libxml2 support"
+  option "with-pdumper",
+         "Enable pdumper support (only HEAD)"
 
   depends_on "pkg-config" => :build
   depends_on "gnutls"
@@ -91,6 +93,16 @@ class EmacsHead < Formula
     patch do
       url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0002-Patch-multicolor-font.patch"
       sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
+    end
+  end
+
+  if build.with? "pdumper"
+    unless build.head?
+      odie "--with-pdumper is supported only on --HEAD"
+    end
+    patch do
+       url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0003-Pdumper-size-increase.patch"
+       sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
     end
   end
 

@@ -27,7 +27,7 @@ matrix:
       osx_image: xcode9.2
       # Emacs 27.x on Sierra    (10.12) - All options (imagemagick@7)
     - env:
-        - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson"
+        - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper"
         - TEST_OPTIONS="--HEAD"
       osx_image: xcode9.2
     # Emacs 26.x on High Sierra (10.13) - All options (imagemagick@6)
@@ -37,7 +37,7 @@ matrix:
       osx_image: xcode10.1
     # Emacs 27.x on High Sierra (10.13) - All options (imagemagick@7)
     - env:
-        - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson"
+        - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper"
         - TEST_OPTIONS="--HEAD"
       osx_image: xcode10.1
     # Emacs 26.x on Mojave      (10.14) - All options (imagemagick@6)
@@ -47,7 +47,7 @@ matrix:
       osx_image: xcode10.2
     # Emacs 27.x on Mojave      (10.14) - All options (imagemagick@7)
     - env:
-        - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson"
+        - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper"
         - TEST_OPTIONS="--HEAD"
       osx_image: xcode10.2
 

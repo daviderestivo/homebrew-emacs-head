@@ -60,7 +60,7 @@ The following compiling options are available:
 | ~--without-libxml2~       | Disable libxml2 support                                                      |
 | ~--with-pdumper~          | Enable pdumper support                                                       |
 
-For the terminal version only of GNU Emacs please omit "--with-cocoa".
+For the terminal version only of GNU Emacs please omit "~--with-cocoa~".
 
 By default:
 - gnutls

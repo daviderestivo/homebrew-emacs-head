@@ -1,17 +1,17 @@
 class EmacsHead < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://ftp.gnu.org/gnu/emacs/emacs-26.2.tar.xz"
-  mirror "https://ftpmirror.gnu.org/emacs/emacs-26.2.tar.xz"
-  sha256 "151ce69dbe5b809d4492ffae4a4b153b2778459de6deb26f35691e1281a9c58e"
+  url "https://ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz"
+  mirror "https://ftpmirror.gnu.org/emacs/emacs-26.3.tar.xz"
+  sha256 "4d90e6751ad8967822c6e092db07466b9d383ef1653feb2f95c93e7de66d3485"
   revision 1
 
   bottle do
-    rebuild 6
+    rebuild 7
     root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
-    sha256 "6a44f2619c18a240edca8e0e72dfbcc555d515c9b4828d98fe1438940ba664f2" => :sierra
-    sha256 "04091321751d056d96a9c3b067d5af6f1848f7189d645cbaac518aba8dbfd653" => :high_sierra
-    sha256 "22b1324d3af400657056d345808df4ab520728db59f03d823a8e2572d7c6ce51" => :mojave
+    sha256 "" => :sierra
+    sha256 "" => :high_sierra
+    sha256 "" => :mojave
   end
 
   head do
@@ -88,7 +88,7 @@ class EmacsHead < Formula
     odie "Multicolor font support has been re-enabled on GNU Emacs HEAD. Please remove --with-multicolor-fonts."
   end
 
-  # The multicolor-fonts patch is only needed on GNU Emacs 26.2
+  # The multicolor-fonts patch is only needed on GNU Emacs 26.x
   if !build.head? && build.with?("multicolor-fonts")
     patch do
       url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0002-Patch-multicolor-font.patch"

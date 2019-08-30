@@ -1,9 +1,9 @@
 class EmacsHead < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://ftp.gnu.org/gnu/emacs/emacs-26.2.tar.xz"
-  mirror "https://ftpmirror.gnu.org/emacs/emacs-26.2.tar.xz"
-  sha256 "151ce69dbe5b809d4492ffae4a4b153b2778459de6deb26f35691e1281a9c58e"
+  url "https://ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz"
+  mirror "https://ftpmirror.gnu.org/emacs/emacs-26.3.tar.xz"
+  sha256 "4d90e6751ad8967822c6e092db07466b9d383ef1653feb2f95c93e7de66d3485"
   revision 1
 
   bottle do
@@ -88,7 +88,7 @@ class EmacsHead < Formula
     odie "Multicolor font support has been re-enabled on GNU Emacs HEAD. Please remove --with-multicolor-fonts."
   end
 
-  # The multicolor-fonts patch is only needed on GNU Emacs 26.2
+  # The multicolor-fonts patch is only needed on GNU Emacs 26.x
   if !build.head? && build.with?("multicolor-fonts")
     patch do
       url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0002-Patch-multicolor-font.patch"

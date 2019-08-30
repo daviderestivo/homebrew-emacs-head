@@ -12,10 +12,10 @@ homebrew-core formula (see [[https://github.com/Homebrew/homebrew-core/pull/3607
 formula.
 
 This formula currently supports:
-- GNU Emacs 26.2
+- GNU Emacs 26.3
 - GNU Emacs HEAD (currently 27.x)
 
-Bottles (26.2) are available for the following macOS versions:
+Bottles (26.3) are available for the following macOS versions:
 - Mojave
 - High Sierra
 - Sierra
@@ -29,7 +29,7 @@ if you need support for an older macOS version open an issue.
 ** Installation
 You can install this formula using:
 
-*** GNU Emacs 26.2
+*** GNU Emacs 26.3
 #+begin_src bash
 brew tap daviderestivo/emacs-head
 brew install emacs-head --with-cocoa
@@ -54,7 +54,7 @@ The following compiling options are available:
 | ~--with-jansson~          | Enable jansson support (only HEAD)                                           |
 | ~--without-librsvg~       | Disable librsvg support                                                      |
 | ~--with-mailutils~        | Build with mailutils support                                                 |
-| ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only for Emacs 26.2)               |
+| ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only for Emacs 26.3)               |
 | ~--without-modules~       | Disable dynamic modules support                                              |
 | ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one) |
 | ~--without-libxml2~       | Disable libxml2 support                                                      |

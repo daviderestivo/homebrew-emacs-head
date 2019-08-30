@@ -9,9 +9,9 @@ class EmacsHead < Formula
   bottle do
     rebuild 7
     root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
-    sha256 "" => :sierra
-    sha256 "" => :high_sierra
-    sha256 "" => :mojave
+    sha256 "c53c1c5b4dadf0ce48155f3091057d5c89ee2468213a9e034d97721435c8dfec" => :sierra
+    sha256 "74f9c49dee8d67aaaa251dbce94904d1a10a069ab478ca3d15983629aa8220e8" => :high_sierra
+    sha256 "808665e2e9a397dfc71303fb11618d42ed60bbc484f864b36b9413741a526f76" => :mojave
   end
 
   head do

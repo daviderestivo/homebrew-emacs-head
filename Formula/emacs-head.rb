@@ -101,8 +101,8 @@ class EmacsHead < Formula
       odie "--with-pdumper is supported only on --HEAD"
     end
     patch do
-       url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0003-Pdumper-size-increase.patch"
-       sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
+      url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0003-Pdumper-size-increase.patch"
+      sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
     end
   end
 
@@ -161,6 +161,20 @@ class EmacsHead < Formula
       args << "--with-ns" << "--disable-ns-self-contained"
 
       system "./configure", *args
+
+      # Disable aligned_alloc on Mojave. See issue: https://github.com/daviderestivo/homebrew-emacs-head/issues/15
+      if MacOS.version <= :mojave
+        ohai "Force disabling of aligned_alloc on macOS <= Mojave"
+        configure_h_filtered = File.read("src/config.h")
+                                 .gsub("#define HAVE_ALIGNED_ALLOC 1", "#undef HAVE_ALIGNED_ALLOC")
+                                 .gsub("#define HAVE_DECL_ALIGNED_ALLOC 1", "#undef HAVE_DECL_ALIGNED_ALLOC")
+                                 .gsub("#define HAVE_ALLOCA 1", "#undef HAVE_ALLOCA")
+                                 .gsub("#define HAVE_ALLOCA_H 1", "#undef HAVE_ALLOCA_H")
+        File.open("src/config.h", "w") do |f|
+          f.write(configure_h_filtered)
+        end
+      end
+
       system "make"
       system "make", "install"
 
@@ -176,6 +190,20 @@ class EmacsHead < Formula
       args << "--without-ns"
 
       system "./configure", *args
+
+      # Disable aligned_alloc on Mojave. See issue: https://github.com/daviderestivo/homebrew-emacs-head/issues/15
+      if MacOS.version <= :mojave
+        ohai "Force disabling of aligned_alloc on macOS <= Mojave"
+        configure_h_filtered = File.read("src/config.h")
+                                 .gsub("#define HAVE_ALIGNED_ALLOC 1", "#undef HAVE_ALIGNED_ALLOC")
+                                 .gsub("#define HAVE_DECL_ALIGNED_ALLOC 1", "#undef HAVE_DECL_ALIGNED_ALLOC")
+                                 .gsub("#define HAVE_ALLOCA 1", "#undef HAVE_ALLOCA")
+                                 .gsub("#define HAVE_ALLOCA_H 1", "#undef HAVE_ALLOCA_H")
+        File.open("src/config.h", "w") do |f|
+          f.write(configure_h_filtered)
+        end
+      end
+
       system "make"
       system "make", "install"
     end

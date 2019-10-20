@@ -16,6 +16,7 @@ This formula currently supports:
 - GNU Emacs HEAD (currently 27.x)
 
 Bottles (26.3) are available for the following macOS versions:
+- Catalina
 - Mojave
 - High Sierra
 - Sierra

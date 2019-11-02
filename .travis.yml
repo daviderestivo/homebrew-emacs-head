@@ -98,5 +98,5 @@ before_install:
   - brew update
 
 script:
-  - travis_wait 50 brew install --verbose Formula/emacs-head.rb $BUILD_OPTIONS
+  - travis_wait 50 brew install Formula/emacs-head.rb $BUILD_OPTIONS
   - brew test $TEST_OPTIONS Formula/emacs-head.rb

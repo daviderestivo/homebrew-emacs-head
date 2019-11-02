@@ -60,6 +60,7 @@ The following compiling options are available:
 | ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one) |
 | ~--without-libxml2~       | Disable libxml2 support                                                      |
 | ~--with-pdumper~          | Enable pdumper support                                                       |
+| ~--with-xwidgets~         | Enable xwidgets support                                                      |
 
 For the terminal version only of GNU Emacs please omit "~--with-cocoa~".
 

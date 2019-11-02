@@ -49,6 +49,8 @@ class EmacsHead < Formula
          "Disable libxml2 support"
   option "with-pdumper",
          "Enable pdumper support (only HEAD)"
+  option "with-xwidgets",
+         "Enable xwidgets support (only HEAD)"
 
   depends_on "pkg-config" => :build
   depends_on "gnutls"
@@ -107,6 +109,26 @@ class EmacsHead < Formula
     end
   end
 
+  if build.with? "xwidgets"
+    unless build.head?
+      odie "--with-xwidgets is supported only on --HEAD"
+    end
+    unless build.with? "cocoa"
+      odie "--with-xwidgets is supported only on cocoa via xwidget webkit"
+    end
+    if build.with? "pdumper"
+      patch do
+        url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0004-Xwidgets_webkit_in_cocoa_pdumper.patch"
+        sha256 "4e178783cdf2f8611edbdc2ecf0d9a7314d132d5022fe5a75387e2291ca515bc"
+      end
+    else
+      patch do
+        url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0005-Xwidgets_webkit_in_cocoa.patch"
+        sha256 "bd614add2ca3b0da940521116b8b78f605213229747502c2159a728db5ac82d3"
+      end
+    end
+  end
+
   def install
     args = %W[
       --disable-dependency-tracking
@@ -147,11 +169,12 @@ class EmacsHead < Formula
       args << "--with-json"
     end
 
-    args << "--with-modules" unless build.without? "modules"
-    args << "--without-pop"  if     build.with?    "mailutils"
-    args << "--with-gnutls"  unless build.without? "gnutls"
-    args << "--with-rsvg"    unless build.without? "librsvg"
-    args << "--with-xml2"    unless build.without? "libxml2"
+    args << "--with-modules"  unless build.without? "modules"
+    args << "--without-pop"   if     build.with?    "mailutils"
+    args << "--with-gnutls"   unless build.without? "gnutls"
+    args << "--with-rsvg"     unless build.without? "librsvg"
+    args << "--with-xml2"     unless build.without? "libxml2"
+    args << "--with-xwidgets" if     build.with?    "xwidgets"
 
     if build.head?
       ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"

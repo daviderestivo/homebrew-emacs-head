@@ -51,24 +51,44 @@ matrix:
     ##############
     # Emacs 27.X #
     ##############
+    # Emacs 27.x on Sierra      (macOS 10.12 - xcode9.2) - All options except pdumper (imagemagick@7)
+    - env:
+      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
+      - TEST_OPTIONS="--HEAD"
+      osx_image: xcode9.2
+    # Emacs 27.x on High Sierra (macOS 10.13 - xcode10.1) - All options except pdumper (imagemagick@7)
+    - env:
+      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
+      - TEST_OPTIONS="--HEAD"
+      osx_image: xcode10.1
+    # Emacs 27.x on Mojave      (macOS 10.14 - xcode10.3) - All options except pdumper (imagemagick@7)
+    - env:
+      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
+      - TEST_OPTIONS="--HEAD"
+      osx_image: xcode10.3
+    # Emacs 27.x on Mojave      (macOS 10.14 - xcode11.0) - All options except pdumper (imagemagick@7)
+    - env:
+      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
+      - TEST_OPTIONS="--HEAD"
+      osx_image: xcode11.0
     # Emacs 27.x on Sierra      (macOS 10.12 - xcode9.2) - All options (imagemagick@7)
     - env:
-      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper"
+      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
       - TEST_OPTIONS="--HEAD"
       osx_image: xcode9.2
     # Emacs 27.x on High Sierra (macOS 10.13 - xcode10.1) - All options (imagemagick@7)
     - env:
-      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper"
+      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
       - TEST_OPTIONS="--HEAD"
       osx_image: xcode10.1
     # Emacs 27.x on Mojave      (macOS 10.14 - xcode10.3) - All options (imagemagick@7)
     - env:
-      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper"
+      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
       - TEST_OPTIONS="--HEAD"
       osx_image: xcode10.3
     # Emacs 27.x on Mojave      (macOS 10.14 - xcode11.0) - All options (imagemagick@7)
     - env:
-      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper"
+      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
       - TEST_OPTIONS="--HEAD"
       osx_image: xcode11.0
 

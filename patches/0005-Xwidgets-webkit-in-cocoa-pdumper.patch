@@ -563,27 +563,24 @@ index 662a854ac3..f93b4bedba 100644
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;; Xwidget plist management (similar to the process plist functions)
 diff --git a/nextstep/templates/Info.plist.in b/nextstep/templates/Info.plist.in
-index c1e50a8409..6ec4c6f764 100644
+index 652cedf056..cdda2d2a32 100644
 --- a/nextstep/templates/Info.plist.in
 +++ b/nextstep/templates/Info.plist.in
-@@ -675,7 +675,15 @@ along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
- 	</array>
- 	<key>NSAppleScriptEnabled</key>
- 	<string>YES</string>
--        <key>NSAppleEventsUsageDescription</key>
--        <string>Emacs requires permission to send AppleEvents to other applications.</string>
-+	<key>NSAppleEventsUsageDescription</key>
-+	<string>Emacs requires permission to send AppleEvents to other applications.</string>
-+	<!-- For xwidget webkit to browse remote url,
-+	     but this set no restriction at all.  Consult apple's documentation
-+ 	     for detail information about `NSApplicationDefinedMask'. -->
-+	<key>NSAppTransportSecurity</key>
-+	<dict>
-+		<key>NSAllowsArbitraryLoads</key>
-+		<true/>
-+	</dict>
- </dict>
- </plist>
+@@ -677,6 +677,14 @@ along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
+        <string>YES</string>
+         <key>NSAppleEventsUsageDescription</key>
+         <string>Emacs requires permission to send AppleEvents to other applications.</string>
++       <!-- For xwidget webkit to browse remote url,
++            but this set no restriction at all.  Consult apple's documentation
++            for detail information about `NSApplicationDefinedMask'. -->
++       <key>NSAppTransportSecurity</key>
++       <dict>
++               <key>NSAllowsArbitraryLoads</key>
++               <true/>
++       </dict>
+         <key>NSDesktopFolderUsageDescription</key>
+         <string>Emacs requires permission to access the Desktop folder.</string>
+         <key>NSDocumentsFolderUsageDescription</key>
 diff --git a/src/Makefile.in b/src/Makefile.in
 index 980bd6d10e..a6e3c54765 100644
 --- a/src/Makefile.in
@@ -620,7 +617,7 @@ index 9c88b6e3f1..77156fd45a 100644
        syms_of_profiler ();
        syms_of_pdumper ();
 diff --git a/src/nsterm.m b/src/nsterm.m
-index 29aa621452..d18b757501 100644
+index afe7069aae..c0cc3cce36 100644
 --- a/src/nsterm.m
 +++ b/src/nsterm.m
 @@ -49,6 +49,7 @@ Updated by Christian Limpach (chris@nice.ch)
@@ -631,26 +628,26 @@ index 29aa621452..d18b757501 100644
  #include "fontset.h"
  #include "composite.h"
  #include "ccl.h"
-@@ -2467,7 +2468,7 @@ so some key presses (TAB) are swallowed by the system.  */
+@@ -2411,7 +2412,7 @@ so some key presses (TAB) are swallowed by the system.  */
  }
- 
+
  static int
--note_mouse_movement (struct frame *frame, CGFloat x, CGFloat y)
+-ns_note_mouse_movement (struct frame *frame, CGFloat x, CGFloat y)
 +note_mouse_movement (struct frame *frame, CGFloat x, CGFloat y, BOOL dragging)
  /*   ------------------------------------------------------------------------
       Called by EmacsView on mouseMovement events.  Passes on
       to emacs mainstream code if we moved off of a rect of interest
-@@ -2476,17 +2477,24 @@ so some key presses (TAB) are swallowed by the system.  */
+@@ -2420,17 +2421,24 @@ so some key presses (TAB) are swallowed by the system.  */
  {
    struct ns_display_info *dpyinfo = FRAME_DISPLAY_INFO (frame);
    NSRect *r;
 +  BOOL force_update = NO;
- 
+
    // NSTRACE ("note_mouse_movement");
- 
+
    dpyinfo->last_mouse_motion_frame = frame;
    r = &dpyinfo->last_mouse_glyph;
- 
+
 +  /* If the last rect is too large (ex, xwidget webkit), update at
 +     every move, or resizing by dragging modeline or vertical split is
 +     very hard to make its way.  */
@@ -659,7 +656,7 @@ index 29aa621452..d18b757501 100644
 +
    /* Note, this doesn't get called for enter/leave, since we don't have a
       position.  Those are taken care of in the corresponding NSView methods.  */
- 
+
 -  /* Has movement gone beyond last rect we were tracking?  */
 -  if (x < r->origin.x || x >= r->origin.x + r->size.width
 +  /* Has movement gone beyond last rect we were tracking? */
@@ -667,10 +664,10 @@ index 29aa621452..d18b757501 100644
        || y < r->origin.y || y >= r->origin.y + r->size.height)
      {
        ns_update_begin (frame);
-@@ -4224,6 +4232,10 @@ overwriting cursor (usually when cursor on a tab).  */
+@@ -4182,6 +4190,10 @@ overwriting cursor (usually when cursor on a tab).  */
          }
        break;
- 
+
 +    case XWIDGET_GLYPH:
 +      x_draw_xwidget_glyph_string (s);
 +      break;
@@ -678,23 +675,23 @@ index 29aa621452..d18b757501 100644
      case STRETCH_GLYPH:
        ns_dumpglyphs_stretch (s);
        break;
-@@ -6846,6 +6858,7 @@ - (void)mouseMoved: (NSEvent *)e
+@@ -6837,6 +6849,7 @@ - (void)mouseMoved: (NSEvent *)e
    struct ns_display_info *dpyinfo = FRAME_DISPLAY_INFO (emacsframe);
    Lisp_Object frame;
    NSPoint pt;
 +  BOOL dragging;
- 
+
    NSTRACE_WHEN (NSTRACE_GROUP_EVENTS, "[EmacsView mouseMoved:]");
- 
-@@ -6888,7 +6901,8 @@ - (void)mouseMoved: (NSEvent *)e
+
+@@ -6879,7 +6892,8 @@ - (void)mouseMoved: (NSEvent *)e
        last_mouse_window = window;
      }
- 
--  if (!note_mouse_movement (emacsframe, pt.x, pt.y))
+
+-  if (!ns_note_mouse_movement (emacsframe, pt.x, pt.y))
 +  dragging = (e.type == NSEventTypeLeftMouseDragged);
 +  if (!note_mouse_movement (emacsframe, pt.x, pt.y, dragging))
      help_echo_string = previous_help_echo_string;
- 
+
    XSETFRAME (frame, emacsframe);
 diff --git a/src/nsxwidget.h b/src/nsxwidget.h
 new file mode 100644
@@ -1414,10 +1411,10 @@ index 0000000000..0d628b533a
 +  xv->xvWindow.needsDisplay = YES;
 +}
 diff --git a/src/xwidget.c b/src/xwidget.c
-index dcbccdf27c..01f9296d8d 100644
+index ecb3793629..8dd1b961db 100644
 --- a/src/xwidget.c
 +++ b/src/xwidget.c
-@@ -18,25 +18,36 @@ You should have received a copy of the GNU General Public License
+@@ -18,18 +18,27 @@ You should have received a copy of the GNU General Public License
  along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.  */
  
  #include <config.h>
@@ -1433,6 +1430,7 @@ index dcbccdf27c..01f9296d8d 100644
  #include "gtkutil.h"
 +#include "termhooks.h"
 +#include "window.h"
+ #include "sysstdio.h"
  
 +/* Include xwidget bottom end headers.  */
 +#if defined (USE_GTK)
@@ -1442,19 +1440,9 @@ index dcbccdf27c..01f9296d8d 100644
 +#include "nsxwidget.h"
 +#endif
  
- /* Suppress GCC deprecation warnings starting in WebKitGTK+ 2.21.1 for
-    webkit_javascript_result_get_global_context and
-    webkit_javascript_result_get_value (Bug#33679).
-    FIXME: Use the JavaScriptCore GLib API instead, and remove this hack.  */
-+#if defined (USE_GTK)
- #if WEBKIT_CHECK_VERSION (2, 21, 1) && GNUC_PREREQ (4, 2, 0)
- # pragma GCC diagnostic ignored "-Wdeprecated-declarations"
- #endif
-+#endif
- 
  static struct xwidget *
  allocate_xwidget (void)
-@@ -56,6 +67,7 @@ allocate_xwidget_view (void)
+@@ -48,6 +57,7 @@ allocate_xwidget_view (void)
  
  static struct xwidget_view *xwidget_view_lookup (struct xwidget *,
  						 struct window *);
@@ -1462,7 +1450,7 @@ index dcbccdf27c..01f9296d8d 100644
  static void webkit_view_load_changed_cb (WebKitWebView *,
                                           WebKitLoadEvent,
                                           gpointer);
-@@ -69,6 +81,7 @@ webkit_decide_policy_cb (WebKitWebView *,
+@@ -61,6 +71,7 @@ webkit_decide_policy_cb (WebKitWebView *,
                           WebKitPolicyDecision *,
                           WebKitPolicyDecisionType,
                           gpointer);
@@ -1470,7 +1458,7 @@ index dcbccdf27c..01f9296d8d 100644
  
  
  DEFUN ("make-xwidget",
-@@ -86,8 +99,10 @@ Returns the newly constructed xwidget, or nil if construction fails.  */)
+@@ -78,8 +89,10 @@ Returns the newly constructed xwidget, or nil if construction fails.  */)
     Lisp_Object title, Lisp_Object width, Lisp_Object height,
     Lisp_Object arguments, Lisp_Object buffer)
  {
@@ -1481,7 +1469,7 @@ index dcbccdf27c..01f9296d8d 100644
    CHECK_SYMBOL (type);
    CHECK_FIXNAT (width);
    CHECK_FIXNAT (height);
-@@ -102,10 +117,11 @@ Returns the newly constructed xwidget, or nil if construction fails.  */)
+@@ -94,10 +107,11 @@ Returns the newly constructed xwidget, or nil if construction fails.  */)
    xw->kill_without_query = false;
    XSETXWIDGET (val, xw);
    Vxwidget_list = Fcons (val, Vxwidget_list);
@@ -1495,7 +1483,7 @@ index dcbccdf27c..01f9296d8d 100644
    if (EQ (xw->type, Qwebkit))
      {
        block_input ();
-@@ -160,6 +176,9 @@ Returns the newly constructed xwidget, or nil if construction fails.  */)
+@@ -152,6 +166,9 @@ Returns the newly constructed xwidget, or nil if construction fails.  */)
  
        unblock_input ();
      }
@@ -1505,7 +1493,7 @@ index dcbccdf27c..01f9296d8d 100644
  
    return val;
  }
-@@ -195,6 +214,7 @@ xwidget_hidden (struct xwidget_view *xv)
+@@ -187,6 +204,7 @@ xwidget_hidden (struct xwidget_view *xv)
    return xv->hidden;
  }
  
@@ -1513,7 +1501,7 @@ index dcbccdf27c..01f9296d8d 100644
  static void
  xwidget_show_view (struct xwidget_view *xv)
  {
-@@ -233,8 +253,9 @@ offscreen_damage_event (GtkWidget *widget, GdkEvent *event,
+@@ -225,8 +243,9 @@ offscreen_damage_event (GtkWidget *widget, GdkEvent *event,
  
    return FALSE;
  }
@@ -1524,7 +1512,7 @@ index dcbccdf27c..01f9296d8d 100644
  store_xwidget_event_string (struct xwidget *xw, const char *eventname,
                              const char *eventstr)
  {
-@@ -248,7 +269,27 @@ store_xwidget_event_string (struct xwidget *xw, const char *eventname,
+@@ -240,7 +259,27 @@ store_xwidget_event_string (struct xwidget *xw, const char *eventname,
    kbd_buffer_store_event (&event);
  }
  
@@ -1553,7 +1541,7 @@ index dcbccdf27c..01f9296d8d 100644
  store_xwidget_js_callback_event (struct xwidget *xw,
                                   Lisp_Object proc,
                                   Lisp_Object argument)
-@@ -264,6 +305,7 @@ store_xwidget_js_callback_event (struct xwidget *xw,
+@@ -256,6 +295,7 @@ store_xwidget_js_callback_event (struct xwidget *xw,
  }
  
  
@@ -1561,7 +1549,7 @@ index dcbccdf27c..01f9296d8d 100644
  void
  webkit_view_load_changed_cb (WebKitWebView *webkitwebview,
                               WebKitLoadEvent load_event,
-@@ -521,6 +563,7 @@ xwidget_osr_event_set_embedder (GtkWidget *widget, GdkEvent *event,
+@@ -486,6 +526,7 @@ xwidget_osr_event_set_embedder (GtkWidget *widget, GdkEvent *event,
                                       gtk_widget_get_window (xv->widget));
    return FALSE;
  }
@@ -1569,7 +1557,7 @@ index dcbccdf27c..01f9296d8d 100644
  
  
  /* Initializes and does initial placement of an xwidget view on screen.  */
-@@ -530,8 +573,10 @@ xwidget_init_view (struct xwidget *xww,
+@@ -495,8 +536,10 @@ xwidget_init_view (struct xwidget *xww,
                     int x, int y)
  {
  
@@ -1580,7 +1568,7 @@ index dcbccdf27c..01f9296d8d 100644
  
    struct xwidget_view *xv = allocate_xwidget_view ();
    Lisp_Object val;
-@@ -542,6 +587,7 @@ xwidget_init_view (struct xwidget *xww,
+@@ -507,6 +550,7 @@ xwidget_init_view (struct xwidget *xww,
    XSETWINDOW (xv->w, s->w);
    XSETXWIDGET (xv->model, xww);
  
@@ -1588,7 +1576,7 @@ index dcbccdf27c..01f9296d8d 100644
    if (EQ (xww->type, Qwebkit))
      {
        xv->widget = gtk_drawing_area_new ();
-@@ -599,6 +645,10 @@ xwidget_init_view (struct xwidget *xww,
+@@ -564,6 +608,10 @@ xwidget_init_view (struct xwidget *xww,
    xv->x = x;
    xv->y = y;
    gtk_widget_show_all (xv->widgetwindow);
@@ -1599,7 +1587,7 @@ index dcbccdf27c..01f9296d8d 100644
  
    return xv;
  }
-@@ -611,24 +661,59 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
+@@ -576,24 +624,59 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
       initialization.  */
    struct xwidget *xww = s->xwidget;
    struct xwidget_view *xv = xwidget_view_lookup (xww, s->w);
@@ -1662,7 +1650,7 @@ index dcbccdf27c..01f9296d8d 100644
    clip_left = max (0, text_area_x - x);
    clip_right = max (clip_left,
  		    min (xww->width, text_area_x + text_area_width - x));
-@@ -651,8 +736,14 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
+@@ -616,8 +699,14 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
  
    /* Has it moved?  */
    if (moved)
@@ -1679,7 +1667,7 @@ index dcbccdf27c..01f9296d8d 100644
  
    /* Clip the widget window if some parts happen to be outside
       drawable area.  An Emacs window is not a gtk window.  A gtk window
-@@ -663,10 +754,16 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
+@@ -628,10 +717,16 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
        || xv->clip_bottom != clip_bottom
        || xv->clip_top != clip_top || xv->clip_left != clip_left)
      {
@@ -1696,7 +1684,7 @@ index dcbccdf27c..01f9296d8d 100644
  
        xv->clip_right = clip_right;
        xv->clip_bottom = clip_bottom;
-@@ -680,21 +777,65 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
+@@ -645,11 +740,25 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
       xwidgets background.  It's just a visual glitch though.  */
    if (!xwidget_hidden (xv))
      {
@@ -1709,7 +1697,6 @@ index dcbccdf27c..01f9296d8d 100644
      }
  }
  
--/* Macro that checks WEBKIT_IS_WEB_VIEW (xw->widget_osr) first.  */
 +static bool
 +xwidget_is_web_view (struct xwidget *xw)
 +{
@@ -1720,15 +1707,10 @@ index dcbccdf27c..01f9296d8d 100644
 +#endif
 +}
 +
-+/* Macro that checks xwidget hold webkit web view first.  */
+ /* Macro that checks WEBKIT_IS_WEB_VIEW (xw->widget_osr) first.  */
  #define WEBKIT_FN_INIT()						\
    CHECK_XWIDGET (xwidget);						\
-   struct xwidget *xw = XXWIDGET (xwidget);				\
--  if (!xw->widget_osr || !WEBKIT_IS_WEB_VIEW (xw->widget_osr))		\
-+  if (!xwidget_is_web_view (xw))					\
-     {									\
--      printf ("ERROR xw->widget_osr does not hold a webkit instance\n"); \
-+      printf ("ERROR xwidget does not hold a webkit instance\n");	\
+@@ -661,6 +770,36 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
        return Qnil;							\
      }
  
@@ -1765,7 +1747,7 @@ index dcbccdf27c..01f9296d8d 100644
  DEFUN ("xwidget-webkit-goto-uri",
         Fxwidget_webkit_goto_uri, Sxwidget_webkit_goto_uri,
         2, 2, 0,
-@@ -704,7 +845,32 @@ DEFUN ("xwidget-webkit-goto-uri",
+@@ -670,7 +809,32 @@ DEFUN ("xwidget-webkit-goto-uri",
    WEBKIT_FN_INIT ();
    CHECK_STRING (uri);
    uri = ENCODE_FILE (uri);
@@ -1798,7 +1780,7 @@ index dcbccdf27c..01f9296d8d 100644
    return Qnil;
  }
  
-@@ -718,10 +884,14 @@ DEFUN ("xwidget-webkit-zoom",
+@@ -684,10 +848,14 @@ DEFUN ("xwidget-webkit-zoom",
    if (FLOATP (factor))
      {
        double zoom_change = XFLOAT_DATA (factor);
@@ -1813,7 +1795,7 @@ index dcbccdf27c..01f9296d8d 100644
      }
    return Qnil;
  }
-@@ -758,7 +928,10 @@ argument procedure FUN.*/)
+@@ -724,7 +892,10 @@ argument procedure FUN.*/)
  {
    WEBKIT_FN_INIT ();
    CHECK_STRING (script);
@@ -1825,7 +1807,7 @@ index dcbccdf27c..01f9296d8d 100644
      wrong_type_argument (Qinvalid_function, fun);
  
    script = ENCODE_SYSTEM (script);
-@@ -766,6 +939,7 @@ argument procedure FUN.*/)
+@@ -732,6 +903,7 @@ argument procedure FUN.*/)
    /* Protect script and fun during GC.  */
    intptr_t idx = save_script_callback (xw, script, fun);
  
@@ -1833,7 +1815,7 @@ index dcbccdf27c..01f9296d8d 100644
    /* JavaScript execution happens asynchronously.  If an elisp
       callback function is provided we pass it to the C callback
       procedure that retrieves the return value.  */
-@@ -776,6 +950,9 @@ argument procedure FUN.*/)
+@@ -742,6 +914,9 @@ argument procedure FUN.*/)
                                    NULL, /* cancelable */
                                    webkit_javascript_finished_cb,
  				  (gpointer) idx);
@@ -1843,7 +1825,7 @@ index dcbccdf27c..01f9296d8d 100644
    return Qnil;
  }
  
-@@ -794,6 +971,7 @@ DEFUN ("xwidget-resize", Fxwidget_resize, Sxwidget_resize, 3, 3, 0,
+@@ -760,6 +935,7 @@ DEFUN ("xwidget-resize", Fxwidget_resize, Sxwidget_resize, 3, 3, 0,
    xw->height = h;
  
    /* If there is an offscreen widget resize it first.  */
@@ -1851,7 +1833,7 @@ index dcbccdf27c..01f9296d8d 100644
    if (xw->widget_osr)
      {
        gtk_window_resize (GTK_WINDOW (xw->widgetwindow_osr), xw->width,
-@@ -802,6 +980,9 @@ DEFUN ("xwidget-resize", Fxwidget_resize, Sxwidget_resize, 3, 3, 0,
+@@ -768,6 +944,9 @@ DEFUN ("xwidget-resize", Fxwidget_resize, Sxwidget_resize, 3, 3, 0,
        gtk_widget_set_size_request (GTK_WIDGET (xw->widget_osr), xw->width,
                                     xw->height);
      }
@@ -1861,7 +1843,7 @@ index dcbccdf27c..01f9296d8d 100644
  
    for (Lisp_Object tail = Vxwidget_view_list; CONSP (tail); tail = XCDR (tail))
      {
-@@ -809,8 +990,14 @@ DEFUN ("xwidget-resize", Fxwidget_resize, Sxwidget_resize, 3, 3, 0,
+@@ -775,8 +954,14 @@ DEFUN ("xwidget-resize", Fxwidget_resize, Sxwidget_resize, 3, 3, 0,
          {
            struct xwidget_view *xv = XXWIDGET_VIEW (XCAR (tail));
            if (XXWIDGET (xv->model) == xw)
@@ -1876,22 +1858,21 @@ index dcbccdf27c..01f9296d8d 100644
          }
      }
  
-@@ -829,10 +1016,14 @@ Emacs allocated area accordingly.  */)
+@@ -795,9 +980,13 @@ Emacs allocated area accordingly.  */)
    (Lisp_Object xwidget)
  {
    CHECK_XWIDGET (xwidget);
 +#if defined (USE_GTK)
    GtkRequisition requisition;
    gtk_widget_size_request (XXWIDGET (xwidget)->widget_osr, &requisition);
-   return list2 (make_fixnum (requisition.width),
- 		make_fixnum (requisition.height));
+   return list2i (requisition.width, requisition.height);
 +#elif defined (NS_IMPL_COCOA)
 +  return nsxwidget_get_size(XXWIDGET (xwidget));
 +#endif
  }
  
  DEFUN ("xwidgetp",
-@@ -909,14 +1100,19 @@ DEFUN ("delete-xwidget-view",
+@@ -874,14 +1063,19 @@ DEFUN ("delete-xwidget-view",
  {
    CHECK_XWIDGET_VIEW (xwidget_view);
    struct xwidget_view *xv = XXWIDGET_VIEW (xwidget_view);
@@ -1912,7 +1893,7 @@ index dcbccdf27c..01f9296d8d 100644
    return Qnil;
  }
  
-@@ -1022,7 +1218,10 @@ syms_of_xwidget (void)
+@@ -987,7 +1181,10 @@ syms_of_xwidget (void)
    defsubr (&Sxwidget_query_on_exit_flag);
    defsubr (&Sset_xwidget_query_on_exit_flag);
  
@@ -1923,7 +1904,7 @@ index dcbccdf27c..01f9296d8d 100644
    defsubr (&Sxwidget_webkit_zoom);
    defsubr (&Sxwidget_webkit_execute_script);
    DEFSYM (Qwebkit, "webkit");
-@@ -1193,11 +1392,19 @@ xwidget_end_redisplay (struct window *w, struct glyph_matrix *matrix)
+@@ -1158,11 +1355,19 @@ xwidget_end_redisplay (struct window *w, struct glyph_matrix *matrix)
  		     xwidget_end_redisplay (w->current_matrix);  */
  		  struct xwidget_view *xv
  		    = xwidget_view_lookup (glyph->u.xwidget, w);
@@ -1943,7 +1924,7 @@ index dcbccdf27c..01f9296d8d 100644
  		}
  	  }
      }
-@@ -1214,9 +1421,21 @@ xwidget_end_redisplay (struct window *w, struct glyph_matrix *matrix)
+@@ -1179,9 +1384,21 @@ xwidget_end_redisplay (struct window *w, struct glyph_matrix *matrix)
            if (XWINDOW (xv->w) == w)
              {
                if (xwidget_touched (xv))
@@ -1967,7 +1948,7 @@ index dcbccdf27c..01f9296d8d 100644
              }
          }
      }
-@@ -1235,6 +1454,7 @@ kill_buffer_xwidgets (Lisp_Object buffer)
+@@ -1200,6 +1417,7 @@ kill_buffer_xwidgets (Lisp_Object buffer)
        {
          CHECK_XWIDGET (xwidget);
          struct xwidget *xw = XXWIDGET (xwidget);
@@ -1975,7 +1956,7 @@ index dcbccdf27c..01f9296d8d 100644
          if (xw->widget_osr && xw->widgetwindow_osr)
            {
              gtk_widget_destroy (xw->widget_osr);
-@@ -1248,6 +1468,9 @@ kill_buffer_xwidgets (Lisp_Object buffer)
+@@ -1213,6 +1431,9 @@ kill_buffer_xwidgets (Lisp_Object buffer)
  		xfree (xmint_pointer (XCAR (cb)));
  	      ASET (xw->script_callbacks, idx, Qnil);
  	    }

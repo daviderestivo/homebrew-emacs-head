@@ -1411,7 +1411,7 @@ index 0000000000..0d628b533a
 +  xv->xvWindow.needsDisplay = YES;
 +}
 diff --git a/src/xwidget.c b/src/xwidget.c
-index ecb3793629..8dd1b961db 100644
+index ecb3793629..a7c09550b7 100644
 --- a/src/xwidget.c
 +++ b/src/xwidget.c
 @@ -18,18 +18,27 @@ You should have received a copy of the GNU General Public License
@@ -1684,7 +1684,7 @@ index ecb3793629..8dd1b961db 100644
  
        xv->clip_right = clip_right;
        xv->clip_bottom = clip_bottom;
-@@ -645,11 +740,25 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
+@@ -645,22 +740,66 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
       xwidgets background.  It's just a visual glitch though.  */
    if (!xwidget_hidden (xv))
      {
@@ -1710,7 +1710,13 @@ index ecb3793629..8dd1b961db 100644
  /* Macro that checks WEBKIT_IS_WEB_VIEW (xw->widget_osr) first.  */
  #define WEBKIT_FN_INIT()						\
    CHECK_XWIDGET (xwidget);						\
-@@ -661,6 +770,36 @@ x_draw_xwidget_glyph_string (struct glyph_string *s)
+   struct xwidget *xw = XXWIDGET (xwidget);				\
+-  if (!xw->widget_osr || !WEBKIT_IS_WEB_VIEW (xw->widget_osr))		\
++  if (!xwidget_is_web_view (xw))                                       \
+     {									\
+-      fputs ("ERROR xw->widget_osr does not hold a webkit instance\n",	\
++      fputs ("ERROR xwidget does not hold a webkit instance\n",        \
+ 	     stdout);							\
        return Qnil;							\
      }
  

@@ -8,11 +8,6 @@ matrix:
     ##############
     # Emacs 26.X #
     ##############
-    # Emacs 26.x on Sierra      (macOS 10.12 - xcode9.2)
-    - env:
-      - BUILD_OPTIONS=""
-      - TEST_OPTIONS=""
-      osx_image: xcode9.2
     # Emacs 26.x on High Sierra (macOS 10.13 - xcode10.1)
     - env:
       - BUILD_OPTIONS=""
@@ -28,11 +23,6 @@ matrix:
       - BUILD_OPTIONS=""
       - TEST_OPTIONS=""
       osx_image: xcode11.0
-    # Emacs 26.x on Sierra      (macOS 10.12 - xcode9.2) - All options (imagemagick@6)
-    - env:
-      - BUILD_OPTIONS="--with-cocoa --with-no-frame-refocus --with-imagemagick --with-multicolor-fonts"
-      - TEST_OPTIONS=""
-      osx_image: xcode9.2
     # Emacs 26.x on High Sierra (macOS 10.13 - xcode10.1) - All options (imagemagick@6)
     - env:
       - BUILD_OPTIONS="--with-cocoa --with-no-frame-refocus --with-imagemagick --with-multicolor-fonts"
@@ -51,11 +41,6 @@ matrix:
     ##############
     # Emacs 27.X #
     ##############
-    # Emacs 27.x on Sierra      (macOS 10.12 - xcode9.2) - All options except pdumper (imagemagick@7)
-    - env:
-      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
-      - TEST_OPTIONS="--HEAD"
-      osx_image: xcode9.2
     # Emacs 27.x on High Sierra (macOS 10.13 - xcode10.1) - All options except pdumper (imagemagick@7)
     - env:
       - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
@@ -71,11 +56,6 @@ matrix:
       - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
       - TEST_OPTIONS="--HEAD"
       osx_image: xcode11.0
-    # Emacs 27.x on Sierra      (macOS 10.12 - xcode9.2) - All options (imagemagick@7)
-    - env:
-      - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
-      - TEST_OPTIONS="--HEAD"
-      osx_image: xcode9.2
     # Emacs 27.x on High Sierra (macOS 10.13 - xcode10.1) - All options (imagemagick@7)
     - env:
       - BUILD_OPTIONS="--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"

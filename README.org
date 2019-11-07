@@ -19,7 +19,6 @@ Bottles (26.3) are available for the following macOS versions:
 - Catalina
 - Mojave
 - High Sierra
-- Sierra
 if you need support for an older macOS version open an issue.
 
 ** Screenshots

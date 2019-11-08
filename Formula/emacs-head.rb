@@ -54,10 +54,14 @@ class EmacsHead < Formula
          "Use a modern style icon by @cg433n"
   option "with-modern-icon-sjrmanning",
          "Use a modern style icon by @sjrmanning"
-  option "with-modern-sexy-v1",
+  option "with-modern-icon-sexy-v1",
          "Use a modern style icon by Emacs is Sexy (v1)"
-  option "with-modern-sexy-v2",
+  option "with-modern-icon-sexy-v2",
          "Use a modern style icon by Emacs is Sexy (v2)"
+  option "with-modern-icon-papirus",
+         "Use a modern style icon by Papirus Development Team"
+  option "with-modern-icon-black-variant",
+         "Use a modern style icon by BlackVariant"
   option "with-retro-icon-sink",
          "Use a retro style icon by Erik Mugele"
 
@@ -147,7 +151,7 @@ class EmacsHead < Formula
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-sjrmanning.icns"
     sha256 "fc267d801432da90de5c0d2254f6de16557193b6c062ccaae30d91b3ada01ab9"
   end
-  
+
   resource "modern-icon-sexy-v1" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-sexy-v1.icns"
     sha256 "1ea8515d1f6f225047be128009e53b9aa47a242e95823c07a67c6f8a26f8d820"
@@ -157,7 +161,17 @@ class EmacsHead < Formula
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-sexy-v2.icns"
     sha256 "5ff87050e204af05287b3baf987cc0dc558e2166bd755dd7a50de04668fa95af"
   end
-  
+
+  resource "modern-icon-papirus" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-papirus.icns"
+    sha256 "50aef07397ab17073deb107e32a8c7b86a0e9dddf5a0f78c4fcff796099623f8"
+  end
+
+  resource "modern-icon-black-variant" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-black-variant.icns"
+    sha256 "a56a19fb5195925c09f38708fd6a6c58c283a1725f7998e3574b0826c6d9ac7e"
+  end
+
   resource "retro-icon-sink" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/retro-icon-sink.icns"
     sha256 "be0ee790589a3e49345e1894050678eab2c75272a8d927db46e240a2466c6abc"
@@ -238,7 +252,10 @@ class EmacsHead < Formula
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
-      (%w[modern-icon-sjrmanning modern-icon-cg433n retro-icon-sink modern-sexy-v1 modern-sexy-v2]).each do |icon|
+      (%w[modern-icon-cg433n modern-icon-sjrmanning
+        modern-icon-sexy-v1 modern-icon-sexy-v2
+        modern-icon-papirus modern-icon-black-variant
+        retro-icon-sink]).each do |icon|
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"
           resource(icon).stage do

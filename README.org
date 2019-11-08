@@ -75,7 +75,7 @@ are enabled. If you want to disable them please use the above "~--without-*~" op
 | Option                        | Description                             | Image                              | URL  |
 |-------------------------------+-----------------------------------------+------------------------------------+------|
 | ~--with-modern-icon-cg433n~     | Use a modern style icon by @cg433n      | [[/icons/modern-icon-cg433n.png]]      | [[https://github.com/cg433n/emacs-mac-icon][Link]] |
-| ~--with-modern-icon-sjrmanning~ | Use a modern style icon by @sjrmannings | [[/icons/modern-icon-sjrmannings.png]] | [[https://github.com/sjrmanning/emacs-icon][Link]] |
+| ~--with-modern-icon-sjrmanning~ | Use a modern style icon by @sjrmannings | [[/icons/modern-icon-sjrmanning.png]] | [[https://github.com/sjrmanning/emacs-icon][Link]] |
 | ~--with-retro-icon-sink~        | Use a modern style icon by Erik Mugele  | [[/icons/retro-icon-sink.png]]         | [[https://www.teuton.org/~ejm/emacsicon/][Link]] |
 
 ** Collaborating

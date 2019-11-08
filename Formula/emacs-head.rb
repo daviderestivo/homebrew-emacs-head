@@ -229,7 +229,7 @@ class EmacsHead < Formula
           rm "#{icons_dir}/Emacs.icns"
           resource(icon).stage do
             icons_dir.install Dir["*.icns*"].first => "Emacs.icns"
-            ohai "Installing " + icon + "icon"
+            ohai "Installing " + icon + " icon"
           end
         end
       end

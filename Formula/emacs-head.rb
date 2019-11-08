@@ -50,10 +50,14 @@ class EmacsHead < Formula
          "Enable pdumper support (only HEAD)"
   option "with-xwidgets",
          "Enable xwidgets support (only HEAD)"
-  option "with-modern-icon-sjrmanning",
-         "Use a modern style icon by @sjrmanning"
   option "with-modern-icon-cg433n",
          "Use a modern style icon by @cg433n"
+  option "with-modern-icon-sjrmanning",
+         "Use a modern style icon by @sjrmanning"
+  option "with-modern-sexy-v1",
+         "Use a modern style icon by Emacs is Sexy (v1)"
+  option "with-modern-sexy-v2",
+         "Use a modern style icon by Emacs is Sexy (v2)"
   option "with-retro-icon-sink",
          "Use a retro style icon by Erik Mugele"
 
@@ -143,7 +147,17 @@ class EmacsHead < Formula
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-sjrmanning.icns"
     sha256 "fc267d801432da90de5c0d2254f6de16557193b6c062ccaae30d91b3ada01ab9"
   end
+  
+  resource "modern-icon-sexy-v1" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-sexy-v1.icns"
+    sha256 "1ea8515d1f6f225047be128009e53b9aa47a242e95823c07a67c6f8a26f8d820"
+  end
 
+  resource "modern-icon-sexy-v2" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-sexy-v2.icns"
+    sha256 "5ff87050e204af05287b3baf987cc0dc558e2166bd755dd7a50de04668fa95af"
+  end
+  
   resource "retro-icon-sink" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/retro-icon-sink.icns"
     sha256 "be0ee790589a3e49345e1894050678eab2c75272a8d927db46e240a2466c6abc"
@@ -224,7 +238,7 @@ class EmacsHead < Formula
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
-      (%w[modern-icon-sjrmanning modern-icon-cg433n retro-icon-sink]).each do |icon|
+      (%w[modern-icon-sjrmanning modern-icon-cg433n retro-icon-sink modern-sexy-v1 modern-sexy-v2]).each do |icon|
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"
           resource(icon).stage do

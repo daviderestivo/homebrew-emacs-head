@@ -50,6 +50,12 @@ class EmacsHead < Formula
          "Enable pdumper support (only HEAD)"
   option "with-xwidgets",
          "Enable xwidgets support (only HEAD)"
+  option "with-modern-icon-sjrmanning",
+         "Use a modern style icon by @sjrmanning"
+  option "with-modern-icon-cg433n",
+         "Use a modern style icon by @cg433n"
+  option "with-retro-icon-sink",
+         "Use a retro style icon by Erik Mugele"
 
   depends_on "pkg-config" => :build
   depends_on "gnutls"
@@ -128,6 +134,21 @@ class EmacsHead < Formula
     end
   end
 
+  resource "modern-icon-cg433n" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-cg433n.icns"
+    sha256 "9a0b101faa6ab543337179024b41a6e9ea0ecaf837fc8b606a19c6a51d2be5dd"
+  end
+
+  resource "modern-icon-sjrmanning" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-sjrmanning.icns"
+    sha256 "fc267d801432da90de5c0d2254f6de16557193b6c062ccaae30d91b3ada01ab9"
+  end
+
+  resource "retro-icon-sink" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/retro-icon-sink.icns"
+    sha256 "be0ee790589a3e49345e1894050678eab2c75272a8d927db46e240a2466c6abc"
+  end
+
   def install
     args = %W[
       --disable-dependency-tracking
@@ -200,6 +221,18 @@ class EmacsHead < Formula
 
       system "make"
       system "make", "install"
+
+      icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
+
+      (%w[modern-icon-sjrmanning modern-icon-cg433n retro-icon-sink]).each do |icon|
+        if build.with? icon
+          rm "#{icons_dir}/Emacs.icns"
+          resource(icon).stage do
+            icons_dir.install Dir["*.icns*"].first => "Emacs.icns"
+            ohai "Installing " + icon + "icon"
+          end
+        end
+      end
 
       prefix.install "nextstep/Emacs.app"
 

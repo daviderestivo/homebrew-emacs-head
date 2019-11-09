@@ -64,6 +64,8 @@ class EmacsHead < Formula
          "Use a modern style icon by Kentaro Ohkouchi"
   option "with-modern-icon-black-variant",
          "Use a modern style icon by BlackVariant"
+  option "with-modern-icon-nuvola",
+         "Use a modern style icon by David Vignoni"
   option "with-retro-icon-sink",
          "Use a retro style icon by Erik Mugele"
 
@@ -174,6 +176,11 @@ class EmacsHead < Formula
     sha256 "4fda050447a9803d38dd6fd7d35386103735aec239151714e8bf60bf9d357d3b"
   end
 
+  resource "modern-icon-nuvola" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-nuvola.icns"
+    sha256 "c3701e25ff46116fd694bc37d8ccec7ad9ae58bb581063f0792ea3c50d84d997"
+  end
+
   resource "modern-icon-black-variant" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-black-variant.icns"
     sha256 "a56a19fb5195925c09f38708fd6a6c58c283a1725f7998e3574b0826c6d9ac7e"
@@ -262,7 +269,8 @@ class EmacsHead < Formula
       (%w[modern-icon-cg433n modern-icon-sjrmanning
         modern-icon-sexy-v1 modern-icon-sexy-v2
         modern-icon-papirus modern-icon-pen
-        modern-icon-black-variant retro-icon-sink]).each do |icon|
+        modern-icon-black-variant modern-icon-nuvola
+        retro-icon-sink]).each do |icon|
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"
           resource(icon).stage do

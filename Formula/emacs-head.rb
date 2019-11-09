@@ -1,3 +1,4 @@
+# coding: utf-8
 class EmacsHead < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
@@ -65,7 +66,9 @@ class EmacsHead < Formula
   option "with-modern-icon-black-variant",
          "Use a modern style icon by BlackVariant"
   option "with-modern-icon-nuvola",
-         "Use a modern style icon by David Vignoni"
+         "Use a modern style icon by David Vignoni (Nuvola Icon Theme)"
+  option "with-retro-icon-gnu-head",
+         "Use a retro style icon by Aurélio A. Heckert (GNU Project)"
   option "with-retro-icon-sink",
          "Use a retro style icon by Erik Mugele"
 
@@ -186,6 +189,11 @@ class EmacsHead < Formula
     sha256 "a56a19fb5195925c09f38708fd6a6c58c283a1725f7998e3574b0826c6d9ac7e"
   end
 
+  resource "retro-icon-gnu-head" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/retro-icon-gnu-head.icns"
+    sha256 "cfca2ff0214cff47167f634a5b9f8c402b488796f79ded23f93ec505f78b2f2f"
+  end
+
   resource "retro-icon-sink" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/retro-icon-sink.icns"
     sha256 "be0ee790589a3e49345e1894050678eab2c75272a8d927db46e240a2466c6abc"
@@ -270,7 +278,7 @@ class EmacsHead < Formula
         modern-icon-sexy-v1 modern-icon-sexy-v2
         modern-icon-papirus modern-icon-pen
         modern-icon-black-variant modern-icon-nuvola
-        retro-icon-sink]).each do |icon|
+        retro-icon-gnu-head retro-icon-sink]).each do |icon|
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"
           resource(icon).stage do

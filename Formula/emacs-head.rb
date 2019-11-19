@@ -89,6 +89,8 @@ class EmacsHead < Formula
   head do
     # Emacs 27.x (current HEAD) does support ImageMagick 7
     depends_on "imagemagick@7" => :recommended
+    # Turn on harfbuzz support on HEAD
+    depends_on "harfbuzz" => :recommended
   end
 
   # When closing a frame, Emacs automatically focuses another frame.
@@ -248,6 +250,9 @@ class EmacsHead < Formula
 
     if build.head?
       ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
+      if build.with? "cocoa"
+        args << "--with-harfbuzz"
+      end
       system "./autogen.sh"
     end
 

@@ -23,6 +23,8 @@ class EmacsHead < Formula
     depends_on "texinfo"  => :build
   end
 
+  option "with-crash-debug",
+         "Append `-g3` to CFLAGS to enable crash debugging"
   option "with-cocoa",
          "Build a Cocoa version of GNU Emacs"
   option "with-ctags",
@@ -246,6 +248,14 @@ class EmacsHead < Formula
     args << "--with-rsvg"     unless build.without? "librsvg"
     args << "--with-xml2"     unless build.without? "libxml2"
     args << "--with-xwidgets" if     build.with?    "xwidgets"
+
+    # Read https://github.com/emacs-mirror/emacs/blob/master/etc/DEBUG
+    # for more information
+    if build.with? "crash-debug"
+      args << "--disable-silent-rules"
+      ohai "Emacs crash debug enabled. Appending `-g3` to CFLAGS..."
+      ENV.append_to_cflags "-g3"
+    end
 
     if build.head?
       ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"

@@ -46,6 +46,7 @@ The following compiling options are available:
 
 | Option                  | Description                                                                  |
 |-------------------------+------------------------------------------------------------------------------|
+| ~--with-crash-debug~      | Append `-g3` to CFLAGS to enable crash debugging                             |
 | ~--with-cocoa~            | Build a Cocoa version of GNU Emacs                                           |
 | ~--with-ctags~            | Don't remove the ctags executable that GNU Emacs provides                    |
 | ~--with-dbus~             | Build with dbus support                                                      |

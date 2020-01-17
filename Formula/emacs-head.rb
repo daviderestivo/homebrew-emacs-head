@@ -302,6 +302,12 @@ class EmacsHead < Formula
         end
       end
 
+      # Install the (separate) debug symbol data that is generated
+      # for the application
+      if build.with? "crash-debug"
+        system "dsymutil", "nextstep/Emacs.app/Contents/MacOS/Emacs"
+      end
+
       prefix.install "nextstep/Emacs.app"
 
       # Replace the symlink with one that avoids starting Cocoa.

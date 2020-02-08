@@ -3,7 +3,7 @@ language: generic
 os:
   - osx
 
-matrix:
+jobs:
   include:
     ##############
     # Emacs 26.X #

@@ -170,7 +170,7 @@ class EmacsHead < Formula
 
   resource "modern-icon-sexy-v2" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-sexy-v2.icns"
-    sha256 "5ff87050e204af05287b3baf987cc0dc558e2166bd755dd7a50de04668fa95af"
+    sha256 "ecdc902435a8852d47e2c682810146e81f5ad72ee3d0c373c936eb4c1e0966e6"
   end
 
   resource "modern-icon-papirus" do

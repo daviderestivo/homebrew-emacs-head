@@ -56,7 +56,6 @@ jobs:
 
 before_install:
   - brew update
-  - brew unlink python@2
 
 script:
   - travis_wait 50 brew install Formula/emacs-head.rb $BUILD_OPTIONS

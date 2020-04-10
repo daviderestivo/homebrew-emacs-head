@@ -143,12 +143,12 @@ class EmacsHead < Formula
     if build.with? "pdumper"
       patch do
         url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0005-Xwidgets-webkit-in-cocoa-pdumper.patch"
-        sha256 "9844d2ce7e958cd4ad63904041c94f963fa9323a9a2d4872bfe752be16ee8e3f"
+        sha256 "7580569c1574169c6281a33eb2867c4f32c8332d5ffe33c8ca84d4502238601d"
       end
     else
       patch do
         url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0004-Xwidgets-webkit-in-cocoa.patch"
-        sha256 "196e0bbd59240e8661b4f6f070a13c8703ab45963dc929b808251dc15f372f5e"
+        sha256 "40fb5d6f703838fe90688e35f66f93c46dc5e3451fdcd41dc01950dc8c7c0d9c"
       end
     end
   end

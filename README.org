@@ -17,9 +17,10 @@ Emacs Head is a GNU Emacs formula based on the original Homebrew
 =emacs= [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][formula]].
 
 ** About the logo
-'Kitchen Sink' OS Announced
 
 #+begin_quote
+'Kitchen Sink' OS Announced
+
 Coding has begun on a new operating system code named 'Kitchen Sink'.
 The new OS will be based entirely on GNU Emacs. One programmer
 explained, "Since many hackers spend a vast amount of their time in

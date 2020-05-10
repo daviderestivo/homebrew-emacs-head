@@ -1,6 +1,6 @@
 #+begin_html
 <p align="center">
-  <img width="256px" src="images/emacs-sink-retro-bw.png" alt="Banner">
+  <img width="256px" src="images/emacs-retro-icon-sink-bw.png" alt="Banner">
 </p>
 <h1 align="center">Emacs Head</h1>
 <p align="center">

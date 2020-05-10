@@ -1,10 +1,32 @@
-* Emacs Head
-
-[[https://www.gnu.org/licenses/gpl-3.0][https://img.shields.io/badge/License-GPL%20v3-blue.svg]]
-[[https://travis-ci.com/daviderestivo/homebrew-emacs-head][https://travis-ci.com/daviderestivo/homebrew-emacs-head.svg?branch=master]]
+#+begin_html
+<p align="center">
+  <img width="256px" src="images/emacs-sink-retro-bw.png" alt="Banner">
+</p>
+<h1 align="center">Emacs Head</h1>
+<p align="center">
+  <a href="https://www.gnu.org/licenses/gpl-3.0">
+    <img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="GNU General Public License Version 3.0">
+  </a>
+  <a href="https://travis-ci.com/daviderestivo/homebrew-emacs-head">
+    <img src="https://travis-ci.com/daviderestivo/homebrew-emacs-head.svg?branch=master" alt="Travis CI Status">
+  </a>
+</p>
+#+end_html
 
 Emacs Head is a GNU Emacs formula based on the original Homebrew
 =emacs= [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][formula]].
+
+** About the logo
+'Kitchen Sink' OS Announced
+
+#+begin_quote
+Coding has begun on a new operating system code named 'Kitchen Sink'.
+The new OS will be based entirely on GNU Emacs. One programmer
+explained, "Since many hackers spend a vast amount of their time in
+Emacs, why not just make it the operating system?" When asked about
+the name, he responded, "Well, it has been often said that Emacs has
+everything except a kitchen sink. Now it will." --- James Baughn (http://humorix.org/10016)
+#+end_quote
 
 ** Why yet another Homebrew Emacs formula?
 Since the option ~--with-cocoa~ is not available in the latest Emacs

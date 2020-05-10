@@ -107,6 +107,7 @@ are enabled. If you want to disable them please use the above "~--without-*~" op
 | ~--with-modern-icon-black-variant~ | Use a modern style icon by [[https://www.deviantart.com/blackvariant/about][BlackVariant]]             | [[/icons/modern-icon-black-variant.png]] | [[https://www.deviantart.com/blackvariant][Link]] |
 | ~--with-modern-icon-nuvola~        | Use a modern style icon by [[https://en.wikipedia.org/wiki/David_Vignoni][David Vignoni]]            | [[/icons/modern-icon-nuvola.png]]        | [[https://commons.wikimedia.org/wiki/File:Nuvola_apps_emacs_vector.svg][Link]] |
 | ~--with-retro-icon-gnu-head~       | Use a retro  style icon by [[https://github.com/aurium][Aurélio A. Heckert]]       | [[/icons/retro-icon-gnu-head.png]]       | [[https://www.gnu.org/graphics/heckert_gnu.html][Link]] |
+| ~--with-retro-icon-sink-bw~        | Use a retro  style icon by Unknown                  | [[/icons/retro-icon-sink-bw.png]]        | [[https://www.teuton.org/~ejm/emacsicon/][Link]] |
 | ~--with-retro-icon-sink~           | Use a retro  style icon by [[https://www.teuton.org/~ejm/][Erik Mugele]]              | [[/icons/retro-icon-sink.png]]           | [[https://www.teuton.org/~ejm/emacsicon/][Link]] |
 
 ** Collaborating

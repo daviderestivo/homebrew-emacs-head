@@ -71,6 +71,8 @@ class EmacsHead < Formula
          "Use a modern style icon by David Vignoni (Nuvola Icon Theme)"
   option "with-retro-icon-gnu-head",
          "Use a retro style icon by Aurélio A. Heckert (GNU Project)"
+  option "with-retro-icon-sink-bw",
+         "Use a retro style icon by Unknown"
   option "with-retro-icon-sink",
          "Use a retro style icon by Erik Mugele"
 
@@ -196,6 +198,11 @@ class EmacsHead < Formula
   resource "retro-icon-gnu-head" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/retro-icon-gnu-head.icns"
     sha256 "cfca2ff0214cff47167f634a5b9f8c402b488796f79ded23f93ec505f78b2f2f"
+  end
+
+  resource "retro-icon-sink-bw" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/retro-icon-sink-bw.icns"
+    sha256 "5cd836f86c8f5e1688d6b59bea4b57c8948026a9640257a7d2ec153ea7200571"
   end
 
   resource "retro-icon-sink" do

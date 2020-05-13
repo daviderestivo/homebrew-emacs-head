@@ -155,6 +155,13 @@ class EmacsHead < Formula
     end
   end
 
+  if build.head?
+    patch do
+      url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/system-appearance.patch"
+      sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
+    end
+  end
+
   resource "modern-icon-cg433n" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-cg433n.icns"
     sha256 "9a0b101faa6ab543337179024b41a6e9ea0ecaf837fc8b606a19c6a51d2be5dd"

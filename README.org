@@ -95,6 +95,21 @@ By default:
 
 are enabled. If you want to disable them please use the above "~--without-*~" options.
 
+** System appearance change
+
+This patch is enabled by default and can’t be disabled. It adds a hook, `ns-system-appearance-change-functions`, that is called once the [[https://support.apple.com/en-gb/guide/mac-help/mchl52e1c2d2/mac][system appearance]] is changed. Functions added to this hook will be called with one argument, a symbol that is either light or dark. This mainly allows loading a different theme to better match the system appearance.
+
+#+begin_src elisp
+(add-hook 'ns-system-appearance-change-functions
+          #'(lambda (appearance)
+              (mapc #'disable-theme custom-enabled-themes)
+              (pcase appearance
+                ('light (load-theme 'tango t))
+                ('dark (load-theme 'tango-dark t)))))
+#+end_src>
+                
+Note that this hook is run early in the startup process, so if you want your theme to match the system appearance when Emacs starts, you can register your function(s) in your early-init.el. The hook is NOT run in TTY Emacs sessions.
+
 ** Use a different icon
 | Option                           | Description                                         | Image                                | URL  |
 |----------------------------------+-----------------------------------------------------+--------------------------------------+------|

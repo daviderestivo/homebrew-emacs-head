@@ -306,7 +306,7 @@ class EmacsHead < Formula
         modern-icon-sexy-v1 modern-icon-sexy-v2
         modern-icon-papirus modern-icon-pen
         modern-icon-black-variant modern-icon-nuvola
-        retro-icon-gnu-head retro-icon-sink]).each do |icon|
+        retro-icon-gnu-head retro-icon-sink-bw retro-icon-sink]).each do |icon|
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"
           resource(icon).stage do

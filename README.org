@@ -13,8 +13,18 @@
 </p>
 #+end_html
 
-Emacs Head is a GNU Emacs formula based on the original Homebrew
-=emacs= [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][formula]].
+*Emacs Head* is an Homebrew formula based on the original Homebrew
+=emacs= [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][one]].
+
+This formula currently supports:
+- GNU Emacs 26.3
+- GNU Emacs HEAD (currently 28.x)
+
+Bottles for Emacs 26.3 are available for the following macOS versions:
+- Catalina
+- Mojave
+- High Sierra
+if you need support for an older macOS version open an issue.
 
 ** Installation
 You can install this formula using:
@@ -73,7 +83,7 @@ By default:
 
 are enabled. If you want to disable them please use the above "~--without-*~" options.
 
-** System appearance change
+** System appearance change support
 
 This patch is enabled by default and can’t be disabled. It adds a
 hook, ~ns-system-appearance-change-functions~, that is called once the
@@ -96,7 +106,7 @@ want your theme to match the system appearance when Emacs starts, you
 can register your function(s) in your early-init.el. The hook is NOT
 run in TTY Emacs sessions.
 
-** Pdumper
+** Pdumper support
 The portable dumper is available in HEAD. To enable this feature
 please use `--HEAD --with-pdumper`.
 
@@ -104,12 +114,12 @@ For a pdumper configuration example you could take inspiration from
 [[https://github.com/daviderestivo/galactic-emacs][Galactic Emacs]]: [[https://github.com/daviderestivo/galactic-emacs/blob/master/conf/pdumper-init.el][pdumper-init.el]] and [[https://github.com/daviderestivo/galactic-emacs/blob/master/conf/pdumper-config.el][pdumper-config.el]] configuration
 files.
 
-** Xwidgets
+** Xwidgets support
 This formula support via a (patch) native macOS X Cocoa Xwidgets
 support via embedding a native webkit window. To enable this feature
 please use `--HEAD --with-xwidgets`.
 
-** Use a different icon
+** Available icons
 | Option                           | Description                                         | Image                                | URL  |
 |----------------------------------+-----------------------------------------------------+--------------------------------------+------|
 | ~--with-modern-icon-cg433n~        | Use a modern style icon by [[https://github.com/cg433n][cg433n]]                   | [[/icons/modern-icon-cg433n.png]]        | [[https://github.com/cg433n/emacs-mac-icon][Link]] |
@@ -129,16 +139,6 @@ please use `--HEAD --with-xwidgets`.
 Since the option ~--with-cocoa~ is not available in the latest Emacs
 homebrew-core formula (see [[https://github.com/Homebrew/homebrew-core/pull/36070][pull request]]), I decided to build my own
 formula.
-
-This formula currently supports:
-- GNU Emacs 26.3
-- GNU Emacs HEAD (currently 28.x)
-
-Bottles (26.3) are available for the following macOS versions:
-- Catalina
-- Mojave
-- High Sierra
-if you need support for an older macOS version open an issue.
 
 ** About the logo
 #+begin_quote

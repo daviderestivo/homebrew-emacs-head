@@ -16,39 +16,6 @@
 Emacs Head is a GNU Emacs formula based on the original Homebrew
 =emacs= [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][formula]].
 
-** About the logo
-
-#+begin_quote
-'Kitchen Sink' OS Announced
-
-Coding has begun on a new operating system code named 'Kitchen Sink'.
-The new OS will be based entirely on GNU Emacs. One programmer
-explained, "Since many hackers spend a vast amount of their time in
-Emacs, why not just make it the operating system?" When asked about
-the name, he responded, "Well, it has been often said that Emacs has
-everything except a kitchen sink. Now it will." --- James Baughn (http://humorix.org/10016)
-#+end_quote
-
-** Why yet another Homebrew Emacs formula?
-Since the option ~--with-cocoa~ is not available in the latest Emacs
-homebrew-core formula (see [[https://github.com/Homebrew/homebrew-core/pull/36070][pull request]]), I decided to build my own
-formula.
-
-This formula currently supports:
-- GNU Emacs 26.3
-- GNU Emacs HEAD (currently 28.x)
-
-Bottles (26.3) are available for the following macOS versions:
-- Catalina
-- Mojave
-- High Sierra
-if you need support for an older macOS version open an issue.
-
-** Screenshots
-*** GNU Emacs running in terminal mode (28.x)
-[[/images/emacs-head-terminal.png]]
-*** GNU Emacs running in GUI mode (28.x)
-[[/images/emacs-head-cocoa.png]]
 ** Installation
 You can install this formula using:
 
@@ -64,8 +31,14 @@ brew tap daviderestivo/emacs-head
 brew install emacs-head --HEAD --with-cocoa
 #+end_src>
 
+** Screenshots
+*** GNU Emacs running in terminal mode (28.x)
+[[/images/emacs-head-terminal.png]]
+*** GNU Emacs running in GUI mode (28.x)
+[[/images/emacs-head-cocoa.png]]
+
 ** Compilation options
-The following compiling options are available:
+The following compilation options are available:
 
 | Option                  | Description                                                                  |
 |-------------------------+------------------------------------------------------------------------------|
@@ -97,7 +70,12 @@ are enabled. If you want to disable them please use the above "~--without-*~" op
 
 ** System appearance change
 
-This patch is enabled by default and can’t be disabled. It adds a hook, ~ns-system-appearance-change-functions~, that is called once the [[https://support.apple.com/en-gb/guide/mac-help/mchl52e1c2d2/mac][system appearance]] is changed. Functions added to this hook will be called with one argument, a symbol that is either light or dark. This mainly allows loading a different theme to better match the system appearance.
+This patch is enabled by default and can’t be disabled. It adds a
+hook, ~ns-system-appearance-change-functions~, that is called once the
+[[https://support.apple.com/en-gb/guide/mac-help/mchl52e1c2d2/mac][system appearance]] is changed. Functions added to this hook will be
+called with one argument, a symbol that is either light or dark. This
+mainly allows loading a different theme to better match the system
+appearance.
 
 #+begin_src elisp
 (add-hook 'ns-system-appearance-change-functions
@@ -108,7 +86,23 @@ This patch is enabled by default and can’t be disabled. It adds a hook, ~ns-sy
                 ('dark (load-theme 'tango-dark t)))))
 #+end_src>
 
-Note that this hook is run early in the startup process, so if you want your theme to match the system appearance when Emacs starts, you can register your function(s) in your early-init.el. The hook is NOT run in TTY Emacs sessions.
+Note that this hook is run early in the startup process, so if you
+want your theme to match the system appearance when Emacs starts, you
+can register your function(s) in your early-init.el. The hook is NOT
+run in TTY Emacs sessions.
+
+** Pdumper
+The portable dumper is available in HEAD. To enable this feature
+please use `--HEAD --with-pdumper`.
+
+For a pdumper configuration example you could take inspiration from
+[[https://github.com/daviderestivo/galactic-emacs][Galactic Emacs]]: [[https://github.com/daviderestivo/galactic-emacs/blob/master/conf/pdumper-init.el][pdumper-init.el]] and [[https://github.com/daviderestivo/galactic-emacs/blob/master/conf/pdumper-config.el][pdumper-config.el]] configuration
+files.
+
+** Xwidgets
+This formula support via a (patch) native macOS X Cocoa Xwidgets
+support via embedding a native webkit window. To enable this feature
+please use `--HEAD --with-xwidgets`.
 
 ** Use a different icon
 | Option                           | Description                                         | Image                                | URL  |
@@ -124,6 +118,34 @@ Note that this hook is run early in the startup process, so if you want your the
 | ~--with-retro-icon-gnu-head~       | Use a retro  style icon by [[https://github.com/aurium][Aurélio A. Heckert]]       | [[/icons/retro-icon-gnu-head.png]]       | [[https://www.gnu.org/graphics/heckert_gnu.html][Link]] |
 | ~--with-retro-icon-sink-bw~        | Use a retro  style icon by Unknown                  | [[/icons/retro-icon-sink-bw.png]]        | [[https://www.teuton.org/~ejm/emacsicon/][Link]] |
 | ~--with-retro-icon-sink~           | Use a retro  style icon by [[https://www.teuton.org/~ejm/][Erik Mugele]]              | [[/icons/retro-icon-sink.png]]           | [[https://www.teuton.org/~ejm/emacsicon/][Link]] |
+
+
+** Why yet another Homebrew Emacs formula?
+Since the option ~--with-cocoa~ is not available in the latest Emacs
+homebrew-core formula (see [[https://github.com/Homebrew/homebrew-core/pull/36070][pull request]]), I decided to build my own
+formula.
+
+This formula currently supports:
+- GNU Emacs 26.3
+- GNU Emacs HEAD (currently 28.x)
+
+Bottles (26.3) are available for the following macOS versions:
+- Catalina
+- Mojave
+- High Sierra
+if you need support for an older macOS version open an issue.
+
+** About the logo
+#+begin_quote
+'Kitchen Sink' OS Announced
+
+Coding has begun on a new operating system code named 'Kitchen Sink'.
+The new OS will be based entirely on GNU Emacs. One programmer
+explained, "Since many hackers spend a vast amount of their time in
+Emacs, why not just make it the operating system?" When asked about
+the name, he responded, "Well, it has been often said that Emacs has
+everything except a kitchen sink. Now it will." --- James Baughn (http://humorix.org/10016)
+#+end_quote
 
 ** Collaborating
 If you are interested in collaborating please open a Pull Request.

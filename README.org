@@ -37,6 +37,7 @@ brew install emacs-head --HEAD --with-cocoa
 
 *** GNU Emacs running in GUI mode (28.x)
 GUI Theme: [[https://github.com/jonathanchu/atom-one-dark-theme][atom-one-dark-theme]]
+
 Modeline Theme: [[https://github.com/daviderestivo/smart-mode-line-atom-one-dark-theme][smart-mode-line-atom-one-dark-theme]]
 
 [[/images/emacs-head-cocoa.png]]

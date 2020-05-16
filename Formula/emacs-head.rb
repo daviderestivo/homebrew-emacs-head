@@ -157,7 +157,7 @@ class EmacsHead < Formula
 
   if build.head?
     patch do
-      url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/system-appearance.patch"
+      url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0006-System-appearance.patch"
       sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
     end
   end

@@ -15,13 +15,31 @@ class EmacsHead < Formula
     sha256 "a31d1c6acb0e5eab9253acd5455320d9640dd10d42705fbee0ab7f3ae83a9ab5" => :catalina
   end
 
+  stable do
+    # Emacs 26.x does not support ImageMagick 7:
+    # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
+    depends_on "imagemagick@6" => :recommended
+  end
+
   head do
     url "https://github.com/emacs-mirror/emacs.git"
 
     depends_on "autoconf" => :build
     depends_on "gnu-sed"  => :build
     depends_on "texinfo"  => :build
+    # Emacs 27.x (current HEAD) does support ImageMagick 7
+    depends_on "imagemagick@7" => :recommended
+    # Turn on harfbuzz support on HEAD
+    depends_on "harfbuzz" => :recommended
   end
+
+  depends_on "pkg-config" => :build
+  depends_on "gnutls"
+  depends_on "librsvg"
+  depends_on "libxml2"
+  depends_on "dbus" => :optional
+  depends_on "jansson" => :optional
+  depends_on "mailutils" => :optional
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -75,27 +93,6 @@ class EmacsHead < Formula
          "Use a retro style icon by Unknown"
   option "with-retro-icon-sink",
          "Use a retro style icon by Erik Mugele"
-
-  depends_on "pkg-config" => :build
-  depends_on "gnutls"
-  depends_on "librsvg"
-  depends_on "libxml2"
-  depends_on "dbus" => :optional
-  depends_on "jansson" => :optional
-  depends_on "mailutils" => :optional
-
-  stable do
-    # Emacs 26.x does not support ImageMagick 7:
-    # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
-    depends_on "imagemagick@6" => :recommended
-  end
-
-  head do
-    # Emacs 27.x (current HEAD) does support ImageMagick 7
-    depends_on "imagemagick@7" => :recommended
-    # Turn on harfbuzz support on HEAD
-    depends_on "harfbuzz" => :recommended
-  end
 
   # When closing a frame, Emacs automatically focuses another frame.
   # This re-focus has an additional side-effect: when closing a frame
@@ -162,6 +159,43 @@ class EmacsHead < Formula
     end
   end
 
+  # All the pacthes are now downloaded unconditionally even if they
+  # are not used in order to overcome the reinstall issue mentioned
+  # here:
+  # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
+
+  # Patches
+  resource "0001-No-frame-refocus-cocoa.patch" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-No-frame-refocus-cocoa.patch"
+    sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
+  end
+
+  resource "0002-Patch-multicolor-font.patch" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0002-Patch-multicolor-font.patch"
+    sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
+  end
+
+  resource "0003-Pdumper-size-increase.patch" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0003-Pdumper-size-increase.patch"
+    sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
+  end
+
+  resource "0004-Xwidgets-webkit-in-cocoa.patch" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0004-Xwidgets-webkit-in-cocoa.patch"
+    sha256 "40fb5d6f703838fe90688e35f66f93c46dc5e3451fdcd41dc01950dc8c7c0d9c"
+  end
+
+  resource "0005-Xwidgets-webkit-in-cocoa-pdumper.patch" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0005-Xwidgets-webkit-in-cocoa-pdumper.patch"
+    sha256 "7580569c1574169c6281a33eb2867c4f32c8332d5ffe33c8ca84d4502238601d"
+  end
+
+  resource "0006-System-appearance.patch" do
+    url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0006-System-appearance.patch"
+    sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
+  end
+
+  # Icons
   resource "modern-icon-cg433n" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/icons/modern-icon-cg433n.icns"
     sha256 "9a0b101faa6ab543337179024b41a6e9ea0ecaf837fc8b606a19c6a51d2be5dd"

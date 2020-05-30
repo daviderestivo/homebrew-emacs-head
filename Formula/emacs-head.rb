@@ -165,32 +165,32 @@ class EmacsHead < Formula
   # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
 
   # Patches
-  resource "0001-No-frame-refocus-cocoa.patch" do
+  resource "0001-No-frame-refocus-cocoa" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0001-No-frame-refocus-cocoa.patch"
     sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
   end
 
-  resource "0002-Patch-multicolor-font.patch" do
+  resource "0002-Patch-multicolor-font" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0002-Patch-multicolor-font.patch"
     sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
   end
 
-  resource "0003-Pdumper-size-increase.patch" do
+  resource "0003-Pdumper-size-increase" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0003-Pdumper-size-increase.patch"
     sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
   end
 
-  resource "0004-Xwidgets-webkit-in-cocoa.patch" do
+  resource "0004-Xwidgets-webkit-in-cocoa" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0004-Xwidgets-webkit-in-cocoa.patch"
     sha256 "40fb5d6f703838fe90688e35f66f93c46dc5e3451fdcd41dc01950dc8c7c0d9c"
   end
 
-  resource "0005-Xwidgets-webkit-in-cocoa-pdumper.patch" do
+  resource "0005-Xwidgets-webkit-in-cocoa-pdumper" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0005-Xwidgets-webkit-in-cocoa-pdumper.patch"
     sha256 "7580569c1574169c6281a33eb2867c4f32c8332d5ffe33c8ca84d4502238601d"
   end
 
-  resource "0006-System-appearance.patch" do
+  resource "0006-System-appearance" do
     url "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/master/patches/0006-System-appearance.patch"
     sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
   end

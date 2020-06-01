@@ -159,7 +159,7 @@ class EmacsHead < Formula
     end
   end
 
-  # All the pacthes are now downloaded unconditionally even if they
+  # All the patches are now downloaded unconditionally even if they
   # are not used in order to overcome the reinstall issue mentioned
   # here:
   # https://github.com/daviderestivo/homebrew-emacs-head/issues/28

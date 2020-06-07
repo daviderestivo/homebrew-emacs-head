@@ -30,7 +30,7 @@ if you need support for an older macOS version open an issue.
 ** Installation
 You can install this formula using:
 
-*** GNU Emacs 26.3
+*** GNU Emacs 26
 #+begin_src bash
 brew tap daviderestivo/emacs-head
 brew install emacs-head --with-cocoa
@@ -49,7 +49,7 @@ brew tap daviderestivo/emacs-head
 brew install --HEAD emacs-head@27 --with-cocoa
 #+end_src
 
-*** GNU Emacs HEAD
+*** GNU Emacs 28 (HEAD)
 #+begin_src bash
 brew tap daviderestivo/emacs-head
 brew install emacs-head@28 --with-cocoa

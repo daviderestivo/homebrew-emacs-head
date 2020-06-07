@@ -295,11 +295,11 @@ class EmacsHead < Formula
       Please use emacs-head@27 or emacs-head@28 formulas if you wish
       to install them:
 
-      $ brew install emacs-head@27 [options]
+        $ brew install emacs-head@27 [options]
 
-      or
+        or
 
-      $ brew install emacs-head@28 [options]
+        $ brew install emacs-head@28 [options]
 
     EOS
   end

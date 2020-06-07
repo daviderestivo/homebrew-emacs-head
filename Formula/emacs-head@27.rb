@@ -248,11 +248,8 @@ class EmacsHeadAT27 < Formula
       ENV.append_to_cflags "-g3"
     end
 
-    if build.head?
-      ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
-      system "./autogen.sh"
-    end
-
+    ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
+    system "./autogen.sh"
 
     if build.with? "cocoa"
       args << "--with-ns" << "--disable-ns-self-contained"  << "--with-harfbuzz"

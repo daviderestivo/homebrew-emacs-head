@@ -9,10 +9,6 @@ class EmacsHeadAT27 < Formula
 
   head do
     url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-27"
-
-    depends_on "autoconf" => :build
-    depends_on "gnu-sed"  => :build
-    depends_on "texinfo"  => :build
   end
 
   depends_on "pkg-config" => :build
@@ -22,6 +18,9 @@ class EmacsHeadAT27 < Formula
   depends_on "dbus" => :optional
   depends_on "jansson" => :optional
   depends_on "mailutils" => :optional
+  depends_on "autoconf" => :build
+  depends_on "gnu-sed"  => :build
+  depends_on "texinfo"  => :build
   # GNU Emacs 27.x does support ImageMagick 7
   depends_on "imagemagick@7" => :recommended
   # Turn on harfbuzz support

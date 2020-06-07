@@ -12,21 +12,25 @@ jobs:
     - env:
       - BUILD_OPTIONS="Formula/emacs-head.rb"
       - TEST_OPTIONS="Formula/emacs-head.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode10.1
     # Emacs 26.x on Mojave      (macOS 10.14 - xcode11.3)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head.rb"
       - TEST_OPTIONS="Formula/emacs-head.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode11.3
     # Emacs 26.x on High Sierra (macOS 10.13 - xcode10.1) - All options (imagemagick@6)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head.rb --with-cocoa --with-no-frame-refocus --with-imagemagick --with-multicolor-fonts"
       - TEST_OPTIONS="Formula/emacs-head.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode10.1
     # Emacs 26.x on Mojave      (macOS 10.14 - xcode11.3) - All options (imagemagick@6)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head.rb --with-cocoa --with-no-frame-refocus --with-imagemagick --with-multicolor-fonts"
       - TEST_OPTIONS="Formula/emacs-head.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode11.3
 
     ##############
@@ -36,21 +40,25 @@ jobs:
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@27.rb --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@27.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode10.1
     # Emacs 27.x on Mojave      (macOS 10.14 - xcode11.3) - All options except pdumper (imagemagick@7)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@27.rb --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@27.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode11.3
     # Emacs 27.x on High Sierra (macOS 10.13 - xcode10.1) - All options (imagemagick@7)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@27.rb --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@27.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode10.1
     # Emacs 27.x on Mojave      (macOS 10.14 - xcode11.3) - All options (imagemagick@7)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@27.rb --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@27.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode11.3
 
     #####################
@@ -60,21 +68,25 @@ jobs:
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@27.rb --HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@27.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode10.1
     # Emacs 27.x (HEAD) on Mojave      (macOS 10.14 - xcode11.3) - All options except pdumper (imagemagick@7)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@27.rb --HEAD  --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@27.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode11.3
     # Emacs 27.x (HEAD) on High Sierra (macOS 10.13 - xcode10.1) - All options (imagemagick@7)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@27.rb  --HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@27.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode10.1
     # Emacs 27.x (HEAD) on Mojave      (macOS 10.14 - xcode11.3) - All options (imagemagick@7)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@27.rb --HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@27.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode11.3
 
     ##############
@@ -84,21 +96,25 @@ jobs:
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@28.rb --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@28.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode10.1
     # Emacs 28.x on Mojave      (macOS 10.14 - xcode11.3) - All options except pdumper (imagemagick@7)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@28.rb --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@28.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode11.3
     # Emacs 28.x on High Sierra (macOS 10.13 - xcode10.1) - All options (imagemagick@7)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@28.rb --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@28.rb"
+      - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode10.1
     # Emacs 28.x on Mojave      (macOS 10.14 - xcode11.3) - All options (imagemagick@7)
     - env:
       - BUILD_OPTIONS="Formula/emacs-head@28.rb --with-cocoa --with-no-frame-refocus --with-imagemagick --with-jansson --with-pdumper --with-xwidgets"
       - TEST_OPTIONS="Formula/emacs-head@28.rb"
+        - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode11.3
 
   fast_finish: true

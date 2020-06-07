@@ -79,8 +79,8 @@ class EmacsHeadAT27 < Formula
          "Use a retro style icon by Erik Mugele"
 
   def self.get_resource_url(resource)
-    if ENV['TRAVIS_BRANCH']
-      "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + ENV['TRAVIS_BRANCH'] +  "/" + resource
+    if ENV['HOMEBREW_TRAVIS_BRANCH']
+      "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + ENV['HOMEBREW_TRAVIS_BRANCH'] +  "/" + resource
     else
       "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + "master" + "/" + resource
     end

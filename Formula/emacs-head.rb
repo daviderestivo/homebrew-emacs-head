@@ -74,8 +74,8 @@ class EmacsHead < Formula
          "Use a retro style icon by Erik Mugele"
 
   def self.get_resource_url(resource)
-    if ENV['TRAVIS_BRANCH']
-      "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + ENV['TRAVIS_BRANCH'] +  "/" + resource
+    if ENV['HOMEBREW_TRAVIS_BRANCH']
+      "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + ENV['HOMEBREW_TRAVIS_BRANCH'] +  "/" + resource
     else
       "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + "master" + "/" + resource
     end
@@ -287,9 +287,9 @@ class EmacsHead < Formula
       To link the application:
         ln -s #{prefix}/Emacs.app /Applications
 
-      ----------
-      Important:
-      ----------
+                               ----------
+                               Important:
+                               ----------
 
       GNU Emacs 27 and GNU Emacs 28 now live in separate formulas.
       Please use emacs-head@27 or emacs-head@28 formulas if you wish

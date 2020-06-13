@@ -18,9 +18,10 @@
 
 This formula currently supports:
 - GNU Emacs 26.3
-- GNU Emacs HEAD (currently 28.x)
+- GNU Emacs 27.0.91 (or HEAD)
+- GNU Emacs HEAD (currently 28.0.50)
 
-Bottles for Emacs 26.3 are available for the following macOS versions:
+Bottles for GNU Emacs 26.3 are available for the following macOS versions:
 - Catalina
 - Mojave
 - High Sierra
@@ -29,16 +30,29 @@ if you need support for an older macOS version open an issue.
 ** Installation
 You can install this formula using:
 
-*** GNU Emacs 26.3
+*** GNU Emacs 26
 #+begin_src bash
 brew tap daviderestivo/emacs-head
 brew install emacs-head --with-cocoa
 #+end_src
 
-*** GNU Emacs HEAD
+*** GNU Emacs 27
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head --HEAD --with-cocoa
+brew install emacs-head@27 --with-cocoa
+#+end_src
+
+If you wish to install the HEAD version of GNU Emacs 27 please do:
+
+#+begin_src bash
+brew tap daviderestivo/emacs-head
+brew install --HEAD emacs-head@27 --with-cocoa
+#+end_src
+
+*** GNU Emacs 28 (HEAD)
+#+begin_src bash
+brew tap daviderestivo/emacs-head
+brew install emacs-head@28 --with-cocoa
 #+end_src
 
 ** Screenshots
@@ -63,15 +77,15 @@ The following compilation options are available:
 | ~--with-dbus~             | Build with dbus support                                                      |
 | ~--without-gnutls~        | Disable gnutls support                                                       |
 | ~--with-imagemagick~      | Build with imagemagick support                                               |
-| ~--with-jansson~          | Enable jansson support (only HEAD)                                           |
+| ~--with-jansson~          | Enable jansson support (only for emacs-head@27 and emaces-head@28)           |
 | ~--without-librsvg~       | Disable librsvg support                                                      |
 | ~--with-mailutils~        | Build with mailutils support                                                 |
-| ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only for Emacs 26.3)               |
+| ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only for emacs-head)               |
 | ~--without-modules~       | Disable dynamic modules support                                              |
 | ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one) |
 | ~--without-libxml2~       | Disable libxml2 support                                                      |
-| ~--with-pdumper~          | Enable pdumper support                                                       |
-| ~--with-xwidgets~         | Enable xwidgets support                                                      |
+| ~--with-pdumper~          | Enable pdumper support  (only for emacs-head@27 and emaces-head@28)          |
+| ~--with-xwidgets~         | Enable xwidgets support (only for emacs-head@27 and emaces-head@28)          |
 
 For the terminal version only of GNU Emacs please omit "~--with-cocoa~".
 
@@ -101,9 +115,9 @@ appearance.
 #+end_src>
 
 Note that this hook is run early in the startup process, so if you
-want your theme to match the system appearance when Emacs starts, you
+want your theme to match the system appearance when GNU Emacs starts, you
 can register your function(s) in your early-init.el. The hook is NOT
-run in TTY Emacs sessions.
+run in TTY sessions.
 
 ** Pdumper support
 The portable dumper is available in HEAD. To enable this feature
@@ -133,8 +147,8 @@ please use `--HEAD --with-xwidgets`.
 | ~--with-retro-icon-sink-bw~        | Use a retro  style icon by Unknown                  | [[/icons/retro-icon-sink-bw.png]]        | [[https://www.teuton.org/~ejm/emacsicon/][Link]] |
 | ~--with-retro-icon-sink~           | Use a retro  style icon by [[https://www.teuton.org/~ejm/][Erik Mugele]]              | [[/icons/retro-icon-sink.png]]           | [[https://www.teuton.org/~ejm/emacsicon/][Link]] |
 
-** Why yet another Homebrew Emacs formula?
-Since the option ~--with-cocoa~ is not available in the latest Emacs
+** Why yet another Homebrew GNU Emacs formula?
+Since the option ~--with-cocoa~ is not available in the latest GNU Emacs
 homebrew-core formula (see [[https://github.com/Homebrew/homebrew-core/pull/36070][pull request]]), I decided to build my own
 formula.
 

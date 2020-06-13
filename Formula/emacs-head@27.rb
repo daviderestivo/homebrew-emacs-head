@@ -1,19 +1,14 @@
 # coding: utf-8
-class EmacsHead < Formula
+class EmacsHeadAT27 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz"
-  mirror "https://ftpmirror.gnu.org/emacs/emacs-26.3.tar.xz"
-  sha256 "4d90e6751ad8967822c6e092db07466b9d383ef1653feb2f95c93e7de66d3485"
-  version "26.3"
+  url "https://alpha.gnu.org/gnu/emacs/pretest/emacs-27.0.91.tar.xz"
+  sha256 "96813dd385dec81ceb1868645939d49b81ca2c1feb42a58b4d38125ebd1345aa"
+  version "27.0.91"
   revision 1
 
-  bottle do
-    rebuild 8
-    root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
-    sha256 "3da2bf583edc127dbdde59cb9b01de4940aedb3ccb3c01273e76d110f869c4ea" => :high_sierra
-    sha256 "514626098894254ce009b6b1f9a90bdb6679a3e3a005b6bdd5c36d610cae4583" => :mojave
-    sha256 "a31d1c6acb0e5eab9253acd5455320d9640dd10d42705fbee0ab7f3ae83a9ab5" => :catalina
+  head do
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-27"
   end
 
   depends_on "pkg-config" => :build
@@ -21,10 +16,15 @@ class EmacsHead < Formula
   depends_on "librsvg"
   depends_on "libxml2"
   depends_on "dbus" => :optional
+  depends_on "jansson" => :optional
   depends_on "mailutils" => :optional
-  # GNU Emacs 26.x does not support ImageMagick 7:
-  # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
-  depends_on "imagemagick@6" => :recommended
+  depends_on "autoconf" => :build
+  depends_on "gnu-sed"  => :build
+  depends_on "texinfo"  => :build
+  # GNU Emacs 27.x does support ImageMagick 7
+  depends_on "imagemagick@7" => :recommended
+  # Turn on harfbuzz support
+  depends_on "harfbuzz" => :recommended
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -38,18 +38,22 @@ class EmacsHead < Formula
          "Disable gnutls support"
   option "with-imagemagick",
          "Build with imagemagick support"
+  option "with-jansson",
+         "Enable jansson support"
   option "without-librsvg",
          "Disable librsvg support"
   option "with-mailutils",
          "Build with mailutils support"
-  option "with-multicolor-fonts",
-         "Enable multicolor fonts on macOS"
   option "without-modules",
          "Disable dynamic modules support"
   option "with-no-frame-refocus",
          "Disables frame re-focus (i.e. closing one frame does not refocus another one)"
   option "without-libxml2",
          "Disable libxml2 support"
+  option "with-pdumper",
+         "Enable pdumper support"
+  option "with-xwidgets",
+         "Enable xwidgets support"
   option "with-modern-icon-cg433n",
          "Use a modern style icon by @cg433n"
   option "with-modern-icon-sjrmanning",
@@ -81,12 +85,6 @@ class EmacsHead < Formula
     end
   end
 
-  # https://github.com/emacs-mirror/emacs/commit/888ffd960c06d56a409a7ff15b1d930d25c56089
-  patch do
-    url EmacsHead.get_resource_url("patches/0006-Fix-unexec.patch")
-    sha256 "a1fcfe8020301733a3846cf85b072b461b66e26d15b0154b978afb7a4ec3346b"
-  end
-
   # When closing a frame, GNU Emacs automatically focuses another frame.
   # This re-focus has an additional side-effect: when closing a frame
   # from one desktop/space, one gets automatically moved to another
@@ -95,72 +93,112 @@ class EmacsHead < Formula
   # Reference: https://github.com/d12frosted/homebrew-emacs-plus/issues/119
   if build.with? "no-frame-refocus"
     patch do
-      url EmacsHead.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
+      url EmacsHeadAT27.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
       sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
     end
   end
 
-  # Enable multicolor-fonts support
-  if  build.with? "multicolor-fonts"
+  if build.with? "pdumper"
     patch do
-      url EmacsHead.get_resource_url("patches/0002-Patch-multicolor-font.patch")
-      sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
+      url EmacsHeadAT27.get_resource_url("patches/0003-Pdumper-size-increase.patch")
+      sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
     end
+  end
+
+  if build.with? "xwidgets"
+    unless build.with? "cocoa"
+      odie "--with-xwidgets is supported only on cocoa via xwidget webkit"
+    end
+    patch do
+      url EmacsHeadAT27.get_resource_url("patches/0004-Xwidgets-webkit-in-cocoa-27.patch")
+      sha256 "56406c03cbcea0d6d4c893074935404937cdae03259b8120b1b913971a948476"
+    end
+  end
+
+  patch do
+    url EmacsHeadAT27.get_resource_url("patches/0005-System-appearance-27.patch")
+    sha256 "82252e2858a0eba95148661264e390eaf37349fec9c30881d3c1299bfaee8b21"
+  end
+
+  # All the patches are now downloaded unconditionally even if they
+  # are not used in order to overcome the reinstall issue mentioned
+  # here:
+  # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
+
+  # Patches
+  resource "0001-No-frame-refocus-cocoa" do
+    url EmacsHeadAT27.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
+    sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
+  end
+
+  resource "0003-Pdumper-size-increase" do
+    url EmacsHeadAT27.get_resource_url("patches/0003-Pdumper-size-increase.patch")
+    sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
+  end
+
+  resource "0004-Xwidgets-webkit-in-cocoa-27" do
+    url EmacsHeadAT27.get_resource_url("patches/0004-Xwidgets-webkit-in-cocoa-27.patch")
+    sha256 "56406c03cbcea0d6d4c893074935404937cdae03259b8120b1b913971a948476"
+  end
+
+  resource "0005-System-appearance-27" do
+    url EmacsHeadAT27.get_resource_url("patches/0005-System-appearance-27.patch")
+    sha256 "82252e2858a0eba95148661264e390eaf37349fec9c30881d3c1299bfaee8b21"
   end
 
   # Icons
   resource "modern-icon-cg433n" do
-    url EmacsHead.get_resource_url("icons/modern-icon-cg433n.icns")
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-cg433n.icns")
     sha256 "9a0b101faa6ab543337179024b41a6e9ea0ecaf837fc8b606a19c6a51d2be5dd"
   end
 
   resource "modern-icon-sjrmanning" do
-    url EmacsHead.get_resource_url("icons/modern-icon-sjrmanning.icns")
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-sjrmanning.icns")
     sha256 "fc267d801432da90de5c0d2254f6de16557193b6c062ccaae30d91b3ada01ab9"
   end
 
   resource "modern-icon-sexy-v1" do
-    url EmacsHead.get_resource_url("icons/modern-icon-sexy-v1.icns")
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-sexy-v1.icns")
     sha256 "1ea8515d1f6f225047be128009e53b9aa47a242e95823c07a67c6f8a26f8d820"
   end
 
   resource "modern-icon-sexy-v2" do
-    url EmacsHead.get_resource_url("icons/modern-icon-sexy-v2.icns")
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-sexy-v2.icns")
     sha256 "ecdc902435a8852d47e2c682810146e81f5ad72ee3d0c373c936eb4c1e0966e6"
   end
 
   resource "modern-icon-papirus" do
-    url EmacsHead.get_resource_url("icons/modern-icon-papirus.icns")
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-papirus.icns")
     sha256 "50aef07397ab17073deb107e32a8c7b86a0e9dddf5a0f78c4fcff796099623f8"
   end
 
   resource "modern-icon-pen" do
-    url EmacsHead.get_resource_url("icons/modern-icon-pen.icns")
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-pen.icns")
     sha256 "4fda050447a9803d38dd6fd7d35386103735aec239151714e8bf60bf9d357d3b"
   end
 
   resource "modern-icon-nuvola" do
-    url EmacsHead.get_resource_url("icons/modern-icon-nuvola.icns")
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-nuvola.icns")
     sha256 "c3701e25ff46116fd694bc37d8ccec7ad9ae58bb581063f0792ea3c50d84d997"
   end
 
   resource "modern-icon-black-variant" do
-    url EmacsHead.get_resource_url("icons/modern-icon-black-variant.icns")
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-black-variant.icns")
     sha256 "a56a19fb5195925c09f38708fd6a6c58c283a1725f7998e3574b0826c6d9ac7e"
   end
 
   resource "retro-icon-gnu-head" do
-    url EmacsHead.get_resource_url("icons/retro-icon-gnu-head.icns")
+    url EmacsHeadAT27.get_resource_url("icons/retro-icon-gnu-head.icns")
     sha256 "cfca2ff0214cff47167f634a5b9f8c402b488796f79ded23f93ec505f78b2f2f"
   end
 
   resource "retro-icon-sink-bw" do
-    url EmacsHead.get_resource_url("icons/retro-icon-sink-bw.icns")
+    url EmacsHeadAT27.get_resource_url("icons/retro-icon-sink-bw.icns")
     sha256 "5cd836f86c8f5e1688d6b59bea4b57c8948026a9640257a7d2ec153ea7200571"
   end
 
   resource "retro-icon-sink" do
-    url EmacsHead.get_resource_url("icons/retro-icon-sink.icns")
+    url EmacsHeadAT27.get_resource_url("icons/retro-icon-sink.icns")
     sha256 "be0ee790589a3e49345e1894050678eab2c75272a8d927db46e240a2466c6abc"
   end
 
@@ -183,11 +221,15 @@ class EmacsHead < Formula
     # See: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=24455
     if build.with? "imagemagick"
       args << "--with-imagemagick"
-      imagemagick_lib_path = Formula["imagemagick@6"].opt_lib/"pkgconfig"
+      imagemagick_lib_path = Formula["imagemagick@7"].opt_lib/"pkgconfig"
       ohai "ImageMagick PKG_CONFIG_PATH: ", imagemagick_lib_path
       ENV.prepend_path "PKG_CONFIG_PATH", imagemagick_lib_path
     else
       args << "--without-imagemagick"
+    end
+
+    if build.with? "jansson"
+      args << "--with-json"
     end
 
     args << "--with-modules"  unless build.without? "modules"
@@ -195,6 +237,7 @@ class EmacsHead < Formula
     args << "--with-gnutls"   unless build.without? "gnutls"
     args << "--with-rsvg"     unless build.without? "librsvg"
     args << "--with-xml2"     unless build.without? "libxml2"
+    args << "--with-xwidgets" if     build.with?    "xwidgets"
 
     # Read https://github.com/emacs-mirror/emacs/blob/master/etc/DEBUG
     # for more information
@@ -204,8 +247,11 @@ class EmacsHead < Formula
       ENV.append_to_cflags "-g3"
     end
 
+    ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
+    system "./autogen.sh"
+
     if build.with? "cocoa"
-      args << "--with-ns" << "--disable-ns-self-contained"
+      args << "--with-ns" << "--disable-ns-self-contained"  << "--with-harfbuzz"
 
       system "./configure", *args
 
@@ -292,21 +338,6 @@ class EmacsHead < Formula
         #{prefix}
       To link the application:
         ln -s #{prefix}/Emacs.app /Applications
-
-                               ----------
-                               Important:
-                               ----------
-
-      GNU Emacs 27 and GNU Emacs 28 now live in separate formulas.
-      Please use emacs-head@27 or emacs-head@28 formulas if you wish
-      to install them:
-
-        $ brew install emacs-head@27 [options]
-
-        or
-
-        $ brew install emacs-head@28 [options]
-
     EOS
   end
 

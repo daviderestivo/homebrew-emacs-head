@@ -81,6 +81,12 @@ class EmacsHead < Formula
     end
   end
 
+  # https://github.com/emacs-mirror/emacs/commit/888ffd960c06d56a409a7ff15b1d930d25c56089
+  patch do
+    url EmacsHead.get_resource_url("patches/0006-Fix-unexec.patch")
+    sha256 "a1fcfe8020301733a3846cf85b072b461b66e26d15b0154b978afb7a4ec3346b"
+  end
+
   # When closing a frame, GNU Emacs automatically focuses another frame.
   # This re-focus has an additional side-effect: when closing a frame
   # from one desktop/space, one gets automatically moved to another

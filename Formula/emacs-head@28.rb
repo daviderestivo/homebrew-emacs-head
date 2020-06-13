@@ -10,8 +10,8 @@ class EmacsHeadAT28 < Formula
   depends_on "gnutls"
   depends_on "librsvg"
   depends_on "libxml2"
-  depends_on "dbus" => :optional
   depends_on "jansson" => :optional
+  depends_on "dbus" => :optional
   depends_on "mailutils" => :optional
   depends_on "autoconf" => :build
   depends_on "gnu-sed"  => :build

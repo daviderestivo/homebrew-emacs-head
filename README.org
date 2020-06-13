@@ -13,8 +13,8 @@
 </p>
 #+end_html
 
-*Emacs Head* is an Homebrew formula based on the original Homebrew
-=emacs= [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][one]].
+*Emacs Head* is an Homebrew formula based on the original Homebrew Emacs
+[[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][one]].
 
 This formula currently supports:
 - GNU Emacs 26.3
@@ -47,7 +47,7 @@ GNU Emacs 27.0.91 bottles have been built with the following options:
 --with-xwidgets
 #+end_src
 
-if you need support for an older macOS version open an issue.
+if you need support for an older macOS version please open an [[https://github.com/daviderestivo/homebrew-emacs-head/issues/new/choose][Issue]].
 
 ** Installation
 You can install this formula using:
@@ -109,7 +109,7 @@ The following compilation options are available:
 | ~--with-pdumper~          | Enable pdumper support  (only for emacs-head@27 and emacs-head@28)           |
 | ~--with-xwidgets~         | Enable xwidgets support (only for emacs-head@27 and emacs-head@28)           |
 
-For the terminal version only of GNU Emacs please omit "~--with-cocoa~".
+For the terminal version only of GNU Emacs please omit ~--with-cocoa~.
 
 By default:
 - gnutls
@@ -117,7 +117,7 @@ By default:
 - libxml2
 - dynamic modules
 
-are enabled. If you want to disable them please use the above "~--without-*~" options.
+are enabled. If you want to disable them please use the above ~--without-*~ options.
 
 ** System appearance change support
 This patch is enabled by default and can’t be disabled. It adds a
@@ -143,16 +143,16 @@ run in TTY sessions.
 
 ** Pdumper support
 The portable dumper is available in HEAD. To enable this feature
-please use `--HEAD --with-pdumper`.
+please use ~--HEAD --with-pdumper~.
 
-For a pdumper configuration example you could take inspiration from
+For a pdumper configuration example, you could take inspiration from
 [[https://github.com/daviderestivo/galactic-emacs][Galactic Emacs]]: [[https://github.com/daviderestivo/galactic-emacs/blob/master/conf/pdumper-init.el][pdumper-init.el]] and [[https://github.com/daviderestivo/galactic-emacs/blob/master/conf/pdumper-config.el][pdumper-config.el]] configuration
 files.
 
 ** Xwidgets support
 This formula support via a (patch) native macOS X Cocoa Xwidgets
 support via embedding a native webkit window. To enable this feature
-please use `--HEAD --with-xwidgets`.
+please use ~--HEAD --with-xwidgets~.
 
 ** Available icons
 | Option                           | Description                                         | Image                                | URL  |
@@ -187,4 +187,4 @@ everything except a kitchen sink. Now it will." --- James Baughn (http://humorix
 #+end_quote
 
 ** Collaborating
-If you are interested in collaborating please open a Pull Request.
+If you are interested in collaborating please open a [[https://github.com/daviderestivo/homebrew-emacs-head/compare][Pull Request]].

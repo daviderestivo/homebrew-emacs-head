@@ -7,6 +7,14 @@ class EmacsHeadAT27 < Formula
   version "27.0.91"
   revision 1
 
+  bottle do
+    rebuild 9
+    root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
+    sha256 "6bb58d10953bd66568a60b1fbdd1e685410625089a02e912e7648630d1e3532f" => :high_sierra
+    sha256 "92efec40a8060890302b4c01014130ab0edf0442e3a58d3473e89d9750ec7594" => :mojave
+    sha256 "a591515e636c2853e40ab31b9e6fc15e0236082b8615e91aab1bb3d3c120d42a" => :catalina
+  end
+
   head do
     url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-27"
   end

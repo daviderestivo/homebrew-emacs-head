@@ -33,13 +33,13 @@ You can install this formula using:
 *** GNU Emacs 26
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head --with-cocoa
+brew install emacs-head
 #+end_src
 
 *** GNU Emacs 27
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head@27 --with-cocoa
+brew install emacs-head@27
 #+end_src
 
 If you wish to install the HEAD version of GNU Emacs 27 please do:

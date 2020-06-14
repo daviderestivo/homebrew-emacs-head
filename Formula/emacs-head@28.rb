@@ -115,6 +115,27 @@ class EmacsHeadAT28 < Formula
     sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
   end
 
+  # Patches
+  resource "0001-No-frame-refocus-cocoa" do
+    url EmacsHeadAT28.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
+    sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
+  end
+
+  resource "0003-Pdumper-size-increase" do
+    url EmacsHeadAT28.get_resource_url("patches/0003-Pdumper-size-increase.patch")
+    sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
+  end
+
+  resource "0004-Xwidgets-webkit-in-cocoa" do
+    url EmacsHeadAT28.get_resource_url("patches/0004-Xwidgets-webkit-in-cocoa.patch")
+    sha256 "40fb5d6f703838fe90688e35f66f93c46dc5e3451fdcd41dc01950dc8c7c0d9c"
+  end
+
+  resource "0005-System-appearance" do
+    url  EmacsHeadAT28.get_resource_url("patches/0005-System-appearance.patch")
+    sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
+  end
+
   # Icons
   resource "modern-icon-cg433n" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-cg433n.icns")

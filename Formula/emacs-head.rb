@@ -108,6 +108,22 @@ class EmacsHead < Formula
     end
   end
 
+  # Patches
+  resource "0001-No-frame-refocus-cocoa" do
+    url EmacsHead.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
+    sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
+  end
+
+  resource "0002-Patch-multicolor-font" do
+    url EmacsHead.get_resource_url("patches/0002-Patch-multicolor-font.patch")
+    sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
+  end
+
+  resource "0006-Fix-unexec" do
+    url EmacsHead.get_resource_url("patches/0006-Fix-unexec.patch")
+    sha256 "a1fcfe8020301733a3846cf85b072b461b66e26d15b0154b978afb7a4ec3346b"
+  end
+
   # Icons
   resource "modern-icon-cg433n" do
     url EmacsHead.get_resource_url("icons/modern-icon-cg433n.icns")

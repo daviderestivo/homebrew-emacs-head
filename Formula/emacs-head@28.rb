@@ -7,6 +7,7 @@ class EmacsHeadAT28 < Formula
   revision 1
 
   depends_on "pkg-config" => :build
+  depends_on "giflib"
   depends_on "gnutls"
   depends_on "librsvg"
   depends_on "libxml2"

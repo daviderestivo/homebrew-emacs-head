@@ -79,6 +79,8 @@ class EmacsHeadAT27 < Formula
          "Use a modern style icon by BlackVariant"
   option "with-modern-icon-nuvola",
          "Use a modern style icon by David Vignoni (Nuvola Icon Theme)"
+  option "with-retro-icon-emacs-logo",
+         "Use a retro style icon by Luis Fernandes"
   option "with-retro-icon-gnu-head",
          "Use a retro style icon by Aurélio A. Heckert (GNU Project)"
   option "with-retro-icon-sink-bw",
@@ -186,14 +188,19 @@ class EmacsHeadAT27 < Formula
     sha256 "4fda050447a9803d38dd6fd7d35386103735aec239151714e8bf60bf9d357d3b"
   end
 
+  resource "modern-icon-black-variant" do
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-black-variant.icns")
+    sha256 "a56a19fb5195925c09f38708fd6a6c58c283a1725f7998e3574b0826c6d9ac7e"
+  end
+
   resource "modern-icon-nuvola" do
     url EmacsHeadAT27.get_resource_url("icons/modern-icon-nuvola.icns")
     sha256 "c3701e25ff46116fd694bc37d8ccec7ad9ae58bb581063f0792ea3c50d84d997"
   end
 
-  resource "modern-icon-black-variant" do
-    url EmacsHeadAT27.get_resource_url("icons/modern-icon-black-variant.icns")
-    sha256 "a56a19fb5195925c09f38708fd6a6c58c283a1725f7998e3574b0826c6d9ac7e"
+  resource "retro-icon-emacs-logo" do
+    url EmacsHead.get_resource_url("icons/retro-icon-emacs-logo.icns")
+    sha256 "0d7100faa68c17d012fe9309f9496b8d530946c324cb7598c93a4c425326ff97"
   end
 
   resource "retro-icon-gnu-head" do
@@ -286,7 +293,8 @@ class EmacsHeadAT27 < Formula
         modern-icon-sexy-v1 modern-icon-sexy-v2
         modern-icon-papirus modern-icon-pen
         modern-icon-black-variant modern-icon-nuvola
-        retro-icon-gnu-head retro-icon-sink-bw retro-icon-sink]).each do |icon|
+        retro-icon-emacs-logo retro-icon-gnu-head
+        retro-icon-sink-bw retro-icon-sink]).each do |icon|
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"
           resource(icon).stage do

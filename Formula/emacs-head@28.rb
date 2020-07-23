@@ -181,7 +181,7 @@ class EmacsHeadAT28 < Formula
   end
 
   resource "retro-icon-emacs-logo" do
-    url EmacsHead.get_resource_url("icons/retro-icon-emacs-logo.icns")
+    url EmacsHeadAT28.get_resource_url("icons/retro-icon-emacs-logo.icns")
     sha256 "0d7100faa68c17d012fe9309f9496b8d530946c324cb7598c93a4c425326ff97"
   end
 

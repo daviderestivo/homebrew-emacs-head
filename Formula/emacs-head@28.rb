@@ -66,6 +66,32 @@ class EmacsHeadAT28 < Formula
          "Use a modern style icon by BlackVariant"
   option "with-modern-icon-nuvola",
          "Use a modern style icon by David Vignoni (Nuvola Icon Theme)"
+  option "with-modern-emacs-icon1",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon2",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon3",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon4",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon5",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon6",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon7",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon8",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon9",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-card-blue-deep",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-card-british-racing-green",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-card-carmine",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-card-green",
+         "Use a modern style icon by jasonm23 (Emacs Fodder)"
   option "with-retro-icon-emacs-logo",
          "Use a retro style icon by Luis Fernandes"
   option "with-retro-icon-gnu-head",
@@ -180,6 +206,71 @@ class EmacsHeadAT28 < Formula
     sha256 "c3701e25ff46116fd694bc37d8ccec7ad9ae58bb581063f0792ea3c50d84d997"
   end
 
+  resource "modern-emacs-icon1" do
+    url EmacsHeadAT28.get_resource_url("icons/EmacsIcon1.icns")
+    sha256 "50dbaf2f6d67d7050d63d987fe3743156b44556ab42e6d9eee92248c56011bd0"
+  end
+
+  resource "modern-emacs-icon2" do
+    url EmacsHeadAT28.get_resource_url("icons/EmacsIcon2.icns")
+    sha256 "8d63589b0302a67f13ab94b91683a8ad7c2b9e880eabe008056a246a22592963"
+  end
+
+  resource "modern-emacs-icon3" do
+    url EmacsHeadAT28.get_resource_url("icons/EmacsIcon3.icns")
+    sha256 "80dd2a4776739a081e0a42008e8444c729d41ba876b19fa9d33fde98ee3e0ebf"
+  end
+
+  resource "modern-emacs-icon4" do
+    url EmacsHeadAT28.get_resource_url("icons/EmacsIcon4.icns")
+    sha256 "8ce646ca895abe7f45029f8ff8f5eac7ab76713203e246b70dea1b8a21a6c135"
+  end
+
+  resource "modern-emacs-icon5" do
+    url EmacsHeadAT28.get_resource_url("icons/EmacsIcon5.icns")
+    sha256 "ca415df7ad60b0dc495626b0593d3e975b5f24397ad0f3d802455c3f8a3bd778"
+  end
+
+  resource "modern-emacs-icon6" do
+    url EmacsHeadAT28.get_resource_url("icons/EmacsIcon6.icns")
+    sha256 "12a1999eb006abac11535b7fe4299ebb3c8e468360faf074eb8f0e5dec1ac6b0"
+  end
+
+  resource "modern-emacs-icon7" do
+    url EmacsHeadAT28.get_resource_url("icons/EmacsIcon7.icns")
+    sha256 "f5067132ea12b253fb4a3ea924c75352af28793dcf40b3063bea01af9b2bd78c"
+  end
+
+  resource "modern-emacs-icon8" do
+    url EmacsHeadAT28.get_resource_url("icons/EmacsIcon8.icns")
+    sha256 "d330b15cec1bcdfb8a1e8f8913d8680f5328d59486596fc0a9439b54eba340a0"
+  end
+
+  resource "modern-emacs-icon9" do
+    url EmacsHeadAT28.get_resource_url("icons/EmacsIcon9.icns")
+    sha256 "f58f46e5ef109fff8adb963a97aea4d1b99ca09265597f07ee95bf9d1ed4472e"
+  end
+
+  resource "modern-emacs-card-blue-deep" do
+    url EmacsHeadAT28.get_resource_url("icons/emacs-card-blue-deep.icns")
+    sha256 "6bdb17418d2c620cf4132835cfa18dcc459a7df6ce51c922cece3c7782b3b0f9"
+  end
+
+  resource "modern-emacs-card-british-racing-green" do
+    url EmacsHeadAT28.get_resource_url("icons/emacs-card-british-racing-green.icns")
+    sha256 "ddf0dff6a958e3b6b74e6371f1a68c2223b21e75200be6b4ac6f0bd94b83e1a5"
+  end
+
+  resource "modern-emacs-card-carmine" do
+    url EmacsHeadAT28.get_resource_url("icons/emacs-card-carmine.icns")
+    sha256 "4d34f2f1ce397d899c2c302f2ada917badde049c36123579dd6bb99b73ebd7f9"
+  end
+
+  resource "emacs-card-green" do
+    url EmacsHeadAT28.get_resource_url("icons/emacs-card-green.icns")
+    sha256 "f94ade7686418073f04b73937f34a1108786400527ed109af822d61b303048f7"
+  end
+
   resource "retro-icon-emacs-logo" do
     url EmacsHeadAT28.get_resource_url("icons/retro-icon-emacs-logo.icns")
     sha256 "0d7100faa68c17d012fe9309f9496b8d530946c324cb7598c93a4c425326ff97"
@@ -274,6 +365,12 @@ class EmacsHeadAT28 < Formula
       (%w[modern-icon-cg433n modern-icon-sjrmanning
         modern-icon-sexy-v1 modern-icon-sexy-v2
         modern-icon-papirus modern-icon-pen
+        modern-icon-black-variant modern-icon-nuvola
+        modern-emacs-icon1 modern-emacs-icon2 modern-emacs-icon3
+        modern-emacs-icon4 modern-emacs-icon5 modern-emacs-icon6
+        modern-emacs-icon7 modern-emacs-icon8 modern-emacs-icon9
+        modern-emacs-card-blue-deep modern-emacs-card-british-racing-green
+        modern-emacs-card-carmine modern-emacs-card-green
         retro-icon-emacs-logo retro-icon-gnu-head
         retro-icon-sink-bw retro-icon-sink]).each do |icon|
         if build.with? icon

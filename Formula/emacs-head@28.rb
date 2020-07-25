@@ -52,7 +52,7 @@ class EmacsHeadAT28 < Formula
          "Enable xwidgets support"
   option "with-modern-icon-sjrmanning",
          "Use a modern style icon by @Sjrmanning"
-  option "with-modern-icon-vscode-emacs",
+  option "with-modern-icon-vscode",
          "Use a modern style icon by @Vdegenne"
   option "with-modern-icon-sexy-v1",
          "Use a modern style icon by Emacs is Sexy (v1)"
@@ -189,8 +189,8 @@ class EmacsHeadAT28 < Formula
     sha256 "fc267d801432da90de5c0d2254f6de16557193b6c062ccaae30d91b3ada01ab9"
   end
 
-  resource "modern-icon-vscode-emacs" do
-    url EmacsHeadAT28.get_resource_url("icons/modern-icon-vscode-emacs.icns")
+  resource "modern-icon-vscode" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-vscode.icns")
     sha256 "5cfe371a1bbfd30c8c0bd9dba525a0625036a4c699996fb302cde294d35d0057"
   end
 
@@ -425,7 +425,7 @@ class EmacsHeadAT28 < Formula
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
-      (%w[modern-icon-sjrmanning modern-icon-vscode-emacs
+      (%w[modern-icon-sjrmanning modern-icon-vscode
         modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-cg433n
         modern-icon-papirus modern-icon-pen modern-icon-pen-3d modern-icon-black-variant
         modern-icon-purple-flat modern-icon-spacemacs modern-icon-alecive-flatwoken

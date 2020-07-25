@@ -79,6 +79,10 @@ class EmacsHeadAT27 < Formula
          "Use a modern style icon by BlackVariant"
   option "with-modern-icon-nuvola",
          "Use a modern style icon by David Vignoni (Nuvola Icon Theme)"
+  option "with-modern-icon-black-gnu-head",
+         "Use a modern style icon by Aha-Soft"
+  option "with-modern-icon-black-dragon",
+         "Use a modern style icon by Osike"
   option "with-modern-icon-spacemacs",
          "Use a modern style icon by Nasser Alshammari (Spacemacs Logo)"
   option "with-modern-emacs-icon1",
@@ -224,6 +228,16 @@ class EmacsHeadAT27 < Formula
   resource "modern-icon-nuvola" do
     url EmacsHeadAT27.get_resource_url("icons/modern-icon-nuvola.icns")
     sha256 "c3701e25ff46116fd694bc37d8ccec7ad9ae58bb581063f0792ea3c50d84d997"
+  end
+
+  resource "modern-icon-black-gnu-head" do
+    url EmacsHead.get_resource_url("icons/modern-icon-black-gnu-head.icns")
+    sha256 "9ac25aaa986b53d268e94d24bb878689c290b237a7810790dead9162e6ddf54b"
+  end
+
+  resource "with-modern-icon-black-dragon" do
+    url EmacsHead.get_resource_url("icons/modern-icon-black-dragon.icns")
+    sha256 "2844b2e57f87d9bd183c572d24c8e5a5eb8ecfc238a8714d2c6e3ea51659c92a"
   end
 
   resource "modern-icon-spacemacs" do
@@ -388,15 +402,15 @@ class EmacsHeadAT27 < Formula
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
       (%w[modern-icon-cg433n modern-icon-sjrmanning
-        modern-icon-sexy-v1 modern-icon-sexy-v2
-        modern-icon-papirus modern-icon-pen
-        modern-icon-black-variant modern-icon-nuvola modern-icon-spacemacs
+        modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-papirus
+        modern-icon-pen modern-icon-black-variant modern-icon-nuvola
+        modern-icon-black-gnu-head modern-icon-black-dragon modern-icon-spacemacs
         modern-icon-emacs-icon1 modern-icon-emacs-icon2 modern-icon-emacs-icon3
         modern-icon-emacs-icon4 modern-icon-emacs-icon5 modern-icon-emacs-icon6
         modern-icon-emacs-icon7 modern-icon-emacs-icon8 modern-icon-emacs-icon9
         modern-icon-emacs-card-blue-deep modern-icon-emacs-card-british-racing-green
         modern-icon-emacs-card-carmine modern-icon-emacs-card-green
-        retro-icon-emacs-logo retro-icon-gnu-head
+        retro-icon-emacs-logo retro-icon-gnu-head retro-icon-gnu-meditate-levitate
         retro-icon-sink-bw retro-icon-sink]).each do |icon|
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"

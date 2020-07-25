@@ -50,58 +50,70 @@ class EmacsHeadAT28 < Formula
          "Enable pdumper support"
   option "with-xwidgets",
          "Enable xwidgets support"
-  option "with-modern-icon-cg433n",
-         "Use a modern style icon by @cg433n"
   option "with-modern-icon-sjrmanning",
-         "Use a modern style icon by @sjrmanning"
+         "Use a modern style icon by @Sjrmanning"
+  option "with-modern-icon-vscode-emacs",
+         "Use a modern style icon by @Vdegenne"
   option "with-modern-icon-sexy-v1",
          "Use a modern style icon by Emacs is Sexy (v1)"
   option "with-modern-icon-sexy-v2",
          "Use a modern style icon by Emacs is Sexy (v2)"
+  option "with-modern-icon-cg433n",
+         "Use a modern style icon by @Cg433n"
   option "with-modern-icon-papirus",
          "Use a modern style icon by Papirus Development Team"
   option "with-modern-icon-pen",
          "Use a modern style icon by Kentaro Ohkouchi"
+  option "with-modern-icon-pen-3d",
+         "Use a modern style icon by Unknown"
   option "with-modern-icon-black-variant",
          "Use a modern style icon by BlackVariant"
+  option "with-modern-icon-purple-flat",
+         "Use a modern style icon by Jeremiah Foster"
+  option "with-modern-icon-spacemacs",
+         "Use a modern style icon by Nasser Alshammari (Spacemacs Logo)"
+  option "with-modern-icon-alecive-flatwoken",
+         "Use a modern style icon by Alessandro Roncone"
+  option "with-modern-icon-bokehlicia-captiva",
+         "Use a modern style icon by Bokehlicia"
   option "with-modern-icon-nuvola",
          "Use a modern style icon by David Vignoni (Nuvola Icon Theme)"
   option "with-modern-icon-black-gnu-head",
          "Use a modern style icon by Aha-Soft"
   option "with-modern-icon-black-dragon",
          "Use a modern style icon by Osike"
-  option "with-modern-icon-spacemacs",
-         "Use a modern style icon by Nasser Alshammari (Spacemacs Logo)"
   option "with-modern-emacs-icon1",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-icon2",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-icon3",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-icon4",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-icon5",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-icon6",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-icon7",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-icon8",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-icon9",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-card-blue-deep",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-card-british-racing-green",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-card-carmine",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-card-green",
-         "Use a modern style icon by jasonm23 (Emacs Fodder)"
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-retro-icon-emacs-logo",
          "Use a retro style icon by Luis Fernandes"
   option "with-retro-icon-gnu-head",
          "Use a retro style icon by Aurélio A. Heckert (GNU Project)"
+  option "with-retro-icon-gnu-meditate-levitate",
+         "Use a retro style icon by Nevrax Design Team"
   option "with-retro-icon-sink-bw",
          "Use a retro style icon by Unknown"
   option "with-retro-icon-sink",
@@ -172,14 +184,14 @@ class EmacsHeadAT28 < Formula
   end
 
   # Icons
-  resource "modern-icon-cg433n" do
-    url EmacsHeadAT28.get_resource_url("icons/modern-icon-cg433n.icns")
-    sha256 "9a0b101faa6ab543337179024b41a6e9ea0ecaf837fc8b606a19c6a51d2be5dd"
-  end
-
   resource "modern-icon-sjrmanning" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-sjrmanning.icns")
     sha256 "fc267d801432da90de5c0d2254f6de16557193b6c062ccaae30d91b3ada01ab9"
+  end
+
+  resource "modern-icon-vscode-emacs" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-vscode-emacs.icns")
+    sha256 "5cfe371a1bbfd30c8c0bd9dba525a0625036a4c699996fb302cde294d35d0057"
   end
 
   resource "modern-icon-sexy-v1" do
@@ -192,6 +204,11 @@ class EmacsHeadAT28 < Formula
     sha256 "ecdc902435a8852d47e2c682810146e81f5ad72ee3d0c373c936eb4c1e0966e6"
   end
 
+  resource "modern-icon-cg433n" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-cg433n.icns")
+    sha256 "9a0b101faa6ab543337179024b41a6e9ea0ecaf837fc8b606a19c6a51d2be5dd"
+  end
+
   resource "modern-icon-papirus" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-papirus.icns")
     sha256 "50aef07397ab17073deb107e32a8c7b86a0e9dddf5a0f78c4fcff796099623f8"
@@ -202,9 +219,34 @@ class EmacsHeadAT28 < Formula
     sha256 "4fda050447a9803d38dd6fd7d35386103735aec239151714e8bf60bf9d357d3b"
   end
 
+  resource "modern-icon-pen-3d" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-pen-3d.icns")
+    sha256 "ece20b691c8d61bb56e3a057345c1340c6c29f58f7798bcdc929c91d64e5599b"
+  end
+
   resource "modern-icon-black-variant" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-black-variant.icns")
     sha256 "a56a19fb5195925c09f38708fd6a6c58c283a1725f7998e3574b0826c6d9ac7e"
+  end
+
+  resource "modern-icon-purple-flat" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-purple-flat.icns")
+    sha256 "8468f0690efe308a4fe85c66bc3ed4902f8f984cf506318d5ef5759aa20d8bc6"
+  end
+
+  resource "modern-icon-spacemacs" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-spacemacs.icns")
+    sha256 "9ee9464fcd436b6db676977143a306a572d0459dc882742e9bbc55a18f8940b9"
+  end
+
+  resource "modern-icon-alecive-flatwoken" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-alecive-flatwoken.icns")
+    sha256 "779373dd240aa532248ac2918da3db0207afaa004f157fa790110eef2e216ccd"
+  end
+
+  resource "modern-icon-bokehlicia-captiva" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-bokehlicia-captiva.icns")
+    sha256 "8534f309b72812ba99375ebe2eb1d814bd68aec8898add2896594f4eecb10238"
   end
 
   resource "modern-icon-nuvola" do
@@ -213,18 +255,13 @@ class EmacsHeadAT28 < Formula
   end
 
   resource "modern-icon-black-gnu-head" do
-    url EmacsHead.get_resource_url("icons/modern-icon-black-gnu-head.icns")
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-black-gnu-head.icns")
     sha256 "9ac25aaa986b53d268e94d24bb878689c290b237a7810790dead9162e6ddf54b"
   end
 
-  resource "with-modern-icon-black-dragon" do
-    url EmacsHead.get_resource_url("icons/modern-icon-black-dragon.icns")
+  resource "modern-icon-black-dragon" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-black-dragon.icns")
     sha256 "2844b2e57f87d9bd183c572d24c8e5a5eb8ecfc238a8714d2c6e3ea51659c92a"
-  end
-
-  resource "modern-icon-spacemacs" do
-    url EmacsHeadAT28.get_resource_url("icons/modern-icon-spacemacs.icns")
-    sha256 "9ee9464fcd436b6db676977143a306a572d0459dc882742e9bbc55a18f8940b9"
   end
 
   resource "modern-icon-emacs-icon1" do
@@ -299,6 +336,11 @@ class EmacsHeadAT28 < Formula
 
   resource "retro-icon-gnu-head" do
     url EmacsHeadAT28.get_resource_url("icons/retro-icon-gnu-head.icns")
+    sha256 "cfca2ff0214cff47167f634a5b9f8c402b488796f79ded23f93ec505f78b2f2f"
+  end
+
+  resource "retro-icon-gnu-meditate-levitate" do
+    url EmacsHeadAT28.get_resource_url("icons/retro-icon-gnu-meditate-levitate")
     sha256 "cfca2ff0214cff47167f634a5b9f8c402b488796f79ded23f93ec505f78b2f2f"
   end
 
@@ -383,10 +425,12 @@ class EmacsHeadAT28 < Formula
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
-      (%w[modern-icon-cg433n modern-icon-sjrmanning
-        modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-papirus
-        modern-icon-pen modern-icon-black-variant modern-icon-nuvola
-        modern-icon-black-gnu-head modern-icon-black-dragon modern-icon-spacemacs
+      (%w[modern-icon-sjrmanning modern-icon-vscode-emacs
+        modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-cg433n
+        modern-icon-papirus modern-icon-pen modern-icon-pen-3d modern-icon-black-variant
+        modern-icon-purple-flat modern-icon-spacemacs modern-icon-alecive-flatwoken
+        modern-icon-bokehlicia-captiva modern-icon-nuvola
+        modern-icon-black-gnu-head modern-icon-black-dragon
         modern-icon-emacs-icon1 modern-icon-emacs-icon2 modern-icon-emacs-icon3
         modern-icon-emacs-icon4 modern-icon-emacs-icon5 modern-icon-emacs-icon6
         modern-icon-emacs-icon7 modern-icon-emacs-icon8 modern-icon-emacs-icon9

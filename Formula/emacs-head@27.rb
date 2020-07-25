@@ -79,6 +79,8 @@ class EmacsHeadAT27 < Formula
          "Use a modern style icon by BlackVariant"
   option "with-modern-icon-nuvola",
          "Use a modern style icon by David Vignoni (Nuvola Icon Theme)"
+  option "with-modern-icon-spacemacs",
+         "Use a modern style icon by Nasser Alshammari (Spacemacs Logo)"
   option "with-modern-emacs-icon1",
          "Use a modern style icon by jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-icon2",
@@ -222,6 +224,11 @@ class EmacsHeadAT27 < Formula
   resource "modern-icon-nuvola" do
     url EmacsHeadAT27.get_resource_url("icons/modern-icon-nuvola.icns")
     sha256 "c3701e25ff46116fd694bc37d8ccec7ad9ae58bb581063f0792ea3c50d84d997"
+  end
+
+  resource "modern-icon-spacemacs" do
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-spacemacs.icns")
+    sha256 "9ee9464fcd436b6db676977143a306a572d0459dc882742e9bbc55a18f8940b9"
   end
 
   resource "modern-emacs-icon1" do
@@ -383,7 +390,7 @@ class EmacsHeadAT27 < Formula
       (%w[modern-icon-cg433n modern-icon-sjrmanning
         modern-icon-sexy-v1 modern-icon-sexy-v2
         modern-icon-papirus modern-icon-pen
-        modern-icon-black-variant modern-icon-nuvola
+        modern-icon-black-variant modern-icon-nuvola modern-icon-spacemacs
         modern-emacs-icon1 modern-emacs-icon2 modern-emacs-icon3
         modern-emacs-icon4 modern-emacs-icon5 modern-emacs-icon6
         modern-emacs-icon7 modern-emacs-icon8 modern-emacs-icon9

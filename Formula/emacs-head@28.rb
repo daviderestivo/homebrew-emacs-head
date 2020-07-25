@@ -373,11 +373,11 @@ class EmacsHeadAT28 < Formula
         modern-icon-sexy-v1 modern-icon-sexy-v2
         modern-icon-papirus modern-icon-pen
         modern-icon-black-variant modern-icon-nuvola
-        modern-emacs-icon1 modern-emacs-icon2 modern-emacs-icon3
-        modern-emacs-icon4 modern-emacs-icon5 modern-emacs-icon6
-        modern-emacs-icon7 modern-emacs-icon8 modern-emacs-icon9
-        modern-emacs-card-blue-deep modern-emacs-card-british-racing-green
-        modern-emacs-card-carmine modern-emacs-card-green
+        modern-icon-emacs-icon1 modern-icon-emacs-icon2 modern-icon-emacs-icon3
+        modern-icon-emacs-icon4 modern-icon-emacs-icon5 modern-icon-emacs-icon6
+        modern-icon-emacs-icon7 modern-icon-emacs-icon8 modern-icon-emacs-icon9
+        modern-icon-emacs-card-blue-deep modern-icon-emacs-card-british-racing-green
+        modern-icon-emacs-card-carmine modern-icon-emacs-card-green
         retro-icon-emacs-logo retro-icon-gnu-head
         retro-icon-sink-bw retro-icon-sink]).each do |icon|
         if build.with? icon

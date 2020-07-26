@@ -73,12 +73,20 @@ class EmacsHeadAT27 < Formula
          "Use a modern style icon by Emacs is Sexy (v2)"
   option "with-modern-icon-cg433n",
          "Use a modern style icon by @Cg433n"
+  option "with-modern-icon-purple",
+         "Use a modern style icon by Nicolas Petton"
+  option "with-modern-icon-yellow",
+         "Use a modern style icon by Unknown"
+  option "with-modern-icon-orange",
+         "Use a modern style icon by Omar Jair Purata Funes"
   option "with-modern-icon-papirus",
          "Use a modern style icon by Papirus Development Team"
   option "with-modern-icon-pen",
          "Use a modern style icon by Kentaro Ohkouchi"
   option "with-modern-icon-pen-3d",
          "Use a modern style icon by Unknown"
+  option "with-modern-icon-pen-black",
+         "Use a modern style icon by Cayetano Santos"
   option "with-modern-icon-black-variant",
          "Use a modern style icon by BlackVariant"
   option "with-modern-icon-purple-flat",
@@ -227,6 +235,21 @@ class EmacsHeadAT27 < Formula
     sha256 "9a0b101faa6ab543337179024b41a6e9ea0ecaf837fc8b606a19c6a51d2be5dd"
   end
 
+  resource "modern-icon-purple" do
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-purple.icns")
+    sha256 "249e0b9f5c4abba008c34bec4e787b9df114229ee91d2724865e2c4da5790e3b"
+  end
+
+  resource "modern-icon-yellow" do
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-yellow.icns")
+    sha256 "b7c39da6494ee20d41ec11f473dec8ebcab5406a4adbf8e74b601c2325b5eb7d"
+  end
+
+  resource "modern-icon-orange" do
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-orange.icns")
+    sha256 "e2f5d733f97b0a92a84b5fe0bcd4239937d8cb9de440d96e298b38d052e21b43"
+  end
+
   resource "modern-icon-papirus" do
     url EmacsHeadAT27.get_resource_url("icons/modern-icon-papirus.icns")
     sha256 "50aef07397ab17073deb107e32a8c7b86a0e9dddf5a0f78c4fcff796099623f8"
@@ -240,6 +263,11 @@ class EmacsHeadAT27 < Formula
   resource "modern-icon-pen-3d" do
     url EmacsHeadAT27.get_resource_url("icons/modern-icon-pen-3d.icns")
     sha256 "ece20b691c8d61bb56e3a057345c1340c6c29f58f7798bcdc929c91d64e5599b"
+  end
+
+  resource "modern-icon-pen-black" do
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-pen-black.icns")
+    sha256 "c4bf4de8aaf075d82fc363afbc480a1b8855776d0b61c3fc3a75e8063d7b5c27"
   end
 
   resource "modern-icon-black-variant" do
@@ -443,11 +471,12 @@ class EmacsHeadAT27 < Formula
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
-      (%w[modern-icon-sjrmanning modern-icon-vscode
-        modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-cg433n
-        modern-icon-papirus modern-icon-pen modern-icon-pen-3d modern-icon-black-variant
-        modern-icon-purple-flat modern-icon-spacemacs modern-icon-alecive-flatwoken
-        modern-icon-bokehlicia-captiva modern-icon-nuvola
+      (%w[modern-icon-sjrmanning modern-icon-vscode modern-icon-sexy-v1
+        modern-icon-sexy-v2 modern-icon-cg433n modern-icon-purple
+        modern-icon-yellow with-modern-icon-orange modern-icon-papirus
+        modern-icon-pen modern-icon-pen-3d with-modern-icon-pen-black
+        modern-icon-black-variant modern-icon-purple-flat modern-icon-spacemacs
+        modern-icon-alecive-flatwoken modern-icon-bokehlicia-captiva modern-icon-nuvola
         modern-icon-black-gnu-head modern-icon-black-dragon
         modern-icon-emacs-icon1 modern-icon-emacs-icon2 modern-icon-emacs-icon3
         modern-icon-emacs-icon4 modern-icon-emacs-icon5 modern-icon-emacs-icon6

@@ -51,26 +51,88 @@ class EmacsHead < Formula
          "Disables frame re-focus (i.e. closing one frame does not refocus another one)"
   option "without-libxml2",
          "Disable libxml2 support"
-  option "with-modern-icon-cg433n",
-         "Use a modern style icon by @cg433n"
   option "with-modern-icon-sjrmanning",
-         "Use a modern style icon by @sjrmanning"
+         "Use a modern style icon by @Sjrmanning"
+  option "with-modern-icon-asingh4242",
+         "Use a modern style icon by Asingh4242"
+  option "with-modern-icon-paper-icons",
+         "Use a modern style icon by Sam Hewitt"
+  option "with-modern-icon-azhilin",
+         "Use a modern style icon by Andrew Zhilin"
+  option "with-modern-icon-mzaplotnik",
+         "Use a modern style icon by Matjaz Zaplotnik"
+  option "with-modern-icon-bananxan",
+         "Use a modern style icon by BananXan"
+  option "with-modern-icon-vscode",
+         "Use a modern style icon by @Vdegenne"
   option "with-modern-icon-sexy-v1",
          "Use a modern style icon by Emacs is Sexy (v1)"
   option "with-modern-icon-sexy-v2",
          "Use a modern style icon by Emacs is Sexy (v2)"
+  option "with-modern-icon-cg433n",
+         "Use a modern style icon by @Cg433n"
+  option "with-modern-icon-purple",
+         "Use a modern style icon by Nicolas Petton"
+  option "with-modern-icon-yellow",
+         "Use a modern style icon by Unknown"
+  option "with-modern-icon-orange",
+         "Use a modern style icon by Omar Jair Purata Funes"
   option "with-modern-icon-papirus",
          "Use a modern style icon by Papirus Development Team"
   option "with-modern-icon-pen",
          "Use a modern style icon by Kentaro Ohkouchi"
+  option "with-modern-icon-pen-3d",
+         "Use a modern style icon by Unknown"
+  option "with-modern-icon-pen-black",
+         "Use a modern style icon by Cayetano Santos"
   option "with-modern-icon-black-variant",
          "Use a modern style icon by BlackVariant"
+  option "with-modern-icon-purple-flat",
+         "Use a modern style icon by Jeremiah Foster"
+  option "with-modern-icon-spacemacs",
+         "Use a modern style icon by Nasser Alshammari (Spacemacs Logo)"
+  option "with-modern-icon-alecive-flatwoken",
+         "Use a modern style icon by Alessandro Roncone"
+  option "with-modern-icon-bokehlicia-captiva",
+         "Use a modern style icon by Bokehlicia"
   option "with-modern-icon-nuvola",
          "Use a modern style icon by David Vignoni (Nuvola Icon Theme)"
+  option "with-modern-icon-black-gnu-head",
+         "Use a modern style icon by Aha-Soft"
+  option "with-modern-icon-black-dragon",
+         "Use a modern style icon by Osike"
+  option "with-modern-emacs-icon1",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon2",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon3",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon4",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon5",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon6",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon7",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon8",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-icon9",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-card-blue-deep",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-card-british-racing-green",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-card-carmine",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-emacs-card-green",
+         "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-retro-icon-emacs-logo",
          "Use a retro style icon by Luis Fernandes"
   option "with-retro-icon-gnu-head",
          "Use a retro style icon by Aurélio A. Heckert (GNU Project)"
+  option "with-retro-icon-gnu-meditate-levitate",
+         "Use a retro style icon by Nevrax Design Team"
   option "with-retro-icon-sink-bw",
          "Use a retro style icon by Unknown"
   option "with-retro-icon-sink",
@@ -128,14 +190,39 @@ class EmacsHead < Formula
   end
 
   # Icons
-  resource "modern-icon-cg433n" do
-    url EmacsHead.get_resource_url("icons/modern-icon-cg433n.icns")
-    sha256 "9a0b101faa6ab543337179024b41a6e9ea0ecaf837fc8b606a19c6a51d2be5dd"
-  end
-
   resource "modern-icon-sjrmanning" do
     url EmacsHead.get_resource_url("icons/modern-icon-sjrmanning.icns")
     sha256 "fc267d801432da90de5c0d2254f6de16557193b6c062ccaae30d91b3ada01ab9"
+  end
+
+  resource "modern-icon-asingh4242" do
+    url EmacsHead.get_resource_url("icons/modern-icon-asingh4242.icns")
+    sha256 "ff37bd9447550da54d90bfe5cb2173c93799d4c4d64f5a018cc6bfe6537517e4"
+  end
+
+  resource "modern-icon-paper-icons" do
+    url EmacsHead.get_resource_url("icons/modern-icon-paper-icons.icns")
+    sha256 "209f7ea9e3b04d9b152e0580642e926d7e875bd1e33242616d266dd596f74c7a"
+  end
+
+  resource "modern-icon-azhilin" do
+    url EmacsHead.get_resource_url("icons/modern-icon-azhilin.icns")
+    sha256 "ee803f2d7a9ddd4d73ebb0561014b60d65f96947aa33633846aa2addace7a97a"
+  end
+
+  resource "modern-icon-mzaplotnik" do
+    url EmacsHead.get_resource_url("icons/modern-icon-mzaplotnik.icns")
+    sha256 "1f77c52d3dbcdb0b869f47264ff3c2ac9f411e92ec71061a09771b7feac2ecc6"
+  end
+
+  resource "modern-icon-bananxan" do
+    url EmacsHead.get_resource_url("icons/modern-icon-bananxan.icns")
+    sha256 "d7b4396fe667e2792c8755f85455635908091b812921890c4b0076488c880afc"
+  end
+
+  resource "modern-icon-vscode" do
+    url EmacsHead.get_resource_url("icons/modern-icon-vscode.icns")
+    sha256 "5cfe371a1bbfd30c8c0bd9dba525a0625036a4c699996fb302cde294d35d0057"
   end
 
   resource "modern-icon-sexy-v1" do
@@ -148,6 +235,26 @@ class EmacsHead < Formula
     sha256 "ecdc902435a8852d47e2c682810146e81f5ad72ee3d0c373c936eb4c1e0966e6"
   end
 
+  resource "modern-icon-cg433n" do
+    url EmacsHead.get_resource_url("icons/modern-icon-cg433n.icns")
+    sha256 "9a0b101faa6ab543337179024b41a6e9ea0ecaf837fc8b606a19c6a51d2be5dd"
+  end
+
+  resource "modern-icon-purple" do
+    url EmacsHead.get_resource_url("icons/modern-icon-purple.icns")
+    sha256 "249e0b9f5c4abba008c34bec4e787b9df114229ee91d2724865e2c4da5790e3b"
+  end
+
+  resource "modern-icon-yellow" do
+    url EmacsHead.get_resource_url("icons/modern-icon-yellow.icns")
+    sha256 "b7c39da6494ee20d41ec11f473dec8ebcab5406a4adbf8e74b601c2325b5eb7d"
+  end
+
+  resource "modern-icon-orange" do
+    url EmacsHead.get_resource_url("icons/modern-icon-orange.icns")
+    sha256 "e2f5d733f97b0a92a84b5fe0bcd4239937d8cb9de440d96e298b38d052e21b43"
+  end
+
   resource "modern-icon-papirus" do
     url EmacsHead.get_resource_url("icons/modern-icon-papirus.icns")
     sha256 "50aef07397ab17073deb107e32a8c7b86a0e9dddf5a0f78c4fcff796099623f8"
@@ -158,14 +265,119 @@ class EmacsHead < Formula
     sha256 "4fda050447a9803d38dd6fd7d35386103735aec239151714e8bf60bf9d357d3b"
   end
 
+  resource "modern-icon-pen-3d" do
+    url EmacsHead.get_resource_url("icons/modern-icon-pen-3d.icns")
+    sha256 "ece20b691c8d61bb56e3a057345c1340c6c29f58f7798bcdc929c91d64e5599b"
+  end
+
+  resource "modern-icon-pen-black" do
+    url EmacsHead.get_resource_url("icons/modern-icon-pen-black.icns")
+    sha256 "c4bf4de8aaf075d82fc363afbc480a1b8855776d0b61c3fc3a75e8063d7b5c27"
+  end
+
   resource "modern-icon-black-variant" do
     url EmacsHead.get_resource_url("icons/modern-icon-black-variant.icns")
     sha256 "a56a19fb5195925c09f38708fd6a6c58c283a1725f7998e3574b0826c6d9ac7e"
   end
 
+  resource "modern-icon-purple-flat" do
+    url EmacsHead.get_resource_url("icons/modern-icon-purple-flat.icns")
+    sha256 "8468f0690efe308a4fe85c66bc3ed4902f8f984cf506318d5ef5759aa20d8bc6"
+  end
+
+  resource "modern-icon-spacemacs" do
+    url EmacsHead.get_resource_url("icons/modern-icon-spacemacs.icns")
+    sha256 "9ee9464fcd436b6db676977143a306a572d0459dc882742e9bbc55a18f8940b9"
+  end
+
+  resource "modern-icon-alecive-flatwoken" do
+    url EmacsHead.get_resource_url("icons/modern-icon-alecive-flatwoken.icns")
+    sha256 "779373dd240aa532248ac2918da3db0207afaa004f157fa790110eef2e216ccd"
+  end
+
+  resource "modern-icon-bokehlicia-captiva" do
+    url EmacsHead.get_resource_url("icons/modern-icon-bokehlicia-captiva.icns")
+    sha256 "8534f309b72812ba99375ebe2eb1d814bd68aec8898add2896594f4eecb10238"
+  end
+
   resource "modern-icon-nuvola" do
     url EmacsHead.get_resource_url("icons/modern-icon-nuvola.icns")
     sha256 "c3701e25ff46116fd694bc37d8ccec7ad9ae58bb581063f0792ea3c50d84d997"
+  end
+
+  resource "modern-icon-black-gnu-head" do
+    url EmacsHead.get_resource_url("icons/modern-icon-black-gnu-head.icns")
+    sha256 "9ac25aaa986b53d268e94d24bb878689c290b237a7810790dead9162e6ddf54b"
+  end
+
+  resource "modern-icon-black-dragon" do
+    url EmacsHead.get_resource_url("icons/modern-icon-black-dragon.icns")
+    sha256 "2844b2e57f87d9bd183c572d24c8e5a5eb8ecfc238a8714d2c6e3ea51659c92a"
+  end
+
+  resource "modern-icon-emacs-icon1" do
+    url EmacsHead.get_resource_url("icons/modern-icon-EmacsIcon1.icns")
+    sha256 "50dbaf2f6d67d7050d63d987fe3743156b44556ab42e6d9eee92248c56011bd0"
+  end
+
+  resource "modern-icon-emacs-icon2" do
+    url EmacsHead.get_resource_url("icons/modern-icon-EmacsIcon2.icns")
+    sha256 "8d63589b0302a67f13ab94b91683a8ad7c2b9e880eabe008056a246a22592963"
+  end
+
+  resource "modern-icon-emacs-icon3" do
+    url EmacsHead.get_resource_url("icons/modern-icon-EmacsIcon3.icns")
+    sha256 "80dd2a4776739a081e0a42008e8444c729d41ba876b19fa9d33fde98ee3e0ebf"
+  end
+
+  resource "modern-icon-emacs-icon4" do
+    url EmacsHead.get_resource_url("icons/modern-icon-EmacsIcon4.icns")
+    sha256 "8ce646ca895abe7f45029f8ff8f5eac7ab76713203e246b70dea1b8a21a6c135"
+  end
+
+  resource "modern-icon-emacs-icon5" do
+    url EmacsHead.get_resource_url("icons/modern-icon-EmacsIcon5.icns")
+    sha256 "ca415df7ad60b0dc495626b0593d3e975b5f24397ad0f3d802455c3f8a3bd778"
+  end
+
+  resource "modern-icon-emacs-icon6" do
+    url EmacsHead.get_resource_url("icons/modern-icon-EmacsIcon6.icns")
+    sha256 "12a1999eb006abac11535b7fe4299ebb3c8e468360faf074eb8f0e5dec1ac6b0"
+  end
+
+  resource "modern-icon-emacs-icon7" do
+    url EmacsHead.get_resource_url("icons/modern-icon-EmacsIcon7.icns")
+    sha256 "f5067132ea12b253fb4a3ea924c75352af28793dcf40b3063bea01af9b2bd78c"
+  end
+
+  resource "modern-icon-emacs-icon8" do
+    url EmacsHead.get_resource_url("icons/modern-icon-EmacsIcon8.icns")
+    sha256 "d330b15cec1bcdfb8a1e8f8913d8680f5328d59486596fc0a9439b54eba340a0"
+  end
+
+  resource "modern-icon-emacs-icon9" do
+    url EmacsHead.get_resource_url("icons/modern-icon-EmacsIcon9.icns")
+    sha256 "f58f46e5ef109fff8adb963a97aea4d1b99ca09265597f07ee95bf9d1ed4472e"
+  end
+
+  resource "modern-icon-emacs-card-blue-deep" do
+    url EmacsHead.get_resource_url("icons/modern-icon-emacs-card-blue-deep.icns")
+    sha256 "6bdb17418d2c620cf4132835cfa18dcc459a7df6ce51c922cece3c7782b3b0f9"
+  end
+
+  resource "modern-icon-emacs-card-british-racing-green" do
+    url EmacsHead.get_resource_url("icons/modern-icon-emacs-card-british-racing-green.icns")
+    sha256 "ddf0dff6a958e3b6b74e6371f1a68c2223b21e75200be6b4ac6f0bd94b83e1a5"
+  end
+
+  resource "modern-icon-emacs-card-carmine" do
+    url EmacsHead.get_resource_url("icons/modern-icon-emacs-card-carmine.icns")
+    sha256 "4d34f2f1ce397d899c2c302f2ada917badde049c36123579dd6bb99b73ebd7f9"
+  end
+
+  resource "emacs-icon-card-green" do
+    url EmacsHead.get_resource_url("icons/modern-icon-emacs-card-green.icns")
+    sha256 "f94ade7686418073f04b73937f34a1108786400527ed109af822d61b303048f7"
   end
 
   resource "retro-icon-emacs-logo" do
@@ -176,6 +388,11 @@ class EmacsHead < Formula
   resource "retro-icon-gnu-head" do
     url EmacsHead.get_resource_url("icons/retro-icon-gnu-head.icns")
     sha256 "cfca2ff0214cff47167f634a5b9f8c402b488796f79ded23f93ec505f78b2f2f"
+  end
+
+  resource "retro-icon-gnu-meditate-levitate" do
+    url EmacsHead.get_resource_url("icons/retro-icon-gnu-meditate-levitate.icns")
+    sha256 "5424582f0a4c1998aa91eb8185e1d41961cbc9605dbcea8a037c602587b14998"
   end
 
   resource "retro-icon-sink-bw" do
@@ -251,12 +468,28 @@ class EmacsHead < Formula
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
-      (%w[modern-icon-cg433n modern-icon-sjrmanning
-        modern-icon-sexy-v1 modern-icon-sexy-v2
-        modern-icon-papirus modern-icon-pen
-        modern-icon-black-variant modern-icon-nuvola
+      (%w[modern-icon-sjrmanning modern-icon-asingh4242
+        modern-icon-paper-icons modern-icon-azhilin
+        modern-icon-mzaplotnik modern-icon-bananxan modern-icon-vscode
+        modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-cg433n
+        modern-icon-purple modern-icon-yellow with-modern-icon-orange
+        modern-icon-papirus modern-icon-pen modern-icon-pen-3d
+        with-modern-icon-pen-black modern-icon-black-variant
+        modern-icon-purple-flat modern-icon-spacemacs
+        modern-icon-alecive-flatwoken modern-icon-bokehlicia-captiva
+        modern-icon-nuvola modern-icon-black-gnu-head
+        modern-icon-black-dragon modern-icon-emacs-icon1
+        modern-icon-emacs-icon2 modern-icon-emacs-icon3
+        modern-icon-emacs-icon4 modern-icon-emacs-icon5
+        modern-icon-emacs-icon6 modern-icon-emacs-icon7
+        modern-icon-emacs-icon8 modern-icon-emacs-icon9
+        modern-icon-emacs-card-blue-deep
+        modern-icon-emacs-card-british-racing-green
+        modern-icon-emacs-card-carmine modern-icon-emacs-card-green
         retro-icon-emacs-logo retro-icon-gnu-head
-        retro-icon-sink-bw retro-icon-sink]).each do |icon|
+        retro-icon-gnu-meditate-levitate retro-icon-sink-bw
+        retro-icon-sink]).each do |icon|
+
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"
           resource(icon).stage do

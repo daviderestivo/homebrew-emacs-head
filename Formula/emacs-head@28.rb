@@ -1,5 +1,4 @@
 # coding: utf-8
- coding: utf-8
 class EmacsHeadAT28 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"

@@ -1,4 +1,5 @@
 # coding: utf-8
+ coding: utf-8
 class EmacsHeadAT28 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
@@ -218,17 +219,17 @@ class EmacsHeadAT28 < Formula
   end
 
   resource "modern-icon-purple" do
-    url EmacsHead.get_resource_url("icons/modern-icon-purple.icns")
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-purple.icns")
     sha256 "249e0b9f5c4abba008c34bec4e787b9df114229ee91d2724865e2c4da5790e3b"
   end
 
   resource "modern-icon-yellow" do
-    url EmacsHead.get_resource_url("icons/modern-icon-yellow.icns")
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-yellow.icns")
     sha256 "b7c39da6494ee20d41ec11f473dec8ebcab5406a4adbf8e74b601c2325b5eb7d"
   end
 
   resource "modern-icon-orange" do
-    url EmacsHead.get_resource_url("icons/modern-icon-orange.icns")
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-orange.icns")
     sha256 "e2f5d733f97b0a92a84b5fe0bcd4239937d8cb9de440d96e298b38d052e21b43"
   end
 
@@ -248,7 +249,7 @@ class EmacsHeadAT28 < Formula
   end
 
   resource "modern-icon-pen-black" do
-    url EmacsHead.get_resource_url("icons/modern-icon-pen-black.icns")
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-pen-black.icns")
     sha256 "c4bf4de8aaf075d82fc363afbc480a1b8855776d0b61c3fc3a75e8063d7b5c27"
   end
 

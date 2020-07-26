@@ -53,6 +53,16 @@ class EmacsHead < Formula
          "Disable libxml2 support"
   option "with-modern-icon-sjrmanning",
          "Use a modern style icon by @Sjrmanning"
+  option "with-modern-icon-asingh4242",
+         "Use a modern style icon by Asingh4242"
+  option "with-modern-icon-paper-icons",
+         "Use a modern style icon by Sam Hewitt"
+  option "with-modern-icon-azhilin",
+         "Use a modern style icon by Andrew Zhilin"
+  option "with-modern-icon-mzaplotnik",
+         "Use a modern style icon by Matjaz Zaplotnik"
+  option "with-modern-icon-bananxan",
+         "Use a modern style icon by BananXan"
   option "with-modern-icon-vscode",
          "Use a modern style icon by @Vdegenne"
   option "with-modern-icon-sexy-v1",
@@ -183,6 +193,31 @@ class EmacsHead < Formula
   resource "modern-icon-sjrmanning" do
     url EmacsHead.get_resource_url("icons/modern-icon-sjrmanning.icns")
     sha256 "fc267d801432da90de5c0d2254f6de16557193b6c062ccaae30d91b3ada01ab9"
+  end
+
+  resource "modern-icon-asingh4242" do
+    url EmacsHead.get_resource_url("icons/modern-icon-asingh4242.icns")
+    sha256 "ff37bd9447550da54d90bfe5cb2173c93799d4c4d64f5a018cc6bfe6537517e4"
+  end
+
+  resource "modern-icon-paper-icons" do
+    url EmacsHead.get_resource_url("icons/modern-icon-paper-icons.icns")
+    sha256 "209f7ea9e3b04d9b152e0580642e926d7e875bd1e33242616d266dd596f74c7a"
+  end
+
+  resource "modern-icon-azhilin" do
+    url EmacsHead.get_resource_url("icons/modern-icon-azhilin.icns")
+    sha256 "ee803f2d7a9ddd4d73ebb0561014b60d65f96947aa33633846aa2addace7a97a"
+  end
+
+  resource "modern-icon-mzaplotnik" do
+    url EmacsHead.get_resource_url("icons/modern-icon-mzaplotnik.icns")
+    sha256 "1f77c52d3dbcdb0b869f47264ff3c2ac9f411e92ec71061a09771b7feac2ecc6"
+  end
+
+  resource "modern-icon-bananxan" do
+    url EmacsHead.get_resource_url("icons/modern-icon-bananxan.icns")
+    sha256 "d7b4396fe667e2792c8755f85455635908091b812921890c4b0076488c880afc"
   end
 
   resource "modern-icon-vscode" do
@@ -433,20 +468,28 @@ class EmacsHead < Formula
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
-      (%w[modern-icon-sjrmanning modern-icon-vscode modern-icon-sexy-v1
-        modern-icon-sexy-v2 modern-icon-cg433n modern-icon-purple
-        modern-icon-yellow with-modern-icon-orange modern-icon-papirus
-        modern-icon-pen modern-icon-pen-3d with-modern-icon-pen-black
-        modern-icon-black-variant modern-icon-purple-flat modern-icon-spacemacs
-        modern-icon-alecive-flatwoken modern-icon-bokehlicia-captiva modern-icon-nuvola
-        modern-icon-black-gnu-head modern-icon-black-dragon
-        modern-icon-emacs-icon1 modern-icon-emacs-icon2 modern-icon-emacs-icon3
-        modern-icon-emacs-icon4 modern-icon-emacs-icon5 modern-icon-emacs-icon6
-        modern-icon-emacs-icon7 modern-icon-emacs-icon8 modern-icon-emacs-icon9
-        modern-icon-emacs-card-blue-deep modern-icon-emacs-card-british-racing-green
+      (%w[modern-icon-sjrmanning modern-icon-asingh4242
+        modern-icon-paper-icons modern-icon-azhilin
+        modern-icon-mzaplotnik modern-icon-bananxan modern-icon-vscode
+        modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-cg433n
+        modern-icon-purple modern-icon-yellow with-modern-icon-orange
+        modern-icon-papirus modern-icon-pen modern-icon-pen-3d
+        with-modern-icon-pen-black modern-icon-black-variant
+        modern-icon-purple-flat modern-icon-spacemacs
+        modern-icon-alecive-flatwoken modern-icon-bokehlicia-captiva
+        modern-icon-nuvola modern-icon-black-gnu-head
+        modern-icon-black-dragon modern-icon-emacs-icon1
+        modern-icon-emacs-icon2 modern-icon-emacs-icon3
+        modern-icon-emacs-icon4 modern-icon-emacs-icon5
+        modern-icon-emacs-icon6 modern-icon-emacs-icon7
+        modern-icon-emacs-icon8 modern-icon-emacs-icon9
+        modern-icon-emacs-card-blue-deep
+        modern-icon-emacs-card-british-racing-green
         modern-icon-emacs-card-carmine modern-icon-emacs-card-green
-        retro-icon-emacs-logo retro-icon-gnu-head retro-icon-gnu-meditate-levitate
-        retro-icon-sink-bw retro-icon-sink]).each do |icon|
+        retro-icon-emacs-logo retro-icon-gnu-head
+        retro-icon-gnu-meditate-levitate retro-icon-sink-bw
+        retro-icon-sink]).each do |icon|
+
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"
           resource(icon).stage do

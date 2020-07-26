@@ -358,7 +358,7 @@ class EmacsHeadAT27 < Formula
   end
 
   resource "retro-icon-gnu-meditate-levitate" do
-    url EmacsHeadAT27.get_resource_url("icons/retro-icon-gnu-meditate-levitate")
+    url EmacsHeadAT27.get_resource_url("icons/retro-icon-gnu-meditate-levitate.icns")
     sha256 "cfca2ff0214cff47167f634a5b9f8c402b488796f79ded23f93ec505f78b2f2f"
   end
 

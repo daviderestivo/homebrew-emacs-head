@@ -18,10 +18,10 @@
 
 This formula currently supports:
 - GNU Emacs 26.3
-- GNU Emacs 27.0.91 (or HEAD)
+- GNU Emacs 27.1-rc1 (or HEAD)
 - GNU Emacs HEAD (currently 28.0.50)
 
-Bottles for GNU Emacs 26.3 and 27.0.91 are available for the following
+Bottles for GNU Emacs 26.3 and 27.1-rc1 are available for the following
 macOS versions:
 - Catalina
 - Mojave
@@ -36,7 +36,7 @@ GNU Emacs 26.3 bottles have been built with the following options:
 --with-multicolor-fonts
 #+end_src
 
-GNU Emacs 27.0.91 bottles have been built with the following options:
+GNU Emacs 27.1-rc1 bottles have been built with the following options:
 
 #+begin_src bash
 --with-cocoa

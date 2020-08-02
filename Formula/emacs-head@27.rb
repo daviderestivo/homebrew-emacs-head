@@ -2,9 +2,9 @@
 class EmacsHeadAT27 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://alpha.gnu.org/gnu/emacs/pretest/emacs-27.0.91.tar.xz"
-  sha256 "96813dd385dec81ceb1868645939d49b81ca2c1feb42a58b4d38125ebd1345aa"
-  version "27.0.91"
+  url "https://alpha.gnu.org/gnu/emacs/pretest/emacs-27.1-rc1.tar.xz"
+  sha256 "4fcc06da284a8a369c64b9c9d2d73c39dd289958a0a1b673b3cdba1e774a5b6f"
+  version "27.1-rc1"
   revision 1
 
   bottle do

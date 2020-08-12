@@ -6,6 +6,7 @@ class EmacsHeadAT28 < Formula
   version "28.0.50"
   revision 1
 
+  depends_on "cmake" => :build
   depends_on "pkg-config" => :build
   depends_on "giflib"
   depends_on "gnutls"

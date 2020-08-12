@@ -16,6 +16,7 @@ class EmacsHead < Formula
     sha256 "10c304f5dba3b25013140054320d5421e2e40eef8e5922603ba152a67975fa59" => :catalina
   end
 
+  depends_on "cmake" => :build
   depends_on "pkg-config" => :build
   depends_on "giflib"
   depends_on "gnutls"

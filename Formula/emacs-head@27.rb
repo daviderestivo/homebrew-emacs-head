@@ -19,6 +19,7 @@ class EmacsHeadAT27 < Formula
     url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-27"
   end
 
+  depends_on "cmake" => :build
   depends_on "pkg-config" => :build
   depends_on "giflib"
   depends_on "gnutls"

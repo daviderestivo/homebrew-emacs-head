@@ -2,39 +2,40 @@
 class EmacsHeadAT27 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://alpha.gnu.org/gnu/emacs/pretest/emacs-27.1-rc1.tar.xz"
-  sha256 "4fcc06da284a8a369c64b9c9d2d73c39dd289958a0a1b673b3cdba1e774a5b6f"
-  version "27.1-rc1"
+  url "https://ftpmirror.gnu.org/emacs/emacs-27.1.tar.xz"
+  sha256 "4a4c128f915fc937d61edfc273c98106711b540c9be3cd5d2e2b9b5b2f172e41"
+  version "27.1"
   revision 1
 
   bottle do
     rebuild 9
     root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
-    sha256 "6bb58d10953bd66568a60b1fbdd1e685410625089a02e912e7648630d1e3532f" => :high_sierra
-    sha256 "92efec40a8060890302b4c01014130ab0edf0442e3a58d3473e89d9750ec7594" => :mojave
-    sha256 "a591515e636c2853e40ab31b9e6fc15e0236082b8615e91aab1bb3d3c120d42a" => :catalina
+    sha256 "" => :high_sierra
+    sha256 "" => :mojave
+    sha256 "" => :catalina
   end
 
   head do
     url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-27"
   end
 
-  depends_on "cmake" => :build
+  depends_on "autoconf"   => :build
+  depends_on "gnu-sed"    => :build
+  depends_on "texinfo"    => :build
+  depends_on "automake"   => :build
+  depends_on "cmake"      => :build
   depends_on "pkg-config" => :build
   depends_on "giflib"
   depends_on "gnutls"
   depends_on "librsvg"
   depends_on "libxml2"
   depends_on "jansson"
-  depends_on "dbus" => :optional
+  depends_on "dbus"      => :optional
   depends_on "mailutils" => :optional
-  depends_on "autoconf" => :build
-  depends_on "gnu-sed"  => :build
-  depends_on "texinfo"  => :build
   # GNU Emacs 27.x does support ImageMagick 7
   depends_on "imagemagick@7" => :recommended
   # Turn on harfbuzz support
-  depends_on "harfbuzz" => :recommended
+  depends_on "harfbuzz"      => :recommended
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"

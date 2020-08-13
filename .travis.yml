@@ -10,8 +10,8 @@ jobs:
     #########################
     # Emacs 27.x on Catalina  (macOS 10.15.4 - xcode11.5) - Bottle
     - env:
-      - BUILD_OPTIONS=$(readlink Aliases/emacs-head)
-      - TEST_OPTIONS=$(readlink Aliases/emacs-head)
+      - BUILD_OPTIONS="Aliases/$(readlink Aliases/emacs-head)"
+      - TEST_OPTIONS="Aliases/$(readlink Aliases/emacs-head)"
       - HOMEBREW_TRAVIS_BRANCH=$TRAVIS_BRANCH
       osx_image: xcode11.5
     ##############

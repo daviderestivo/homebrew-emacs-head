@@ -6,21 +6,23 @@ class EmacsHeadAT28 < Formula
   version "28.0.50"
   revision 1
 
+  depends_on "autoconf"   => :build
+  depends_on "gnu-sed"    => :build
+  depends_on "texinfo"    => :build
+  depends_on "automake"   => :build
+  depends_on "cmake"      => :build
   depends_on "pkg-config" => :build
   depends_on "giflib"
   depends_on "gnutls"
   depends_on "librsvg"
   depends_on "libxml2"
-  depends_on "jansson" => :optional
-  depends_on "dbus" => :optional
+  depends_on "jansson"
+  depends_on "dbus"      => :optional
   depends_on "mailutils" => :optional
-  depends_on "autoconf" => :build
-  depends_on "gnu-sed"  => :build
-  depends_on "texinfo"  => :build
-  # GNU Emacs 28.x does support ImageMagick 7
+  # GNU Emacs 27.x does support ImageMagick 7
   depends_on "imagemagick@7" => :recommended
   # Turn on harfbuzz support
-  depends_on "harfbuzz" => :recommended
+  depends_on "harfbuzz"      => :recommended
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"

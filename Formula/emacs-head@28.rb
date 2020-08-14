@@ -171,10 +171,6 @@ class EmacsHeadAT28 < Formula
     unless build.with? "cocoa"
       odie "--with-xwidgets is supported only on cocoa via xwidget webkit"
     end
-    patch do
-      url EmacsHeadAT28.get_resource_url("patches/0004-Xwidgets-webkit-in-cocoa.patch")
-      sha256 "40fb5d6f703838fe90688e35f66f93c46dc5e3451fdcd41dc01950dc8c7c0d9c"
-    end
   end
 
   patch do
@@ -191,11 +187,6 @@ class EmacsHeadAT28 < Formula
   resource "0003-Pdumper-size-increase" do
     url EmacsHeadAT28.get_resource_url("patches/0003-Pdumper-size-increase.patch")
     sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
-  end
-
-  resource "0004-Xwidgets-webkit-in-cocoa" do
-    url EmacsHeadAT28.get_resource_url("patches/0004-Xwidgets-webkit-in-cocoa.patch")
-    sha256 "40fb5d6f703838fe90688e35f66f93c46dc5e3451fdcd41dc01950dc8c7c0d9c"
   end
 
   resource "0005-System-appearance" do

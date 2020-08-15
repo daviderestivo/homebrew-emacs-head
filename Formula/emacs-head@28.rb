@@ -563,6 +563,7 @@ class EmacsHeadAT28 < Formula
         #{prefix}
       To link the application:
         ln -s #{prefix}/Emacs.app /Applications
+
     EOS
   end
 

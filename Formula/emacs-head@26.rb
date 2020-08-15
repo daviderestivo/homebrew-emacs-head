@@ -553,20 +553,6 @@ class EmacsHeadAT26 < Formula
       To link the application:
         ln -s #{prefix}/Emacs.app /Applications
 
-                               ----------
-                               Important:
-                               ----------
-
-      GNU Emacs 27 and GNU Emacs 28 now live in separate formulas.
-      Please use emacs-head@27 or emacs-head@28 formulas if you wish
-      to install them:
-
-        $ brew install emacs-head@27 [options]
-
-        or
-
-        $ brew install emacs-head@28 [options]
-
     EOS
   end
 

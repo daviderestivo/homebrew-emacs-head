@@ -198,5 +198,12 @@ before_install:
   - brew update
 
 script:
-  - travis_wait 50 brew install $BUILD_OPTIONS
+  - |
+    # Prints a banner message every 9 mins to avoid travis build to
+    # fail in case a commands take longer than 10 mins. This is an
+    # alternative to travis_wait that does not log in case of failure.
+    while sleep 540; do
+      echo "===> [ $SECONDS seconds still running ] <==="
+    done &
+  - brew install $BUILD_OPTIONS
   - brew test $TEST_OPTIONS

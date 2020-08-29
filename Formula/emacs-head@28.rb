@@ -36,8 +36,6 @@ class EmacsHeadAT28 < Formula
          "Disable gnutls support"
   option "with-imagemagick",
          "Build with imagemagick support"
-  option "with-jansson",
-         "Enable jansson support"
   option "without-librsvg",
          "Disable librsvg support"
   option "with-mailutils",
@@ -434,10 +432,6 @@ class EmacsHeadAT28 < Formula
       ENV.prepend_path "PKG_CONFIG_PATH", imagemagick_lib_path
     else
       args << "--without-imagemagick"
-    end
-
-    if build.with? "jansson"
-      args << "--with-json"
     end
 
     args << "--with-modules"  unless build.without? "modules"

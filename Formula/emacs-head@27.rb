@@ -194,6 +194,11 @@ class EmacsHeadAT27 < Formula
     sha256 "82252e2858a0eba95148661264e390eaf37349fec9c30881d3c1299bfaee8b21"
   end
 
+  patch do
+    url EmacsHeadAT27.get_resource_url("patches/0007-Ligatures-freeze-fix-27.patch")
+    sha256 "9f81669cba1dedb2733e95d49b8ebe82df3455bf258f130749665cc6adf2afa9"
+  end
+
   # All the patches are now downloaded unconditionally even if they
   # are not used in order to overcome the reinstall issue mentioned
   # here:
@@ -218,6 +223,12 @@ class EmacsHeadAT27 < Formula
   resource "0005-System-appearance-27" do
     url EmacsHeadAT27.get_resource_url("patches/0005-System-appearance-27.patch")
     sha256 "82252e2858a0eba95148661264e390eaf37349fec9c30881d3c1299bfaee8b21"
+  end
+
+  # Link: https://www.reddit.com/r/emacs/comments/icem4s/emacs_271_freezes_when_using_font_ligatures/
+  resource "0007-Ligatures-freeze-fix-27" do
+    url EmacsHeadAT27.get_resource_url("patches/0007-Ligatures-freeze-fix-27.patch")
+    sha256 "9f81669cba1dedb2733e95d49b8ebe82df3455bf258f130749665cc6adf2afa9"
   end
 
   # Icons

@@ -260,7 +260,7 @@ class EmacsHeadAT28 < Formula
 
   resource "modern-icon-papirus" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-papirus.icns")
-    sha256 "1ec7c6ddcec97e6182e4ffce6220796ee1cb0b5e00da40848713ce333337222b"
+    sha256 "50aef07397ab17073deb107e32a8c7b86a0e9dddf5a0f78c4fcff796099623f8"
   end
 
   resource "modern-icon-pen" do

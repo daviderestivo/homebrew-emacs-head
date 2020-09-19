@@ -176,6 +176,11 @@ class EmacsHeadAT28 < Formula
     sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
   end
 
+  patch do
+    url EmacsHeadAT28.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
   # Patches
   resource "0001-No-frame-refocus-cocoa" do
     url EmacsHeadAT28.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
@@ -190,6 +195,11 @@ class EmacsHeadAT28 < Formula
   resource "0005-System-appearance" do
     url  EmacsHeadAT28.get_resource_url("patches/0005-System-appearance.patch")
     sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
+  end
+
+  resource "0008-Fix-window-role.patch" do
+    url EmacsHeadAT28.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
   # Icons

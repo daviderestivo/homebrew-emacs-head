@@ -2,9 +2,11 @@
 class EmacsHeadAT28 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://github.com/emacs-mirror/emacs.git"
+  #url "https://github.com/emacs-mirror/emacs.git"
   version "28.0.50"
   revision 1
+  
+  url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
 
   depends_on "autoconf"   => :build
   depends_on "gnu-sed"    => :build
@@ -19,10 +21,12 @@ class EmacsHeadAT28 < Formula
   depends_on "jansson"
   depends_on "dbus"      => :optional
   depends_on "mailutils" => :optional
-  # GNU Emacs 27.x does support ImageMagick 7
+  # GNU Emacs 28.x does support ImageMagick 7
   depends_on "imagemagick@7" => :recommended
   # Turn on harfbuzz support
   depends_on "harfbuzz"      => :recommended
+
+  depends_on "gcc"    => :recommended
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -50,6 +54,8 @@ class EmacsHeadAT28 < Formula
          "Enable pdumper support"
   option "with-xwidgets",
          "Enable xwidgets support"
+  option "with-nativecomp",
+         "Enable native-comp support"
   option "with-modern-icon-sjrmanning",
          "Use a modern style icon by @Sjrmanning"
   option "with-modern-icon-asingh4242",
@@ -144,6 +150,7 @@ class EmacsHeadAT28 < Formula
       "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + "master" + "/" + resource
     end
   end
+
 
   # When closing a frame, GNU Emacs automatically focuses another frame.
   # This re-focus has an additional side-effect: when closing a frame
@@ -422,6 +429,19 @@ class EmacsHeadAT28 < Formula
       args << "--without-dbus"
     end
 
+    if build.with? "nativecomp"
+      ohai "Enable native-comp support"
+      ENV["CC"]  = "gcc-10"
+      ENV["CPP"] = "cpp-10"
+      ENV["CFLAGS"] = ""
+      ENV["NATIVE_FAST_BOOT"] = "1"
+      ENV.prepend "CFLAGS" , "-I#{Formula["gcc"].opt_include}"
+      ENV.prepend "LDFLAGS" , "-L#{Formula["gcc"].opt_lib}/gcc/10 -I#{Formula["gcc"].include}"
+      ENV.prepend_path "LIBRARY_PATH", "-L#{Formula["gcc"].opt_lib}/gcc/10"
+      ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"	
+      args << "--with-nativecomp"
+    end
+
     # Note that if ./configure is passed --with-imagemagick but can't find the
     # library it does not fail but imagemagick support will not be available.
     # See: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=24455
@@ -556,8 +576,11 @@ class EmacsHeadAT28 < Formula
       Emacs.app was installed to:
         #{prefix}
       To link the application:
-        ln -s #{prefix}/Emacs.app /Applications
-
+        ln -sf #{prefix}/Emacs.app /Applications
+    
+      cd /Applications/Emacs.app/Contents/
+      ln -sf /usr/local/opt/emacs-head@28/lib/emacs/28.0.50/native-lisp native-lisp
+      ln -sf /usr/local/opt/emacs-head@28/share/emacs/28.0.50/lisp lisp
     EOS
   end
 

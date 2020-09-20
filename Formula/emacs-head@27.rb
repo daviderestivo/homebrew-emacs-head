@@ -9,11 +9,11 @@ class EmacsHeadAT27 < Formula
   revision 1
 
   bottle do
-    rebuild 2
+    rebuild 3
     root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
-    sha256 "d09bbcd27e9f91f652392d407bcea9a2495aad9ad1838bfb64c6dfff9cc7bcfb" => :high_sierra
-    sha256 "3da8edba6d0edba69f0d0aba7e338120c5b41b3ca59b4b147bcb076679134a4e" => :mojave
-    sha256 "0144e38b5d518c2cfc28848845798bef3bf605d6018fe2055c161265aa208b8a" => :catalina
+    sha256 "65a56030ec6c36ed2be1f7d8f39dfbf5f8b80c8c0b5c82a64f1bd71604668110" => :high_sierra
+    sha256 "4c88938118ea1122cb9e021739d63e642bc1cd4210653a67d6131e0293675fcc" => :mojave
+    sha256 "4549dc0090236fc33233853ae7e55af7e729fd58229cdb1389221fb90ea0c720" => :catalina
   end
 
   head do

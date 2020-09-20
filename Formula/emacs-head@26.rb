@@ -175,6 +175,11 @@ class EmacsHeadAT26 < Formula
     end
   end
 
+  patch do
+    url EmacsHeadAT26.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
   # Patches
   resource "0001-No-frame-refocus-cocoa" do
     url EmacsHeadAT26.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
@@ -189,6 +194,11 @@ class EmacsHeadAT26 < Formula
   resource "0006-Fix-unexec" do
     url EmacsHeadAT26.get_resource_url("patches/0006-Fix-unexec.patch")
     sha256 "a1fcfe8020301733a3846cf85b072b461b66e26d15b0154b978afb7a4ec3346b"
+  end
+
+  resource "0008-Fix-window-role.patch" do
+    url EmacsHeadAT26.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
   # Icons

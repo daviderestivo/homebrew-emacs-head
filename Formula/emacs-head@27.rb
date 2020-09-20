@@ -199,6 +199,11 @@ class EmacsHeadAT27 < Formula
     sha256 "9f81669cba1dedb2733e95d49b8ebe82df3455bf258f130749665cc6adf2afa9"
   end
 
+  patch do
+    url EmacsHeadAT27.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
   # All the patches are now downloaded unconditionally even if they
   # are not used in order to overcome the reinstall issue mentioned
   # here:
@@ -229,6 +234,11 @@ class EmacsHeadAT27 < Formula
   resource "0007-Ligatures-freeze-fix-27" do
     url EmacsHeadAT27.get_resource_url("patches/0007-Ligatures-freeze-fix-27.patch")
     sha256 "9f81669cba1dedb2733e95d49b8ebe82df3455bf258f130749665cc6adf2afa9"
+  end
+
+  resource "0008-Fix-window-role.patch" do
+    url EmacsHeadAT27.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
   # Icons

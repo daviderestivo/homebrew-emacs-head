@@ -85,6 +85,8 @@ class EmacsHeadAT26 < Formula
          "Use a modern style icon by Kentaro Ohkouchi"
   option "with-modern-icon-pen-3d",
          "Use a modern style icon by Unknown"
+  option "with-modern-icon-pen-lds56",
+         "Use a modern style icon by Lds56"
   option "with-modern-icon-pen-black",
          "Use a modern style icon by Cayetano Santos"
   option "with-modern-icon-black-variant",
@@ -129,6 +131,10 @@ class EmacsHeadAT26 < Formula
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-card-green",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-icon-doom",
+         "Use a modern style icon by Jay Zawrotny"
+  option "with-modern-icon-doom3",
+         "Use a modern style icon by Jay Zawrotny"
   option "with-retro-icon-emacs-logo",
          "Use a retro style icon by Luis Fernandes"
   option "with-retro-icon-gnu-head",
@@ -282,6 +288,11 @@ class EmacsHeadAT26 < Formula
     sha256 "ece20b691c8d61bb56e3a057345c1340c6c29f58f7798bcdc929c91d64e5599b"
   end
 
+  resource "modern-icon-pen-lds56" do
+    url EmacsHeadAT26.get_resource_url("icons/modern-icon-pen-lds56.icns")
+    sha256 "dd88972e2dd2d4dfd462825212967b33af3ec1cb38f2054a23db2ea657baa8a0"
+  end
+
   resource "modern-icon-pen-black" do
     url EmacsHeadAT26.get_resource_url("icons/modern-icon-pen-black.icns")
     sha256 "c4bf4de8aaf075d82fc363afbc480a1b8855776d0b61c3fc3a75e8063d7b5c27"
@@ -390,6 +401,16 @@ class EmacsHeadAT26 < Formula
   resource "emacs-icon-card-green" do
     url EmacsHeadAT26.get_resource_url("icons/modern-icon-emacs-card-green.icns")
     sha256 "f94ade7686418073f04b73937f34a1108786400527ed109af822d61b303048f7"
+  end
+
+  resource "emacs-icon-doom" do
+    url EmacsHeadAT26.get_resource_url("icons/modern-icon-doom.icns")
+    sha256 "39378a10b3d7e804461eec8bb9967de0cec7b8f1151150bbe2ba16f21001722b"
+  end
+
+  resource "emacs-icon-doom3" do
+    url EmacsHeadAT26.get_resource_url("icons/modern-icon-doom3.icns")
+    sha256 "3ac398d8d691687320d3a88cd8e634c8cfb7ca358bfe6c30108667f2486438b3"
   end
 
   resource "retro-icon-emacs-logo" do

@@ -106,7 +106,7 @@ The following compilation options are available:
 | ~--without-libxml2~       | Disable libxml2 support                                                      |
 | ~--with-pdumper~          | Enable pdumper support  (only for emacs-head@27 and emacs-head@28)           |
 | ~--with-xwidgets~         | Enable xwidgets support (only for emacs-head@27 and emacs-head@28)           |
-| ~--with-nativecomp~       | Enable native-comp support (only for emacs-head@28)                          |
+| ~--with-native-comp~      | Enable native-comp support (only for emacs-head@28)                          |
 
 For the terminal version only of GNU Emacs please omit ~--with-cocoa~.
 
@@ -155,18 +155,19 @@ please use ~--HEAD --with-xwidgets~.
 
 ** Native-comp support
 This formula support native Elisp code compilation. In order to enable
-it please follow the below instructions.
-
-More details can be found in the below links:
-- [[https://european-lisp-symposium.org/static/2020/corallo-nassi-manca-slides.pdf][Bringing GNU Emacs to Native Code (Slides)]]
-- [[https://www.youtube.com/watch?v=zKHYZOAc_bQ&app=desktop][Bringing GNU Emacs to Native Code (YouTube Video)]]
-- [[http://akrl.sdf.org/gccemacs.html][gccemacs]]
+it please follow the below instructions:
 
 #+begin_src bash
 brew uninstall --ignore-dependencies gcc
 brew install daviderestivo/emacs-head/gcc --build-from-source --force
-brew install emacs-head@28 --with-cocoa --with-nativecomp
+brew install emacs-head@28 --with-cocoa --with-native-comp
 #+end_src
+
+More details can be found in the below links:
+
+- [[https://european-lisp-symposium.org/static/2020/corallo-nassi-manca-slides.pdf][Bringing GNU Emacs to Native Code (Slides)]]
+- [[https://www.youtube.com/watch?v=zKHYZOAc_bQ&app=desktop][Bringing GNU Emacs to Native Code (YouTube Video)]]
+- [[http://akrl.sdf.org/gccemacs.html][gccemacs]]
 
 ** Available icons
 | Option                                             | Description                                         | Image                                                  | URL  |

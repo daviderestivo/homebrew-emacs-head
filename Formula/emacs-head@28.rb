@@ -5,8 +5,11 @@ class EmacsHeadAT28 < Formula
   #url "https://github.com/emacs-mirror/emacs.git"
   version "28.0.50"
   revision 1
-  
-  url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
+  if build.with? "native-comp"
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
+  else
+    url "https://github.com/emacs-mirror/emacs.git"
+  end
 
   depends_on "autoconf"   => :build
   depends_on "gnu-sed"    => :build
@@ -26,7 +29,12 @@ class EmacsHeadAT28 < Formula
   # Turn on harfbuzz support
   depends_on "harfbuzz"      => :recommended
 
-  depends_on "gcc"    => :recommended
+  if build.with? "native-comp"
+    depends_on "libgccjit" => :recommended
+    depends_on "gcc"       => :build
+    depends_on "gmp"       => :build
+    depends_on "libjpeg"   => :build
+  end
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -54,7 +62,7 @@ class EmacsHeadAT28 < Formula
          "Enable pdumper support"
   option "with-xwidgets",
          "Enable xwidgets support"
-  option "with-nativecomp",
+  option "with-native-comp",
          "Enable native-comp support"
   option "with-modern-icon-sjrmanning",
          "Use a modern style icon by @Sjrmanning"
@@ -429,16 +437,25 @@ class EmacsHeadAT28 < Formula
       args << "--without-dbus"
     end
 
-    if build.with? "nativecomp"
-      ohai "Enable native-comp support"
-      ENV["CC"]  = "gcc-10"
-      ENV["CPP"] = "cpp-10"
-      ENV["CFLAGS"] = ""
+    if build.with? "native-comp"
       ENV["NATIVE_FAST_BOOT"] = "1"
-      ENV.prepend "CFLAGS" , "-I#{Formula["gcc"].opt_include}"
-      ENV.prepend "LDFLAGS" , "-L#{Formula["gcc"].opt_lib}/gcc/10 -I#{Formula["gcc"].include}"
-      ENV.prepend_path "LIBRARY_PATH", "-L#{Formula["gcc"].opt_lib}/gcc/10"
-      ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"	
+
+      gcc_version = Formula["gcc"].any_installed_version
+      gcc_version_major = gcc_version.major
+      gcc_lib="#{HOMEBREW_PREFIX}/lib/gcc/#{gcc_version_major}"
+
+      ENV.append "CFLAGS", "-I#{Formula["gcc"].include}"
+      ENV.append "CFLAGS", "-I#{Formula["libgccjit"].include}"
+      ENV.append "CFLAGS", "-I#{Formula["gmp"].include}"
+      ENV.append "CFLAGS", "-I#{Formula["libjpeg"].include}"
+
+      ENV.append "LDFLAGS", "-L#{gcc_lib}"
+      ENV.append "LDFLAGS", "-I#{Formula["gcc"].include}"
+      ENV.append "LDFLAGS", "-I#{Formula["libgccjit"].include}"
+      ENV.append "LDFLAGS", "-I#{Formula["gmp"].include}"
+      ENV.append "LDFLAGS", "-I#{Formula["libjpeg"].include}"
+
+      ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"
       args << "--with-nativecomp"
     end
 
@@ -526,6 +543,12 @@ class EmacsHeadAT28 < Formula
         end
       end
 
+      if build.with? "native-comp"
+        contents_dir = buildpath/"nextstep/Emacs.app/Contents"
+        contents_dir.install "native-lisp"
+        contents_dir.install "lisp"
+      end
+
       # Install the (separate) debug symbol data that is generated
       # for the application
       if build.with? "crash-debug"
@@ -577,10 +600,7 @@ class EmacsHeadAT28 < Formula
         #{prefix}
       To link the application:
         ln -sf #{prefix}/Emacs.app /Applications
-    
-      cd /Applications/Emacs.app/Contents/
-      ln -sf /usr/local/opt/emacs-head@28/lib/emacs/28.0.50/native-lisp native-lisp
-      ln -sf /usr/local/opt/emacs-head@28/share/emacs/28.0.50/lisp lisp
+
     EOS
   end
 

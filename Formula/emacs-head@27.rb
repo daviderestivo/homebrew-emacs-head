@@ -233,7 +233,7 @@ class EmacsHeadAT27 < Formula
 
   resource "0005-System-appearance-27" do
     url EmacsHeadAT27.get_resource_url("patches/0005-System-appearance-27.patch")
-    sha256 "82252e2858a0eba95148661264e390eaf37349fec9c30881d3c1299bfaee8b21"
+    sha256 "a267a67956ded98b6337fb92e6f3830555b2fe70c3e6f7aa6c1697a7398428dc"
   end
 
   # Link: https://www.reddit.com/r/emacs/comments/icem4s/emacs_271_freezes_when_using_font_ligatures/

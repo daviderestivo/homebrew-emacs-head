@@ -179,7 +179,7 @@ class EmacsHeadAT28 < Formula
 
   patch do
     url EmacsHeadAT28.get_resource_url("patches/0005-System-appearance.patch")
-    sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
+    sha256 "b4ccc981e461ac12661fc4cf0ad7211a1dcab61dccf4bd4eee49ca5f7d66c496"
   end
 
   patch do

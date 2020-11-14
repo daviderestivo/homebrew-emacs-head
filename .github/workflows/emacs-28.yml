@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - dev
+      - feature/native-comp
     paths:
       - 'Formula/emacs-head@28.rb'
       - 'patches/**'

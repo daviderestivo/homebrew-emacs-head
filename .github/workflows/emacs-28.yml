@@ -40,14 +40,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: If build '--with-native-comp' delete default gcc and...
+    - name: Install gcc with jit support
       if: contains(matrix.build_opts, '--with-native-comp') == true
-      run: brew uninstall --ignore-dependencies gcc
-      working-directory: Formula
-
-    - name: ...reinstall gcc with jit support
-      if: contains(matrix.build_opts, '--with-native-comp') == true
-      run: brew install daviderestivo/emacs-head/gcc --build-from-source --force
+      run: brew install gcc.rb --build-from-source --force
       working-directory: Formula
 
     - name: Build emacs-head@28 ${{ matrix.build_opts }}

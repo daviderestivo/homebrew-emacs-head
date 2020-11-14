@@ -1,0 +1,39 @@
+name: Emacs (default)
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'Aliases/emacs-head'
+      - '.github/workflows/emacs.yml'
+  pull_request:
+    paths:
+      - 'Aliases/emacs-head'
+      - '.github/workflows/emacs.yml'
+  schedule:
+    - cron:  '0 */4 * * *'
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        build_opts:
+          # Bottle
+          - ''
+
+    env:
+      HOMEBREW_GITHUB_REF: ${{ github.head_ref || github.ref }}
+      HOMEBREW_GITHUB_REPOSITORY: ${{ github.repository }}
+      HOMEBREW_GITHUB_ACTOR: ${{ github.actor }}
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Build emacs-head ${{ matrix.build_opts }}
+      run: brew install Aliases/$(readlink Aliases/emacs-head) ${{ matrix.build_opts }}
+
+    - name: Test installation
+      run: brew test Aliases/$(readlink Aliases/emac-head)

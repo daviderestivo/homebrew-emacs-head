@@ -7,8 +7,16 @@
   <a href="https://www.gnu.org/licenses/gpl-3.0">
     <img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="GNU General Public License Version 3.0">
   </a>
-  <a href="https://travis-ci.com/daviderestivo/homebrew-emacs-head">
-    <img src="https://travis-ci.com/daviderestivo/homebrew-emacs-head.svg?branch=master" alt="Travis CI Status">
+</p>
+<p align="center">
+  <a href="https://github.com/daviderestivo/homebrew-emacs-head/actions?query=workflow%3A%22Emacs+26%22">
+    <img src="https://github.com/daviderestivo/homebrew-emacs-head/workflows/Emacs%2026/badge.svg" alt="Emacs 26 CI Status Badge">
+  </a>
+  <a href="https://github.com/daviderestivo/homebrew-emacs-head/actions?query=workflow%3A%22Emacs+27%22">
+    <img src="https://github.com/daviderestivo/homebrew-emacs-head/workflows/Emacs%2027/badge.svg" alt="Emacs 27 CI Status Badge">
+  </a>
+  <a href="https://github.com/daviderestivo/homebrew-emacs-head/actions?query=workflow%3A%22Emacs+28%22">
+    <img src="https://github.com/daviderestivo/homebrew-emacs-head/workflows/Emacs%2028/badge.svg" alt="Emacs 28 CI Status Badge">
   </a>
 </p>
 #+end_html

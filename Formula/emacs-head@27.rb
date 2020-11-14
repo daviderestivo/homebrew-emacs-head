@@ -9,11 +9,11 @@ class EmacsHeadAT27 < Formula
   revision 1
 
   bottle do
-    rebuild 2
+    rebuild 3
     root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
-    sha256 "d09bbcd27e9f91f652392d407bcea9a2495aad9ad1838bfb64c6dfff9cc7bcfb" => :high_sierra
-    sha256 "3da8edba6d0edba69f0d0aba7e338120c5b41b3ca59b4b147bcb076679134a4e" => :mojave
-    sha256 "0144e38b5d518c2cfc28848845798bef3bf605d6018fe2055c161265aa208b8a" => :catalina
+    sha256 "65a56030ec6c36ed2be1f7d8f39dfbf5f8b80c8c0b5c82a64f1bd71604668110" => :high_sierra
+    sha256 "4c88938118ea1122cb9e021739d63e642bc1cd4210653a67d6131e0293675fcc" => :mojave
+    sha256 "4549dc0090236fc33233853ae7e55af7e729fd58229cdb1389221fb90ea0c720" => :catalina
   end
 
   head do
@@ -96,6 +96,8 @@ class EmacsHeadAT27 < Formula
          "Use a modern style icon by Kentaro Ohkouchi"
   option "with-modern-icon-pen-3d",
          "Use a modern style icon by Unknown"
+  option "with-modern-icon-pen-lds56",
+         "Use a modern style icon by Lds56"
   option "with-modern-icon-pen-black",
          "Use a modern style icon by Cayetano Santos"
   option "with-modern-icon-black-variant",
@@ -140,6 +142,10 @@ class EmacsHeadAT27 < Formula
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-card-green",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-icon-doom",
+         "Use a modern style icon by Jay Zawrotny"
+  option "with-modern-icon-doom3",
+         "Use a modern style icon by Jay Zawrotny"
   option "with-retro-icon-emacs-logo",
          "Use a retro style icon by Luis Fernandes"
   option "with-retro-icon-gnu-head",
@@ -191,12 +197,17 @@ class EmacsHeadAT27 < Formula
 
   patch do
     url EmacsHeadAT27.get_resource_url("patches/0005-System-appearance-27.patch")
-    sha256 "82252e2858a0eba95148661264e390eaf37349fec9c30881d3c1299bfaee8b21"
+    sha256 "e09078a03a6b55fc5cd0785b138f472dea7bbaf8123dadc04e5122155218c1e1"
   end
 
   patch do
     url EmacsHeadAT27.get_resource_url("patches/0007-Ligatures-freeze-fix-27.patch")
     sha256 "9f81669cba1dedb2733e95d49b8ebe82df3455bf258f130749665cc6adf2afa9"
+  end
+
+  patch do
+    url EmacsHeadAT27.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
   # All the patches are now downloaded unconditionally even if they
@@ -222,13 +233,18 @@ class EmacsHeadAT27 < Formula
 
   resource "0005-System-appearance-27" do
     url EmacsHeadAT27.get_resource_url("patches/0005-System-appearance-27.patch")
-    sha256 "82252e2858a0eba95148661264e390eaf37349fec9c30881d3c1299bfaee8b21"
+    sha256 "e09078a03a6b55fc5cd0785b138f472dea7bbaf8123dadc04e5122155218c1e1"
   end
 
   # Link: https://www.reddit.com/r/emacs/comments/icem4s/emacs_271_freezes_when_using_font_ligatures/
   resource "0007-Ligatures-freeze-fix-27" do
     url EmacsHeadAT27.get_resource_url("patches/0007-Ligatures-freeze-fix-27.patch")
     sha256 "9f81669cba1dedb2733e95d49b8ebe82df3455bf258f130749665cc6adf2afa9"
+  end
+
+  resource "0008-Fix-window-role.patch" do
+    url EmacsHeadAT27.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
   # Icons
@@ -310,6 +326,11 @@ class EmacsHeadAT27 < Formula
   resource "modern-icon-pen-3d" do
     url EmacsHeadAT27.get_resource_url("icons/modern-icon-pen-3d.icns")
     sha256 "ece20b691c8d61bb56e3a057345c1340c6c29f58f7798bcdc929c91d64e5599b"
+  end
+
+  resource "modern-icon-pen-lds56" do
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-pen-lds56.icns")
+    sha256 "dd88972e2dd2d4dfd462825212967b33af3ec1cb38f2054a23db2ea657baa8a0"
   end
 
   resource "modern-icon-pen-black" do
@@ -420,6 +441,16 @@ class EmacsHeadAT27 < Formula
   resource "emacs-icon-card-green" do
     url EmacsHeadAT27.get_resource_url("icons/modern-icon-emacs-card-green.icns")
     sha256 "f94ade7686418073f04b73937f34a1108786400527ed109af822d61b303048f7"
+  end
+
+  resource "emacs-icon-doom" do
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-doom.icns")
+    sha256 "39378a10b3d7e804461eec8bb9967de0cec7b8f1151150bbe2ba16f21001722b"
+  end
+
+  resource "emacs-icon-doom3" do
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-doom3.icns")
+    sha256 "3ac398d8d691687320d3a88cd8e634c8cfb7ca358bfe6c30108667f2486438b3"
   end
 
   resource "retro-icon-emacs-logo" do

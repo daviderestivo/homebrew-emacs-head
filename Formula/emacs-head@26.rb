@@ -9,11 +9,11 @@ class EmacsHeadAT26 < Formula
   revision 1
 
   bottle do
-    rebuild 9
+    rebuild 10
     root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
-    sha256 "3437cca427a3204f5bd08eaf76792f459417a24597633b8500b911eaf555def5" => :high_sierra
-    sha256 "c29dc5503d61b92af0d0b7e8eae0e92cf3e65d01eb8d653588a5f3d6be690f59" => :mojave
-    sha256 "10c304f5dba3b25013140054320d5421e2e40eef8e5922603ba152a67975fa59" => :catalina
+    sha256 "05fe6bd94313c242d95867176bd85e706d6dfd443a1dd4bf1d958976347a246b" => :high_sierra
+    sha256 "40836c860e9daf26aefc39fe247b38d0df7463c01a719bb978783058a6847fa1" => :mojave
+    sha256 "44757b864ab69ab3f7666e07846553c61a6729fa1963c179805ff27f92140e7c" => :catalina
   end
 
   depends_on "automake"   => :build
@@ -85,6 +85,8 @@ class EmacsHeadAT26 < Formula
          "Use a modern style icon by Kentaro Ohkouchi"
   option "with-modern-icon-pen-3d",
          "Use a modern style icon by Unknown"
+  option "with-modern-icon-pen-lds56",
+         "Use a modern style icon by Lds56"
   option "with-modern-icon-pen-black",
          "Use a modern style icon by Cayetano Santos"
   option "with-modern-icon-black-variant",
@@ -129,6 +131,10 @@ class EmacsHeadAT26 < Formula
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-card-green",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-icon-doom",
+         "Use a modern style icon by Jay Zawrotny"
+  option "with-modern-icon-doom3",
+         "Use a modern style icon by Jay Zawrotny"
   option "with-retro-icon-emacs-logo",
          "Use a retro style icon by Luis Fernandes"
   option "with-retro-icon-gnu-head",
@@ -175,6 +181,11 @@ class EmacsHeadAT26 < Formula
     end
   end
 
+  patch do
+    url EmacsHeadAT26.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
   # Patches
   resource "0001-No-frame-refocus-cocoa" do
     url EmacsHeadAT26.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
@@ -189,6 +200,11 @@ class EmacsHeadAT26 < Formula
   resource "0006-Fix-unexec" do
     url EmacsHeadAT26.get_resource_url("patches/0006-Fix-unexec.patch")
     sha256 "a1fcfe8020301733a3846cf85b072b461b66e26d15b0154b978afb7a4ec3346b"
+  end
+
+  resource "0008-Fix-window-role.patch" do
+    url EmacsHeadAT26.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
   # Icons
@@ -270,6 +286,11 @@ class EmacsHeadAT26 < Formula
   resource "modern-icon-pen-3d" do
     url EmacsHeadAT26.get_resource_url("icons/modern-icon-pen-3d.icns")
     sha256 "ece20b691c8d61bb56e3a057345c1340c6c29f58f7798bcdc929c91d64e5599b"
+  end
+
+  resource "modern-icon-pen-lds56" do
+    url EmacsHeadAT26.get_resource_url("icons/modern-icon-pen-lds56.icns")
+    sha256 "dd88972e2dd2d4dfd462825212967b33af3ec1cb38f2054a23db2ea657baa8a0"
   end
 
   resource "modern-icon-pen-black" do
@@ -380,6 +401,16 @@ class EmacsHeadAT26 < Formula
   resource "emacs-icon-card-green" do
     url EmacsHeadAT26.get_resource_url("icons/modern-icon-emacs-card-green.icns")
     sha256 "f94ade7686418073f04b73937f34a1108786400527ed109af822d61b303048f7"
+  end
+
+  resource "emacs-icon-doom" do
+    url EmacsHeadAT26.get_resource_url("icons/modern-icon-doom.icns")
+    sha256 "39378a10b3d7e804461eec8bb9967de0cec7b8f1151150bbe2ba16f21001722b"
+  end
+
+  resource "emacs-icon-doom3" do
+    url EmacsHeadAT26.get_resource_url("icons/modern-icon-doom3.icns")
+    sha256 "3ac398d8d691687320d3a88cd8e634c8cfb7ca358bfe6c30108667f2486438b3"
   end
 
   resource "retro-icon-emacs-logo" do

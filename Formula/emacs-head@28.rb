@@ -96,6 +96,8 @@ class EmacsHeadAT28 < Formula
          "Use a modern style icon by Kentaro Ohkouchi"
   option "with-modern-icon-pen-3d",
          "Use a modern style icon by Unknown"
+  option "with-modern-icon-pen-lds56",
+         "Use a modern style icon by Lds56"
   option "with-modern-icon-pen-black",
          "Use a modern style icon by Cayetano Santos"
   option "with-modern-icon-black-variant",
@@ -140,6 +142,10 @@ class EmacsHeadAT28 < Formula
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-emacs-card-green",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
+  option "with-modern-icon-doom",
+         "Use a modern style icon by Jay Zawrotny"
+  option "with-modern-icon-doom3",
+         "Use a modern style icon by Jay Zawrotny"
   option "with-retro-icon-emacs-logo",
          "Use a retro style icon by Luis Fernandes"
   option "with-retro-icon-gnu-head",
@@ -188,7 +194,12 @@ class EmacsHeadAT28 < Formula
 
   patch do
     url EmacsHeadAT28.get_resource_url("patches/0005-System-appearance.patch")
-    sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
+    sha256 "4b17be19144997c3ae3456a707b4643bb7a6766eb0aec234973f3f0d77b1a893"
+  end
+
+  patch do
+    url EmacsHeadAT28.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
   # Patches
@@ -204,7 +215,12 @@ class EmacsHeadAT28 < Formula
 
   resource "0005-System-appearance" do
     url  EmacsHeadAT28.get_resource_url("patches/0005-System-appearance.patch")
-    sha256 "2a0ce452b164eee3689ee0c58e1f47db368cb21b724cda56c33f6fe57d95e9b7"
+    sha256 "4b17be19144997c3ae3456a707b4643bb7a6766eb0aec234973f3f0d77b1a893"
+  end
+
+  resource "0008-Fix-window-role.patch" do
+    url EmacsHeadAT28.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
   # Icons
@@ -286,6 +302,11 @@ class EmacsHeadAT28 < Formula
   resource "modern-icon-pen-3d" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-pen-3d.icns")
     sha256 "ece20b691c8d61bb56e3a057345c1340c6c29f58f7798bcdc929c91d64e5599b"
+  end
+
+  resource "modern-icon-pen-lds56" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-pen-lds56.icns")
+    sha256 "dd88972e2dd2d4dfd462825212967b33af3ec1cb38f2054a23db2ea657baa8a0"
   end
 
   resource "modern-icon-pen-black" do
@@ -396,6 +417,16 @@ class EmacsHeadAT28 < Formula
   resource "emacs-icon-card-green" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-emacs-card-green.icns")
     sha256 "f94ade7686418073f04b73937f34a1108786400527ed109af822d61b303048f7"
+  end
+
+  resource "emacs-icon-doom" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-doom.icns")
+    sha256 "39378a10b3d7e804461eec8bb9967de0cec7b8f1151150bbe2ba16f21001722b"
+  end
+
+  resource "emacs-icon-doom3" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-doom3.icns")
+    sha256 "3ac398d8d691687320d3a88cd8e634c8cfb7ca358bfe6c30108667f2486438b3"
   end
 
   resource "retro-icon-emacs-logo" do

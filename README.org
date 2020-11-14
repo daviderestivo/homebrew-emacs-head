@@ -7,8 +7,16 @@
   <a href="https://www.gnu.org/licenses/gpl-3.0">
     <img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="GNU General Public License Version 3.0">
   </a>
-  <a href="https://travis-ci.com/daviderestivo/homebrew-emacs-head">
-    <img src="https://travis-ci.com/daviderestivo/homebrew-emacs-head.svg?branch=master" alt="Travis CI Status">
+</p>
+<p align="center">
+  <a href="https://github.com/daviderestivo/homebrew-emacs-head/actions?query=workflow%3A%22Emacs+26%22">
+    <img src="https://github.com/daviderestivo/homebrew-emacs-head/workflows/Emacs%2026/badge.svg" alt="Emacs 26 CI Status Badge">
+  </a>
+  <a href="https://github.com/daviderestivo/homebrew-emacs-head/actions?query=workflow%3A%22Emacs+27%22">
+    <img src="https://github.com/daviderestivo/homebrew-emacs-head/workflows/Emacs%2027/badge.svg" alt="Emacs 27 CI Status Badge">
+  </a>
+  <a href="https://github.com/daviderestivo/homebrew-emacs-head/actions?query=workflow%3A%22Emacs+28%22">
+    <img src="https://github.com/daviderestivo/homebrew-emacs-head/workflows/Emacs%2028/badge.svg" alt="Emacs 28 CI Status Badge">
   </a>
 </p>
 #+end_html
@@ -127,19 +135,23 @@ mainly allows loading a different theme to better match the system
 appearance.
 
 #+begin_src elisp
-(add-hook 'ns-system-appearance-change-functions
-          #'(lambda (appearance)
-              (mapc #'disable-theme custom-enabled-themes)
-              (pcase appearance
-                ('light (load-theme 'tango t))
-                ('dark (load-theme 'tango-dark t)))))
+(defun my/apply-theme (appearance)
+  "Load theme, taking current system APPEARANCE into consideration."
+  (mapc #'disable-theme custom-enabled-themes)
+  (pcase appearance
+    ('light (load-theme 'tango t))
+    ('dark (load-theme 'tango-dark t))))
+
+(add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
 #+end_src>
 
-Note that this hook is run early in the startup process, so if you
-want your theme to match the system appearance when GNU Emacs starts, you
-can register your function(s) in your early-init.el. The hook is NOT
-run in TTY sessions.
+Note that this hook is also run once when Emacs is initialized, so
+simply adding the above to your init.el will allow matching the system
+appearance upon startup. You can also determine what the current
+system appearance is by inspecting the value of the
+ns-system-appearance variable.
 
+The hook is NOT run in TTY Emacs sessions.
 ** Pdumper support
 The portable dumper is available in HEAD. To enable this feature
 please use ~--HEAD --with-pdumper~.
@@ -188,6 +200,7 @@ More details can be found in the below links:
 | ~--with-modern-icon-papirus~                         | Use a modern style icon by [[https://github.com/PapirusDevelopmentTeam][Papirus Development Team]] | [[/icons/modern-icon-papirus.png]]                         | [[https://github.com/PapirusDevelopmentTeam/papirus-icon-theme][Link]] |
 | ~--with-modern-icon-pen~                             | Use a modern style icon by [[https://github.com/nanasess][Kentaro Ohkouchi]]         | [[/icons/modern-icon-pen.png]]                             | [[https://github.com/nanasess/EmacsIconCollections][Link]] |
 | ~--with-modern-icon-pen-3d~                          | Use a modern style icon by Unknown                  | [[/icons/modern-icon-pen-3d.png]]                          | [[https://download-mirror.savannah.gnu.org/releases/emacs/icons][Link]] |
+| ~--with-modern-icon-pen-lds56~                       | Use a modern style icon by [[http://lds56.github.io/about][lds56]]                    | [[/icons/modern-icon-pen-lds56.png]]                       | [[http://lds56.github.io/notes/emacs-icon-redesigned][Link]] |
 | ~--with-modern-icon-pen-black~                       | Use a modern style icon by [[https://gitlab.com/csantosb][Cayetano Santos]]          | [[/icons/modern-icon-pen-black.png]]                       | [[https://gitlab.com/uploads/-/system/project/avatar/11430322/emacs_icon_132408.png][Link]] |
 | ~--with-modern-icon-black-variant~                   | Use a modern style icon by [[https://www.deviantart.com/blackvariant/about][BlackVariant (Patrick)]]   | [[/icons/modern-icon-black-variant.png]]                   | [[https://www.deviantart.com/blackvariant][Link]] |
 | ~--with-modern-icon-purple-flat~                     | Use a modern style icon by [[https://jeremiahfoster.com][Jeremiah Foster]]          | [[/icons/modern-icon-purple-flat.png]]                     | [[https://icon-icons.com/icon/emacs/103962][Link]] |
@@ -210,6 +223,8 @@ More details can be found in the below links:
 | ~--with-modern-icon-emacs-card-british-racing-green~ | Use a modern style icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/modern-icon-emacs-card-british-racing-green.png]] | [[https://github.com/emacsfodder/emacs-icons-project][Link]] |
 | ~--with-modern-icon-emacs-card-carmine~              | Use a modern style icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/modern-icon-emacs-card-carmine.png]]              | [[https://github.com/emacsfodder/emacs-icons-project][Link]] |
 | ~--with-modern-icon-emacs-card-green~                | Use a modern style icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/modern-icon-emacs-card-green.png]]                | [[https://github.com/emacsfodder/emacs-icons-project][Link]] |
+| ~--with-modern-icon-doom~                            | Use a modern style icon by [[http://jayzawrotny.com/][Jay Zawrotny]]             | [[/icons/modern-icon-doom.png]]                            | [[https://github.com/eccentric-j/doom-icon][Link]] |
+| ~--with-modern-icon-doom3~                           | Use a modern style icon by [[http://jayzawrotny.com/][Jay Zawrotny]]             | [[/icons/modern-icon-doom3.png]]                           | [[https://github.com/eccentric-j/doom-icon][Link]] |
 | ~--with-retro-icon-emacs-logo~                       | Use a retro  style icon by [[https://www.ee.ryerson.ca/~elf/][Luis Fernandes]]           | [[/icons/retro-icon-emacs-logo.png]]                       | [[https://en.m.wikipedia.org/wiki/File:Emacs-logo.svg][Link]] |
 | ~--with-retro-icon-gnu-head~                         | Use a retro  style icon by [[https://github.com/aurium][Aurélio A. Heckert]]       | [[/icons/retro-icon-gnu-head.png]]                         | [[https://www.gnu.org/graphics/heckert_gnu.html][Link]] |
 | ~--with-retro-icon-gnu-meditate-levitate~            | Use a retro  style icon by Nevrax Design Team       | [[/icons/retro-icon-gnu-meditate-levitate.png]]            | [[https://www.gnu.org/graphics/meditate.en.html][Link]] |

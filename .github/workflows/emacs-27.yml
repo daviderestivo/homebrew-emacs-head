@@ -1,0 +1,46 @@
+name: Emacs 27
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+    paths:
+      - 'Formula/emacs-head@27.rb'
+      - 'patches/**'
+      - '.github/workflows/emacs-27.yml'
+  pull_request:
+    paths:
+      - 'Formula/emacs-head@27.rb'
+      - 'patches/**'
+      - '.github/workflows/emacs-27.yml'
+  schedule:
+    - cron:  '0 */2 * * *'
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        build_opts:
+          # Bottle
+          - ''
+          # All options (imagemagick@7)
+          - '-with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets'
+
+    env:
+      HOMEBREW_GITHUB_REF: ${{ github.head_ref || github.ref }}
+      HOMEBREW_GITHUB_REPOSITORY: ${{ github.repository }}
+      HOMEBREW_GITHUB_ACTOR: ${{ github.actor }}
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Build emacs-head@27 ${{ matrix.build_opts }}
+      run: brew install emacs-head@27.rb ${{ matrix.build_opts }}
+      working-directory: Formula
+
+    - name: Test installation
+      run: brew test emacs-head@27.rb
+      working-directory: Formula

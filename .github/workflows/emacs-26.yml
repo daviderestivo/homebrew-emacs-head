@@ -1,0 +1,46 @@
+name: Emacs 26
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+    paths:
+      - 'Formula/emacs-head@26.rb'
+      - 'patches/**'
+      - '.github/workflows/emacs-26.yml'
+  pull_request:
+    paths:
+      - 'Formula/emacs-head@26.rb'
+      - 'patches/**'
+      - '.github/workflows/emacs-26.yml'
+  schedule:
+    - cron:  '0 */12 * * *'
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        build_opts:
+          # Bottle
+          - ''
+          # All options (imagemagick@6)
+          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-multicolor-fonts'
+
+    env:
+      HOMEBREW_GITHUB_REF: ${{ github.head_ref || github.ref }}
+      HOMEBREW_GITHUB_REPOSITORY: ${{ github.repository }}
+      HOMEBREW_GITHUB_ACTOR: ${{ github.actor }}
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Build emacs-head@26 ${{ matrix.build_opts }}
+      run: brew install emacs-head@26.rb ${{ matrix.build_opts }}
+      working-directory: Formula
+
+    - name: Test installation
+      run: brew test emacs-head@26.rb
+      working-directory: Formula

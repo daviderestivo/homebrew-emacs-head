@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - dev
     paths:
       - 'Aliases/emacs-head'
       - '.github/workflows/emacs.yml'
@@ -36,4 +37,4 @@ jobs:
       run: brew install Aliases/$(readlink Aliases/emacs-head) ${{ matrix.build_opts }}
 
     - name: Test installation
-      run: brew test Aliases/$(readlink Aliases/emac-head)
+      run: brew test Aliases/$(readlink Aliases/emacs-head)

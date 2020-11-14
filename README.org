@@ -2,8 +2,8 @@
 <p align="center">
   <img width="256px" src="images/emacs-retro-icon-sink-bw.png" alt="Banner">
 </p>
+<h1 align="center">Emacs Head</h1>
 <p align="center">
-  <h1 align="center">Emacs Head</h1>
   <a href="https://www.gnu.org/licenses/gpl-3.0">
     <img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="GNU General Public License Version 3.0">
   </a>

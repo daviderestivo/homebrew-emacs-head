@@ -24,10 +24,12 @@ jobs:
     strategy:
       matrix:
         build_opts:
-          # No Options
-          - ''
+          # No Options --> TO BE UNCOMMENTED
+          # - ''
           # All options (imagemagick@7)
-          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets'
+          # - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets' --> TO BE UNCOMMENTED
+          # All options (imagemagick@7) + native-comp support
+          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-native-comp'
 
     env:
       HOMEBREW_GITHUB_REF: ${{ github.head_ref || github.ref }}
@@ -36,6 +38,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
+    - name: If build '--with-native-comp' delete default gcc and...
+      if: contains(matrix.build_opts, '--with-native-comp') == true
+      run: brew uninstall --ignore-dependencies gcc
+      working-directory: Formula
+
+    - name: ...reinstall gcc with jit support
+      if: contains(matrix.build_opts, '--with-native-comp') == true
+      run: brew install daviderestivo/emacs-head/gcc --build-from-source --force
+      working-directory: Formula
 
     - name: Build emacs-head@28 ${{ matrix.build_opts }}
       run: brew install emacs-head@28.rb ${{ matrix.build_opts }}

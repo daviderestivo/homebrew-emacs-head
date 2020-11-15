@@ -16,7 +16,7 @@ on:
       - 'patches/**'
       - '.github/workflows/emacs-28.yml'
   schedule:
-    - cron:  '0 */6 * * *'
+    - cron:  '0 6 * * *'
 
 jobs:
   build:

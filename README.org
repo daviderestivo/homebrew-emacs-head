@@ -181,6 +181,13 @@ More details can be found in the below links:
 - [[https://www.youtube.com/watch?v=zKHYZOAc_bQ&app=desktop][Bringing GNU Emacs to Native Code (YouTube Video)]]
 - [[http://akrl.sdf.org/gccemacs.html][gccemacs]]
 
+Additional useful links:
+
+- [[https://gist.github.com/AllenDang/f019593e65572a8e0aefc96058a2d23e][Use pre-built gccemacs]]
+- [[https://github.com/jimeh/build-emacs-for-macos][build-emacs-for-macos]]
+- [[https://github.com/shshkn/emacs.d/blob/master/docs/nativecomp.md][gccemacs]]
+- [[https://gist.github.com/mikroskeem/0a5c909c1880408adf732ceba6d3f9ab][gccemacs on OS X]]
+
 ** Available icons
 | Option                                             | Description                                         | Image                                                  | URL  |
 |----------------------------------------------------+-----------------------------------------------------+--------------------------------------------------------+------|

@@ -4,11 +4,6 @@ class EmacsHeadAT28 < Formula
   homepage "https://www.gnu.org/software/emacs/"
   version "28.0.50"
   revision 1
-  if build.with? "native-comp"
-    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
-  else
-    url "https://github.com/emacs-mirror/emacs.git"
-  end
 
   depends_on "autoconf"   => :build
   depends_on "gnu-sed"    => :build
@@ -155,6 +150,12 @@ class EmacsHeadAT28 < Formula
          "Use a retro style icon by Unknown"
   option "with-retro-icon-sink",
          "Use a retro style icon by Erik Mugele"
+
+  if build.with? "native-comp"
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
+  else
+    url "https://github.com/emacs-mirror/emacs.git"
+  end
 
   def self.get_resource_url(resource)
     if ENV['HOMEBREW_TRAVIS_BRANCH']

@@ -469,7 +469,7 @@ class EmacsHeadAT28 < Formula
     end
 
     if build.with? "native-comp"
-      ENV["NATIVE_FAST_BOOT"] = "1"
+      ENV["NATIVE_FULL_AOT"] = "1"
 
       gcc_version = Formula["gcc"].any_installed_version
       gcc_version_major = gcc_version.major
@@ -485,6 +485,8 @@ class EmacsHeadAT28 < Formula
       ENV.append "LDFLAGS", "-I#{Formula["libgccjit"].include}"
       ENV.append "LDFLAGS", "-I#{Formula["gmp"].include}"
       ENV.append "LDFLAGS", "-I#{Formula["libjpeg"].include}"
+
+      ENV.append "LIBRARY_PATH", "-L#{gcc_lib}"
 
       ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"
       args << "--with-nativecomp"
@@ -630,7 +632,7 @@ class EmacsHeadAT28 < Formula
       Emacs.app was installed to:
         #{prefix}
       To link the application:
-        ln -sf #{prefix}/Emacs.app /Applications
+        ln -s #{prefix}/Emacs.app /Applications
 
     EOS
   end

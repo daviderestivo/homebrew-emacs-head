@@ -10,7 +10,9 @@ class EmacsHeadAT28 < Formula
   depends_on "texinfo"    => :build
   depends_on "automake"   => :build
   depends_on "cmake"      => :build
+  depends_on "coreutils"  => :build
   depends_on "pkg-config" => :build
+  depends_on "gcc"        => :build
   depends_on "giflib"
   depends_on "gnutls"
   depends_on "librsvg"
@@ -22,13 +24,6 @@ class EmacsHeadAT28 < Formula
   depends_on "imagemagick@7" => :recommended
   # Turn on harfbuzz support
   depends_on "harfbuzz"      => :recommended
-
-  if build.with? "native-comp"
-    depends_on "libgccjit" => :recommended
-    depends_on "gcc"       => :build
-    depends_on "gmp"       => :build
-    depends_on "libjpeg"   => :build
-  end
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -153,6 +148,10 @@ class EmacsHeadAT28 < Formula
 
   if build.with? "native-comp"
     url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
+    depends_on "libgccjit" => :reccomended
+    depends_on "gmp"       => :build
+    depends_on "libjpeg"   => :build
+    depends_on "make"      => :build
   else
     url "https://github.com/emacs-mirror/emacs.git"
   end
@@ -488,7 +487,9 @@ class EmacsHeadAT28 < Formula
 
       ENV.append "LIBRARY_PATH", "-L#{gcc_lib}"
 
+      # Use gsed and gmake
       ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"
+      ENV.prepend_path "PATH", Formula["make"].opt_libexec/"gnubin"
       args << "--with-nativecomp"
     end
 

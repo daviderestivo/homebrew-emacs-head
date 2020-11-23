@@ -10,7 +10,6 @@ class EmacsHeadAT28 < Formula
   depends_on "texinfo"    => :build
   depends_on "automake"   => :build
   depends_on "cmake"      => :build
-  depends_on "coreutils"  => :build
   depends_on "pkg-config" => :build
   depends_on "gcc"        => :build
   depends_on "giflib"
@@ -148,9 +147,10 @@ class EmacsHeadAT28 < Formula
 
   if build.with? "native-comp"
     url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
-    depends_on "libgccjit" => :reccomended
+    depends_on "coreutils" => :build
     depends_on "gmp"       => :build
     depends_on "libjpeg"   => :build
+    depends_on "libgccjit" => :reccomended
     depends_on "make"      => :build
   else
     url "https://github.com/emacs-mirror/emacs.git"

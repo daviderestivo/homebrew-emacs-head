@@ -170,8 +170,6 @@ This formula support native Elisp code compilation. In order to enable
 it please follow the below instructions:
 
 #+begin_src bash
-brew uninstall --ignore-dependencies gcc
-brew install daviderestivo/emacs-head/gcc --build-from-source --force
 brew install emacs-head@28 --with-cocoa --with-native-comp
 #+end_src
 

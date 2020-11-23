@@ -25,10 +25,10 @@ jobs:
     strategy:
       matrix:
         build_opts:
-          # No Options --> TO BE UNCOMMENTED
-          # - ''
+          # No Options
+          - ''
           # All options (imagemagick@7)
-          # - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets' --> TO BE UNCOMMENTED
+          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets'
           # All options (imagemagick@7) + native-comp support
           - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-native-comp'
 
@@ -41,6 +41,13 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Build emacs-head@28 ${{ matrix.build_opts }}
+      if: contains(matrix.build_opts, '--with-native-comp') == false
+      run: brew install emacs-head@28.rb ${{ matrix.build_opts }}
+      working-directory: Formula
+
+      # Use --verbose when compiling emacs-head@28 with native-comp support
+    - name: Build emacs-head@28 ${{ matrix.build_opts }}
+      if: contains(matrix.build_opts, '--with-native-comp') == true
       run: brew install --verbose emacs-head@28.rb ${{ matrix.build_opts }}
       working-directory: Formula
 

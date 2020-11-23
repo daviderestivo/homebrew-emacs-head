@@ -164,7 +164,6 @@ class EmacsHeadAT28 < Formula
     end
   end
 
-
   # When closing a frame, GNU Emacs automatically focuses another frame.
   # This re-focus has an additional side-effect: when closing a frame
   # from one desktop/space, one gets automatically moved to another

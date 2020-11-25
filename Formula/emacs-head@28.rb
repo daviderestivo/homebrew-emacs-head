@@ -520,6 +520,7 @@ class EmacsHeadAT28 < Formula
       ENV.prepend_path "PATH", Formula["make"].opt_libexec/"gnubin"
 
       args << "--with-nativecomp"
+      args << "--enable-locallisppath=/Library/Application Support/Emacs/#{version}/site-lisp:/Library/Application Support/Emacs/site-lisp"
       make_flags << "BYTE_COMPILE_EXTRA_FLAGS=--eval '(setq comp-speed 2)'"
     end
 

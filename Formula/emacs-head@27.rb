@@ -159,7 +159,7 @@ class EmacsHeadAT27 < Formula
 
   def self.get_resource_url(resource)
     if ENV['HOMEBREW_GITHUB_REF']
-      branch = ENV['HOMEBREW_GITHUB_REF']sub("refs/heads/", "")
+      branch = ENV['HOMEBREW_GITHUB_REF'].sub("refs/heads/", "")
       "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + branch +  "/" + resource
     else
       "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + "master" + "/" + resource

@@ -495,6 +495,9 @@ class EmacsHeadAT28 < Formula
       gcc_version_major = gcc_version.major
       gcc_lib="#{HOMEBREW_PREFIX}/lib/gcc/#{gcc_version_major}"
 
+
+      ENV["CC"] = "#{Formula["gcc"].bin}/gcc-10"
+
       ENV['CFLAGS'] = [
         '-O2',
         '-march=native'

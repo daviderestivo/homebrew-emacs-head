@@ -52,6 +52,8 @@ class EmacsHeadAT28 < Formula
          "Enable xwidgets support"
   option "with-native-comp",
          "Enable native-comp support"
+  option "with-native-full-aot",
+         "Enable Ahead-of-Time native compilation support"
   option "with-modern-icon-sjrmanning",
          "Use a modern style icon by @Sjrmanning"
   option "with-modern-icon-asingh4242",
@@ -467,7 +469,12 @@ class EmacsHeadAT28 < Formula
     end
 
     if build.with? "native-comp"
-      ENV["NATIVE_FULL_AOT"] = "1"
+
+      if build.with? "native-full-aot"
+        ENV["NATIVE_FULL_AOT"] = "1"
+      else
+        ENV["NATIVE_FULL_AOT"] = "0"
+      end
 
       gcc_version = Formula["gcc"].any_installed_version
       gcc_version_major = gcc_version.major

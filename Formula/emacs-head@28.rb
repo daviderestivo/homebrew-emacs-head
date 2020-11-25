@@ -202,6 +202,13 @@ class EmacsHeadAT28 < Formula
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
+  if build.with? "native-comp"
+    patch do
+      url EmacsHeadAT28.get_resource_url("patches/0009-Native-comp-env-setup.patch")
+      sha256 "418939d1935a1b0cdbd09c500ab964ee38e05accdd76a73564647c4597bf1230"
+    end
+  end
+
   # Patches
   resource "0001-No-frame-refocus-cocoa" do
     url EmacsHeadAT28.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
@@ -221,6 +228,11 @@ class EmacsHeadAT28 < Formula
   resource "0008-Fix-window-role.patch" do
     url EmacsHeadAT28.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
+  resource "0009-Native-comp-env-setup.patch" do
+    url EmacsHeadAT28.get_resource_url("patches/0009-Native-comp-env-setup.patch")
+    sha256 "418939d1935a1b0cdbd09c500ab964ee38e05accdd76a73564647c4597bf1230"
   end
 
   # Icons
@@ -479,6 +491,11 @@ class EmacsHeadAT28 < Formula
       gcc_version = Formula["gcc"].any_installed_version
       gcc_version_major = gcc_version.major
       gcc_lib="#{HOMEBREW_PREFIX}/lib/gcc/#{gcc_version_major}"
+
+      ENV['CFLAGS'] = [
+        '-O2',
+        '-march=native'
+      ].compact.join(' ')
 
       ENV.append "CFLAGS", "-I#{Formula["gcc"].include}"
       ENV.append "CFLAGS", "-I#{Formula["libgccjit"].include}"

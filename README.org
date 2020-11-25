@@ -115,6 +115,7 @@ The following compilation options are available:
 | ~--with-pdumper~          | Enable pdumper support  (only for emacs-head@27 and emacs-head@28)           |
 | ~--with-xwidgets~         | Enable xwidgets support (only for emacs-head@27 and emacs-head@28)           |
 | ~--with-native-comp~      | Enable native-comp support (only for emacs-head@28)                          |
+| ~--with-native-full-aot~  | Enable Ahead-of-Time native compilation support (only for emacs-head@28)     |
 
 For the terminal version only of GNU Emacs please omit ~--with-cocoa~.
 
@@ -172,6 +173,13 @@ it please follow the below instructions:
 #+begin_src bash
 brew install emacs-head@28 --with-cocoa --with-native-comp
 #+end_src
+
+NATIVE_FULL_AOT is disabled by default to improve build time, Only few
+lisp source files will be compiled during the build. All of the
+remaining ones will be dynamically compiled in the background once the
+Emacs application is launched for the first time. If you with to
+enable native full AoT, please use ~--with-native-comp~ option
+together with ~--with-native-comp~.
 
 More details can be found in the below links:
 

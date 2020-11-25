@@ -474,6 +474,8 @@ class EmacsHeadAT28 < Formula
       --without-x
     ]
 
+    make_flags = []
+
     if build.with? "dbus"
       args << "--with-dbus"
     else
@@ -513,7 +515,9 @@ class EmacsHeadAT28 < Formula
       # Use gsed and gmake
       ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"
       ENV.prepend_path "PATH", Formula["make"].opt_libexec/"gnubin"
+
       args << "--with-nativecomp"
+      make_flags << "BYTE_COMPILE_EXTRA_FLAGS=--eval '(setq comp-speed 2)'"
     end
 
     # Note that if ./configure is passed --with-imagemagick but can't find the
@@ -564,7 +568,7 @@ class EmacsHeadAT28 < Formula
         end
       end
 
-      system "make"
+      system "make", *make_flags
       system "make", "install"
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
@@ -638,7 +642,7 @@ class EmacsHeadAT28 < Formula
         end
       end
 
-      system "make"
+      system "make", *make_flags
       system "make", "install"
     end
 

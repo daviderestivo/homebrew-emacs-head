@@ -503,9 +503,6 @@ class EmacsHeadAT28 < Formula
       ].compact.join(' ')
 
       ENV.append "CFLAGS", "-I#{Formula["gcc"].include}"
-      ENV.append "CFLAGS", "-I#{Formula["libgccjit"].include}"
-      ENV.append "CFLAGS", "-I#{Formula["gmp"].include}"
-      ENV.append "CFLAGS", "-I#{Formula["libjpeg"].include}"
 
       ENV.append "LDFLAGS", "-L#{gcc_lib}"
       ENV.append "LDFLAGS", "-I#{Formula["gcc"].include}"
@@ -513,9 +510,9 @@ class EmacsHeadAT28 < Formula
       ENV.append "LDFLAGS", "-I#{Formula["gmp"].include}"
       ENV.append "LDFLAGS", "-I#{Formula["libjpeg"].include}"
 
-      ENV.append "LIBRARY_PATH", "-L#{gcc_lib}"
+      ENV.append "LIBRARY_PATH", "#{gcc_lib}"
       Dir['/usr/local/lib/gcc/*/gcc/*-apple-darwin*/*/'].each do |f|
-        ENV.append "LIBRARY_PATH", "-L#{f}"
+        ENV.append "LIBRARY_PATH", "#{f}"
       end
 
       # Use gsed and gmake

@@ -514,6 +514,9 @@ class EmacsHeadAT28 < Formula
       ENV.append "LDFLAGS", "-I#{Formula["libjpeg"].include}"
 
       ENV.append "LIBRARY_PATH", "-L#{gcc_lib}"
+      Dir['/usr/local/lib/gcc/*/gcc/*-apple-darwin*/*/'].each do |f|
+        ENV.append "LIBRARY_PATH", "-L#{f}"
+      end
 
       # Use gsed and gmake
       ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"

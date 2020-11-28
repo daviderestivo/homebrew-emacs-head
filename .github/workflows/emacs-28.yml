@@ -42,6 +42,7 @@ jobs:
 
     - name: Build emacs-head@28 ${{ matrix.build_opts }}
       run: brew install --verbose emacs-head@28.rb ${{ matrix.build_opts }}
+      continue-on-error: true
       working-directory: Formula
 
     - name: Test installation

@@ -6,6 +6,7 @@ class EmacsHeadAT28 < Formula
   revision 1
 
   depends_on "autoconf"   => :build
+  depends_on "coreutils" => :build
   depends_on "gnu-sed"    => :build
   depends_on "texinfo"    => :build
   depends_on "automake"   => :build
@@ -147,11 +148,9 @@ class EmacsHeadAT28 < Formula
 
   if build.with? "native-comp"
     url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
-    depends_on "coreutils" => :build
     depends_on "gmp"       => :build
     depends_on "libjpeg"   => :build
     depends_on "libgccjit" => :reccomended
-    depends_on "make"      => :build
   else
     url "https://github.com/emacs-mirror/emacs.git"
   end
@@ -493,8 +492,6 @@ class EmacsHeadAT28 < Formula
       gcc_version_major = gcc_version.major
       gcc_lib="#{HOMEBREW_PREFIX}/lib/gcc/#{gcc_version_major}"
 
-      ENV["CC"] = "clang"
-
       ENV['CFLAGS'] = [
         '-O2',
         '-march=native'
@@ -508,17 +505,7 @@ class EmacsHeadAT28 < Formula
       ENV.append "LDFLAGS", "-I#{Formula["gmp"].include}"
       ENV.append "LDFLAGS", "-I#{Formula["libjpeg"].include}"
 
-      ENV.append "LIBRARY_PATH", "#{gcc_lib}"
-      Dir['/usr/local/lib/gcc/*/gcc/*-apple-darwin*/*/'].each do |f|
-        ENV.append "LIBRARY_PATH", "#{f}"
-      end
-
-      # Use gsed and gmake
-      ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"
-      ENV.prepend_path "PATH", Formula["make"].opt_libexec/"gnubin"
-
       args << "--with-nativecomp"
-      args << "--enable-locallisppath=/Library/Application Support/Emacs/#{version}/site-lisp:/Library/Application Support/Emacs/site-lisp"
       make_flags << "BYTE_COMPILE_EXTRA_FLAGS=--eval '(setq comp-speed 2)'"
     end
 
@@ -549,12 +536,14 @@ class EmacsHeadAT28 < Formula
       ENV.append_to_cflags "-g3"
     end
 
+    # Use GNU install
+    ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"
+    # Use GNU sed
     ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
     system "./autogen.sh"
 
     if build.with? "cocoa"
-      args << "--with-ns"
-      args << "--disable-ns-self-contained" unless build.with? "native-comp"
+      args << "--with-ns" << "--disable-ns-self-contained"
 
       system "./configure", *args
 

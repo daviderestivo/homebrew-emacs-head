@@ -145,8 +145,6 @@ class EmacsHeadAT28 < Formula
     if ENV['HOMEBREW_GITHUB_REF']
       branch = ENV['HOMEBREW_GITHUB_REF'].sub("refs/heads/", "")
       "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + branch +  "/" + resource
-    if ENV['HOMEBREW_TRAVIS_BRANCH']
-      "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + ENV['HOMEBREW_TRAVIS_BRANCH'] +  "/" + resource
     else
       "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + "master" + "/" + resource
     end

@@ -21,8 +21,6 @@ class EmacsHeadAT28 < Formula
   depends_on "mailutils" => :optional
   # GNU Emacs 27.x does support ImageMagick 7
   depends_on "imagemagick@7" => :recommended
-  # Turn on harfbuzz support
-  depends_on "harfbuzz"      => :recommended
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -487,7 +485,7 @@ class EmacsHeadAT28 < Formula
     system "./autogen.sh"
 
     if build.with? "cocoa"
-      args << "--with-ns" << "--disable-ns-self-contained"  << "--with-harfbuzz"
+      args << "--with-ns" << "--disable-ns-self-contained"
 
       system "./configure", *args
 

@@ -36,8 +36,6 @@ class EmacsHeadAT27 < Formula
   depends_on "mailutils" => :optional
   # GNU Emacs 27.x does support ImageMagick 7
   depends_on "imagemagick@7" => :recommended
-  # Turn on harfbuzz support
-  depends_on "harfbuzz"      => :recommended
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -159,8 +157,9 @@ class EmacsHeadAT27 < Formula
          "Use a retro style icon by Erik Mugele"
 
   def self.get_resource_url(resource)
-    if ENV['HOMEBREW_TRAVIS_BRANCH']
-      "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + ENV['HOMEBREW_TRAVIS_BRANCH'] +  "/" + resource
+    if ENV['HOMEBREW_GITHUB_REF']
+      branch = ENV['HOMEBREW_GITHUB_REF'].sub("refs/heads/", "")
+      "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + branch +  "/" + resource
     else
       "https://raw.githubusercontent.com/daviderestivo/homebrew-emacs-head/" + "master" + "/" + resource
     end
@@ -544,7 +543,7 @@ class EmacsHeadAT27 < Formula
     system "./autogen.sh"
 
     if build.with? "cocoa"
-      args << "--with-ns" << "--disable-ns-self-contained"  << "--with-harfbuzz"
+      args << "--with-ns" << "--disable-ns-self-contained"
 
       system "./configure", *args
 

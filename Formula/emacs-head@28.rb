@@ -19,7 +19,7 @@ class EmacsHeadAT28 < Formula
   depends_on "jansson"
   depends_on "dbus"      => :optional
   depends_on "mailutils" => :optional
-  # GNU Emacs 27.x does support ImageMagick 7
+  # GNU Emacs 28.x does support ImageMagick 7
   depends_on "imagemagick@7" => :recommended
 
   option "with-crash-debug",

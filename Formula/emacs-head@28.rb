@@ -483,9 +483,8 @@ class EmacsHeadAT28 < Formula
     if build.with? "native-comp"
 
       if build.with? "native-full-aot"
-        ENV["NATIVE_FULL_AOT"] = "1"
-      else
-        ENV["NATIVE_FULL_AOT"] = "0"
+        ohai "Force full Ahead-of-Time compilation"
+        make_flags << "NATIVE_FULL_AOT=1"
       end
 
       gcc_version = Formula["gcc"].any_installed_version

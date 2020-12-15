@@ -509,7 +509,7 @@ class EmacsHeadAT28 < Formula
         modern-icon-paper-icons modern-icon-azhilin
         modern-icon-mzaplotnik modern-icon-bananxan modern-icon-vscode
         modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-cg433n
-        modern-icon-purple modern-icon-yellow with-modern-icon-orange
+        modern-icon-purple modern-icon-yellow modern-icon-orange
         modern-icon-papirus modern-icon-pen modern-icon-pen-3d
         modern-icon-pen-lds56 with-modern-icon-pen-black
         modern-icon-black-variant modern-icon-purple-flat

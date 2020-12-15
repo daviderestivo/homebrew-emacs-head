@@ -210,6 +210,21 @@ class EmacsHeadAT27 < Formula
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
+  # The emacs binary is patched with a signature after linking. This invalidates the code
+  # signature. Code signing is required on Apple Silicon. This patch adds a step to resign
+  # the binary after it is patched.
+  patch do
+    url "https://github.com/emacs-mirror/emacs/commit/868f51324ac96bc3af49a826e1db443548c9d6cc.patch?full_index=1"
+    sha256 "d2b19fcca66338d082c15fa11d57abf7ad6b40129478bef4c6234c19966db988"
+  end
+
+  # Back-ported patch for configure and configure.guess to allow configure to complete
+  # for aarch64-apple-darwin targets.
+  patch do
+    url EmacsHeadAT27.get_resource_url("patches/0009-arm.patch")
+    sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
+  end
+
   # All the patches are now downloaded unconditionally even if they
   # are not used in order to overcome the reinstall issue mentioned
   # here:
@@ -245,6 +260,11 @@ class EmacsHeadAT27 < Formula
   resource "0008-Fix-window-role.patch" do
     url EmacsHeadAT27.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
+  resource "0009-arm.patch" do
+    url EmacsHeadAT27.get_resource_url("patches/0009-arm.patch")
+    sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
   end
 
   # Icons

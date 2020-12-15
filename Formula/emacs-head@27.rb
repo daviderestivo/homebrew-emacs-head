@@ -220,9 +220,12 @@ class EmacsHeadAT27 < Formula
 
   # Back-ported patch for configure and configure.guess to allow configure to complete
   # for aarch64-apple-darwin targets.
-  patch do
-    url EmacsHeadAT27.get_resource_url("patches/0009-arm.patch")
-    sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
+
+  if not build.head?
+    patch do
+      url EmacsHeadAT27.get_resource_url("patches/0009-arm.patch")
+      sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
+    end
   end
 
   # All the patches are now downloaded unconditionally even if they

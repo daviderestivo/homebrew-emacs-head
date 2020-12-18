@@ -31,6 +31,7 @@ This formula currently supports:
 
 Bottles for GNU Emacs 26.3 and 27.1 are available for the following
 macOS versions:
+- Big Sur
 - Catalina
 - Mojave
 - High Sierra

@@ -13,7 +13,8 @@ class EmacsHeadAT27 < Formula
     root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
     sha256 "65a56030ec6c36ed2be1f7d8f39dfbf5f8b80c8c0b5c82a64f1bd71604668110" => :high_sierra
     sha256 "4c88938118ea1122cb9e021739d63e642bc1cd4210653a67d6131e0293675fcc" => :mojave
-    sha256 "4549dc0090236fc33233853ae7e55af7e729fd58229cdb1389221fb90ea0c720" => :catalina
+    sha256 "f6e04a6b7e75f6cd9bf8449467eec830d078e263c7541034b6eea84651baf1fe" => :catalina
+    sha256 "5feb0cd95d0559d72136d8bfa4407ab206d28e5fc7891ef51aa1bf199493f7df" => :big_sur
   end
 
   head do
@@ -164,54 +165,9 @@ class EmacsHeadAT27 < Formula
     end
   end
 
-  # When closing a frame, GNU Emacs automatically focuses another frame.
-  # This re-focus has an additional side-effect: when closing a frame
-  # from one desktop/space, one gets automatically moved to another
-  # desktop/space where the refocused frame lives. The below patch
-  # disable this behaviour.
-  # Reference: https://github.com/d12frosted/homebrew-emacs-plus/issues/119
-  if build.with? "no-frame-refocus"
-    patch do
-      url EmacsHeadAT27.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
-      sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
-    end
-  end
-
-  if build.with? "pdumper"
-    patch do
-      url EmacsHeadAT27.get_resource_url("patches/0003-Pdumper-size-increase.patch")
-      sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
-    end
-  end
-
-  if build.with? "xwidgets"
-    unless build.with? "cocoa"
-      odie "--with-xwidgets is supported only on cocoa via xwidget webkit"
-    end
-    patch do
-      url EmacsHeadAT27.get_resource_url("patches/0004-Xwidgets-webkit-in-cocoa-27.patch")
-      sha256 "56406c03cbcea0d6d4c893074935404937cdae03259b8120b1b913971a948476"
-    end
-  end
-
-  patch do
-    url EmacsHeadAT27.get_resource_url("patches/0005-System-appearance-27.patch")
-    sha256 "d774e9da082352999fe3e9d2daa1065ea9bdaa670267caeebf86e01a77dc1d40"
-  end
-
-  patch do
-    url EmacsHeadAT27.get_resource_url("patches/0007-Ligatures-freeze-fix-27.patch")
-    sha256 "9f81669cba1dedb2733e95d49b8ebe82df3455bf258f130749665cc6adf2afa9"
-  end
-
-  patch do
-    url EmacsHeadAT27.get_resource_url("patches/0008-Fix-window-role.patch")
-    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
-  # All the patches are now downloaded unconditionally even if they
-  # are not used in order to overcome the reinstall issue mentioned
-  # here:
+  # All the patches and the icons have been declared as resources.
+  # They are downloaded unconditionally even if not used in order to
+  # overcome the reinstall issue mentioned here:
   # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
 
   # Patches
@@ -244,6 +200,11 @@ class EmacsHeadAT27 < Formula
   resource "0008-Fix-window-role.patch" do
     url EmacsHeadAT27.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
+  resource "0009-arm.patch" do
+    url EmacsHeadAT27.get_resource_url("patches/0009-arm.patch")
+    sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
   end
 
   # Icons
@@ -477,6 +438,68 @@ class EmacsHeadAT27 < Formula
     sha256 "be0ee790589a3e49345e1894050678eab2c75272a8d927db46e240a2466c6abc"
   end
 
+  # When closing a frame, GNU Emacs automatically focuses another frame.
+  # This re-focus has an additional side-effect: when closing a frame
+  # from one desktop/space, one gets automatically moved to another
+  # desktop/space where the refocused frame lives. The below patch
+  # disable this behaviour.
+  # Reference: https://github.com/d12frosted/homebrew-emacs-plus/issues/119
+  if build.with? "no-frame-refocus"
+    patch do
+      url EmacsHeadAT27.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
+      sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
+    end
+  end
+
+  if build.with? "pdumper"
+    patch do
+      url EmacsHeadAT27.get_resource_url("patches/0003-Pdumper-size-increase.patch")
+      sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
+    end
+  end
+
+  if build.with? "xwidgets"
+    unless build.with? "cocoa"
+      odie "--with-xwidgets is supported only on cocoa via xwidget webkit"
+    end
+    patch do
+      url EmacsHeadAT27.get_resource_url("patches/0004-Xwidgets-webkit-in-cocoa-27.patch")
+      sha256 "56406c03cbcea0d6d4c893074935404937cdae03259b8120b1b913971a948476"
+    end
+  end
+
+  patch do
+    url EmacsHeadAT27.get_resource_url("patches/0005-System-appearance-27.patch")
+    sha256 "d774e9da082352999fe3e9d2daa1065ea9bdaa670267caeebf86e01a77dc1d40"
+  end
+
+  patch do
+    url EmacsHeadAT27.get_resource_url("patches/0007-Ligatures-freeze-fix-27.patch")
+    sha256 "9f81669cba1dedb2733e95d49b8ebe82df3455bf258f130749665cc6adf2afa9"
+  end
+
+  patch do
+    url EmacsHeadAT27.get_resource_url("patches/0008-Fix-window-role.patch")
+    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
+  # The emacs binary is patched with a signature after linking. This invalidates the code
+  # signature. Code signing is required on Apple Silicon. This patch adds a step to resign
+  # the binary after it is patched.
+  patch do
+    url "https://github.com/emacs-mirror/emacs/commit/868f51324ac96bc3af49a826e1db443548c9d6cc.patch?full_index=1"
+    sha256 "d2b19fcca66338d082c15fa11d57abf7ad6b40129478bef4c6234c19966db988"
+  end
+
+  # Back-ported patch for configure and configure.guess to allow configure to complete
+  # for aarch64-apple-darwin targets.
+  stable do
+    patch do
+      url EmacsHeadAT27.get_resource_url("patches/0009-arm.patch")
+      sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
+    end
+  end
+
   def install
     args = %W[
       --enable-locallisppath=#{HOMEBREW_PREFIX}/share/emacs/site-lisp
@@ -548,7 +571,7 @@ class EmacsHeadAT27 < Formula
         modern-icon-paper-icons modern-icon-azhilin
         modern-icon-mzaplotnik modern-icon-bananxan modern-icon-vscode
         modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-cg433n
-        modern-icon-purple modern-icon-yellow with-modern-icon-orange
+        modern-icon-purple modern-icon-yellow modern-icon-orange
         modern-icon-papirus modern-icon-pen modern-icon-pen-3d
         modern-icon-pen-lds56 with-modern-icon-pen-black
         modern-icon-black-variant modern-icon-purple-flat

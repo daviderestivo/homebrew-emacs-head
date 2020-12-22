@@ -611,7 +611,7 @@ class EmacsHeadAT28 < Formula
         # and https://github.com/Homebrew/brew/pull/10075
         Dir.glob(contents_dir/"native-lisp/*/*.eln").each do |f|
           fo = MachO::MachOFile.new(f)
-          ohai "Change dylib_id of: " + f
+          ohai "Change dylib_id of ELN files before post_install phase"
           fo.dylib_id = "#{contents_dir}/" + f
           fo.write!
         end

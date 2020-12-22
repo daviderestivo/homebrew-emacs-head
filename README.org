@@ -99,24 +99,24 @@ Modeline Theme: [[https://github.com/daviderestivo/smart-mode-line-atom-one-dark
 ** Compilation options
 The following compilation options are available:
 
-| Option                  | Description                                                                  |
-|-------------------------+------------------------------------------------------------------------------|
-| ~--with-crash-debug~      | Append `-g3` to CFLAGS to enable crash debugging                             |
-| ~--with-cocoa~            | Build a Cocoa version of GNU Emacs                                           |
-| ~--with-ctags~            | Don't remove the ctags executable that GNU Emacs provides                    |
-| ~--with-dbus~             | Build with dbus support                                                      |
-| ~--without-gnutls~        | Disable gnutls support                                                       |
-| ~--with-imagemagick~      | Build with imagemagick support                                               |
-| ~--without-librsvg~       | Disable librsvg support                                                      |
-| ~--with-mailutils~        | Build with mailutils support                                                 |
-| ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only for emacs-head)               |
-| ~--without-modules~       | Disable dynamic modules support                                              |
-| ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one) |
-| ~--without-libxml2~       | Disable libxml2 support                                                      |
-| ~--with-pdumper~          | Enable pdumper support  (only for emacs-head@27 and emacs-head@28)           |
-| ~--with-xwidgets~         | Enable xwidgets support (only for emacs-head@27 and emacs-head@28)           |
-| ~--with-native-comp~      | Enable native-comp support (only for emacs-head@28)                          |
-| ~--with-native-full-aot~  | Enable Ahead-of-Time native compilation support (only for emacs-head@28)     |
+| Option                    | Description                                                                    |
+|---------------------------+--------------------------------------------------------------------------------|
+| ~--with-crash-debug~      | Append `-g3` to CFLAGS to enable crash debugging                               |
+| ~--with-cocoa~            | Build a Cocoa version of GNU Emacs                                             |
+| ~--with-ctags~            | Don't remove the ctags executable that GNU Emacs provides                      |
+| ~--with-dbus~             | Build with dbus support                                                        |
+| ~--without-gnutls~        | Disable gnutls support                                                         |
+| ~--with-imagemagick~      | Build with imagemagick support                                                 |
+| ~--without-librsvg~       | Disable librsvg support                                                        |
+| ~--with-mailutils~        | Build with mailutils support                                                   |
+| ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only for emacs-head)                 |
+| ~--without-modules~       | Disable dynamic modules support                                                |
+| ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one)   |
+| ~--without-libxml2~       | Disable libxml2 support                                                        |
+| ~--with-pdumper~          | Enable pdumper support  (only for emacs-head@27 and emacs-head@28)             |
+| ~--with-xwidgets~         | Enable xwidgets support (only for emacs-head@27 and emacs-head@28)             |
+| ~--with-native-comp~      | Enable Elisp native compilation support (only for emacs-head@28)               |
+| ~--with-native-full-aot~  | Enable Elisp Ahead-of-Time native compilation support (only for emacs-head@28) |
 
 For the terminal version only of GNU Emacs please omit ~--with-cocoa~.
 

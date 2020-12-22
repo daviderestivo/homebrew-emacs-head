@@ -41,7 +41,7 @@ GNU Emacs 26.3 bottles have been built with the following options:
 #+begin_src bash
 --with-cocoa
 --with-no-frame-refocus
---with-imagemagick (6)
+--with-imagemagick (6.x)
 --with-multicolor-fonts
 #+end_src
 
@@ -50,7 +50,7 @@ GNU Emacs 27.1 bottles have been built with the following options:
 #+begin_src bash
 --with-cocoa
 --with-no-frame-refocus
---with-imagemagick (7)
+--with-imagemagick (7.x)
 --with-pdumper
 --with-xwidgets
 #+end_src
@@ -179,10 +179,11 @@ NATIVE_FULL_AOT is disabled by default to improve build time, Only few
 lisp source files will be compiled during the build. All of the
 remaining ones will be dynamically compiled in the background once the
 Emacs application is launched for the first time. If you with to
-enable native full AoT, please use ~--with-native-comp~ option
+enable native full AoT, please use ~--with-native-full-aot~ option
 together with ~--with-native-comp~.
 
-More details can be found in the below links:
+More details about native Elisp code compilation can be found in the
+below links:
 
 - [[https://european-lisp-symposium.org/static/2020/corallo-nassi-manca-slides.pdf][Bringing GNU Emacs to Native Code (Slides)]]
 - [[https://www.youtube.com/watch?v=zKHYZOAc_bQ&app=desktop][Bringing GNU Emacs to Native Code (YouTube Video)]]

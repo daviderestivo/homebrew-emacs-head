@@ -52,7 +52,7 @@ class EmacsHeadAT28 < Formula
   option "with-native-comp",
          "Enable Elisp native compilation support"
   option "with-native-full-aot",
-         "Enable Ahead-of-Time Elisp native compilation support"
+         "Enable Elisp Ahead-of-Time native compilation support"
   option "with-modern-icon-sjrmanning",
          "Use a modern style icon by @Sjrmanning"
   option "with-modern-icon-asingh4242",

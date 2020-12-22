@@ -606,9 +606,9 @@ class EmacsHeadAT28 < Formula
         contents_dir.install "lisp"
 
         # Change .eln files dylib ID to avoid that after the
-        # post-install phase all of the *.eln files end up with the same
-        # ID. See: https://github.com/Homebrew/brew/issues/9526 and
-        # https://github.com/Homebrew/brew/pull/10075
+        # post-install phase all of the *.eln files end up with the
+        # same ID. See: https://github.com/Homebrew/brew/issues/9526
+        # and https://github.com/Homebrew/brew/pull/10075
         Dir.glob(contents_dir/"native-lisp/*/*.eln").each do |f|
           fo = MachO::MachOFile.new(f)
           ohai "Change dylib_id of: " + f

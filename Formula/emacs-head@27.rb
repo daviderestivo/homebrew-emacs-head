@@ -207,6 +207,11 @@ class EmacsHeadAT27 < Formula
     sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
   end
 
+  resource "0011-Executables-codesign.patch" do
+    url EmacsHeadAT27.get_resource_url("patches/0011-Executables-codesign.patch")
+    sha256 "d2b19fcca66338d082c15fa11d57abf7ad6b40129478bef4c6234c19966db988"
+  end
+
   # Icons
   resource "modern-icon-sjrmanning" do
     url EmacsHeadAT27.get_resource_url("icons/modern-icon-sjrmanning.icns")
@@ -495,7 +500,7 @@ class EmacsHeadAT27 < Formula
     # Apple Silicon. This patch adds a step to resign the binary after
     # it is patched.
     patch do
-      url "https://github.com/emacs-mirror/emacs/commit/868f51324ac96bc3af49a826e1db443548c9d6cc.patch?full_index=1"
+      url EmacsHeadAT27.get_resource_url("patches/0011-Executables-codesign.patch")
       sha256 "d2b19fcca66338d082c15fa11d57abf7ad6b40129478bef4c6234c19966db988"
     end
   end

@@ -202,8 +202,8 @@ class EmacsHeadAT27 < Formula
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  resource "0009-arm.patch" do
-    url EmacsHeadAT27.get_resource_url("patches/0009-arm.patch")
+  resource "0010-Arm.patch" do
+    url EmacsHeadAT27.get_resource_url("patches/0010-Arm.patch")
     sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
   end
 
@@ -495,7 +495,7 @@ class EmacsHeadAT27 < Formula
   # for aarch64-apple-darwin targets.
   stable do
     patch do
-      url EmacsHeadAT27.get_resource_url("patches/0009-arm.patch")
+      url EmacsHeadAT27.get_resource_url("patches/0010-Arm.patch")
       sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
     end
   end

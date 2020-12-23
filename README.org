@@ -175,10 +175,10 @@ it please follow the below instructions:
 brew install emacs-head@28 --with-cocoa --with-native-comp
 #+end_src
 
-NATIVE_FULL_AOT is disabled by default to improve build time, Only few
-lisp source files will be compiled during the build. All of the
+~NATIVE_FULL_AOT~ is disabled by default to improve build time. Only few
+lisp source files will be compiled during the build, all of the
 remaining ones will be dynamically compiled in the background once the
-Emacs application is launched for the first time. If you with to
+Emacs application is launched for the first time. If you wish to
 enable native full AoT, please use ~--with-native-full-aot~ option
 together with ~--with-native-comp~.
 

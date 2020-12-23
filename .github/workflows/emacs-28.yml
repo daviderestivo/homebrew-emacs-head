@@ -29,6 +29,8 @@ jobs:
           - ''
           # All options (imagemagick@7)
           - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets'
+          # All options (imagemagick@7) + native-comp support
+          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-native-comp'
 
     env:
       HOMEBREW_GITHUB_REF: ${{ github.head_ref || github.ref }}

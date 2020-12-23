@@ -2,16 +2,17 @@
 class EmacsHeadAT28 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://github.com/emacs-mirror/emacs.git"
   version "28.0.50"
   revision 1
 
   depends_on "autoconf"   => :build
+  depends_on "coreutils" => :build
   depends_on "gnu-sed"    => :build
   depends_on "texinfo"    => :build
   depends_on "automake"   => :build
   depends_on "cmake"      => :build
   depends_on "pkg-config" => :build
+  depends_on "gcc"        => :build
   depends_on "giflib"
   depends_on "gnutls"
   depends_on "librsvg"
@@ -48,6 +49,10 @@ class EmacsHeadAT28 < Formula
          "Enable pdumper support"
   option "with-xwidgets",
          "Enable xwidgets support"
+  option "with-native-comp",
+         "Enable Elisp native compilation support"
+  option "with-native-full-aot",
+         "Enable Elisp Ahead-of-Time native compilation support"
   option "with-modern-icon-sjrmanning",
          "Use a modern style icon by @Sjrmanning"
   option "with-modern-icon-asingh4242",
@@ -141,6 +146,15 @@ class EmacsHeadAT28 < Formula
   option "with-retro-icon-sink",
          "Use a retro style icon by Erik Mugele"
 
+  if build.with? "native-comp"
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
+    depends_on "gmp"       => :build
+    depends_on "libjpeg"   => :build
+    depends_on "libgccjit" => :reccomended
+  else
+    url "https://github.com/emacs-mirror/emacs.git"
+  end
+
   def self.get_resource_url(resource)
     if ENV['HOMEBREW_GITHUB_REF']
       branch = ENV['HOMEBREW_GITHUB_REF'].sub("refs/heads/", "")
@@ -154,6 +168,13 @@ class EmacsHeadAT28 < Formula
   # They are downloaded unconditionally even if not used in order to
   # overcome the reinstall issue mentioned here:
   # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
+
+  if build.with? "native-comp"
+    patch do
+      url EmacsHeadAT28.get_resource_url("patches/0009-Native-comp-env-setup.patch")
+      sha256 "418939d1935a1b0cdbd09c500ab964ee38e05accdd76a73564647c4597bf1230"
+    end
+  end
 
   # Patches
   resource "0001-No-frame-refocus-cocoa" do
@@ -174,6 +195,11 @@ class EmacsHeadAT28 < Formula
   resource "0008-Fix-window-role.patch" do
     url EmacsHeadAT28.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
+  resource "0009-Native-comp-env-setup.patch" do
+    url EmacsHeadAT28.get_resource_url("patches/0009-Native-comp-env-setup.patch")
+    sha256 "418939d1935a1b0cdbd09c500ab964ee38e05accdd76a73564647c4597bf1230"
   end
 
   # Icons
@@ -451,10 +477,40 @@ class EmacsHeadAT28 < Formula
       --without-x
     ]
 
+    make_flags = []
+
     if build.with? "dbus"
       args << "--with-dbus"
     else
       args << "--without-dbus"
+    end
+
+    if build.with? "native-comp"
+
+      if build.with? "native-full-aot"
+        ohai "Force full Ahead-of-Time compilation"
+        make_flags << "NATIVE_FULL_AOT=1"
+      end
+
+      gcc_version = Formula["gcc"].any_installed_version
+      gcc_version_major = gcc_version.major
+      gcc_lib="#{HOMEBREW_PREFIX}/lib/gcc/#{gcc_version_major}"
+
+      ENV['CFLAGS'] = [
+        '-O2',
+        '-march=native'
+      ].compact.join(' ')
+
+      ENV.append "CFLAGS", "-I#{Formula["gcc"].include}"
+
+      ENV.append "LDFLAGS", "-L#{gcc_lib}"
+      ENV.append "LDFLAGS", "-I#{Formula["gcc"].include}"
+      ENV.append "LDFLAGS", "-I#{Formula["libgccjit"].include}"
+      ENV.append "LDFLAGS", "-I#{Formula["gmp"].include}"
+      ENV.append "LDFLAGS", "-I#{Formula["libjpeg"].include}"
+
+      args << "--with-nativecomp"
+      make_flags << "BYTE_COMPILE_EXTRA_FLAGS=--eval '(setq comp-speed 2)'"
     end
 
     # Note that if ./configure is passed --with-imagemagick but can't find the
@@ -484,6 +540,9 @@ class EmacsHeadAT28 < Formula
       ENV.append_to_cflags "-g3"
     end
 
+    # Use GNU install
+    ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"
+    # Use GNU sed
     ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
     system "./autogen.sh"
 
@@ -505,7 +564,7 @@ class EmacsHeadAT28 < Formula
         end
       end
 
-      system "make"
+      system "make", *make_flags
       system "make", "install"
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
@@ -541,6 +600,23 @@ class EmacsHeadAT28 < Formula
         end
       end
 
+      if build.with? "native-comp"
+        contents_dir = buildpath/"nextstep/Emacs.app/Contents"
+        contents_dir.install "native-lisp"
+        contents_dir.install "lisp"
+
+        # Change .eln files dylib ID to avoid that after the
+        # post-install phase all of the *.eln files end up with the
+        # same ID. See: https://github.com/Homebrew/brew/issues/9526
+        # and https://github.com/Homebrew/brew/pull/10075
+        Dir.glob(contents_dir/"native-lisp/*/*.eln").each do |f|
+          fo = MachO::MachOFile.new(f)
+          ohai "Change dylib_id of ELN files before post_install phase"
+          fo.dylib_id = "#{contents_dir}/" + f
+          fo.write!
+        end
+      end
+
       # Install the (separate) debug symbol data that is generated
       # for the application
       if build.with? "crash-debug"
@@ -573,7 +649,7 @@ class EmacsHeadAT28 < Formula
         end
       end
 
-      system "make"
+      system "make", *make_flags
       system "make", "install"
     end
 

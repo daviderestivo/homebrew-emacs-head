@@ -171,8 +171,8 @@ class EmacsHeadAT28 < Formula
 
   if build.with? "native-comp"
     patch do
-      url EmacsHeadAT28.get_resource_url("patches/0009-Native-comp-env-setup.patch")
-      sha256 "418939d1935a1b0cdbd09c500ab964ee38e05accdd76a73564647c4597bf1230"
+      url EmacsHeadAT28.get_resource_url("patches/0009-Native-comp-env-setup-absolute.patch")
+      sha256 "a8e9b4efda95c0755ed29b65c6cce10138acd868b31596e74562acdf1cf9e14e"
     end
   end
 
@@ -197,9 +197,9 @@ class EmacsHeadAT28 < Formula
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  resource "0009-Native-comp-env-setup.patch" do
-    url EmacsHeadAT28.get_resource_url("patches/0009-Native-comp-env-setup.patch")
-    sha256 "418939d1935a1b0cdbd09c500ab964ee38e05accdd76a73564647c4597bf1230"
+  resource "0009-Native-comp-env-setup-absolute.patch" do
+    url EmacsHeadAT28.get_resource_url("patches/0009-Native-comp-env-setup-absolute.patch")
+    sha256 "a8e9b4efda95c0755ed29b65c6cce10138acd868b31596e74562acdf1cf9e14e"
   end
 
   # Icons

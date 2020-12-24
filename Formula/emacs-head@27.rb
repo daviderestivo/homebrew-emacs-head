@@ -202,9 +202,14 @@ class EmacsHeadAT27 < Formula
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  resource "0009-arm.patch" do
-    url EmacsHeadAT27.get_resource_url("patches/0009-arm.patch")
+  resource "0010-Arm.patch" do
+    url EmacsHeadAT27.get_resource_url("patches/0010-Arm.patch")
     sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
+  end
+
+  resource "0011-Executables-codesign.patch" do
+    url EmacsHeadAT27.get_resource_url("patches/0011-Executables-codesign.patch")
+    sha256 "d2b19fcca66338d082c15fa11d57abf7ad6b40129478bef4c6234c19966db988"
   end
 
   # Icons
@@ -483,20 +488,20 @@ class EmacsHeadAT27 < Formula
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  # The emacs binary is patched with a signature after linking. This invalidates the code
-  # signature. Code signing is required on Apple Silicon. This patch adds a step to resign
-  # the binary after it is patched.
-  patch do
-    url "https://github.com/emacs-mirror/emacs/commit/868f51324ac96bc3af49a826e1db443548c9d6cc.patch?full_index=1"
-    sha256 "d2b19fcca66338d082c15fa11d57abf7ad6b40129478bef4c6234c19966db988"
-  end
-
-  # Back-ported patch for configure and configure.guess to allow configure to complete
-  # for aarch64-apple-darwin targets.
   stable do
+    # Back-ported patch for configure and configure.guess to allow
+    # configure to complete for aarch64-apple-darwin targets.
     patch do
-      url EmacsHeadAT27.get_resource_url("patches/0009-arm.patch")
+      url EmacsHeadAT27.get_resource_url("patches/0010-Arm.patch")
       sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
+    end
+    # The emacs binary is patched with a signature after linking. This
+    # invalidates the code signature. Code signing is required on
+    # Apple Silicon. This patch adds a step to resign the binary after
+    # it is patched.
+    patch do
+      url EmacsHeadAT27.get_resource_url("patches/0011-Executables-codesign.patch")
+      sha256 "d2b19fcca66338d082c15fa11d57abf7ad6b40129478bef4c6234c19966db988"
     end
   end
 

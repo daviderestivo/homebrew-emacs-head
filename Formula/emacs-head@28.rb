@@ -169,13 +169,6 @@ class EmacsHeadAT28 < Formula
   # overcome the reinstall issue mentioned here:
   # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
 
-  if build.with? "native-comp"
-    patch do
-      url EmacsHeadAT28.get_resource_url("patches/0009-Native-comp-env-setup-absolute.patch")
-      sha256 "60869f091dc29fe1a7e7b39c08be3e5097d2ea6f03ff697663b3dc5b874649b8"
-    end
-  end
-
   # Patches
   resource "0001-No-frame-refocus-cocoa" do
     url EmacsHeadAT28.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
@@ -195,11 +188,6 @@ class EmacsHeadAT28 < Formula
   resource "0008-Fix-window-role.patch" do
     url EmacsHeadAT28.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
-  resource "0009-Native-comp-env-setup-absolute.patch" do
-    url EmacsHeadAT28.get_resource_url("patches/0009-Native-comp-env-setup-absolute.patch")
-    sha256 "60869f091dc29fe1a7e7b39c08be3e5097d2ea6f03ff697663b3dc5b874649b8"
   end
 
   # Icons

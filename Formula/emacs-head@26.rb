@@ -136,6 +136,8 @@ class EmacsHeadAT26 < Formula
          "Use a modern style icon by Jay Zawrotny"
   option "with-modern-icon-doom3",
          "Use a modern style icon by Jay Zawrotny"
+  option "with-modern-icon-doom-cacodemon",
+         "Use a modern style icon by Christian Westrom"
   option "with-retro-icon-emacs-logo",
          "Use a retro style icon by Luis Fernandes"
   option "with-retro-icon-gnu-head",
@@ -388,6 +390,11 @@ class EmacsHeadAT26 < Formula
     sha256 "3ac398d8d691687320d3a88cd8e634c8cfb7ca358bfe6c30108667f2486438b3"
   end
 
+  resource "emacs-icon-doom-cacodemon" do
+    url EmacsHeadAT26.get_resource_url("icons/modern-icon-doom-cacodemon.icns")
+    sha256 "5a8d53896f72992bc7158aaaa47665df4009be646deee39af6f8e76893568728"
+  end
+
   resource "retro-icon-emacs-logo" do
     url EmacsHeadAT26.get_resource_url("icons/retro-icon-emacs-logo.icns")
     sha256 "0d7100faa68c17d012fe9309f9496b8d530946c324cb7598c93a4c425326ff97"
@@ -526,9 +533,10 @@ class EmacsHeadAT26 < Formula
         modern-icon-emacs-icon9 modern-icon-emacs-card-blue-deep
         modern-icon-emacs-card-british-racing-green
         modern-icon-emacs-card-carmine modern-icon-emacs-card-green
-        modern-icon-doom modern-icon-doom3 retro-icon-emacs-logo
-        retro-icon-gnu-head retro-icon-gnu-meditate-levitate
-        retro-icon-sink-bw retro-icon-sink]).each do |icon|
+        modern-icon-doom modern-icon-doom3 modern-icon-doom-cacodemon
+        retro-icon-emacs-logo retro-icon-gnu-head
+        retro-icon-gnu-meditate-levitate retro-icon-sink-bw
+        retro-icon-sink]).each do |icon|
 
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"

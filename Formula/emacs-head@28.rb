@@ -97,6 +97,10 @@ class EmacsHeadAT28 < Formula
          "Use a modern style icon by Nasser Alshammari (Spacemacs Logo)"
   option "with-modern-icon-alecive-flatwoken",
          "Use a modern style icon by Alessandro Roncone"
+  option "with-modern-icon-elrumo1",
+         "Use a modern style icon by Elias Ruiz Monserrat"
+  option "with-modern-icon-elrumo2",
+         "Use a modern style icon by Elias Ruiz Monserrat"
   option "with-modern-icon-bokehlicia-captiva",
          "Use a modern style icon by Bokehlicia"
   option "with-modern-icon-nuvola",
@@ -301,6 +305,16 @@ class EmacsHeadAT28 < Formula
   resource "modern-icon-alecive-flatwoken" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-alecive-flatwoken.icns")
     sha256 "779373dd240aa532248ac2918da3db0207afaa004f157fa790110eef2e216ccd"
+  end
+
+  resource "modern-icon-elrumo1" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-elrumo1.icns")
+    sha256 "f0900babe3d36b4660a4757ac1fa8abbb6e2978f4a4f2d18fa3c7ab1613e9d42"
+  end
+
+  resource "modern-icon-elrumo2" do
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-elrumo2.icns")
+    sha256 "0fbdab5172421d8235d9c53518dc294efbb207a4903b42a1e9a18212e6bae4f4"
   end
 
   resource "modern-icon-bokehlicia-captiva" do
@@ -573,6 +587,7 @@ class EmacsHeadAT28 < Formula
         modern-icon-pen-lds56 with-modern-icon-pen-black
         modern-icon-black-variant modern-icon-purple-flat
         modern-icon-spacemacs modern-icon-alecive-flatwoken
+        modern-icon-elrumo1 modern-icon-elrumo2
         modern-icon-bokehlicia-captiva modern-icon-nuvola
         modern-icon-black-gnu-head modern-icon-black-dragon
         modern-icon-emacs-icon1 modern-icon-emacs-icon2

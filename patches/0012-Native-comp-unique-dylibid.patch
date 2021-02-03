@@ -30,5 +30,3 @@ index b5adc3ed86..d959c3188c 100644
   comp.d_default_idx =
     CALL1I (comp-data-container-idx, CALL1I (comp-ctxt-d-default, Vcomp_ctxt));
   comp.d_impure_idx =
--- 
-2.20.1

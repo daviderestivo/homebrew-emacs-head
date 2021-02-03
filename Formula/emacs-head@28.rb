@@ -198,7 +198,7 @@ class EmacsHeadAT28 < Formula
 
   resource "0012-Native-comp-unique-dylibid.patch" do
     url EmacsHeadAT28.get_resource_url("patches/0012-Native-comp-unique-dylibid.patch")
-    sha256 "1167f994d1d65eef77159a33add00ff4419f1189fb41dd4937ae21b95653b9bb"
+    sha256 "a776f9eb7633f9b60fb90d85bd5862dae798e53e5c821931f4c5d90dfcd06689"
   end
 
   # Icons
@@ -486,7 +486,7 @@ class EmacsHeadAT28 < Formula
   if build.with? "native-comp"
     patch do
       url EmacsHeadAT28.get_resource_url("patches/0012-Native-comp-unique-dylibid.patch")
-      sha256 "1167f994d1d65eef77159a33add00ff4419f1189fb41dd4937ae21b95653b9bb"
+      sha256 "a776f9eb7633f9b60fb90d85bd5862dae798e53e5c821931f4c5d90dfcd06689"
     end
   end
 

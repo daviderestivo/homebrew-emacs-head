@@ -23,7 +23,7 @@ index b5adc3ed86..d959c3188c 100644
 +  && defined (DARWIN_OS)
 +  gcc_jit_context_add_driver_option (
 +    comp.ctxt,
-+    SSDATA (concat2 (build_string ("-install_name "),
++    SSDATA (concat2 (build_string ("-dynamiclib -install_name "),
 +		     Ffile_name_nondirectory (filename))));
 +#endif
 +

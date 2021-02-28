@@ -518,7 +518,7 @@ class EmacsHeadAT28 < Formula
       ENV.append "LDFLAGS", "-I#{Formula["gmp"].include}"
       ENV.append "LDFLAGS", "-I#{Formula["libjpeg"].include}"
 
-      args << "--with-nativecomp"
+      args << "--with-native-compilation"
       make_flags << "BYTE_COMPILE_EXTRA_FLAGS=--eval '(setq comp-speed 2)'"
     end
 

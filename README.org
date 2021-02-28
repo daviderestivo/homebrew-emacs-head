@@ -29,34 +29,6 @@ This formula currently supports:
 - GNU Emacs 27.1 (or HEAD)
 - GNU Emacs HEAD (currently 28.0.50)
 
-Bottles for GNU Emacs 26.3 and 27.1 are available for the following
-macOS versions:
-- Big Sur
-- Catalina
-- Mojave
-- High Sierra
-
-GNU Emacs 26.3 bottles have been built with the following options:
-
-#+begin_src bash
---with-cocoa
---with-no-frame-refocus
---with-imagemagick (6.x)
---with-multicolor-fonts
-#+end_src
-
-GNU Emacs 27.1 bottles have been built with the following options:
-
-#+begin_src bash
---with-cocoa
---with-no-frame-refocus
---with-imagemagick (7.x)
---with-pdumper
---with-xwidgets
-#+end_src
-
-if you need support for an older macOS version please open an [[https://github.com/daviderestivo/homebrew-emacs-head/issues/new/choose][Issue]].
-
 ** Installation
 You can install this formula using:
 

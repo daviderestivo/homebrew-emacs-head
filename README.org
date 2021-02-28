@@ -32,16 +32,16 @@ This formula currently supports:
 ** Installation
 You can install this formula using:
 
-*** GNU Emacs 26 (Bottle)
+*** GNU Emacs 26
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head@26
+brew install emacs-head@26 --with-cocoa
 #+end_src
 
-*** GNU Emacs 27 (Bottle or HEAD)
+*** GNU Emacs 27
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head
+brew install emacs-head --with-cocoa
 #+end_src
 
 If you wish to install the HEAD version of GNU Emacs 27 please do:

@@ -417,7 +417,7 @@ class EmacsHeadAT28 < Formula
     sha256 "3ac398d8d691687320d3a88cd8e634c8cfb7ca358bfe6c30108667f2486438b3"
   end
 
-  resource "emacs-icon-doom-cacodemon" do
+  resource "modern-icon-doom-cacodemon" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-doom-cacodemon.icns")
     sha256 "5a8d53896f72992bc7158aaaa47665df4009be646deee39af6f8e76893568728"
   end
@@ -530,7 +530,7 @@ class EmacsHeadAT28 < Formula
       ENV.append "LDFLAGS", "-I#{Formula["gmp"].include}"
       ENV.append "LDFLAGS", "-I#{Formula["libjpeg"].include}"
 
-      args << "--with-nativecomp"
+      args << "--with-native-compilation"
       make_flags << "BYTE_COMPILE_EXTRA_FLAGS=--eval '(setq comp-speed 2)'"
     end
 

@@ -21,7 +21,7 @@
 </p>
 #+end_html
 
-*Emacs Head* is an Homebrew formula based on the original Homebrew Emacs
+*Emacs Head* is an Homebrew Formula based on the original Homebrew Emacs
 [[https://github.com/Homebrew/homebrew-core/blob/master/Formula/emacs.rb][one]].
 
 This formula currently supports:
@@ -29,47 +29,19 @@ This formula currently supports:
 - GNU Emacs 27.1 (or HEAD)
 - GNU Emacs HEAD (currently 28.0.50)
 
-Bottles for GNU Emacs 26.3 and 27.1 are available for the following
-macOS versions:
-- Big Sur
-- Catalina
-- Mojave
-- High Sierra
-
-GNU Emacs 26.3 bottles have been built with the following options:
-
-#+begin_src bash
---with-cocoa
---with-no-frame-refocus
---with-imagemagick (6.x)
---with-multicolor-fonts
-#+end_src
-
-GNU Emacs 27.1 bottles have been built with the following options:
-
-#+begin_src bash
---with-cocoa
---with-no-frame-refocus
---with-imagemagick (7.x)
---with-pdumper
---with-xwidgets
-#+end_src
-
-if you need support for an older macOS version please open an [[https://github.com/daviderestivo/homebrew-emacs-head/issues/new/choose][Issue]].
-
 ** Installation
 You can install this formula using:
 
-*** GNU Emacs 26 (Bottle)
+*** GNU Emacs 26
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head@26
+brew install emacs-head@26 --with-cocoa
 #+end_src
 
-*** GNU Emacs 27 (Bottle or HEAD)
+*** GNU Emacs 27
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head
+brew install emacs-head --with-cocoa
 #+end_src
 
 If you wish to install the HEAD version of GNU Emacs 27 please do:
@@ -99,24 +71,24 @@ Modeline Theme: [[https://github.com/daviderestivo/smart-mode-line-atom-one-dark
 ** Compilation options
 The following compilation options are available:
 
-| Option                    | Description                                                                    |
-|---------------------------+--------------------------------------------------------------------------------|
-| ~--with-crash-debug~      | Append `-g3` to CFLAGS to enable crash debugging                               |
-| ~--with-cocoa~            | Build a Cocoa version of GNU Emacs                                             |
-| ~--with-ctags~            | Don't remove the ctags executable that GNU Emacs provides                      |
-| ~--with-dbus~             | Build with dbus support                                                        |
-| ~--without-gnutls~        | Disable gnutls support                                                         |
-| ~--with-imagemagick~      | Build with imagemagick support                                                 |
-| ~--without-librsvg~       | Disable librsvg support                                                        |
-| ~--with-mailutils~        | Build with mailutils support                                                   |
-| ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only for emacs-head)                 |
-| ~--without-modules~       | Disable dynamic modules support                                                |
-| ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one)   |
-| ~--without-libxml2~       | Disable libxml2 support                                                        |
-| ~--with-pdumper~          | Enable pdumper support  (only for emacs-head@27 and emacs-head@28)             |
-| ~--with-xwidgets~         | Enable xwidgets support (only for emacs-head@27 and emacs-head@28)             |
-| ~--with-native-comp~      | Enable Elisp native compilation support (only for emacs-head@28)               |
-| ~--with-native-full-aot~  | Enable Elisp Ahead-of-Time native compilation support (only for emacs-head@28) |
+| Option                  | Description                                                                   |
+|-------------------------+-------------------------------------------------------------------------------|
+| ~--with-crash-debug~      | Append `-g3` to CFLAGS to enable crash debugging                              |
+| ~--with-cocoa~            | Build a Cocoa version of GNU Emacs                                            |
+| ~--with-ctags~            | Don't remove the ctags executable that GNU Emacs provides                     |
+| ~--with-dbus~             | Build with dbus support                                                       |
+| ~--without-gnutls~        | Disable gnutls support                                                        |
+| ~--with-imagemagick~      | Build with imagemagick support                                                |
+| ~--without-librsvg~       | Disable librsvg support                                                       |
+| ~--with-mailutils~        | Build with mailutils support                                                  |
+| ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only on emacs-head@26)              |
+| ~--without-modules~       | Disable dynamic modules support                                               |
+| ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one)  |
+| ~--without-libxml2~       | Disable libxml2 support                                                       |
+| ~--with-pdumper~          | Enable pdumper support  (only on emacs-head and emacs-head@28)                |
+| ~--with-xwidgets~         | Enable xwidgets support (only on emacs-head and emacs-head@28)                |
+| ~--with-native-comp~      | Enable Elisp native compilation support (only on emacs-head@28)               |
+| ~--with-native-full-aot~  | Enable Elisp Ahead-of-Time native compilation support (only on emacs-head@28) |
 
 For the terminal version only of GNU Emacs please omit ~--with-cocoa~.
 
@@ -145,7 +117,7 @@ appearance.
     ('dark (load-theme 'tango-dark t))))
 
 (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
-#+end_src>
+#+end_src
 
 Note that this hook is also run once when Emacs is initialized, so
 simply adding the above to your init.el will allow matching the system
@@ -154,18 +126,19 @@ system appearance is by inspecting the value of the
 ns-system-appearance variable.
 
 The hook is NOT run in TTY Emacs sessions.
+
 ** Pdumper support
-The portable dumper is available in HEAD. To enable this feature
-please use ~--HEAD --with-pdumper~.
+Portable dumper is supported by emacs-head and emacs-head@28. To
+enable this feature please use ~--with-pdumper~.
 
 For a pdumper configuration example, you could take inspiration from
 [[https://github.com/daviderestivo/galactic-emacs][Galactic Emacs]]: [[https://github.com/daviderestivo/galactic-emacs/blob/master/conf/pdumper-init.el][pdumper-init.el]] and [[https://github.com/daviderestivo/galactic-emacs/blob/master/conf/pdumper-config.el][pdumper-config.el]] configuration
 files.
 
 ** Xwidgets support
-This formula support via a (patch) native macOS X Cocoa Xwidgets
-support via embedding a native webkit window. To enable this feature
-please use ~--HEAD --with-xwidgets~.
+This formula support native macOS X Cocoa Xwidgets via embedding a
+native webkit window. To enable this feature please use
+~--with-xwidgets~ (only on emacs-head and emacs-head@28).
 
 ** Native-comp support
 This formula support native Elisp code compilation. In order to enable
@@ -240,8 +213,8 @@ Additional useful links:
 | ~--with-modern-icon-emacs-card-british-racing-green~ | Use a modern style icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/modern-icon-emacs-card-british-racing-green.png]] | [[https://github.com/emacsfodder/emacs-icons-project][Link]] |
 | ~--with-modern-icon-emacs-card-carmine~              | Use a modern style icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/modern-icon-emacs-card-carmine.png]]              | [[https://github.com/emacsfodder/emacs-icons-project][Link]] |
 | ~--with-modern-icon-emacs-card-green~                | Use a modern style icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/modern-icon-emacs-card-green.png]]                | [[https://github.com/emacsfodder/emacs-icons-project][Link]] |
-| ~--with-modern-icon-doom~                            | Use a modern style icon by [[http://jayzawrotny.com/][Jay Zawrotny]]             | [[/icons/modern-icon-doom.png]]                            | [[https://github.com/eccentric-j/doom-icon][Link]] |
-| ~--with-modern-icon-doom3~                           | Use a modern style icon by [[http://jayzawrotny.com/][Jay Zawrotny]]             | [[/icons/modern-icon-doom3.png]]                           | [[https://github.com/eccentric-j/doom-icon][Link]] |
+| ~--with-modern-icon-doom~                            | Use a modern style icon by [[http://eccentric-j.com/][Eccentric J]]              | [[/icons/modern-icon-doom.png]]                            | [[https://github.com/eccentric-j/doom-icon][Link]] |
+| ~--with-modern-icon-doom3~                           | Use a modern style icon by [[http://eccentric-j.com/][Eccentric J]]              | [[/icons/modern-icon-doom3.png]]                           | [[https://github.com/eccentric-j/doom-icon][Link]] |
 | ~--with-modern-icon-doom-cacodemon~                  | Use a modern style icon by [[https://gitlab.com/wildwestrom][Christian Westrom]]        | [[/icons/modern-icon-doom-cacodemon.png]]                  | [[https://gitlab.com/wildwestrom/emacs-doom-icon][Link]] |
 | ~--with-retro-icon-emacs-logo~                       | Use a retro  style icon by [[https://www.ee.ryerson.ca/~elf/][Luis Fernandes]]           | [[/icons/retro-icon-emacs-logo.png]]                       | [[https://en.m.wikipedia.org/wiki/File:Emacs-logo.svg][Link]] |
 | ~--with-retro-icon-gnu-head~                         | Use a retro  style icon by [[https://github.com/aurium][Aurélio A. Heckert]]       | [[/icons/retro-icon-gnu-head.png]]                         | [[https://www.gnu.org/graphics/heckert_gnu.html][Link]] |
@@ -250,9 +223,9 @@ Additional useful links:
 | ~--with-retro-icon-sink~                             | Use a retro  style icon by [[https://www.teuton.org/~ejm/][Erik Mugele]]              | [[/icons/retro-icon-sink.png]]                             | [[https://www.teuton.org/~ejm/emacsicon/][Link]] |
 
 ** Why yet another Homebrew GNU Emacs formula?
-Since the option ~--with-cocoa~ is not available in the latest GNU Emacs
-homebrew-core formula (see [[https://github.com/Homebrew/homebrew-core/pull/36070][pull request]]), I decided to build my own
-formula.
+Since the option ~--with-cocoa~ is not available anymore in the latest
+GNU Emacs homebrew-core formula (see [[https://github.com/Homebrew/homebrew-core/pull/36070][pull request]]), I decided to build
+my own formula.
 
 ** About the logo
 #+begin_quote

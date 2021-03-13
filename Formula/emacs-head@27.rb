@@ -8,15 +8,6 @@ class EmacsHeadAT27 < Formula
   version "27.1"
   revision 1
 
-  bottle do
-    rebuild 3
-    root_url "https://dl.bintray.com/daviderestivo/homebrew-emacs-head"
-    sha256 "65a56030ec6c36ed2be1f7d8f39dfbf5f8b80c8c0b5c82a64f1bd71604668110" => :high_sierra
-    sha256 "4c88938118ea1122cb9e021739d63e642bc1cd4210653a67d6131e0293675fcc" => :mojave
-    sha256 "f6e04a6b7e75f6cd9bf8449467eec830d078e263c7541034b6eea84651baf1fe" => :catalina
-    sha256 "5feb0cd95d0559d72136d8bfa4407ab206d28e5fc7891ef51aa1bf199493f7df" => :big_sur
-  end
-
   head do
     url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-27"
   end
@@ -434,7 +425,7 @@ class EmacsHeadAT27 < Formula
     sha256 "3ac398d8d691687320d3a88cd8e634c8cfb7ca358bfe6c30108667f2486438b3"
   end
 
-  resource "emacs-icon-doom-cacodemon" do
+  resource "modern-icon-doom-cacodemon" do
     url EmacsHeadAT27.get_resource_url("icons/modern-icon-doom-cacodemon.icns")
     sha256 "5a8d53896f72992bc7158aaaa47665df4009be646deee39af6f8e76893568728"
   end

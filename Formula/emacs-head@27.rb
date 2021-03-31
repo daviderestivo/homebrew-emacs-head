@@ -201,7 +201,7 @@ class EmacsHeadAT27 < Formula
 
   resource "0010-Arm.patch" do
     url EmacsHeadAT27.get_resource_url("patches/0010-Arm.patch")
-    sha256 "eeed4c0de763c08810d184501b64de3653adb84cc651497bdb4158ba3448312a"
+    sha256 "344fee330fec4071e29c900093fdf1e2d8a7328df1c75b17e6e9d9a954835741"
   end
 
   # Icons
@@ -500,7 +500,7 @@ class EmacsHeadAT27 < Formula
     # configure to complete for aarch64-apple-darwin targets.
     patch do
       url EmacsHeadAT27.get_resource_url("patches/0010-Arm.patch")
-      sha256 "eeed4c0de763c08810d184501b64de3653adb84cc651497bdb4158ba3448312a"
+      sha256 "344fee330fec4071e29c900093fdf1e2d8a7328df1c75b17e6e9d9a954835741"
     end
   end
 

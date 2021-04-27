@@ -152,13 +152,13 @@ class EmacsHeadAT28 < Formula
   option "with-retro-icon-sink",
          "Use a retro style icon by Erik Mugele"
 
+  # Url
+  url "https://github.com/emacs-mirror/emacs.git"
+
   if build.with? "native-comp"
-    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
     depends_on "gmp"       => :build
     depends_on "libjpeg"   => :build
     depends_on "libgccjit" => :reccomended
-  else
-    url "https://github.com/emacs-mirror/emacs.git"
   end
 
   def self.get_resource_url(resource)

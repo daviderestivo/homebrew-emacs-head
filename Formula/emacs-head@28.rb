@@ -2,6 +2,7 @@
 class EmacsHeadAT28 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
+  url "https://github.com/emacs-mirror/emacs.git"
   version "28.0.50"
   revision 1
 
@@ -153,12 +154,10 @@ class EmacsHeadAT28 < Formula
          "Use a retro style icon by Erik Mugele"
 
   if build.with? "native-comp"
-    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
     depends_on "gmp"       => :build
     depends_on "libjpeg"   => :build
+    depends_on "zlib"      => :build
     depends_on "libgccjit" => :reccomended
-  else
-    url "https://github.com/emacs-mirror/emacs.git"
   end
 
   def self.get_resource_url(resource)

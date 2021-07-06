@@ -2,7 +2,7 @@
 class EmacsHeadAT28 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://github.com/emacs-mirror/emacs.git", revision: "4d63a033a726a8da33bda8d18a503e88bfb794fb"
+  url "https://github.com/emacs-mirror/emacs.git", revision: "6ec3cf1ccb5380acc376e89140b8d3a7fa4e471a"
   version "28.0.50"
   revision 1
 

@@ -573,7 +573,6 @@ class EmacsHeadAT28 < Formula
       end
 
       system "make", *make_flags
-      system "make", "install"
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
@@ -611,18 +610,18 @@ class EmacsHeadAT28 < Formula
       end
 
       if build.with? "native-comp"
-        contents_dir = buildpath/"lib/emacs"
-
         # Change .eln files dylib ID to avoid that after the
         # post-install phase all of the *.eln files end up with the
         # same ID. See: https://github.com/Homebrew/brew/issues/9526
         # and https://github.com/Homebrew/brew/pull/10075
-        Dir.glob(contents_dir/"**/native-lisp/**/**/*.eln").each do |f|
+        Dir.glob(buildpath/"native-lisp/**/*.eln").each do |f|
           fo = MachO::MachOFile.new(f)
-          fo.dylib_id = "#{contents_dir}/" + f
+          fo.dylib_id = "#{buildpath}/" + f
           fo.write!
         end
       end
+
+      system "make", "install"
 
       # Install the (separate) debug symbol data that is generated
       # for the application

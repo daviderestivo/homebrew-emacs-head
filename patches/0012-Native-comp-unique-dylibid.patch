@@ -1,34 +1,20 @@
-From c4990edcea51e273452e13a4b9b98549aa62a508 Mon Sep 17 00:00:00 2001
-From: Andrea Corallo <akrl@sdf.org>
-Date: Thu, 28 Jan 2021 22:54:49 +0100
-Subject: [PATCH] * On MacOS set a unique dylib ID (Bug#45934)
-
-	* src/comp.c (Fcomp__compile_ctxt_to_file): On MacOS set a unique
-	dylib ID (Bug#45934).
----
-src/comp.c | 10 ++++++++++
-1 file changed, 10 insertions(+)
-
 diff --git a/src/comp.c b/src/comp.c
 index b5adc3ed86..d959c3188c 100644
 --- a/src/comp.c
 +++ b/src/comp.c
-@@ -4374,6 +4374,16 @@ DEFUN ("comp--compile-ctxt-to-file", Fcomp__compile_ctxt_to_file,
-				  GCC_JIT_INT_OPTION_OPTIMIZATION_LEVEL,
-				  comp.speed < 0 ? 0
-				  : (comp.speed > 3 ? 3 : comp.speed));
+@@ -4490,6 +4490,15 @@ DEFUN ("comp--compile-ctxt-to-file", Fcomp__compile_ctxt_to_file,
+ 				  GCC_JIT_INT_OPTION_OPTIMIZATION_LEVEL,
+ 				  comp.speed < 0 ? 0
+ 				  : (comp.speed > 3 ? 3 : comp.speed));
 +
-+/* On MacOS set a unique dylib ID (Bug#45934). */
++  /* On MacOS set a unique dylib ID (Bug#45934). */
 +#if defined (LIBGCCJIT_HAVE_gcc_jit_context_add_driver_option) \
 +  && defined (DARWIN_OS)
++  gcc_jit_context_add_driver_option (comp.ctxt, "-install_name");
 +  gcc_jit_context_add_driver_option (
-+    comp.ctxt,
-+    SSDATA (concat2 (build_string ("-dynamiclib -install_name "),
-+		     Fexpand_file_name(Ffile_name_nondirectory (filename)))));
++	  comp.ctxt, SSDATA (Ffile_name_nondirectory (filename)));
 +#endif
 +
-  comp.d_default_idx =
-    CALL1I (comp-data-container-idx, CALL1I (comp-ctxt-d-default, Vcomp_ctxt));
-  comp.d_impure_idx =
--- 
-2.20.1
+   comp.d_default_idx =
+     CALL1I (comp-data-container-idx, CALL1I (comp-ctxt-d-default, Vcomp_ctxt));
+   comp.d_impure_idx =

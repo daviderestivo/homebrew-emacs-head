@@ -197,7 +197,7 @@ class EmacsHeadAT28 < Formula
 
   resource "0012-Native-comp-unique-dylibid.patch" do
     url EmacsHeadAT28.get_resource_url("patches/0012-Native-comp-unique-dylibid.patch")
-    sha256 "4cd4703fbb48255828913d1ddb8b86ab50992cb7a3491a4b882253beaff9536d"
+    sha256 "9332d86ab6a387e8d79884b7cceff6f84bc9d8d438ed0d41e6326d34e3f52fe0"
   end
 
   # Icons
@@ -485,7 +485,7 @@ class EmacsHeadAT28 < Formula
   if build.with? "native-comp"
     patch do
       url EmacsHeadAT28.get_resource_url("patches/0012-Native-comp-unique-dylibid.patch")
-      sha256 "4cd4703fbb48255828913d1ddb8b86ab50992cb7a3491a4b882253beaff9536d"
+      sha256 "9332d86ab6a387e8d79884b7cceff6f84bc9d8d438ed0d41e6326d34e3f52fe0"
     end
   end
 
@@ -618,13 +618,6 @@ class EmacsHeadAT28 < Formula
             icons_dir.install Dir["*.icns*"].first => "Emacs.icns"
             ohai "Installing " + icon + " icon"
           end
-        end
-      end
-
-      if build.with? "native-comp"
-        patch do
-          url EmacsHeadAT28.get_resource_url("patches/0012-Native-comp-unique-dylibid.patch")
-          sha256 ""
         end
       end
 

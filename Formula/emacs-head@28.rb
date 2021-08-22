@@ -195,6 +195,11 @@ class EmacsHeadAT28 < Formula
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
+  resource "0012-Native-comp-unique-dylibid.patch" do
+    url EmacsHeadAT28.get_resource_url("patches/0012-Native-comp-unique-dylibid.patch")
+    sha256 "9332d86ab6a387e8d79884b7cceff6f84bc9d8d438ed0d41e6326d34e3f52fe0"
+  end
+
   # Icons
   resource "modern-icon-sjrmanning" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-sjrmanning.icns")
@@ -477,6 +482,13 @@ class EmacsHeadAT28 < Formula
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
+  if build.with? "native-comp"
+    patch do
+      url EmacsHeadAT28.get_resource_url("patches/0012-Native-comp-unique-dylibid.patch")
+      sha256 "9332d86ab6a387e8d79884b7cceff6f84bc9d8d438ed0d41e6326d34e3f52fe0"
+    end
+  end
+
   def install
     args = %W[
       --enable-locallisppath=#{HOMEBREW_PREFIX}/share/emacs/site-lisp
@@ -606,18 +618,6 @@ class EmacsHeadAT28 < Formula
             icons_dir.install Dir["*.icns*"].first => "Emacs.icns"
             ohai "Installing " + icon + " icon"
           end
-        end
-      end
-
-      if build.with? "native-comp"
-        # Change .eln files dylib ID to avoid that after the
-        # post-install phase all of the *.eln files end up with the
-        # same ID. See: https://github.com/Homebrew/brew/issues/9526
-        # and https://github.com/Homebrew/brew/pull/10075
-        Dir.glob(buildpath/"native-lisp/**/*.eln").each do |f|
-          fo = MachO::MachOFile.new(f)
-          fo.dylib_id = "#{buildpath}/" + f
-          fo.write!
         end
       end
 

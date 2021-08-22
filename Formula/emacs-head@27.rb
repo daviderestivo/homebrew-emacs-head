@@ -2,10 +2,10 @@
 class EmacsHeadAT27 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://ftp.gnu.org/gnu/emacs/emacs-27.1.tar.xz"
-  mirror "https://ftpmirror.gnu.org/emacs/emacs-27.1.tar.xz"
-  sha256 "4a4c128f915fc937d61edfc273c98106711b540c9be3cd5d2e2b9b5b2f172e41"
-  version "27.1"
+  url "https://ftp.gnu.org/gnu/emacs/emacs-27.2.tar.xz"
+  mirror "https://ftpmirror.gnu.org/emacs/emacs-27.2.tar.xz"
+  sha256 "b4a7cc4e78e63f378624e0919215b910af5bb2a0afc819fad298272e9f40c1b9"
+  version "27.2"
   revision 1
 
   head do
@@ -201,12 +201,7 @@ class EmacsHeadAT27 < Formula
 
   resource "0010-Arm.patch" do
     url EmacsHeadAT27.get_resource_url("patches/0010-Arm.patch")
-    sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
-  end
-
-  resource "0011-Executables-codesign.patch" do
-    url EmacsHeadAT27.get_resource_url("patches/0011-Executables-codesign.patch")
-    sha256 "d2b19fcca66338d082c15fa11d57abf7ad6b40129478bef4c6234c19966db988"
+    sha256 "344fee330fec4071e29c900093fdf1e2d8a7328df1c75b17e6e9d9a954835741"
   end
 
   # Icons
@@ -505,15 +500,7 @@ class EmacsHeadAT27 < Formula
     # configure to complete for aarch64-apple-darwin targets.
     patch do
       url EmacsHeadAT27.get_resource_url("patches/0010-Arm.patch")
-      sha256 "251aeb19010048fbe05f8ea2a610fd62f2dbad0c5e6b040b431b4302c72009ac"
-    end
-    # The emacs binary is patched with a signature after linking. This
-    # invalidates the code signature. Code signing is required on
-    # Apple Silicon. This patch adds a step to resign the binary after
-    # it is patched.
-    patch do
-      url EmacsHeadAT27.get_resource_url("patches/0011-Executables-codesign.patch")
-      sha256 "d2b19fcca66338d082c15fa11d57abf7ad6b40129478bef4c6234c19966db988"
+      sha256 "344fee330fec4071e29c900093fdf1e2d8a7328df1c75b17e6e9d9a954835741"
     end
   end
 

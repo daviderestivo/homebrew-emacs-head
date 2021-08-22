@@ -2,6 +2,7 @@
 class EmacsHeadAT28 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
+  url "https://github.com/emacs-mirror/emacs.git"
   version "28.0.50"
   revision 1
 
@@ -153,12 +154,10 @@ class EmacsHeadAT28 < Formula
          "Use a retro style icon by Erik Mugele"
 
   if build.with? "native-comp"
-    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/native-comp"
     depends_on "gmp"       => :build
     depends_on "libjpeg"   => :build
+    depends_on "zlib"      => :build
     depends_on "libgccjit" => :reccomended
-  else
-    url "https://github.com/emacs-mirror/emacs.git"
   end
 
   def self.get_resource_url(resource)
@@ -586,7 +585,6 @@ class EmacsHeadAT28 < Formula
       end
 
       system "make", *make_flags
-      system "make", "install"
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
@@ -624,21 +622,13 @@ class EmacsHeadAT28 < Formula
       end
 
       if build.with? "native-comp"
-        contents_dir = buildpath/"nextstep/Emacs.app/Contents"
-        contents_dir.install "native-lisp"
-        contents_dir.install "lisp"
-
-        # Change .eln files dylib ID to avoid that after the
-        # post-install phase all of the *.eln files end up with the
-        # same ID. See: https://github.com/Homebrew/brew/issues/9526
-        # and https://github.com/Homebrew/brew/pull/10075
-        # Dir.glob(contents_dir/"native-lisp/*/*.eln").each do |f|
-        #   fo = MachO::MachOFile.new(f)
-        #   ohai "Change dylib_id of ELN files before post_install phase"
-        #   fo.dylib_id = "#{contents_dir}/" + f
-        #   fo.write!
-        # end
+        patch do
+          url EmacsHeadAT28.get_resource_url("patches/0012-Native-comp-unique-dylibid.patch")
+          sha256 ""
+        end
       end
+
+      system "make", "install"
 
       # Install the (separate) debug symbol data that is generated
       # for the application

@@ -195,11 +195,6 @@ class EmacsHeadAT28 < Formula
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  resource "0012-Native-comp-unique-dylibid.patch" do
-    url EmacsHeadAT28.get_resource_url("patches/0012-Native-comp-unique-dylibid.patch")
-    sha256 "9332d86ab6a387e8d79884b7cceff6f84bc9d8d438ed0d41e6326d34e3f52fe0"
-  end
-
   # Icons
   resource "modern-icon-sjrmanning" do
     url EmacsHeadAT28.get_resource_url("icons/modern-icon-sjrmanning.icns")
@@ -480,13 +475,6 @@ class EmacsHeadAT28 < Formula
   patch do
     url EmacsHeadAT28.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
-  if build.with? "native-comp"
-    patch do
-      url EmacsHeadAT28.get_resource_url("patches/0012-Native-comp-unique-dylibid.patch")
-      sha256 "9332d86ab6a387e8d79884b7cceff6f84bc9d8d438ed0d41e6326d34e3f52fe0"
-    end
   end
 
   def install

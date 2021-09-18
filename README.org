@@ -236,7 +236,8 @@ The new OS will be based entirely on GNU Emacs. One programmer
 explained, "Since many hackers spend a vast amount of their time in
 Emacs, why not just make it the operating system?" When asked about
 the name, he responded, "Well, it has been often said that Emacs has
-everything except a kitchen sink. Now it will." --- James Baughn (http://humorix.org/10016)
+everything except a kitchen sink. Now it will."
+--- James Baughn (https://web.archive.org/web/20180814225320/http://humorix.org/10016)
 #+end_quote
 
 ** Collaborating

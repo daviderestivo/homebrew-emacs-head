@@ -187,7 +187,7 @@ class EmacsHeadAT28 < Formula
 
   resource "0005-System-appearance" do
     url  EmacsHeadAT28.get_resource_url("patches/0005-System-appearance.patch")
-    sha256 "22b541e2893171e45b54593f82a0f5d2c4e62b0e4497fc0351fc89108d6f0084"
+    sha256 "d6ee159839b38b6af539d7b9bdff231263e451c1fd42eec0d125318c9db8cd92"
   end
 
   resource "0008-Fix-window-role.patch" do
@@ -469,7 +469,7 @@ class EmacsHeadAT28 < Formula
 
   patch do
     url EmacsHeadAT28.get_resource_url("patches/0005-System-appearance.patch")
-    sha256 "22b541e2893171e45b54593f82a0f5d2c4e62b0e4497fc0351fc89108d6f0084"
+    sha256 "d6ee159839b38b6af539d7b9bdff231263e451c1fd42eec0d125318c9db8cd92"
   end
 
   patch do

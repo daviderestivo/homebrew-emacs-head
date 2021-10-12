@@ -380,17 +380,17 @@ class EmacsHeadAT26 < Formula
     sha256 "4d34f2f1ce397d899c2c302f2ada917badde049c36123579dd6bb99b73ebd7f9"
   end
 
-  resource "emacs-icon-card-green" do
+  resource "modern-icon-emacs-card-green" do
     url EmacsHeadAT26.get_resource_url("icons/modern-icon-emacs-card-green.icns")
     sha256 "f94ade7686418073f04b73937f34a1108786400527ed109af822d61b303048f7"
   end
 
-  resource "emacs-icon-doom" do
+  resource "modern-icon-doom" do
     url EmacsHeadAT26.get_resource_url("icons/modern-icon-doom.icns")
     sha256 "39378a10b3d7e804461eec8bb9967de0cec7b8f1151150bbe2ba16f21001722b"
   end
 
-  resource "emacs-icon-doom3" do
+  resource "modern-icon-doom3" do
     url EmacsHeadAT26.get_resource_url("icons/modern-icon-doom3.icns")
     sha256 "3ac398d8d691687320d3a88cd8e634c8cfb7ca358bfe6c30108667f2486438b3"
   end

@@ -101,31 +101,31 @@ class EmacsHeadAT26 < Formula
          "Use a modern style icon by Aha-Soft"
   option "with-modern-icon-black-dragon",
          "Use a modern style icon by Osike"
-  option "with-modern-emacs-icon1",
+  option "with-modern-icon-emacs-icon1",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-icon2",
+  option "with-modern-icon-emacs-icon2",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-icon3",
+  option "with-modern-icon-emacs-icon3",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-icon4",
+  option "with-modern-icon-emacs-icon4",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-icon5",
+  option "with-modern-icon-emacs-icon5",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-icon6",
+  option "with-modern-icon-emacs-icon6",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-icon7",
+  option "with-modern-icon-emacs-icon7",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-icon8",
+  option "with-modern-icon-emacs-icon8",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-icon9",
+  option "with-modern-icon-emacs-icon9",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-card-blue-deep",
+  option "with-modern-icon-emacs-card-blue-deep",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-card-british-racing-green",
+  option "with-modern-icon-emacs-card-british-racing-green",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-card-carmine",
+  option "with-modern-icon-emacs-card-carmine",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
-  option "with-modern-emacs-card-green",
+  option "with-modern-icon-emacs-card-green",
          "Use a modern style icon by Jasonm23 (Emacs Fodder)"
   option "with-modern-icon-doom",
          "Use a modern style icon by Jay Zawrotny"
@@ -524,9 +524,9 @@ class EmacsHeadAT26 < Formula
         modern-icon-paper-icons modern-icon-azhilin
         modern-icon-mzaplotnik modern-icon-bananxan modern-icon-vscode
         modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-cg433n
-        modern-icon-purple modern-icon-yellow with-modern-icon-orange
+        modern-icon-purple modern-icon-yellow modern-icon-orange
         modern-icon-papirus modern-icon-pen modern-icon-pen-3d
-        modern-icon-pen-lds56 with-modern-icon-pen-black
+        modern-icon-pen-lds56 modern-icon-pen-black
         modern-icon-black-variant modern-icon-purple-flat
         modern-icon-spacemacs modern-icon-alecive-flatwoken
         modern-icon-elrumo1 modern-icon-elrumo2

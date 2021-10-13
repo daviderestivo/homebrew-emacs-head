@@ -2,7 +2,7 @@
 class EmacsHeadAT28 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://github.com/emacs-mirror/emacs.git"
+  url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-28"
   version "28.0.50"
   revision 1
 

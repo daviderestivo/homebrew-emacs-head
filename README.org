@@ -138,7 +138,7 @@ ns-system-appearance variable.
 The hook is NOT run in TTY Emacs sessions.
 
 ** Pdumper support
-Note: portable dumper is not supported on emacs-head@26.
+Note: portable dumper is not supported on emacs-head@26, and won't work with Native-comp support.
 
 To enable this feature please use ~--with-pdumper~.
 

@@ -504,13 +504,6 @@ class EmacsHeadAT29 < Formula
       gcc_version_major = gcc_version.major
       gcc_lib="#{HOMEBREW_PREFIX}/lib/gcc/#{gcc_version_major}"
 
-      ENV['CFLAGS'] = [
-        '-O2',
-        '-march=native'
-      ].compact.join(' ')
-
-      ENV.append "CFLAGS", "-I#{Formula["gcc"].include}"
-
       ENV.append "LDFLAGS", "-L#{gcc_lib}"
       ENV.append "LDFLAGS", "-I#{Formula["gcc"].include}"
       ENV.append "LDFLAGS", "-I#{Formula["libgccjit"].include}"

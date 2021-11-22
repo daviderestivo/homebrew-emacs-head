@@ -43,5 +43,5 @@ jobs:
       working-directory: Formula
 
     - name: Test installation
-      run: brew test emacs-head@29.rb
+      run: $(brew --prefix)/bin/emacs --batch --eval='(print (+ 2 2))'
       working-directory: Formula

@@ -56,3 +56,6 @@ __MACOSX/
 .Spotlight-V100
 .Trashes
 Thumbs.db
+
+# Emacs Junk
+*.~undo-tree~

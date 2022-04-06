@@ -26,9 +26,9 @@ jobs:
         os: [macos-10.15, macos-11]
         build_opts:
           # All options (imagemagick@7)
-          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets'
-          # All options (imagemagick@7) + native-comp support
           - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-native-comp'
+          # HEAD + all options (imagemagick@7)
+          - '--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-native-comp'
 
     env:
       HOMEBREW_GITHUB_REF: ${{ github.head_ref || github.ref }}

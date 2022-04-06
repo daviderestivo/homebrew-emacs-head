@@ -2,9 +2,15 @@
 class EmacsHeadAT28 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-28"
-  version "28.0.60"
+  url "https://ftp.gnu.org/gnu/emacs/emacs-28.1.tar.xz"
+  mirror "https://ftpmirror.gnu.org/emacs/emacs-28.1.tar.xz"
+  sha256 "28b1b3d099037a088f0a4ca251d7e7262eab5ea1677aabffa6c4426961ad75e1"
+  version "28.1"
   revision 1
+
+  head do
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-28"
+  end
 
   depends_on "autoconf"   => :build
   depends_on "coreutils" => :build

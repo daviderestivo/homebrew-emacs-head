@@ -30,7 +30,7 @@
 This formula currently supports:
 - GNU Emacs 26.3
 - GNU Emacs 27.2 (or HEAD)
-- GNU Emacs 28.0.60 (emacs-28 branch)
+- GNU Emacs 28.1 (or HEAD)
 - GNU Emacs HEAD (currently 29.0.50)
 
 ** Installation
@@ -59,6 +59,13 @@ brew install --HEAD emacs-head --with-cocoa
 #+begin_src bash
 brew tap daviderestivo/emacs-head
 brew install emacs-head@28 --with-cocoa
+#+end_src
+
+If you wish to install the HEAD version of GNU Emacs 28 please do:
+
+#+begin_src bash
+brew tap daviderestivo/emacs-head
+brew install --HEAD emacs-head@28 --with-cocoa
 #+end_src
 
 *** GNU Emacs 29 (HEAD)

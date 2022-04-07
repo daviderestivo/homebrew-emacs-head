@@ -340,7 +340,7 @@ class EmacsHeadAT28 < Formula
   end
 
   resource "modern-icon-dragon" do
-    url EmacsHeadAT26.get_resource_url("icons/modern-icon-dragon.icns")
+    url EmacsHeadAT28.get_resource_url("icons/modern-icon-dragon.icns")
     sha256 "a0a624e6a08971f2f9220d2a3aaa79e1f8aecc85df8a522ebb40310c54699c40"
   end
 

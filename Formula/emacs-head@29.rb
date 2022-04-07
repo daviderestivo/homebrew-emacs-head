@@ -59,7 +59,7 @@ class EmacsHeadAT29 < Formula
   option "with-modern-icon-asingh4242",
          "Use a modern style icon by Asingh4242"
   option "with-modern-icon-dragon",
-         "Use a modern style icon by Emacs China"
+         "Use a modern style icon by Will B Chang"
   option "with-modern-icon-paper-icons",
          "Use a modern style icon by Sam Hewitt"
   option "with-modern-icon-azhilin",

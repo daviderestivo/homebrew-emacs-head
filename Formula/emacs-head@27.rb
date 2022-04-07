@@ -109,7 +109,7 @@ class EmacsHeadAT27 < Formula
   option "with-modern-icon-black-gnu-head",
          "Use a modern style icon by Aha-Soft"
   option "with-modern-icon-dragon",
-         "Use a modern style icon by Emacs China"
+         "Use a modern style icon by Will B Chang"
   option "with-modern-icon-black-dragon",
          "Use a modern style icon by Osike"
   option "with-modern-icon-emacs-icon1",

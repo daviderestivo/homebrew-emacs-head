@@ -99,6 +99,8 @@ class EmacsHeadAT26 < Formula
          "Use a modern style icon by David Vignoni (Nuvola Icon Theme)"
   option "with-modern-icon-black-gnu-head",
          "Use a modern style icon by Aha-Soft"
+  option "with-modern-icon-dragon",
+         "Use a modern style icon by Emacs China"
   option "with-modern-icon-black-dragon",
          "Use a modern style icon by Osike"
   option "with-modern-icon-emacs-icon1",
@@ -313,6 +315,11 @@ class EmacsHeadAT26 < Formula
   resource "modern-icon-black-gnu-head" do
     url EmacsHeadAT26.get_resource_url("icons/modern-icon-black-gnu-head.icns")
     sha256 "9ac25aaa986b53d268e94d24bb878689c290b237a7810790dead9162e6ddf54b"
+  end
+
+  resource "modern-icon-dragon" do
+    url EmacsHeadAT26.get_resource_url("icons/modern-icon-dragon.icns")
+    sha256 "a0a624e6a08971f2f9220d2a3aaa79e1f8aecc85df8a522ebb40310c54699c40"
   end
 
   resource "modern-icon-black-dragon" do
@@ -531,12 +538,13 @@ class EmacsHeadAT26 < Formula
         modern-icon-spacemacs modern-icon-alecive-flatwoken
         modern-icon-elrumo1 modern-icon-elrumo2
         modern-icon-bokehlicia-captiva modern-icon-nuvola
-        modern-icon-black-gnu-head modern-icon-black-dragon
-        modern-icon-emacs-icon1 modern-icon-emacs-icon2
-        modern-icon-emacs-icon3 modern-icon-emacs-icon4
-        modern-icon-emacs-icon5 modern-icon-emacs-icon6
-        modern-icon-emacs-icon7 modern-icon-emacs-icon8
-        modern-icon-emacs-icon9 modern-icon-emacs-card-blue-deep
+        modern-icon-black-gnu-head modern-icon-dragon
+        modern-icon-black-dragon modern-icon-emacs-icon1
+        modern-icon-emacs-icon2 modern-icon-emacs-icon3
+        modern-icon-emacs-icon4 modern-icon-emacs-icon5
+        modern-icon-emacs-icon6 modern-icon-emacs-icon7
+        modern-icon-emacs-icon8 modern-icon-emacs-icon9
+        modern-icon-emacs-card-blue-deep
         modern-icon-emacs-card-british-racing-green
         modern-icon-emacs-card-carmine modern-icon-emacs-card-green
         modern-icon-doom modern-icon-doom3 modern-icon-doom-cacodemon

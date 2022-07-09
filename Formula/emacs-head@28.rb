@@ -625,6 +625,7 @@ class EmacsHeadAT28 < Formula
       end
 
       prefix.install "nextstep/Emacs.app"
+      (prefix/"Emacs.app/Contents").install "native-lisp" if build.with? "native-comp"
 
       # Replace the symlink with one that avoids starting Cocoa.
       (bin/"emacs").unlink # Kill the existing symlink

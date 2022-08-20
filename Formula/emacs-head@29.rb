@@ -197,11 +197,6 @@ class EmacsHeadAT29 < Formula
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  resource "0011-fix-MAC_LIBS-inference-after-gcc-12-release.patch" do
-    url EmacsHeadAT29.get_resource_url("patches/0011-fix-MAC_LIBS-inference-after-gcc-12-release.patch")
-    sha256 "4065671b2e89235aa579b1ae5a561fd59f1339edf9984986572681c08f61ebae"
-  end
-
   # Icons
   resource "modern-icon-sjrmanning" do
     url EmacsHeadAT29.get_resource_url("icons/modern-icon-sjrmanning.icns")
@@ -487,11 +482,6 @@ class EmacsHeadAT29 < Formula
   patch do
     url EmacsHeadAT29.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
-  patch do
-    url EmacsHeadAT29.get_resource_url("patches/0011-fix-MAC_LIBS-inference-after-gcc-12-release.patch")
-    sha256 "4065671b2e89235aa579b1ae5a561fd59f1339edf9984986572681c08f61ebae"
   end
 
   def install

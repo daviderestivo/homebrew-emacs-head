@@ -503,6 +503,8 @@ class EmacsHeadAT26 < Formula
       ohai "GNU Emacs crash debug enabled. Appending `-g3` to CFLAGS..."
       ENV.append_to_cflags "-g3"
     end
+    # Increase macOS max open files to 10000 (default is 1024)
+    ENV.append "CFLAGS", "-DFD_SETSIZE=10000 -DDARWIN_UNLIMITED_SELECT"
 
     if build.with? "cocoa"
       args << "--with-ns" << "--disable-ns-self-contained"

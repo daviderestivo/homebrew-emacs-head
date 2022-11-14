@@ -30,7 +30,7 @@
 This formula currently supports:
 - GNU Emacs 26.3
 - GNU Emacs 27.2 (or HEAD)
-- GNU Emacs 28.1 (or HEAD)
+- GNU Emacs 28.2 (or HEAD)
 - GNU Emacs HEAD (currently 29.0.50)
 
 ** Installation

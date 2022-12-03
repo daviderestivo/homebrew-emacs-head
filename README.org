@@ -49,27 +49,27 @@ brew install emacs-head@26 --with-cocoa
 *** GNU Emacs 27
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head --with-cocoa
+brew install emacs-head@27 --with-cocoa
 #+end_src
 
 If you wish to install the HEAD version of GNU Emacs 27 please do:
 
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install --HEAD emacs-head --with-cocoa
+brew install --HEAD emacs-head@27 --with-cocoa
 #+end_src
 
-*** GNU Emacs 28
+*** GNU Emacs 28 (default)
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head@28 --with-cocoa
+brew install emacs-head --with-cocoa
 #+end_src
 
 If you wish to install the HEAD version of GNU Emacs 28 please do:
 
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install --HEAD emacs-head@28 --with-cocoa
+brew install --HEAD emacs-head --with-cocoa
 #+end_src
 
 *** GNU Emacs 29

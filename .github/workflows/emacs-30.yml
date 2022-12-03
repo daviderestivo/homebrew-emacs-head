@@ -1,0 +1,47 @@
+name: Emacs 30
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+    paths:
+      - 'Formula/emacs-head@30.rb'
+      - 'patches/**'
+      - '.github/workflows/emacs-30.yml'
+  pull_request:
+    paths:
+      - 'Formula/emacs-head@30.rb'
+      - 'patches/**'
+      - '.github/workflows/emacs-30.yml'
+  schedule:
+    - cron:  '0 7 * * *'
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-10.15, macos-11]
+        build_opts:
+          # All options (imagemagick@7)
+          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets'
+          # All options (imagemagick@7) + native-comp support
+          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-native-comp'
+
+    env:
+      HOMEBREW_GITHUB_REF: ${{ github.head_ref || github.ref }}
+      HOMEBREW_GITHUB_REPOSITORY: ${{ github.repository }}
+      HOMEBREW_GITHUB_ACTOR: ${{ github.actor }}
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build emacs-head@30 ${{ matrix.build_opts }}
+      run: brew install --verbose emacs-head@30.rb ${{ matrix.build_opts }}
+      working-directory: Formula
+
+    - name: Test installation
+      run: $(brew --prefix)/bin/emacs --batch --eval='(print (+ 2 2))'
+      working-directory: Formula

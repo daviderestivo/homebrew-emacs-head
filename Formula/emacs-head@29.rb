@@ -15,12 +15,12 @@ class EmacsHeadAT29 < Formula
   depends_on "pkg-config" => :build
   depends_on "gcc"        => :build
   depends_on "giflib"
-  depends_on "gnutls"
-  depends_on "librsvg"
-  depends_on "libxml2"
+  depends_on "gnutls"     => :recommended
+  depends_on "librsvg"    => :recommended
+  depends_on "libxml2"    => :recommended
   depends_on "jansson"
-  depends_on "dbus"      => :optional
-  depends_on "mailutils" => :optional
+  depends_on "dbus"       => :optional
+  depends_on "mailutils"  => :optional
   # GNU Emacs 29.x does support ImageMagick 7
   depends_on "imagemagick@7" => :recommended
 

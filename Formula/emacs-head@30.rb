@@ -54,6 +54,8 @@ class EmacsHeadAT30 < Formula
          "Enable Elisp native compilation support"
   option "with-native-full-aot",
          "Enable Elisp Ahead-of-Time native compilation support"
+  option "with-tree-sitter",
+         "Enable Tree-sitter support"
   option "with-modern-icon-sjrmanning",
          "Use a modern style icon by @Sjrmanning"
   option "with-modern-icon-asingh4242",
@@ -160,6 +162,10 @@ class EmacsHeadAT30 < Formula
     depends_on "libjpeg"   => :build
     depends_on "zlib"      => :build
     depends_on "libgccjit" => :reccomended
+  end
+
+  if build.with? "tree-sitter"
+    depends_on "tree-sitter" => :optional
   end
 
   def self.get_resource_url(resource)

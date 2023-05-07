@@ -666,6 +666,13 @@ class EmacsHeadAT30 < Formula
     end
   end
 
+  def post_install
+    emacs_info_dir = info/"emacs"
+    Dir.glob(emacs_info_dir/"*.info") do |info_filename|
+      system "install-info", "--info-dir=#{emacs_info_dir}", info_filename
+    end
+  end
+
   def caveats
     <<~EOS
       Emacs.app was installed to:

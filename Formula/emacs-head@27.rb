@@ -102,6 +102,8 @@ class EmacsHeadAT27 < Formula
          "Use a modern style icon by Elias Ruiz Monserrat"
   option "with-modern-icon-elrumo2",
          "Use a modern style icon by Elias Ruiz Monserrat"
+  option "with-modern-icon-savchenkovaleriy-big-sur",
+         "Use a modern style icon by Valeriy Savchenko"
   option "with-modern-icon-bokehlicia-captiva",
          "Use a modern style icon by Bokehlicia"
   option "with-modern-icon-nuvola",
@@ -325,6 +327,11 @@ class EmacsHeadAT27 < Formula
   resource "modern-icon-elrumo2" do
     url EmacsHeadAT27.get_resource_url("icons/modern-icon-elrumo2.icns")
     sha256 "0fbdab5172421d8235d9c53518dc294efbb207a4903b42a1e9a18212e6bae4f4"
+  end
+
+  resource "modern-icon-savchenkovaleriy-big-sur" do
+    url EmacsHeadAT26.get_resource_url("icons/modern-icon-savchenkovaleriy-big-sur.icns")
+    sha256 "975288f91608bf38ba55ad7a13502dc74dacf647f2e2f7eb336d7d470cc9e16d"
   end
 
   resource "modern-icon-bokehlicia-captiva" do

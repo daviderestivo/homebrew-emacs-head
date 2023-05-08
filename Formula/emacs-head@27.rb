@@ -330,7 +330,7 @@ class EmacsHeadAT27 < Formula
   end
 
   resource "modern-icon-savchenkovaleriy-big-sur" do
-    url EmacsHeadAT26.get_resource_url("icons/modern-icon-savchenkovaleriy-big-sur.icns")
+    url EmacsHeadAT27.get_resource_url("icons/modern-icon-savchenkovaleriy-big-sur.icns")
     sha256 "975288f91608bf38ba55ad7a13502dc74dacf647f2e2f7eb336d7d470cc9e16d"
   end
 

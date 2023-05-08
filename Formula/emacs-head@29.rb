@@ -601,6 +601,7 @@ class EmacsHeadAT29 < Formula
         modern-icon-black-variant modern-icon-purple-flat
         modern-icon-spacemacs modern-icon-alecive-flatwoken
         modern-icon-elrumo1 modern-icon-elrumo2
+        modern-icon-savchenkovaleriy-big-sur
         modern-icon-bokehlicia-captiva modern-icon-nuvola
         modern-icon-black-gnu-head modern-icon-dragon
         modern-icon-black-dragon modern-icon-emacs-icon1

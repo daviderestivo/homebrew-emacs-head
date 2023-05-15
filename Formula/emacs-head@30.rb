@@ -208,7 +208,7 @@ class EmacsHeadAT30 < Formula
   end
 
   resource "0011-Poll.patch" do
-    url EmacsHeadAT29.get_resource_url("patches/0011-Poll.patch")
+    url EmacsHeadAT30.get_resource_url("patches/0011-Poll.patch")
     sha256 "052eacac5b7bd86b466f9a3d18bff9357f2b97517f463a09e4c51255bdb14648"
   end
 
@@ -496,7 +496,7 @@ class EmacsHeadAT30 < Formula
 
   if build.with? "poll"
     patch do
-      url EmacsHeadAT29.get_resource_url("patches/0011-Poll.patch")
+      url EmacsHeadAT30.get_resource_url("patches/0011-Poll.patch")
       sha256 "052eacac5b7bd86b466f9a3d18bff9357f2b97517f463a09e4c51255bdb14648"
     end
   end

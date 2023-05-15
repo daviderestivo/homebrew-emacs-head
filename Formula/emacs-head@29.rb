@@ -56,6 +56,8 @@ class EmacsHeadAT29 < Formula
          "Enable Elisp Ahead-of-Time native compilation support"
   option "with-tree-sitter",
          "Enable Tree-sitter support"
+  option "with-poll",
+         "Experimental: use poll() instead of select() to support > 1024 file descriptors"
   option "with-modern-icon-sjrmanning",
          "Use a modern style icon by @Sjrmanning"
   option "with-modern-icon-asingh4242",
@@ -203,6 +205,11 @@ class EmacsHeadAT29 < Formula
   resource "0008-Fix-window-role.patch" do
     url EmacsHeadAT29.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
+  resource "0011-Poll.patch" do
+    url EmacsHeadAT29.get_resource_url("patches/0011-Poll.patch")
+    sha256 "052eacac5b7bd86b466f9a3d18bff9357f2b97517f463a09e4c51255bdb14648"
   end
 
   # Icons
@@ -487,6 +494,13 @@ class EmacsHeadAT29 < Formula
     end
   end
 
+  if build.with? "poll"
+    patch do
+      url EmacsHeadAT29.get_resource_url("patches/0011-Poll.patch")
+      sha256 "052eacac5b7bd86b466f9a3d18bff9357f2b97517f463a09e4c51255bdb14648"
+    end
+  end
+
   patch do
     url EmacsHeadAT29.get_resource_url("patches/0005-System-appearance.patch")
     sha256 "d6ee159839b38b6af539d7b9bdff231263e451c1fd42eec0d125318c9db8cd92"
@@ -552,6 +566,7 @@ class EmacsHeadAT29 < Formula
     args << "--with-rsvg"     unless build.without? "librsvg"
     args << "--with-xml2"     unless build.without? "libxml2"
     args << "--with-xwidgets" if     build.with?    "xwidgets"
+    args << "--with-poll"     if build.with?        "poll"
 
     # Read https://github.com/emacs-mirror/emacs/blob/master/etc/DEBUG
     # for more information

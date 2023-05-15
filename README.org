@@ -117,6 +117,7 @@ The following compilation options are available:
 | ~--with-native-comp~      | Enable elisp native compilation support (only on emacs-head@28, emacs-head@29 and emacs-head@30)               |
 | ~--with-native-full-aot~  | Enable elisp ahead-of-time native compilation support (only on emacs-head@28, emacs-head@29 and emacs-head@30) |
 | ~--with-tree-sitter~      | Enable Tree-sitter support (only on emacs-head@29 and emacs-head@30)                                           |
+| =--with-poll=             | Use poll() instead of select() to support > 1024 file descriptors                                              |
 
 For the terminal version only of GNU Emacs please omit ~--with-cocoa~.
 

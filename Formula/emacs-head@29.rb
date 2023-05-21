@@ -3,7 +3,7 @@ class EmacsHeadAT29 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
   url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-29"
-  version "29.0.90"
+  version "29.0.91"
   revision 1
 
   depends_on "autoconf"   => :build

@@ -2,9 +2,14 @@
 class EmacsHeadAT29 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-29"
-  version "29.0.92"
+  url "https://alpha.gnu.org/gnu/emacs/pretest/emacs-29.1-rc1.tar.xz"
+  sha256 "a04c42c2584f3cfe9b62e9bd2e29e9f6d2457fb1a0592f389afae61e4ddc67cc"
+  version "29.1-rc1"
   revision 1
+
+  head do
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-29"
+  end
 
   depends_on "autoconf"   => :build
   depends_on "coreutils"  => :build

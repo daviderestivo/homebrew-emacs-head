@@ -2,9 +2,10 @@
 class EmacsHeadAT29 < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://alpha.gnu.org/gnu/emacs/pretest/emacs-29.1-rc1.tar.xz"
-  sha256 "a04c42c2584f3cfe9b62e9bd2e29e9f6d2457fb1a0592f389afae61e4ddc67cc"
-  version "29.1-rc1"
+  url "https://ftp.gnu.org/gnu/emacs/emacs-29.1.tar.xz"
+  mirror "https://ftpmirror.gnu.org/emacs/emacs-29.1.tar.xz"
+  sha256 "d2f881a5cc231e2f5a03e86f4584b0438f83edd7598a09d24a21bd8d003e2e01"
+  version "29.1"
   revision 1
 
   head do

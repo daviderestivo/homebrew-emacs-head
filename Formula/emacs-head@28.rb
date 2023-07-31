@@ -167,7 +167,7 @@ class EmacsHeadAT28 < Formula
     depends_on "gmp"       => :build
     depends_on "libjpeg"   => :build
     depends_on "zlib"      => :build
-    depends_on "libgccjit" => :reccomended
+    depends_on "libgccjit" => :recommended
   end
 
   def self.get_resource_url(resource)

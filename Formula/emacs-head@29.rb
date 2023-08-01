@@ -171,7 +171,7 @@ class EmacsHeadAT29 < Formula
     depends_on "gmp"       => :build
     depends_on "libjpeg"   => :build
     depends_on "zlib"      => :build
-    depends_on "libgccjit" => :reccomended
+    depends_on "libgccjit" => :recommended
   end
 
   if build.with? "tree-sitter"

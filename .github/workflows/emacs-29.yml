@@ -8,11 +8,13 @@ on:
     paths:
       - 'Formula/emacs-head@29.rb'
       - 'patches/**'
+      - 'Library/**'
       - '.github/workflows/emacs-29.yml'
   pull_request:
     paths:
       - 'Formula/emacs-head@29.rb'
       - 'patches/**'
+      - 'Library/**'
       - '.github/workflows/emacs-29.yml'
   schedule:
     - cron:  '0 7 * * *'

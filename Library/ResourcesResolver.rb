@@ -4,18 +4,26 @@ class ResourcesResolver
     repo   = ENV['HOMEBREW_GITHUB_REPOSITORY']
     owner  = ENV['HOMEBREW_GITHUB_REPOSITORY_OWNER']
     branch = ENV['HOMEBREW_GITHUB_REF']
+    local_resources  = ENV['HOMEBREW_USE_LOCAL_RESOURCES']
 
+    # GitHub CICD
     if repo
       if branch
-        # on a branch
+        # On a branch
         [base_url, owner, repo, branch.sub("refs/heads/", ""), resource].join("/")
       else
-        # on master
+        # On master
         [base_url, owner, repo, "master", resource].join("/")
       end
+    # LOCAL
     else
-      # local run
-      "file:///" + Dir.pwd + "/" + resource
+      # Force use of local resources by setting HOMEBREW_USE_LOCAL_RESOURCES=1
+      if local_resources
+        # local run
+        "file:///" + Dir.pwd + "/" + resource
+      else
+        [base_url, "daviderestivo", "homebrew-emacs-head", "master", resource].join("/")
+      end
     end
   end
 end

@@ -1,9 +1,9 @@
 class ResourcesResolver
   def self.get_resource_url(resource)
     base_url = "https://raw.githubusercontent.com"
-    repo   = ENV['HOMEBREW_GITHUB_REPOSITORY']
-    owner  = ENV['HOMEBREW_GITHUB_REPOSITORY_OWNER']
-    branch = ENV['HOMEBREW_GITHUB_REF']
+    repo   = ENV['EMACS_HEAD_GITHUB_REPOSITORY']
+    owner  = ENV['EMACS_HEAD_GITHUB_REPOSITORY_OWNER']
+    branch = ENV['EMACS_HEAD_GITHUB_REF']
     local_resources  = ENV['HOMEBREW_USE_LOCAL_RESOURCES']
 
     # GitHub CICD

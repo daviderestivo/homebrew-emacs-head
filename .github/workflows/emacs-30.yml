@@ -33,9 +33,9 @@ jobs:
           - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-native-comp --with-poll'
 
     env:
-      EMACS_HEAD_GITHUB_REF: ${{ github.head_ref || github.ref }}
       EMACS_HEAD_GITHUB_REPOSITORY: ${{ github.repository }}
-      EMACS_HEAD_GITHUB_ACTOR: ${{ github.actor }}
+      EMACS_HEAD_GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+      EMACS_HEAD_GITHUB_REPOSITORY_REF: ${{ github.head_ref || github.ref }}
 
     steps:
     - uses: actions/checkout@v3

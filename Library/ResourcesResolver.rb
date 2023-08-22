@@ -2,7 +2,6 @@ class ResourcesResolver
   def self.get_resource_url(resource)
     base_url = "https://raw.githubusercontent.com"
     repo   = ENV['HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY']
-    owner  = ENV['HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY_OWNER']
     branch = ENV['HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY_REF']
     local_resources  = ENV['HOMEBREW_USE_LOCAL_RESOURCES']
 
@@ -10,10 +9,10 @@ class ResourcesResolver
     if repo
       if branch
         # On a branch
-        [base_url, owner, repo, branch.sub("refs/heads/", ""), resource].join("/")
+        [base_url, repo, branch.sub("refs/heads/", ""), resource].join("/")
       else
         # On master
-        [base_url, owner, repo, "master", resource].join("/")
+        [base_url, repo, "master", resource].join("/")
       end
     # LOCAL
     else

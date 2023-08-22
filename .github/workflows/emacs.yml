@@ -28,7 +28,6 @@ jobs:
 
     env:
       HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY: ${{ github.repository }}
-      HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
       HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY_REF: ${{ github.head_ref || github.ref }}
 
     steps:

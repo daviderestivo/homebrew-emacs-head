@@ -33,9 +33,9 @@ jobs:
           - '--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets'
 
     env:
-      EMACS_HEAD_GITHUB_REPOSITORY: ${{ github.repository }}
-      EMACS_HEAD_GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
-      EMACS_HEAD_GITHUB_REPOSITORY_REF: ${{ github.head_ref || github.ref }}
+      HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY: ${{ github.repository }}
+      HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+      HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY_REF: ${{ github.head_ref || github.ref }}
 
     steps:
     - uses: actions/checkout@v3

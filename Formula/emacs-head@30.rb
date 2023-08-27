@@ -77,8 +77,8 @@ class EmacsHeadAT30 < EmacsBase
 
   # Patches
   resource "0001-No-frame-refocus-cocoa" do
-    url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
-    sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
+    url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa-30.patch")
+    sha256 "5e75f19179655c78e8a54a1efce7609f0fa278a7922c8df753b2c72c6d2db77c"
   end
 
   resource "0003-Pdumper-size-increase" do
@@ -112,8 +112,8 @@ class EmacsHeadAT30 < EmacsBase
   # Reference: https://github.com/d12frosted/homebrew-emacs-plus/issues/119
   if build.with? "no-frame-refocus"
     patch do
-      url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
-      sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
+      url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa-30.patch")
+      sha256 "5e75f19179655c78e8a54a1efce7609f0fa278a7922c8df753b2c72c6d2db77c"
     end
   end
 

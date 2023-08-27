@@ -1,0 +1,23 @@
+diff --git a/src/frame.c b/src/frame.c
+index 38ac316ce87..7274964395f 100644
+--- a/src/frame.c
++++ b/src/frame.c
+@@ -2210,18 +2210,6 @@ delete_frame (Lisp_Object frame, Lisp_Object force)
+ 		}
+ 	    }
+ 	}
+-#ifdef NS_IMPL_COCOA
+-      else
+-	{
+-	  /* Under NS, there is no system mechanism for choosing a new
+-	     window to get focus -- it is left to application code.
+-	     So the portion of THIS application interfacing with NS
+-	     needs to make the frame we switch to the key window.  */
+-	  struct frame *f1 = XFRAME (frame1);
+-	  if (FRAME_NS_P (f1))
+-	    ns_make_frame_key_window (f1);
+-	}
+-#endif
+
+       do_switch_frame (frame1, 0, 1, Qnil);
+       sf = SELECTED_FRAME ();

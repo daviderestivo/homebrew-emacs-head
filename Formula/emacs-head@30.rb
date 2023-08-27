@@ -19,6 +19,7 @@ class EmacsHeadAT30 < EmacsBase
   depends_on "librsvg"    => :recommended
   depends_on "libxml2"    => :recommended
   depends_on "jansson"
+  depends_on "webp"
   depends_on "dbus"       => :optional
   depends_on "mailutils"  => :optional
   # GNU Emacs 29.x does support ImageMagick 7
@@ -203,6 +204,7 @@ class EmacsHeadAT30 < EmacsBase
     args << "--with-xml2"     unless build.without? "libxml2"
     args << "--with-xwidgets" if     build.with?    "xwidgets"
     args << "--with-poll"     if build.with?        "poll"
+    args << "--with-webp"
 
     # Read https://github.com/emacs-mirror/emacs/blob/master/etc/DEBUG
     # for more information

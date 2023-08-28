@@ -77,11 +77,6 @@ class EmacsHeadAT30 < EmacsBase
   # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
 
   # Patches
-  resource "0001-No-frame-refocus-cocoa" do
-    url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa-30.patch")
-    sha256 "5e75f19179655c78e8a54a1efce7609f0fa278a7922c8df753b2c72c6d2db77c"
-  end
-
   resource "0003-Pdumper-size-increase" do
     url ResourcesResolver.get_resource_url("patches/0003-Pdumper-size-increase.patch")
     sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
@@ -116,11 +111,13 @@ class EmacsHeadAT30 < EmacsBase
   # desktop/space where the refocused frame lives. The below patch
   # disable this behaviour.
   # Reference: https://github.com/d12frosted/homebrew-emacs-plus/issues/119
+  #
+  # Update: this fix is now directly available in emacs master branch.
+  # See commit:
+  # https://github.com/emacs-mirror/emacs/commit/5427ef23b8b3ef52faf4ab1e8401303220c2d1d1
   if build.with? "no-frame-refocus"
-    patch do
-      url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa-30.patch")
-      sha256 "5e75f19179655c78e8a54a1efce7609f0fa278a7922c8df753b2c72c6d2db77c"
-    end
+    # Show a warning to the user
+    opoo "[DEPRECATED] This option is not required anymore in emacs-head@30"
   end
 
   if build.with? "pdumper"

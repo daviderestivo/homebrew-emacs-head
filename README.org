@@ -110,7 +110,7 @@ The following compilation options are available:
 | ~--with-mailutils~        | Build with mailutils support                                                                                   |
 | ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only on emacs-head@26)                                               |
 | ~--without-modules~       | Disable dynamic modules support                                                                                |
-| ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one)                                   |
+| ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one). Not required in emacs-head@30    |
 | ~--without-libxml2~       | Disable libxml2 support                                                                                        |
 | ~--with-pdumper~          | Enable pdumper support  (not available on emacs-head@26)                                                       |
 | ~--with-xwidgets~         | Enable xwidgets support (not available on emacs-head@26)                                                       |

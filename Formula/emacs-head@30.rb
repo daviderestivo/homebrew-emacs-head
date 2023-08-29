@@ -117,7 +117,7 @@ class EmacsHeadAT30 < EmacsBase
   # https://github.com/emacs-mirror/emacs/commit/5427ef23b8b3ef52faf4ab1e8401303220c2d1d1
   if build.with? "no-frame-refocus"
     # Show a warning to the user
-    opoo "[DEPRECATED] This option is not required anymore in emacs-head@30"
+    opoo "The option --with-no-frame-refocus is not required anymore in emacs-head@30."
   end
 
   if build.with? "pdumper"

@@ -31,7 +31,7 @@ jobs:
       HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY_REF: ${{ github.head_ref || github.ref }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Build emacs-head ${{ matrix.build_opts }}
       run: brew install --verbose Aliases/$(readlink Aliases/emacs-head) ${{ matrix.build_opts }}

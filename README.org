@@ -272,6 +272,7 @@ Additional useful links:
 | ~--with-infinity-yak-satori~                         | Use a Infinite Yak icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/infinity-yak-satori.png]]                         | [[https://github.com/emacsfodder/Infinite-Yak-Icons][Link]] |
 | ~--with-infinity-yak-shack~                          | Use a Infinite Yak icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/infinity-yak-shack.png]]                          | [[https://github.com/emacsfodder/Infinite-Yak-Icons][Link]] |
 | ~--with-infinity-yak-topia~                          | Use a Infinite Yak icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/infinity-yak-topia.png]]                          | [[https://github.com/emacsfodder/Infinite-Yak-Icons][Link]] |
+| ~--with-skamacs-icon~                                | Use a modern style icon by [[https://github.com/compufox][Compufox]]                 | [[/icons/skamacs.png]]                                     | [[https://github.com/compufox/skamacs-icon][Link]] |
 
 ** Why yet another Homebrew GNU Emacs formula?
 Since the option ~--with-cocoa~ is not available anymore in the latest

@@ -218,7 +218,7 @@ index 4bdc67c10b..0d2f3e0b2b 100644
 +  bool owfi = waiting_for_input;
 +  waiting_for_input = false;
 +
-+  safe_call2 (Qrun_hook_with_args,
++  safe_calln (Qrun_hook_with_args,
 +          Qns_system_appearance_change_functions,
 +          Vns_system_appearance);
 +  Fredisplay(Qt);

@@ -28,7 +28,7 @@ class EmacsHeadAT29 < EmacsBase
   depends_on "dbus"       => :optional
   depends_on "mailutils"  => :optional
   # GNU Emacs 29.x does support ImageMagick 7
-  depends_on "imagemagick@7" => :recommended
+  depends_on "imagemagick@7" => :optional
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"

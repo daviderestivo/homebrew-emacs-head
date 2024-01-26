@@ -19,7 +19,7 @@ class EmacsHeadAT26 < EmacsBase
   depends_on "mailutils"  => :optional
   # GNU Emacs 26.x does not support ImageMagick 7:
   # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
-  depends_on "imagemagick@6" => :recommended
+  depends_on "imagemagick@6" => :optional
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"

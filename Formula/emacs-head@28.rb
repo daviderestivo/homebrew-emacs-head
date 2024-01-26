@@ -174,6 +174,7 @@ class EmacsHeadAT28 < EmacsBase
     # library it does not fail but imagemagick support will not be available.
     # See: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=24455
     if build.with? "imagemagick"
+      depends_on "imagemagick@7" => :recommended
       args << "--with-imagemagick"
       imagemagick_lib_path = Formula["imagemagick@7"].opt_lib/"pkgconfig"
       ohai "ImageMagick PKG_CONFIG_PATH: ", imagemagick_lib_path

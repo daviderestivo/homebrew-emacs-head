@@ -23,7 +23,9 @@ class EmacsHeadAT30 < EmacsBase
   depends_on "dbus"       => :optional
   depends_on "mailutils"  => :optional
   # GNU Emacs 29.x does support ImageMagick 7
-  depends_on "imagemagick@7" => :optional
+  if build.with? "imagemagick"
+    depends_on "imagemagick@7" => :recommended
+  end
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -196,7 +198,6 @@ class EmacsHeadAT30 < EmacsBase
     # library it does not fail but imagemagick support will not be available.
     # See: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=24455
     if build.with? "imagemagick"
-      depends_on "imagemagick@7" => :recommended
       args << "--with-imagemagick"
       imagemagick_lib_path = Formula["imagemagick@7"].opt_lib/"pkgconfig"
       ohai "ImageMagick PKG_CONFIG_PATH: ", imagemagick_lib_path

@@ -38,7 +38,10 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Build emacs-head@26 ${{ matrix.build_opts }}
-      run: brew install --verbose emacs-head@26.rb ${{ matrix.build_opts }}
+      run: |
+        brew update
+        brew upgrade || true
+        brew install --verbose emacs-head@26.rb ${{ matrix.build_opts }}
       working-directory: Formula
 
     - name: Test installation

@@ -59,6 +59,10 @@ class EmacsHeadAT30 < EmacsBase
   option "with-poll",
          "Experimental: use poll() instead of select() to support > 1024 file descriptors"
 
+  if build.with? "imagemagick"
+    depends_on "imagemagick" => :recommended
+  end
+
   if build.with? "native-comp"
     depends_on "gmp"       => :build
     depends_on "libjpeg"   => :build
@@ -195,7 +199,6 @@ class EmacsHeadAT30 < EmacsBase
     # library it does not fail but imagemagick support will not be available.
     # See: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=24455
     if build.with? "imagemagick"
-      depends_on "imagemagick" => :recommended
       args << "--with-imagemagick"
       imagemagick_lib_path = Formula["imagemagick"].opt_lib/"pkgconfig"
       ohai "ImageMagick PKG_CONFIG_PATH: ", imagemagick_lib_path

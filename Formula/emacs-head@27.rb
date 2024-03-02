@@ -23,12 +23,9 @@ class EmacsHeadAT27 < EmacsBase
   depends_on "librsvg"    => :recommended
   depends_on "libxml2"    => :recommended
   depends_on "jansson"
-  depends_on "dbus"       => :optional
-  depends_on "mailutils"  => :optional
-  # GNU Emacs 27.x does support ImageMagick 7
-  if build.with? "imagemagick"
-    depends_on "imagemagick@7" => :recommended
-  end
+  depends_on "dbus"        => :optional
+  depends_on "mailutils"   => :optional
+  depends_on "imagemagick" => :optional
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -174,8 +171,9 @@ class EmacsHeadAT27 < EmacsBase
     # library it does not fail but imagemagick support will not be available.
     # See: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=24455
     if build.with? "imagemagick"
+      depends_on "imagemagick" => :recommended
       args << "--with-imagemagick"
-      imagemagick_lib_path = Formula["imagemagick@7"].opt_lib/"pkgconfig"
+      imagemagick_lib_path = Formula["imagemagick"].opt_lib/"pkgconfig"
       ohai "ImageMagick PKG_CONFIG_PATH: ", imagemagick_lib_path
       ENV.prepend_path "PKG_CONFIG_PATH", imagemagick_lib_path
     else

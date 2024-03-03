@@ -19,7 +19,7 @@ class EmacsHeadAT26 < EmacsBase
   depends_on "mailutils"  => :optional
   # GNU Emacs 26.x does not support ImageMagick 7:
   # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
-  depends_on "imagemagick@6" => :recommended
+  depends_on "imagemagick@6" => :optional
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -45,6 +45,10 @@ class EmacsHeadAT26 < EmacsBase
          "Disables frame re-focus (i.e. closing one frame does not refocus another one)"
   option "without-libxml2",
          "Disable libxml2 support"
+
+  if build.with? "imagemagick"
+    depends_on "imagemagick@6" => :recommended
+  end
 
   # All the patches and the icons have been declared as resources.
   # They are downloaded unconditionally even if not used in order to

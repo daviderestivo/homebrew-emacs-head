@@ -28,7 +28,7 @@ jobs:
         os: [macos-12, macos-13]
         build_opts:
           # All options (imagemagick@6)
-          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-multicolor-fonts'
+          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-multicolor-fonts --with-retro-icon-sink-bw'
 
     env:
       HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY: ${{ github.repository }}

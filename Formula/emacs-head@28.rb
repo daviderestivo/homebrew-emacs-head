@@ -230,32 +230,7 @@ class EmacsHeadAT28 < EmacsBase
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
 
-      (%w[modern-icon-sjrmanning modern-icon-asingh4242
-        modern-icon-paper-icons modern-icon-azhilin
-        modern-icon-mzaplotnik modern-icon-bananxan modern-icon-vscode
-        modern-icon-sexy-v1 modern-icon-sexy-v2 modern-icon-cg433n
-        modern-icon-purple modern-icon-yellow modern-icon-orange
-        modern-icon-papirus modern-icon-pen modern-icon-pen-3d
-        modern-icon-pen-lds56 modern-icon-pen-black
-        modern-icon-black-variant modern-icon-purple-flat
-        modern-icon-spacemacs modern-icon-alecive-flatwoken
-        modern-icon-elrumo1 modern-icon-elrumo2
-        modern-icon-savchenkovaleriy-big-sur
-        modern-icon-bokehlicia-captiva modern-icon-nuvola
-        modern-icon-black-gnu-head modern-icon-dragon
-        modern-icon-black-dragon modern-icon-emacs-icon1
-        modern-icon-emacs-icon2 modern-icon-emacs-icon3
-        modern-icon-emacs-icon4 modern-icon-emacs-icon5
-        modern-icon-emacs-icon6 modern-icon-emacs-icon7
-        modern-icon-emacs-icon8 modern-icon-emacs-icon9
-        modern-icon-emacs-card-blue-deep
-        modern-icon-emacs-card-british-racing-green
-        modern-icon-emacs-card-carmine modern-icon-emacs-card-green
-        modern-icon-doom modern-icon-doom3 modern-icon-doom-cacodemon
-        retro-icon-emacs-logo retro-icon-gnu-head
-        retro-icon-gnu-meditate-levitate retro-icon-sink-bw
-        retro-icon-sink]).each do |icon|
-
+      ICONS.each_key do |icon|
         if build.with? icon
           rm "#{icons_dir}/Emacs.icns"
           resource(icon).stage do

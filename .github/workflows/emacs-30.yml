@@ -28,9 +28,9 @@ jobs:
         os: [macos-12, macos-13]
         build_opts:
           # All options (imagemagick@7)
-          - '--with-cocoa --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-poll'
+          - '--with-cocoa --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-poll --with-retro-icon-sink-bw'
           # All options (imagemagick@7) + native-comp support
-          - '--with-cocoa --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-native-comp --with-poll'
+          - '--with-cocoa --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-native-comp --with-poll --with-retro-icon-sink-bw'
 
     env:
       HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY: ${{ github.repository }}

@@ -10,9 +10,11 @@ class EmacsBase < Formula
       sha = data[0]
       comment = data[1]
       option "with-#{icon}", comment
-      resource "#{icon}" do
-        url ResourcesResolver.get_resource_url("icons/" + icon + ".icns")
-        sha256 sha
+      if build.with? "#{icon}"
+        resource "#{icon}" do
+          url ResourcesResolver.get_resource_url("icons/" + icon + ".icns")
+          sha256 sha
+        end
       end
     end
   end

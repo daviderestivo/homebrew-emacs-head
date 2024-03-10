@@ -65,5 +65,7 @@ ICONS = {
   "infinity-yak-satori"                         => ["0dd3c7f81f08e27c97668b3aaa075ab32cad783b464dd42b81169240610be368", "Use a modern style icon by Jasonm23 (Emacs Fodder)"],
   "infinity-yak-shack"                          => ["243006332098453773c817ff8553d3cab6f3ddd7a78175d7134168e39f68b169", "Use a modern style icon by Jasonm23 (Emacs Fodder)"],
   "infinity-yak-topia"                          => ["9152ae3a931cec1a252def60cb7a181034246d66897e75b014860352ded05ccf", "Use a modern style icon by Jasonm23 (Emacs Fodder)"],
-  "skamacs-icon"                                => ["c28a5d8606953dcf9a0c6b19225b492ac3fb29bada218f34c49cde6b313ae022", "Use a modern style icon by Compufox"]
+  "skamacs-icon"                                => ["c28a5d8606953dcf9a0c6b19225b492ac3fb29bada218f34c49cde6b313ae022", "Use a modern style icon by Compufox"],
+  "blender-3d-curvy"                            => ["d69852471cc711b2bcbe3ecc77262360e2a985bdc91f459eb38639c8838befee", "Use a curvy 3D rendered style icon by Valeriy Savchenko"],
+  "blender-3d-flat"                             => ["10d05320cc13dfdb4ff0c78e25d92d4fcb475d931ae762d49e7f0894be6c309f", "Use a flat 3D rendered style icon by Valeriy Savchenko"]
 }

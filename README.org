@@ -205,8 +205,8 @@ Additional useful links:
 - [[https://gist.github.com/mikroskeem/0a5c909c1880408adf732ceba6d3f9ab][gccemacs on OS X]]
 
 ** Available icons
-| Option                                             | Description                                         | Image                                                  | URL  |
-|----------------------------------------------------+-----------------------------------------------------+--------------------------------------------------------+------|
+| Option                                               | Description                                         | Image                                                  | URL  |
+|------------------------------------------------------+-----------------------------------------------------+--------------------------------------------------------+------|
 | ~--with-modern-icon-sjrmanning~                      | Use a modern style icon by [[https://github.com/sjrmanning][Sjrmannings]]              | [[/icons/modern-icon-sjrmanning.png]]                      | [[https://github.com/sjrmanning/emacs-icon][Link]] |
 | ~--with-modern-icon-asingh4242~                      | Use a modern style icon by [[https://imgur.com/user/asingh4242][Asingh4242]]               | [[/icons/modern-icon-asingh4242.png]]                      | [[https://imgur.com/YGxjLZw][Link]] |
 | ~--with-modern-icon-paper-icons~                     | Use a modern style icon by [[https://github.com/snwh][Sam Hewitt]]               | [[/icons/modern-icon-paper-icons.png]]                     | [[https://github.com/snwh/paper-icon-theme/blob/master/Paper/512x512/apps/emacs.png][Link]] |
@@ -273,6 +273,8 @@ Additional useful links:
 | ~--with-infinity-yak-shack~                          | Use a Infinite Yak icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/infinity-yak-shack.png]]                          | [[https://github.com/emacsfodder/Infinite-Yak-Icons][Link]] |
 | ~--with-infinity-yak-topia~                          | Use a Infinite Yak icon by [[https://github.com/emacsfodder][Jasonm23]]                 | [[/icons/infinity-yak-topia.png]]                          | [[https://github.com/emacsfodder/Infinite-Yak-Icons][Link]] |
 | ~--with-skamacs-icon~                                | Use a modern style icon by [[https://github.com/compufox][Compufox]]                 | [[/icons/skamacs-icon.png]]                                | [[https://github.com/compufox/skamacs-icon][Link]] |
+| ~--with-blender-3d-curvy~                            | Use a curvy 3D icon by [[https://github.com/SavchenkoValeriy][SavchenkoValeriy]]             | [[/icons/blender-3d-curvy.png]]                            | [[https://github.com/SavchenkoValeriy/emacs-icons][Link]] |
+| ~--with-blender-3d-flat~                             | Use a flat 3D icon by [[https://github.com/SavchenkoValeriy][SavchenkoValeriy]]              | [[/icons/blender-3d-flat.png]]                             | [[https://github.com/SavchenkoValeriy/emacs-icons][Link]] |
 
 ** Why yet another Homebrew GNU Emacs formula?
 Since the option ~--with-cocoa~ is not available anymore in the latest

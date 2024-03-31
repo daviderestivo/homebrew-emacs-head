@@ -213,7 +213,7 @@ class EmacsHeadAT30 < EmacsBase
     args << "--with-rsvg"     unless build.without? "librsvg"
     args << "--with-xml2"     unless build.without? "libxml2"
     args << "--with-xwidgets" if     build.with?    "xwidgets"
-    args << "--with-poll"     if build.with?        "poll"
+    args << "--with-poll"     if     build.with?    "poll"
     args << "--with-webp"
 
     # Read https://github.com/emacs-mirror/emacs/blob/master/etc/DEBUG

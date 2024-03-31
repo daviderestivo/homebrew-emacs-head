@@ -95,9 +95,9 @@ class EmacsHeadAT30 < EmacsBase
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  resource "0011-Poll.patch" do
-    url ResourcesResolver.get_resource_url("patches/0011-Poll.patch")
-    sha256 "052eacac5b7bd86b466f9a3d18bff9357f2b97517f463a09e4c51255bdb14648"
+  resource "0011-Poll-30.patch" do
+    url ResourcesResolver.get_resource_url("patches/0011-Poll-30.patch")
+    sha256 "acdfb97c10da7832503e3b0f9987a86622de0e18035cfe724a6413a6d191db87"
   end
 
   resource "0012-BLOCK_ALIGN.patch" do
@@ -138,8 +138,8 @@ class EmacsHeadAT30 < EmacsBase
 
   if build.with? "poll"
     patch do
-      url ResourcesResolver.get_resource_url("patches/0011-Poll.patch")
-      sha256 "052eacac5b7bd86b466f9a3d18bff9357f2b97517f463a09e4c51255bdb14648"
+      url ResourcesResolver.get_resource_url("patches/0011-Poll-30.patch")
+      sha256 "acdfb97c10da7832503e3b0f9987a86622de0e18035cfe724a6413a6d191db87"
     end
   end
 

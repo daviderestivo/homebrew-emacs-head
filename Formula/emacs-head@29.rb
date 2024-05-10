@@ -188,7 +188,6 @@ class EmacsHeadAT29 < EmacsBase
       ENV.append "LDFLAGS", "-I#{Formula["libgccjit"].include}"
       ENV.append "LDFLAGS", "-I#{Formula["gmp"].include}"
       ENV.append "LDFLAGS", "-I#{Formula["libjpeg"].include}"
-      ENV.append "LIBRARY_PATH", "#{Formula["libgccjit"].lib}"
 
       args << "--with-native-compilation"
       make_flags << "BYTE_COMPILE_EXTRA_FLAGS=--eval '(setq comp-speed 2)'"

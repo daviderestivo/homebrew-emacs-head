@@ -1,16 +1,10 @@
 # coding: utf-8
 require_relative "../Library/EmacsBase"
 
-class EmacsHeadAT29 < EmacsBase
-  url "https://ftp.gnu.org/gnu/emacs/emacs-29.4.tar.xz"
-  mirror "https://ftpmirror.gnu.org/emacs/emacs-29.4.tar.xz"
-  sha256 "ba897946f94c36600a7e7bb3501d27aa4112d791bfe1445c61ed28550daca235"
-  version "29.4"
+class EmacsHeadAT31 < EmacsBase
+  url "https://github.com/emacs-mirror/emacs.git"
+  version "31.0.50"
   revision 1
-
-  head do
-    url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-29"
-  end
 
   depends_on "autoconf"   => :build
   depends_on "coreutils"  => :build
@@ -25,6 +19,7 @@ class EmacsHeadAT29 < EmacsBase
   depends_on "librsvg"    => :recommended
   depends_on "libxml2"    => :recommended
   depends_on "jansson"
+  depends_on "webp"
   depends_on "dbus"        => :optional
   depends_on "mailutils"   => :optional
   depends_on "imagemagick" => :optional
@@ -85,19 +80,14 @@ class EmacsHeadAT29 < EmacsBase
   # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
 
   # Patches
-  resource "0001-No-frame-refocus-cocoa" do
-    url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
-    sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
-  end
-
   resource "0003-Pdumper-size-increase" do
     url ResourcesResolver.get_resource_url("patches/0003-Pdumper-size-increase.patch")
     sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
   end
 
   resource "0005-System-appearance" do
-    url  ResourcesResolver.get_resource_url("patches/0005-System-appearance-28-29.patch")
-    sha256 "d6ee159839b38b6af539d7b9bdff231263e451c1fd42eec0d125318c9db8cd92"
+    url  ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
+    sha256 "9eb3ce80640025bff96ebaeb5893430116368d6349f4eb0cb4ef8b3d58477db6"
   end
 
   resource "0008-Fix-window-role.patch" do
@@ -105,9 +95,14 @@ class EmacsHeadAT29 < EmacsBase
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  resource "0011-Poll.patch" do
-    url ResourcesResolver.get_resource_url("patches/0011-Poll.patch")
-    sha256 "052eacac5b7bd86b466f9a3d18bff9357f2b97517f463a09e4c51255bdb14648"
+  resource "0011-Poll-30.patch" do
+    url ResourcesResolver.get_resource_url("patches/0011-Poll-30.patch")
+    sha256 "acdfb97c10da7832503e3b0f9987a86622de0e18035cfe724a6413a6d191db87"
+  end
+
+  resource "0012-BLOCK_ALIGN.patch" do
+    url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN.patch")
+    sha256 "f2cc1832f260e86707dc2470c08e8f12c038db06b1f028769a26ebbece11a49e"
   end
 
   # Icons
@@ -119,11 +114,13 @@ class EmacsHeadAT29 < EmacsBase
   # desktop/space where the refocused frame lives. The below patch
   # disable this behaviour.
   # Reference: https://github.com/d12frosted/homebrew-emacs-plus/issues/119
+  #
+  # Update: this fix is now directly available in emacs master branch.
+  # See commit:
+  # https://github.com/emacs-mirror/emacs/commit/5427ef23b8b3ef52faf4ab1e8401303220c2d1d1
   if build.with? "no-frame-refocus"
-    patch do
-      url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
-      sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
-    end
+    # Show a warning to the user
+    opoo "The option --with-no-frame-refocus is not required anymore in emacs-head@30."
   end
 
   if build.with? "pdumper"
@@ -141,19 +138,24 @@ class EmacsHeadAT29 < EmacsBase
 
   if build.with? "poll"
     patch do
-      url ResourcesResolver.get_resource_url("patches/0011-Poll.patch")
-      sha256 "052eacac5b7bd86b466f9a3d18bff9357f2b97517f463a09e4c51255bdb14648"
+      url ResourcesResolver.get_resource_url("patches/0011-Poll-30.patch")
+      sha256 "acdfb97c10da7832503e3b0f9987a86622de0e18035cfe724a6413a6d191db87"
     end
   end
 
   patch do
-    url ResourcesResolver.get_resource_url("patches/0005-System-appearance-28-29.patch")
-    sha256 "d6ee159839b38b6af539d7b9bdff231263e451c1fd42eec0d125318c9db8cd92"
+    url ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
+    sha256 "9eb3ce80640025bff96ebaeb5893430116368d6349f4eb0cb4ef8b3d58477db6"
   end
 
   patch do
     url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
+  end
+
+  patch do
+    url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN.patch")
+    sha256 "f2cc1832f260e86707dc2470c08e8f12c038db06b1f028769a26ebbece11a49e"
   end
 
   def install
@@ -212,6 +214,7 @@ class EmacsHeadAT29 < EmacsBase
     args << "--with-xml2"     unless build.without? "libxml2"
     args << "--with-xwidgets" if     build.with?    "xwidgets"
     args << "--with-poll"     if     build.with?    "poll"
+    args << "--with-webp"
 
     # Read https://github.com/emacs-mirror/emacs/blob/master/etc/DEBUG
     # for more information

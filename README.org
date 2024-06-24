@@ -24,6 +24,9 @@
   <a href="https://github.com/daviderestivo/homebrew-emacs-head/actions?query=workflow%3A%22Emacs+30%22">
     <img src="https://github.com/daviderestivo/homebrew-emacs-head/actions/workflows/emacs-30.yml/badge.svg" alt="Emacs 30 CI Status Badge">
   </a>
+  <a href="https://github.com/daviderestivo/homebrew-emacs-head/actions?query=workflow%3A%22Emacs+31%22">
+    <img src="https://github.com/daviderestivo/homebrew-emacs-head/actions/workflows/emacs-31.yml/badge.svg" alt="Emacs 31 CI Status Badge">
+  </a>
 </p>
 #+end_html
 
@@ -34,8 +37,9 @@ This formula currently supports:
 - GNU Emacs 26.3
 - GNU Emacs 27.2 (or HEAD)
 - GNU Emacs 28.2 (or HEAD)
-- GNU Emacs 29.x (currently 29.2)
-- GNU Emacs HEAD (currently 30.0.50)
+- GNU Emacs 29.x (currently 29.4)
+- GNU Emacs 30.0.50
+- GNU Emacs HEAD (currently 31.0.50)
 
 ** Installation
 You can install this formula using:
@@ -84,6 +88,12 @@ brew tap daviderestivo/emacs-head
 brew install emacs-head@30 --with-cocoa
 #+end_src
 
+*** GNU Emacs 31
+#+begin_src bash
+brew tap daviderestivo/emacs-head
+brew install emacs-head@31 --with-cocoa
+#+end_src
+
 ** Screenshots
 *** GNU Emacs running in terminal mode (28.x)
 [[/images/emacs-head-terminal.png]]
@@ -98,26 +108,26 @@ Modeline Theme: [[https://github.com/daviderestivo/smart-mode-line-atom-one-dark
 ** Compilation options
 The following compilation options are available:
 
-| Option                  | Description                                                                                                    |
-|-------------------------+----------------------------------------------------------------------------------------------------------------|
-| ~--with-crash-debug~      | Append `-g3` to CFLAGS to enable crash debugging                                                               |
-| ~--with-cocoa~            | Build a cocoa version of GNU Emacs                                                                             |
-| ~--with-ctags~            | Don't remove the ctags executable that GNU Emacs provides                                                      |
-| ~--with-dbus~             | Build with dbus support                                                                                        |
-| ~--without-gnutls~        | Disable gnutls support                                                                                         |
-| ~--with-imagemagick~      | Build with imagemagick support                                                                                 |
-| ~--without-librsvg~       | Disable librsvg support                                                                                        |
-| ~--with-mailutils~        | Build with mailutils support                                                                                   |
-| ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only on emacs-head@26)                                               |
-| ~--without-modules~       | Disable dynamic modules support                                                                                |
-| ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one). Not required in emacs-head@30    |
-| ~--without-libxml2~       | Disable libxml2 support                                                                                        |
-| ~--with-pdumper~          | Enable pdumper support  (not available on emacs-head@26)                                                       |
-| ~--with-xwidgets~         | Enable xwidgets support (not available on emacs-head@26)                                                       |
-| ~--with-native-comp~      | Enable elisp native compilation support (only on emacs-head@28, emacs-head@29 and emacs-head@30)               |
-| ~--with-native-full-aot~  | Enable elisp ahead-of-time native compilation support (only on emacs-head@28, emacs-head@29 and emacs-head@30) |
-| ~--with-tree-sitter~      | Enable Tree-sitter support (only on emacs-head@29 and emacs-head@30)                                           |
-| ~--with-poll~             | Use poll() instead of select() to support > 1024 file descriptors                                              |
+| Option                  | Description                                                                                                                   |
+|-------------------------+-------------------------------------------------------------------------------------------------------------------------------|
+| ~--with-crash-debug~      | Append `-g3` to CFLAGS to enable crash debugging                                                                              |
+| ~--with-cocoa~            | Build a cocoa version of GNU Emacs                                                                                            |
+| ~--with-ctags~            | Don't remove the ctags executable that GNU Emacs provides                                                                     |
+| ~--with-dbus~             | Build with dbus support                                                                                                       |
+| ~--without-gnutls~        | Disable gnutls support                                                                                                        |
+| ~--with-imagemagick~      | Build with imagemagick support                                                                                                |
+| ~--without-librsvg~       | Disable librsvg support                                                                                                       |
+| ~--with-mailutils~        | Build with mailutils support                                                                                                  |
+| ~--with-multicolor-fonts~ | Enable multicolor fonts support on macOS (only on emacs-head@26)                                                              |
+| ~--without-modules~       | Disable dynamic modules support                                                                                               |
+| ~--with-no-frame-refocus~ | Disables frame re-focus (ie. closing one frame does not refocus another one). Not required in emacs-head@30 and emacs-head@31 |
+| ~--without-libxml2~       | Disable libxml2 support                                                                                                       |
+| ~--with-pdumper~          | Enable pdumper support  (not available on emacs-head@26)                                                                      |
+| ~--with-xwidgets~         | Enable xwidgets support (not available on emacs-head@26)                                                                      |
+| ~--with-native-comp~      | Enable elisp native compilation support (not available on emacs-head@26 and emacs-head@27)                                    |
+| ~--with-native-full-aot~  | Enable elisp ahead-of-time native compilation support (not available on emacs-head@26 and emacs-head@27)                      |
+| ~--with-tree-sitter~      | Enable Tree-sitter support (only on emacs-head@29 and emacs-head@30)                                                          |
+| ~--with-poll~             | Use poll() instead of select() to support > 1024 file descriptors                                                             |
 
 For the terminal version only of GNU Emacs please omit ~--with-cocoa~.
 

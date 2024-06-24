@@ -35,10 +35,10 @@
 
 This formula currently supports:
 - GNU Emacs 26.3
-- GNU Emacs 27.2 (or HEAD)
-- GNU Emacs 28.2 (or HEAD)
-- GNU Emacs 29.x (currently 29.4)
-- GNU Emacs 30.0.50
+- GNU Emacs 27.2 (or emacs-27 branch)
+- GNU Emacs 28.2 (or emacs-28 branch)
+- GNU Emacs 29.4 (or emacs-29 branch)
+- GNU Emacs 30.0.50 (emacs-30 branch)
 - GNU Emacs HEAD (currently 31.0.50)
 
 ** Installation
@@ -56,30 +56,37 @@ brew tap daviderestivo/emacs-head
 brew install emacs-head@27 --with-cocoa
 #+end_src
 
-If you wish to install the HEAD version of GNU Emacs 27 please do:
+If you wish to install the latest commit of the emacs-27 branch then:
 
 #+begin_src bash
 brew tap daviderestivo/emacs-head
 brew install --HEAD emacs-head@27 --with-cocoa
 #+end_src
 
-*** GNU Emacs 28 (default)
+*** GNU Emacs 28
+#+begin_src bash
+brew tap daviderestivo/emacs-head
+brew install emacs-head@28 --with-cocoa
+#+end_src
+
+If you wish to install the latest commit of the emacs-28 branch then:
+
+#+begin_src bash
+brew tap daviderestivo/emacs-head
+brew install --HEAD emacs-head@28 --with-cocoa
+#+end_src
+
+*** GNU Emacs 29 (default)
 #+begin_src bash
 brew tap daviderestivo/emacs-head
 brew install emacs-head --with-cocoa
 #+end_src
 
-If you wish to install the HEAD version of GNU Emacs 28 please do:
+If you wish to install the latest commit of the emacs-29 branch then:
 
 #+begin_src bash
 brew tap daviderestivo/emacs-head
 brew install --HEAD emacs-head --with-cocoa
-#+end_src
-
-*** GNU Emacs 29
-#+begin_src bash
-brew tap daviderestivo/emacs-head
-brew install emacs-head@29 --with-cocoa
 #+end_src
 
 *** GNU Emacs 30

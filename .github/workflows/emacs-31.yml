@@ -1,0 +1,51 @@
+name: Emacs 31
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+    paths:
+      - 'Formula/emacs-head@31.rb'
+      - 'patches/**'
+      - 'Library/**'
+      - '.github/workflows/emacs-31.yml'
+  pull_request:
+    paths:
+      - 'Formula/emacs-head@31.rb'
+      - 'patches/**'
+      - 'Library/**'
+      - '.github/workflows/emacs-31.yml'
+  schedule:
+    - cron:  '0 7 * * *'
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-12, macos-13]
+        build_opts:
+          # All options (imagemagick@7)
+          - '--with-cocoa --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-poll --with-retro-icon-sink-bw'
+          # All options (imagemagick@7) + native-comp support
+          - '--with-cocoa --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-native-comp --with-poll --with-retro-icon-sink-bw'
+
+    env:
+      HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY: ${{ github.repository }}
+      HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY_REF: ${{ github.head_ref || github.ref }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build emacs-head@31 ${{ matrix.build_opts }}
+      run: |
+        brew update
+        brew upgrade || true
+        brew install --verbose emacs-head@31.rb ${{ matrix.build_opts }}
+      working-directory: Formula
+
+    - name: Test installation
+      run: $(brew --prefix)/bin/emacs --batch --eval='(print (+ 2 2))'
+      working-directory: Formula

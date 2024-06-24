@@ -1,7 +1,7 @@
 # coding: utf-8
 require_relative "../Library/EmacsBase"
 
-class EmacsHeadAT30 < EmacsBase
+class EmacsHeadAT31 < EmacsBase
   url "https://github.com/emacs-mirror/emacs.git"
   version "31.0.50"
   revision 1

@@ -2,7 +2,7 @@
 require_relative "../Library/EmacsBase"
 
 class EmacsHeadAT30 < EmacsBase
-  url "https://github.com/emacs-mirror/emacs.git" :branch => "emacs-30"
+  url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-30"
   version "30.0.50"
   revision 1
 

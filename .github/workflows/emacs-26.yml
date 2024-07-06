@@ -25,7 +25,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-13, macos-14]
+        os: [macos-12, macos-13]
         build_opts:
           # All options (imagemagick@6)
           - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-multicolor-fonts --with-retro-icon-sink-bw'

@@ -220,8 +220,9 @@ class EmacsHeadAT29 < EmacsBase
       ohai "GNU Emacs crash debug enabled. Appending `-g3` to CFLAGS..."
       ENV.append_to_cflags "-g3"
     end
-    # Increase macOS max open files to 10000 (default is 1024)
-    ENV.append "CFLAGS", "-O2 -DFD_SETSIZE=10000 -DDARWIN_UNLIMITED_SELECT"
+    # Optimize emacs executable and increase macOS max open files to
+    # 10000 (default is 1024)
+    ENV.append "CFLAGS", "-O2 -march=native -pipe -DFD_SETSIZE=10000 -DDARWIN_UNLIMITED_SELECT"
 
     # Use GNU install
     ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"

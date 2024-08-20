@@ -2,7 +2,12 @@
 require_relative "../Library/EmacsBase"
 
 class EmacsHeadAT31 < EmacsBase
-  url "https://github.com/emacs-mirror/emacs.git"
+  if build.with? "mps"
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "scratch/igc"
+  else
+    url "https://github.com/emacs-mirror/emacs.git"
+  end
+
   version "31.0.50"
   revision 1
 
@@ -58,6 +63,8 @@ class EmacsHeadAT31 < EmacsBase
          "Enable Tree-sitter support"
   option "with-poll",
          "Experimental: use poll() instead of select() to support > 1024 file descriptors"
+  option "with-mps",
+	 "Experimental: use new MPS garbage collection system"
 
   if build.with? "imagemagick"
     depends_on "imagemagick" => :recommended

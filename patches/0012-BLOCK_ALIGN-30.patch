@@ -12,6 +12,6 @@ index c77bdc6372d..f455260c3b0 100644
 -# define BLOCK_ALIGN (1 << 15)
 -#endif
 +#define BLOCK_ALIGN (1 << 15)
- static_assert (POWER_OF_2 (BLOCK_ALIGN));
+ verify (POWER_OF_2 (BLOCK_ALIGN));
 
  /* Use aligned_alloc if it or a simple substitute is available.

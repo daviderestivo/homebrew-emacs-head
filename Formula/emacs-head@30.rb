@@ -100,8 +100,8 @@ class EmacsHeadAT30 < EmacsBase
     sha256 "59e876f82e6fd8e4583bc2456339eda4f989c86b1e16a02b0726702e95f60825"
   end
 
-  resource "0012-BLOCK_ALIGN.patch" do
-    url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN.patch")
+  resource "0012-BLOCK_ALIGN-30.patch" do
+    url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN-30.patch")
     sha256 "f2cc1832f260e86707dc2470c08e8f12c038db06b1f028769a26ebbece11a49e"
   end
 
@@ -154,7 +154,7 @@ class EmacsHeadAT30 < EmacsBase
   end
 
   patch do
-    url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN.patch")
+    url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN-30.patch")
     sha256 "f2cc1832f260e86707dc2470c08e8f12c038db06b1f028769a26ebbece11a49e"
   end
 

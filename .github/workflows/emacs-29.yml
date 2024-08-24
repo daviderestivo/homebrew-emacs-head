@@ -27,8 +27,6 @@ jobs:
       matrix:
         os: [macos-14]
         build_opts:
-          # All options (imagemagick@7)
-          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-poll --with-retro-icon-sink-bw'
           # All options (imagemagick@7) + native-comp support
           - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-native-comp --with-poll --with-retro-icon-sink-bw'
 

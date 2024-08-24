@@ -102,7 +102,7 @@ class EmacsHeadAT31 < EmacsBase
 
   resource "0012-BLOCK_ALIGN.patch" do
     url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN.patch")
-    sha256 "f2cc1832f260e86707dc2470c08e8f12c038db06b1f028769a26ebbece11a49e"
+    sha256 "20867fec025e1c571635512fb790af0fbafc089b0b656dc8ece9d0ed8d3e6a6b"
   end
 
   # Icons
@@ -155,7 +155,7 @@ class EmacsHeadAT31 < EmacsBase
 
   patch do
     url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN.patch")
-    sha256 "f2cc1832f260e86707dc2470c08e8f12c038db06b1f028769a26ebbece11a49e"
+    sha256 "20867fec025e1c571635512fb790af0fbafc089b0b656dc8ece9d0ed8d3e6a6b"
   end
 
   def install

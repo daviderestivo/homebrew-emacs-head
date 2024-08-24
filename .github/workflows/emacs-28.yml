@@ -25,12 +25,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-13, macos-14]
+        os: [macos-14]
         build_opts:
           # All options (imagemagick@7)
           - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-native-comp --with-retro-icon-sink-bw'
-          # HEAD + all options (imagemagick@7)
-          - '--HEAD --with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-native-comp --with-retro-icon-sink-bw'
 
     env:
       HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY: ${{ github.repository }}

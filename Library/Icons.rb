@@ -48,6 +48,7 @@ ICONS = {
   "modern-icon-doom"                            => ["39378a10b3d7e804461eec8bb9967de0cec7b8f1151150bbe2ba16f21001722b", "Use a modern style icon by Jay Zawrotny"],
   "modern-icon-doom3"                           => ["3ac398d8d691687320d3a88cd8e634c8cfb7ca358bfe6c30108667f2486438b3", "Use a modern style icon by Jay Zawrotny"],
   "modern-icon-doom-cacodemon"                  => ["5a8d53896f72992bc7158aaaa47665df4009be646deee39af6f8e76893568728", "Use a modern style icon by Christian Westrom"],
+  "modern-icon-c9rgreen-sonoma"                 => ["0e80aec0c6ead0b49177d9e230cf0569ee16465e36dbacabe9e8e0a4152d9b62", "Use a modern style icon by @c9rgreen"],
   "retro-icon-emacs-logo"                       => ["0d7100faa68c17d012fe9309f9496b8d530946c324cb7598c93a4c425326ff97", "Use a retro style icon by Luis Fernandes"],
   "retro-icon-gnu-head"                         => ["cfca2ff0214cff47167f634a5b9f8c402b488796f79ded23f93ec505f78b2f2f", "Use a retro style icon by Aurélio A. Heckert (GNU Project)"],
   "retro-icon-gnu-meditate-levitate"            => ["5424582f0a4c1998aa91eb8185e1d41961cbc9605dbcea8a037c602587b14998", "Use a retro style icon by Nevrax Design Team"],

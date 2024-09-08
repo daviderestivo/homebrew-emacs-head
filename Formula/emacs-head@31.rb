@@ -2,10 +2,6 @@
 require_relative "../Library/EmacsBase"
 
 class EmacsHeadAT31 < EmacsBase
-  if build.with? "mps"
-    url "https://github.com/emacs-mirror/emacs.git", :branch => "scratch/igc"
-  else
-    url "https://github.com/emacs-mirror/emacs.git"
   version "31.0.50"
   revision 1
 
@@ -61,7 +57,14 @@ class EmacsHeadAT31 < EmacsBase
          "Enable Tree-sitter support"
   option "with-poll",
          "Experimental: use poll() instead of select() to support > 1024 file descriptors"
-  option "with-mps"
+  option "with-mps",
+         "Experimental: use Memory Pool System garbage collector"
+
+  if build.with? "mps"
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "scratch/igc"
+  else
+    url "https://github.com/emacs-mirror/emacs.git"
+  end
 
   if build.with? "imagemagick"
     depends_on "imagemagick" => :recommended
@@ -76,6 +79,10 @@ class EmacsHeadAT31 < EmacsBase
 
   if build.with? "tree-sitter"
     depends_on "tree-sitter" => :optional
+  end
+
+  if build.with? "mps"
+    depends_on "libmps" => :recommended
   end
 
   # All the patches and the icons have been declared as resources.
@@ -157,9 +164,16 @@ class EmacsHeadAT31 < EmacsBase
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  patch do
-    url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN.patch")
-    sha256 "20867fec025e1c571635512fb790af0fbafc089b0b656dc8ece9d0ed8d3e6a6b"
+  if build.with? "mps"
+    patch do
+      url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN-30.patch")
+      sha256 "f2cc1832f260e86707dc2470c08e8f12c038db06b1f028769a26ebbece11a49e"
+    end
+  else
+    patch do
+      url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN.patch")
+      sha256 "20867fec025e1c571635512fb790af0fbafc089b0b656dc8ece9d0ed8d3e6a6b"
+    end
   end
 
   def install
@@ -218,6 +232,7 @@ class EmacsHeadAT31 < EmacsBase
     args << "--with-xml2"     unless build.without? "libxml2"
     args << "--with-xwidgets" if     build.with?    "xwidgets"
     args << "--with-poll"     if     build.with?    "poll"
+    args << "--with-mps"      if     build.with?     "mps"
     args << "--with-webp"
 
     # Read https://github.com/emacs-mirror/emacs/blob/master/etc/DEBUG

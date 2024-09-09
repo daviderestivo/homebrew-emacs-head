@@ -115,8 +115,8 @@ Modeline Theme: [[https://github.com/daviderestivo/smart-mode-line-atom-one-dark
 ** Compilation options
 The following compilation options are available:
 
-| Option                  | Description                                                                                                                   |
-|-------------------------+-------------------------------------------------------------------------------------------------------------------------------|
+| Option                    | Description                                                                                                                   |
+|---------------------------+-------------------------------------------------------------------------------------------------------------------------------|
 | ~--with-crash-debug~      | Append `-g3` to CFLAGS to enable crash debugging                                                                              |
 | ~--with-cocoa~            | Build a cocoa version of GNU Emacs                                                                                            |
 | ~--with-ctags~            | Don't remove the ctags executable that GNU Emacs provides                                                                     |
@@ -135,6 +135,7 @@ The following compilation options are available:
 | ~--with-native-full-aot~  | Enable elisp ahead-of-time native compilation support (not available on emacs-head@26 and emacs-head@27)                      |
 | ~--with-tree-sitter~      | Enable Tree-sitter support (only on emacs-head@29 and emacs-head@30)                                                          |
 | ~--with-poll~             | Use poll() instead of select() to support > 1024 file descriptors                                                             |
+| ~--with-mps~              | Use the Memory Pool System garbage collection library (only on emacs-head@31)                                                 |
 
 For the terminal version only of GNU Emacs please omit ~--with-cocoa~.
 
@@ -185,7 +186,7 @@ files.
 ** Xwidgets support
 Note: xwidgets feature is not supported on emacs-head@26.
 
-This formula support native macOS X Cocoa Xwidgets via embedding a
+This formula supports native macOS X Cocoa Xwidgets via embedding a
 native webkit window. To enable this feature please use
 ~--with-xwidgets~.
 
@@ -193,7 +194,7 @@ native webkit window. To enable this feature please use
 Note: native-comp feature is not supported on emacs-head@26 and
 emacs-head@27.
 
-This formula support native Elisp code compilation. In order to enable
+This formula supports native Elisp code compilation. In order to enable
 it please follow the below instructions:
 
 #+begin_src bash
@@ -220,6 +221,19 @@ Additional useful links:
 - [[https://github.com/jimeh/build-emacs-for-macos][build-emacs-for-macos]]
 - [[https://github.com/shshkn/emacs.d/blob/master/docs/nativecomp.md][gccemacs]]
 - [[https://gist.github.com/mikroskeem/0a5c909c1880408adf732ceba6d3f9ab][gccemacs on OS X]]
+
+** MPS garbage collector
+Note: MPS is only supported on emacs-head@31
+
+This formula supports the MPS garbage collector which theoretically can improve
+performance. It is a stable system that has been in use for years.
+However, in emacs this is an experimental feature.
+
+More details about MPS can be found in the below links:
+
+- [[https://www.ravenbrook.com/project/mps/][Memory Pool System]]
+- [[https://github.com/Ravenbrook/mps][MPS on GitHub]]
+- [[https://memory-pool-system.readthedocs.io/en/latest/index.html][MPS docs]]
 
 ** Available icons
 | Option                                             | Description                                              | Image                                                  | URL  |

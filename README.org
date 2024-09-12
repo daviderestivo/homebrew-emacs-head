@@ -115,8 +115,8 @@ Modeline Theme: [[https://github.com/daviderestivo/smart-mode-line-atom-one-dark
 ** Compilation options
 The following compilation options are available:
 
-| Option                    | Description                                                                                                                   |
-|---------------------------+-------------------------------------------------------------------------------------------------------------------------------|
+| Option                  | Description                                                                                                                   |
+|-------------------------+-------------------------------------------------------------------------------------------------------------------------------|
 | ~--with-crash-debug~      | Append `-g3` to CFLAGS to enable crash debugging                                                                              |
 | ~--with-cocoa~            | Build a cocoa version of GNU Emacs                                                                                            |
 | ~--with-ctags~            | Don't remove the ctags executable that GNU Emacs provides                                                                     |

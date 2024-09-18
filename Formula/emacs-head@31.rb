@@ -13,6 +13,7 @@ class EmacsHeadAT31 < EmacsBase
   depends_on "cmake"      => :build
   depends_on "pkg-config" => :build
   depends_on "gcc"        => :build
+  depends_on "m4"         => :build
   depends_on "giflib"
   depends_on "gnutls"     => :recommended
   depends_on "librsvg"    => :recommended

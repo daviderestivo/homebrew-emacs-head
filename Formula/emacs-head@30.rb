@@ -2,8 +2,10 @@
 require_relative "../Library/EmacsBase"
 
 class EmacsHeadAT30 < EmacsBase
-  url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-30"
-  version "30.0.91"
+  url "https://alpha.gnu.org/gnu/emacs/pretest/emacs-30.0.92.tar.xz"
+  mirror "https://ftpmirror.gnu.org/emacs/emacs-30.0.92.tar.xz"
+  sha256 "d89287bd5a8381bb60e14aab95202377261d43a60d15dc0a61d0d662bc5626be"
+  version "30.0.92"
   revision 1
 
   depends_on "autoconf"   => :build

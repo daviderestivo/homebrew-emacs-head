@@ -62,7 +62,7 @@ class EmacsHeadAT31 < EmacsBase
          "Experimental: use Memory Pool System garbage collector"
 
   if build.with? "mps"
-    url "https://github.com/emacs-mirror/emacs.git", :branch => "scratch/igc"
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/igc"
   else
     url "https://github.com/emacs-mirror/emacs.git"
   end

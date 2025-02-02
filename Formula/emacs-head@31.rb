@@ -107,11 +107,6 @@ class EmacsHeadAT31 < EmacsBase
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  resource "0012-BLOCK_ALIGN.patch" do
-    url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN.patch")
-    sha256 "20867fec025e1c571635512fb790af0fbafc089b0b656dc8ece9d0ed8d3e6a6b"
-  end
-
   # Icons
   load_icons
 
@@ -158,11 +153,6 @@ class EmacsHeadAT31 < EmacsBase
   patch do
     url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
-  patch do
-    url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN.patch")
-    sha256 "20867fec025e1c571635512fb790af0fbafc089b0b656dc8ece9d0ed8d3e6a6b"
   end
 
   def install

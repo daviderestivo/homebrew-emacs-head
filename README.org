@@ -38,7 +38,7 @@ This formula currently supports:
 - GNU Emacs 27.2 (or emacs-27 branch)
 - GNU Emacs 28.2 (or emacs-28 branch)
 - GNU Emacs 29.4 (or emacs-29 branch)
-- GNU Emacs 30.1-rc1 (emacs-30 branch)
+- GNU Emacs 30.1 (or emacs-30 branch)
 - GNU Emacs HEAD (currently 31.0.50)
 
 ** Installation

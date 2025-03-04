@@ -395,7 +395,7 @@ index a2c50468cd1..35f0711a307 100644
  /* ==========================================================================
  
      Class implementations
-@@ -4003,7 +4054,9 @@ - (Lisp_Object)lispString
+@@ -4003,6 +4054,9 @@ - (Lisp_Object)lispString
    defsubr (&Sns_set_mouse_absolute_pixel_position);
    defsubr (&Sns_mouse_absolute_pixel_position);
    defsubr (&Sns_show_character_palette);
@@ -405,6 +405,3 @@ index a2c50468cd1..35f0711a307 100644
    defsubr (&Sx_display_mm_width);
    defsubr (&Sx_display_mm_height);
    defsubr (&Sx_display_screens);
---
-2.39.5 (Apple Git-154)
-

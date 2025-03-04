@@ -1,76 +1,228 @@
-diff --git a/lisp/term/ns-win.el b/lisp/term/ns-win.el
-index 46639f2422b..75e0c251af5 100644
---- a/lisp/term/ns-win.el
-+++ b/lisp/term/ns-win.el
-@@ -588,6 +588,88 @@ string dropped into the current buffer."
-   (interactive)
-   (ns-show-character-palette))
+From ef2debe64a9c909b40d669e779eacc581821e81b Mon Sep 17 00:00:00 2001
+From: Alvaro Ramirez <me@xenodium.com>
+From: xenodium <8107219+xenodium@users.noreply.github.com>
+Date: Thu, 13 Feb 2025 17:30:01 +0000
+Subject: [PATCH] Add "Send to..." context menu item to mouse.el
 
-+(declare-function ns--share-items "nsfns.m" (items))
+* lisp/send-to.el: New package implements sending files/region.
+
+* lisp/mouse.el (context-menu-send-to): Add "Send to..." context menu.
+
+* lisp/term/ns-win.el (ns-send-items): Expose native macOS send API.
+
+* src/nsfns.m (ns-send-items): Implement native macOS sending.
+
+* etc/NEWS: Announce the new feature.
+---
+ etc/NEWS            |   7 ++
+ lisp/mouse.el       |  17 +++-
+ lisp/send-to.el     | 233 ++++++++++++++++++++++++++++++++++++++++++++
+ lisp/term/ns-win.el |   1 +
+ src/nsfns.m         |  54 ++++++++++
+ 5 files changed, 311 insertions(+), 1 deletion(-)
+ create mode 100644 lisp/send-to.el
+
+diff --git a/etc/NEWS b/etc/NEWS
+index dea24adb3c9..3b79d3c24d0 100644
+--- a/etc/NEWS
++++ b/etc/NEWS
+@@ -280,6 +280,13 @@ customize help text for tabs displayed on the tab-bar.  Help text is
+ normally shown in the echo area or via tooltips.  See the variable's
+ docstring for arguments passed to a help-text function.
+ 
++** Mouse
 +
-+(defun ns-share (&optional items)
-+  "Share ITEMS (list of files or string) via macOS service.
++---
++*** context-menu-mode now includes a "Send to..." menu item.
++The menu item enables sending current file(s) or region text to external
++(non-Emacs) apps or services.  See send-to.el for customisations.
 +
-+When ITEMS are missing, derive as follows.
+ ** Project
+ 
+ ---
+diff --git a/lisp/mouse.el b/lisp/mouse.el
+index 1f0ca6a51b6..0d74b1e5ca1 100644
+--- a/lisp/mouse.el
++++ b/lisp/mouse.el
+@@ -30,6 +30,7 @@
+ ;;; Code:
+ 
+ (eval-when-compile (require 'rect))
++(eval-when-compile (require 'send-to))
+ 
+ ;; Indent track-mouse like progn.
+ (put 'track-mouse 'lisp-indent-function 0)
+@@ -393,7 +394,8 @@ context-menu-functions
+                                     context-menu-region
+                                     context-menu-middle-separator
+                                     context-menu-local
+-                                    context-menu-minor)
++                                    context-menu-minor
++                                    context-menu-send-to)
+   "List of functions that produce the contents of the context menu.
+ Each function receives the menu and the mouse click event as its arguments
+ and should return the same menu with changes such as added new menu items."
+@@ -536,6 +538,19 @@ context-menu-minor
+                   (cdr mode))))
+   menu)
+ 
++(defun context-menu-send-to (menu _click)
++  "Add a \"Send to...\" context MENU entry on supported platforms."
++  (run-hooks 'activate-menubar-hook 'menu-bar-update-hook)
++  (when (send-to-supported-p)
++    (define-key-after menu [separator-send] menu-bar-separator)
++    (define-key-after menu [send]
++      '(menu-item "Send to..." (lambda ()
++                                 (interactive)
++                                 (send-to))
++                  :help
++                  "Send item (region, buffer file, or Dired files) to app or service")))
++  menu)
 +
-+From `dired', ITEMS are based on either of these being active:
+ (defun context-menu-buffers (menu _click)
+   "Populate MENU with the buffer submenus to buffer switching."
+   (run-hooks 'activate-menubar-hook 'menu-bar-update-hook)
+diff --git a/lisp/send-to.el b/lisp/send-to.el
+new file mode 100644
+index 00000000000..064f5ad6645
+--- /dev/null
++++ b/lisp/send-to.el
+@@ -0,0 +1,233 @@
++;;; send-to.el --- send files to applications or services  -*- lexical-binding: t -*-
 +
-+  - Marked files (list).
-+  - Files in region (list).
-+  - File at point (list).
++;; Copyright (C) 1993-2025 Free Software Foundation, Inc.
 +
-+Anywhere else, these being active:
++;; Maintainer: emacs-devel@gnu.org
++;; Keywords: send, applications
++;; Package: emacs
 +
-+  - Region (string).
-+  - Current buffer file (list)."
++;; This file is part of GNU Emacs.
++
++;; GNU Emacs is free software: you can redistribute it and/or modify
++;; it under the terms of the GNU General Public License as published by
++;; the Free Software Foundation, either version 3 of the License, or
++;; (at your option) any later version.
++
++;; GNU Emacs is distributed in the hope that it will be useful,
++;; but WITHOUT ANY WARRANTY; without even the implied warranty of
++;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++;; GNU General Public License for more details.
++
++;; You should have received a copy of the GNU General Public License
++;; along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
++
++;;; Commentary:
++
++;; This package provides commands to facilitate sending files to
++;; external applications or services.
++;;
++;; Enable `context-menu-mode' to get a "Send to..." context menu item.
++;;
++;; `send-to' uses `send-to-handlers' to pick which file(s) to send
++;; and what handler to use.
++
++;;; Code:
++
++(require 'map)
++
++(declare-function ns-send-items "nsfns.m")
++(declare-function dired-between-files "dired")
++(declare-function dired-get-filename "dired")
++(declare-function dired-get-marked-files "dired")
++(declare-function dired-move-to-filename "dired")
++(defvar shell-command-guess-open) ;; dired-aux
++
++(defgroup send-to nil
++  "Send files or text to external applications or services."
++  :group 'external
++  :version "31.1")
++
++(defvar-local send-to-handlers '(((:supported . send-to--ns-supported-p)
++                                  (:collect . send-to--collect-items)
++                                  (:send . send-to--ns-send-items))
++                                 ((:supported . send-to--open-externally-supported-p)
++                                  (:collect . send-to--collect-items)
++                                  (:send . send-to--open-externally)))
++  "A list of handlers that may be able to send files to applications or services.
++
++Sending is handled by the first supported handler from `send-to-handlers' whose
++`:supported' function returns non-nil.
++
++Handlers are of the form:
++
++\((:supported . `is-supported-p')
++ (:collect . `collect-items')
++ (:send . `send-items'))
++
++\(defun is-supported-p ()
++  \"Return non-nil for platform supporting send capability.\"
++  ...)
++
++\(defun collect-items ()
++  \"Return a list of items to be sent.
++
++Items are strings and will be sent as text unless they are local file
++paths known to exist. In these instances, files will be sent instead.\"
++  ...)
++
++\(defun send-to--send-items (items)
++  \"Send ITEMS.\"
++  ...)")
++
++;;;###autoload
++(defun send-to-supported-p ()
++  "Return non-nil for platforms where `send-to' is supported."
++  (funcall (map-elt (send-to--resolve-handler) :supported)))
++
++;;;###autoload
++(defun send-to (&optional items)
++  "Send file(s) or region text to (non-Emacs) applications or services.
++
++Sending is handled by the first supported handler from `send-to-handlers'.
++
++ITEMS list is also populated by the resolved handler, but can be
++explicitly overridden."
 +  (interactive)
-+  (unless items
-+    (setq items (ns--shareable-items)))
-+  (unless items
-+    (user-error "Nothing to share"))
-+  (ns--share-items items))
++  (let ((handler (send-to--resolve-handler)))
++    (unless handler
++      (error "No handler found"))
++    (dolist (item items)
++      (unless (stringp item)
++        (error "Item must be a string: %s" item)))
++    (funcall (or (map-elt handler :send)
++                 (error "Handler without :send capability"))
++             (or items
++                 (when (map-elt handler :collect)
++                   (funcall (map-elt handler :collect)))
++                 (user-error "Nothing to send")))))
 +
-+(defun ns--shareable-items ()
-+  "Figure out what user wants to share based on context.
++(defun send-to--format-items (items)
++  "Format ITEMS into a user-presentable message string."
++  (truncate-string-to-width
++   (string-join
++    (seq-map (lambda (item)
++               (if (and (stringp item)
++                        ;; Ignore url-handler-mode
++                        (and (file-local-name item)
++                             (file-exists-p item)))
++                   (format "\"%s\"" (file-name-nondirectory item))
++                 (format "\"%s\"" (truncate-string-to-width
++                                   item 35 nil nil "…"))))
++             items) " ") 70 nil nil "…"))
 +
-+From `dired', shared items are based on either of these being active:
-+
-+  - Marked files
-+  - Files in region.
-+  - File at point.
-+
-+Anywhere else, these being active:
-+
-+  - Region (sent as text).
-+  - Current buffer file (if one is available)."
-+  (cond ((derived-mode-p 'dired-mode)
-+         (or
-+          (ns--dired-filenames-in-region)
-+          (dired-get-marked-files)))
-+        ((use-region-p)
-+         (list (buffer-substring-no-properties
-+                (region-beginning)
-+                (region-end))))
-+        ((buffer-file-name)
-+         (list (buffer-file-name)))))
-+
-+(defun ns--dired-filenames-in-region ()
-+  "If `dired' buffer, return region files.  nil otherwise."
-+  (when (and (equal major-mode 'dired-mode)
++(defun send-to--dired-filenames-in-region ()
++  "If in a `dired' buffer, return region files.  nil otherwise."
++  (when (and (derived-mode-p 'dired-mode)
 +             (use-region-p))
-+    (let ((start (region-beginning))
-+          (end (region-end))
-+          (marked-files (let ((files (dired-get-marked-files)))
-+                          (cond ((null (cdr files))
-+                                 nil)
-+                                ((and (= (length files) 2)
-+                                      (eq (car files) t))
-+                                 t)
-+                                (t
-+                                 (not (seq-empty-p files))))))
-+          (filenames))
-+      (when marked-files
-+        (user-error "Mark dired files or select region.  Not both."))
++    (let* ((start (region-beginning))
++           (end (region-end))
++           (marked-files (dired-get-marked-files nil nil nil t))
++           (active-marks-p (if (= (length marked-files) 1)
++                               nil ;; File found at point (not marked)
++                             (not (seq-empty-p marked-files))))
++           (filenames))
++      (when active-marks-p
++        (user-error "Either mark `dired' files or select a region, but not both"))
 +      (save-excursion
 +        (save-restriction
 +          (goto-char start)
@@ -79,7 +231,7 @@ index 46639f2422b..75e0c251af5 100644
 +            (while (and (< (point) end) (dired-between-files))
 +              (forward-line 1))
 +            (when (and (dired-get-filename nil t)
-+                       ;; Ensure filename is fully selected.
++                       ;; Filename must be in region.
 +                       (< (save-excursion
 +                            (forward-line 0)
 +                            (dired-move-to-filename))
@@ -88,42 +240,108 @@ index 46639f2422b..75e0c251af5 100644
 +            (forward-line 1))))
 +      filenames)))
 +
- (defun ns-next-frame ()
-   "Switch to next visible frame."
-   (interactive)
++(defun send-to--resolve-handler ()
++  "Return first supported handler from `send-to-handlers'."
++  (seq-find (lambda (handler)
++              (funcall (map-elt handler :supported)))
++            send-to-handlers))
++
++(defun send-to--ns-supported-p ()
++  "Return non-nil for macOS platform supporting send capability."
++  (and (featurep 'ns)
++       (fboundp 'ns-send-items)))
++
++(defun send-to--ns-send-items (items)
++  "Send ITEMS on macOS."
++  (ns-send-items
++   (seq-map #'send-to--convert-item-to-filename items)))
++
++(defun send-to--open-externally-supported-p ()
++  "Return non-nil for platforms supporting open externally capability."
++  (unless (boundp 'shell-command-guess-open)
++    (require 'dired-aux))
++  shell-command-guess-open)
++
++(defun send-to--open-externally (items)
++  "Open ITEMS externally (using a non-Emacs application)."
++  (unless (boundp 'shell-command-guess-open)
++    (require 'dired-aux))
++  (when (y-or-n-p (format "Open externally: %s ?"
++                          (send-to--format-items items)))
++    (dolist (item items)
++      (with-temp-buffer
++        (unless (zerop (call-process
++                        shell-command-guess-open nil (current-buffer) t
++                        (send-to--convert-item-to-filename
++                         item)))
++          (error "%s" (string-trim (buffer-string))))))))
++
++(defun send-to--convert-item-to-filename (item)
++  "Convert ITEM to a filename.
++
++Unless ITEM is a verifiable filename, save its content to a file and
++return its new timestamped filename."
++  (if (and (file-local-name item) ;; Ignore url-handler-mode
++           (file-exists-p item))
++      item
++    (let ((filename (concat temporary-file-directory
++                            (format-time-string "%F_%H.%M.%S") ".txt")))
++      (with-temp-file filename
++        (insert item))
++      filename)))
++
++(defun send-to--collect-items ()
++  "Build a list of items to send based on default context.
++
++From a `dired' buffer, chosen items are based on either of these being
++active:
++
++  - Marked files
++  - Files in region.
++  - File at point.
++
++From any other buffer, either of these two, in order of preference:
++
++  - Active region text.
++  - Thing at point (via `existing-filename').
++  - Buffer file."
++  (cond ((derived-mode-p 'dired-mode)
++         (or
++          (send-to--dired-filenames-in-region)
++          (dired-get-marked-files)))
++        ((use-region-p)
++         (list (buffer-substring-no-properties
++                (region-beginning)
++                (region-end))))
++        ((thing-at-point 'existing-filename)
++         (thing-at-point 'existing-filename))
++        ((buffer-file-name)
++         (list (buffer-file-name)))))
++
++(provide 'send-to)
++
++;;; send-to.el ends here
+diff --git a/lisp/term/ns-win.el b/lisp/term/ns-win.el
+index 46639f2422b..e5f239b94e3 100644
+--- a/lisp/term/ns-win.el
++++ b/lisp/term/ns-win.el
+@@ -214,6 +214,7 @@ 'mac-option-modifier
+ (defvaralias 'mac-right-option-modifier 'ns-right-option-modifier)
+ (defvaralias 'mac-function-modifier 'ns-function-modifier)
+ (declare-function ns-do-applescript "nsfns.m" (script))
++(declare-function ns-send-items "nsfns.m" (items))
+ (defalias 'do-applescript 'ns-do-applescript)
+ 
+ ;;;; Services
 diff --git a/src/nsfns.m b/src/nsfns.m
-index 9f52777879c..ca45bc1f415 100644
+index a2c50468cd1..35f0711a307 100644
 --- a/src/nsfns.m
 +++ b/src/nsfns.m
-@@ -3764,6 +3764,79 @@ The position is returned as a cons cell (X . Y) of the
+@@ -3771,6 +3771,57 @@ The position is returned as a cons cell (X . Y) of the
    return Qnil;
  }
-
-+static NSPoint
-+ns_get_point_relative_coordinates (NSView* view)
-+{
-+  Lisp_Object coordinate = Fnth (make_fixnum (2), Fposn_at_point (Fpoint (), Qnil));
-+
-+  int x = ^{
-+    Lisp_Object value = Fcar (coordinate);
-+    if (NILP (value))
-+      {
-+        signal_error ("No x coordinate found", coordinate);
-+      }
-+    return XFIXNUM (value);
-+  }();
-+
-+  int y = ^{
-+    Lisp_Object value = Fcdr (coordinate);
-+    if (NILP (value))
-+    {
-+      signal_error ("No y coordinate found", coordinate);
-+    }
-+    return XFIXNUM (value);
-+  }();
-+
-+  return [view convertPoint:NSMakePoint (x, y) toView:nil];
-+}
+ 
++#ifdef NS_IMPL_COCOA
 +
 +DEFUN ("ns-send-items",
 +       Fns_send_items,
@@ -159,27 +377,34 @@ index 9f52777879c..ca45bc1f415 100644
 +  int x = text_area_x + window->phys_cursor.x;
 +  int y = text_area_y + window->phys_cursor.y;
 +
-+  /* Position menu below character at point */
-+  NSPoint viewPoint = NSMakePoint(x + FRAME_COLUMN_WIDTH (frame) / 2,
-+				  y + FRAME_LINE_HEIGHT (frame) + 10);
++  NSPoint point = NSMakePoint(x + FRAME_COLUMN_WIDTH (frame) / 2,
++			      y + FRAME_LINE_HEIGHT (frame) + 10);
 +
 +  EmacsView *view = FRAME_NS_VIEW (frame);
 +  NSSharingServicePicker *picker = [[NSSharingServicePicker alloc] initWithItems:sent];
-+  [picker showRelativeToRect:NSMakeRect(viewPoint.x - 1, viewPoint.y - 1, 2, 2)
++  [picker showRelativeToRect:NSMakeRect(point.x - 1, point.y - 1, 2, 2)
 +		      ofView:view
 +	       preferredEdge:NSRectEdgeMaxY];
 +
 +  return Qnil;
 +}
 +
++
++#endif /* NS_IMPL_COCOA */
++
  /* ==========================================================================
-
+ 
      Class implementations
-@@ -3996,6 +4069,7 @@ - (Lisp_Object)lispString
+@@ -4003,7 +4054,9 @@ - (Lisp_Object)lispString
    defsubr (&Sns_set_mouse_absolute_pixel_position);
    defsubr (&Sns_mouse_absolute_pixel_position);
    defsubr (&Sns_show_character_palette);
++#ifdef NS_IMPL_COCOA
 +  defsubr (&Sns_send_items);
++#endif
    defsubr (&Sx_display_mm_width);
    defsubr (&Sx_display_mm_height);
    defsubr (&Sx_display_screens);
+--
+2.39.5 (Apple Git-154)
+

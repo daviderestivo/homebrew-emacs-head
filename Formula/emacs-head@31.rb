@@ -109,7 +109,7 @@ class EmacsHeadAT31 < EmacsBase
 
   resource "0013-Native-sharing.patch" do
     url ResourcesResolver.get_resource_url("patches/0013-Native-sharing.patch")
-    sha256 "1ae80dd43dcd0058197e3bb50f294ad0d1374338ad0a747d769a11eb3755f075"
+    sha256 "9da832d581d2e3ba26c7f8a9a3bca97511480986c2a7038da29a60659069a1a7"
   end
 
   # Icons
@@ -162,7 +162,7 @@ class EmacsHeadAT31 < EmacsBase
 
   patch do
     url ResourcesResolver.get_resource_url("patches/0013-Native-sharing.patch")
-    sha256 "1ae80dd43dcd0058197e3bb50f294ad0d1374338ad0a747d769a11eb3755f075"
+    sha256 "9da832d581d2e3ba26c7f8a9a3bca97511480986c2a7038da29a60659069a1a7"
   end
 
   def install

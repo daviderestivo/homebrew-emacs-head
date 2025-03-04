@@ -1,11 +1,11 @@
 diff --git a/lisp/term/ns-win.el b/lisp/term/ns-win.el
-index 2a29457..84cadff 100644
+index 46639f2422b..75e0c251af5 100644
 --- a/lisp/term/ns-win.el
 +++ b/lisp/term/ns-win.el
-@@ -567,6 +567,88 @@ string dropped into the current buffer."
+@@ -588,6 +588,88 @@ string dropped into the current buffer."
    (interactive)
    (ns-show-character-palette))
- 
+
 +(declare-function ns--share-items "nsfns.m" (items))
 +
 +(defun ns-share (&optional items)
@@ -92,13 +92,13 @@ index 2a29457..84cadff 100644
    "Switch to next visible frame."
    (interactive)
 diff --git a/src/nsfns.m b/src/nsfns.m
-index 3c012ca..a0d952b 100644
+index 9f52777879c..ca45bc1f415 100644
 --- a/src/nsfns.m
 +++ b/src/nsfns.m
-@@ -3772,6 +3772,67 @@ The position is returned as a cons cell (X . Y) of the
+@@ -3764,6 +3764,79 @@ The position is returned as a cons cell (X . Y) of the
    return Qnil;
  }
- 
+
 +static NSPoint
 +ns_get_point_relative_coordinates (NSView* view)
 +{
@@ -125,15 +125,15 @@ index 3c012ca..a0d952b 100644
 +  return [view convertPoint:NSMakePoint (x, y) toView:nil];
 +}
 +
-+DEFUN ("ns--share-items",
-+       Fns__share_items,
-+       Sns__share_items, 1, 1, 0,
-+       doc: /* Share a list of items via macOS sharing service. */)
++DEFUN ("ns-send-items",
++       Fns_send_items,
++       Sns_send_items, 1, 1, 0,
++       doc: /* Send a list of items to macOS apps or services. */)
 +       (Lisp_Object items)
 +{
 +  CHECK_LIST (items);
 +
-+  NSMutableArray *shared = [NSMutableArray array];
++  NSMutableArray *sent = [NSMutableArray array];
 +  for (Lisp_Object tail = items; CONSP (tail); tail = XCDR (tail))
 +  {
 +    Lisp_Object elt = XCAR (tail);
@@ -143,31 +143,43 @@ index 3c012ca..a0d952b 100644
 +    }
 +    BOOL isDir;
 +    if ([[NSFileManager defaultManager] fileExistsAtPath:@(SSDATA(elt)) isDirectory:&isDir]) {
-+      [shared addObject:[NSURL fileURLWithPath:@(SSDATA(elt))]];
++      [sent addObject:[NSURL fileURLWithPath:@(SSDATA(elt))]];
 +      continue;
 +    }
-+    [shared addObject:@(SSDATA(elt))];
++    [sent addObject:@(SSDATA(elt))];
 +  }
 +
 +  struct frame *frame = SELECTED_FRAME ();
-+  EmacsView *view = FRAME_NS_VIEW (frame);
-+  NSPoint point = ns_get_point_relative_coordinates (view);
-+  NSRect displayArea = NSMakeRect (point.x + 15, view.bounds.size.height - point.y + 25, 1, 1);
-+  NSSharingServicePicker *picker = [[NSSharingServicePicker alloc] initWithItems:shared];
++  struct window *window = XWINDOW (selected_window);
 +
-+  [picker showRelativeToRect:displayArea ofView:view preferredEdge:NSRectEdgeMaxY];
++  int text_area_x, text_area_y, text_area_width, text_area_height;
++  window_box (window, TEXT_AREA, &text_area_x, &text_area_y,
++              &text_area_width, &text_area_height);
++
++  int x = text_area_x + window->phys_cursor.x;
++  int y = text_area_y + window->phys_cursor.y;
++
++  /* Position menu below character at point */
++  NSPoint viewPoint = NSMakePoint(x + FRAME_COLUMN_WIDTH (frame) / 2,
++				  y + FRAME_LINE_HEIGHT (frame) + 10);
++
++  EmacsView *view = FRAME_NS_VIEW (frame);
++  NSSharingServicePicker *picker = [[NSSharingServicePicker alloc] initWithItems:sent];
++  [picker showRelativeToRect:NSMakeRect(viewPoint.x - 1, viewPoint.y - 1, 2, 2)
++		      ofView:view
++	       preferredEdge:NSRectEdgeMaxY];
 +
 +  return Qnil;
 +}
 +
  /* ==========================================================================
- 
+
      Class implementations
-@@ -4004,6 +4065,7 @@ - (Lisp_Object)lispString
+@@ -3996,6 +4069,7 @@ - (Lisp_Object)lispString
    defsubr (&Sns_set_mouse_absolute_pixel_position);
    defsubr (&Sns_mouse_absolute_pixel_position);
    defsubr (&Sns_show_character_palette);
-+  defsubr (&Sns__share_items);
++  defsubr (&Sns_send_items);
    defsubr (&Sx_display_mm_width);
    defsubr (&Sx_display_mm_height);
    defsubr (&Sx_display_screens);

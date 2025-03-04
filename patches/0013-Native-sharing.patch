@@ -179,7 +179,7 @@ index 9f52777879c..ca45bc1f415 100644
    defsubr (&Sns_set_mouse_absolute_pixel_position);
    defsubr (&Sns_mouse_absolute_pixel_position);
    defsubr (&Sns_show_character_palette);
-+  defsubr (&Sns_share_items);
++  defsubr (&Sns_send_items);
    defsubr (&Sx_display_mm_width);
    defsubr (&Sx_display_mm_height);
    defsubr (&Sx_display_screens);

@@ -99,7 +99,7 @@ class EmacsHeadAT31 < EmacsBase
 
   resource "0005-System-appearance" do
     url  ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
-    sha256 "9eb3ce80640025bff96ebaeb5893430116368d6349f4eb0cb4ef8b3d58477db6"
+    sha256 "964d88c723b1ed8f3ef37bb75110bf6e71ee0cd4fb2d835adfa9bac3a29cc1c0"
   end
 
   resource "0008-Fix-window-role.patch" do
@@ -152,7 +152,7 @@ class EmacsHeadAT31 < EmacsBase
 
   patch do
     url ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
-    sha256 "9eb3ce80640025bff96ebaeb5893430116368d6349f4eb0cb4ef8b3d58477db6"
+    sha256 "964d88c723b1ed8f3ef37bb75110bf6e71ee0cd4fb2d835adfa9bac3a29cc1c0"
   end
 
   patch do

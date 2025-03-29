@@ -28,8 +28,6 @@ class EmacsHeadAT31 < EmacsBase
          "Append `-g3` to CFLAGS to enable crash debugging"
   option "with-cocoa",
          "Build a Cocoa version of GNU Emacs"
-  option "with-ctags",
-         "Don't remove the ctags executable that GNU Emacs provides"
   option "with-dbus",
          "Build with dbus support"
   option "without-gnutls",
@@ -99,7 +97,7 @@ class EmacsHeadAT31 < EmacsBase
 
   resource "0005-System-appearance" do
     url  ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
-    sha256 "9eb3ce80640025bff96ebaeb5893430116368d6349f4eb0cb4ef8b3d58477db6"
+    sha256 "964d88c723b1ed8f3ef37bb75110bf6e71ee0cd4fb2d835adfa9bac3a29cc1c0"
   end
 
   resource "0008-Fix-window-role.patch" do
@@ -152,7 +150,7 @@ class EmacsHeadAT31 < EmacsBase
 
   patch do
     url ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
-    sha256 "9eb3ce80640025bff96ebaeb5893430116368d6349f4eb0cb4ef8b3d58477db6"
+    sha256 "964d88c723b1ed8f3ef37bb75110bf6e71ee0cd4fb2d835adfa9bac3a29cc1c0"
   end
 
   patch do
@@ -310,14 +308,6 @@ class EmacsHeadAT31 < EmacsBase
 
       system "make", *make_flags
       system "make", "install"
-    end
-
-    # Follow MacPorts and don't install ctags from GNU Emacs. This
-    # allows Vim and GNU Emacs and ctags to play together without
-    # violence.
-    if build.without? "ctags"
-      (bin/"ctags").unlink
-      (man1/"ctags.1.gz").unlink
     end
   end
 

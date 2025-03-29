@@ -89,7 +89,7 @@ class EmacsHeadAT30 < EmacsBase
   end
 
   resource "0005-System-appearance" do
-    url  ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
+    url  ResourcesResolver.get_resource_url("patches/0005-System-appearance-30.patch")
     sha256 "9eb3ce80640025bff96ebaeb5893430116368d6349f4eb0cb4ef8b3d58477db6"
   end
 
@@ -152,7 +152,7 @@ class EmacsHeadAT30 < EmacsBase
   end
 
   patch do
-    url ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
+    url ResourcesResolver.get_resource_url("patches/0005-System-appearance-30.patch")
     sha256 "9eb3ce80640025bff96ebaeb5893430116368d6349f4eb0cb4ef8b3d58477db6"
   end
 

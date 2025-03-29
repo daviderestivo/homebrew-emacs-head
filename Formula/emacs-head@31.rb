@@ -309,6 +309,7 @@ class EmacsHeadAT31 < EmacsBase
       system "make", *make_flags
       system "make", "install"
     end
+  end
 
   def post_install
     emacs_info_dir = info/"emacs"

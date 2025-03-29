@@ -28,8 +28,6 @@ class EmacsHeadAT31 < EmacsBase
          "Append `-g3` to CFLAGS to enable crash debugging"
   option "with-cocoa",
          "Build a Cocoa version of GNU Emacs"
-  option "with-ctags",
-         "Don't remove the ctags executable that GNU Emacs provides"
   option "with-dbus",
          "Build with dbus support"
   option "without-gnutls",
@@ -311,15 +309,6 @@ class EmacsHeadAT31 < EmacsBase
       system "make", *make_flags
       system "make", "install"
     end
-
-    # Follow MacPorts and don't install ctags from GNU Emacs. This
-    # allows Vim and GNU Emacs and ctags to play together without
-    # violence.
-    if build.without? "ctags"
-      (bin/"ctags").unlink
-      (man1/"ctags.1.gz").unlink
-    end
-  end
 
   def post_install
     emacs_info_dir = info/"emacs"

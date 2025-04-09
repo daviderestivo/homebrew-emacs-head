@@ -54,8 +54,6 @@ class EmacsHeadAT31 < EmacsBase
          "Enable Elisp Ahead-of-Time native compilation support"
   option "with-tree-sitter",
          "Enable Tree-sitter support"
-  option "with-poll",
-         "Experimental: use poll() instead of select() to support > 1024 file descriptors"
   option "with-mps",
          "Experimental: use Memory Pool System garbage collector"
 
@@ -141,13 +139,6 @@ class EmacsHeadAT31 < EmacsBase
     end
   end
 
-  if build.with? "poll"
-    patch do
-      url ResourcesResolver.get_resource_url("patches/0011-Poll-30.patch")
-      sha256 "59e876f82e6fd8e4583bc2456339eda4f989c86b1e16a02b0726702e95f60825"
-    end
-  end
-
   patch do
     url ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
     sha256 "964d88c723b1ed8f3ef37bb75110bf6e71ee0cd4fb2d835adfa9bac3a29cc1c0"
@@ -218,7 +209,6 @@ class EmacsHeadAT31 < EmacsBase
     args << "--with-rsvg"     unless build.without? "librsvg"
     args << "--with-xml2"     unless build.without? "libxml2"
     args << "--with-xwidgets" if     build.with?    "xwidgets"
-    args << "--with-poll"     if     build.with?    "poll"
     args << "--with-mps"      if     build.with?     "mps"
     args << "--with-webp"
 

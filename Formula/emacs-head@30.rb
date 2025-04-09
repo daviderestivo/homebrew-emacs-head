@@ -59,8 +59,6 @@ class EmacsHeadAT30 < EmacsBase
          "Enable Elisp Ahead-of-Time native compilation support"
   option "with-tree-sitter",
          "Enable Tree-sitter support"
-  option "with-poll",
-         "Experimental: use poll() instead of select() to support > 1024 file descriptors"
 
   if build.with? "imagemagick"
     depends_on "imagemagick" => :recommended
@@ -96,11 +94,6 @@ class EmacsHeadAT30 < EmacsBase
   resource "0008-Fix-window-role.patch" do
     url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
-  resource "0011-Poll-30.patch" do
-    url ResourcesResolver.get_resource_url("patches/0011-Poll-30.patch")
-    sha256 "59e876f82e6fd8e4583bc2456339eda4f989c86b1e16a02b0726702e95f60825"
   end
 
   resource "0012-BLOCK_ALIGN-30.patch" do
@@ -141,13 +134,6 @@ class EmacsHeadAT30 < EmacsBase
   if build.with? "xwidgets"
     unless build.with? "cocoa"
       odie "--with-xwidgets is supported only on cocoa via xwidget webkit"
-    end
-  end
-
-  if build.with? "poll"
-    patch do
-      url ResourcesResolver.get_resource_url("patches/0011-Poll-30.patch")
-      sha256 "59e876f82e6fd8e4583bc2456339eda4f989c86b1e16a02b0726702e95f60825"
     end
   end
 
@@ -226,7 +212,6 @@ class EmacsHeadAT30 < EmacsBase
     args << "--with-rsvg"     unless build.without? "librsvg"
     args << "--with-xml2"     unless build.without? "libxml2"
     args << "--with-xwidgets" if     build.with?    "xwidgets"
-    args << "--with-poll"     if     build.with?    "poll"
     args << "--with-webp"
 
     # Read https://github.com/emacs-mirror/emacs/blob/master/etc/DEBUG

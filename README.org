@@ -134,7 +134,6 @@ The following compilation options are available:
 | ~--with-native-comp~      | Enable elisp native compilation support (not available on emacs-head@26 and emacs-head@27)                                    |
 | ~--with-native-full-aot~  | Enable elisp ahead-of-time native compilation support (not available on emacs-head@26 and emacs-head@27)                      |
 | ~--with-tree-sitter~      | Enable Tree-sitter support (only on emacs-head@29 and emacs-head@30)                                                          |
-| ~--with-poll~             | Use poll() instead of select() to support > 1024 file descriptors                                                             |
 | ~--with-mps~              | Use the Memory Pool System garbage collection library (only on emacs-head@31)                                                 |
 
 For the terminal version only of GNU Emacs please omit ~--with-cocoa~.

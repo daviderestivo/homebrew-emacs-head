@@ -62,8 +62,6 @@ class EmacsHeadAT29 < EmacsBase
          "Enable Elisp Ahead-of-Time native compilation support"
   option "with-tree-sitter",
          "Enable Tree-sitter support"
-  option "with-poll",
-         "Experimental: use poll() instead of select() to support > 1024 file descriptors"
 
   if build.with? "imagemagick"
     depends_on "imagemagick" => :recommended
@@ -106,11 +104,6 @@ class EmacsHeadAT29 < EmacsBase
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  resource "0011-Poll.patch" do
-    url ResourcesResolver.get_resource_url("patches/0011-Poll.patch")
-    sha256 "052eacac5b7bd86b466f9a3d18bff9357f2b97517f463a09e4c51255bdb14648"
-  end
-
   # Icons
   load_icons
 
@@ -137,13 +130,6 @@ class EmacsHeadAT29 < EmacsBase
   if build.with? "xwidgets"
     unless build.with? "cocoa"
       odie "--with-xwidgets is supported only on cocoa via xwidget webkit"
-    end
-  end
-
-  if build.with? "poll"
-    patch do
-      url ResourcesResolver.get_resource_url("patches/0011-Poll.patch")
-      sha256 "052eacac5b7bd86b466f9a3d18bff9357f2b97517f463a09e4c51255bdb14648"
     end
   end
 
@@ -212,7 +198,6 @@ class EmacsHeadAT29 < EmacsBase
     args << "--with-rsvg"     unless build.without? "librsvg"
     args << "--with-xml2"     unless build.without? "libxml2"
     args << "--with-xwidgets" if     build.with?    "xwidgets"
-    args << "--with-poll"     if     build.with?    "poll"
 
     # Read https://github.com/emacs-mirror/emacs/blob/master/etc/DEBUG
     # for more information

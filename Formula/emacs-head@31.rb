@@ -103,11 +103,6 @@ class EmacsHeadAT31 < EmacsBase
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-  resource "0013-Native-sharing.patch" do
-    url ResourcesResolver.get_resource_url("patches/0013-Native-sharing.patch")
-    sha256 "9da832d581d2e3ba26c7f8a9a3bca97511480986c2a7038da29a60659069a1a7"
-  end
-
   # Icons
   load_icons
 
@@ -147,11 +142,6 @@ class EmacsHeadAT31 < EmacsBase
   patch do
     url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
-  patch do
-    url ResourcesResolver.get_resource_url("patches/0013-Native-sharing.patch")
-    sha256 "9da832d581d2e3ba26c7f8a9a3bca97511480986c2a7038da29a60659069a1a7"
   end
 
   def install

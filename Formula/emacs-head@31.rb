@@ -98,11 +98,6 @@ class EmacsHeadAT31 < EmacsBase
     sha256 "964d88c723b1ed8f3ef37bb75110bf6e71ee0cd4fb2d835adfa9bac3a29cc1c0"
   end
 
-  resource "0008-Fix-window-role.patch" do
-    url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
-    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
   # Icons
   load_icons
 
@@ -137,11 +132,6 @@ class EmacsHeadAT31 < EmacsBase
   patch do
     url ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
     sha256 "964d88c723b1ed8f3ef37bb75110bf6e71ee0cd4fb2d835adfa9bac3a29cc1c0"
-  end
-
-  patch do
-    url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
-    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
   def install

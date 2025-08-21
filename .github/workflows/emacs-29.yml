@@ -37,11 +37,15 @@ jobs:
     steps:
     - uses: actions/checkout@v5
 
+    - name: Tap emacs-head
+      run: |
+        brew tap daviderestivo/emacs-head
+
     - name: Build emacs-head@29 ${{ matrix.build_opts }}
       run: |
         brew update
         brew upgrade || true
-        brew install --verbose emacs-head@29.rb ${{ matrix.build_opts }}
+        brew install --verbose emacs-head@29 ${{ matrix.build_opts }}
       working-directory: Formula
 
     - name: Test installation

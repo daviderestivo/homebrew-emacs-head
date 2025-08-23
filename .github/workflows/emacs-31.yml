@@ -40,6 +40,7 @@ jobs:
     - name: Tap emacs-head
       run: |
         brew tap daviderestivo/emacs-head
+
     - name: Build emacs-head@31 ${{ matrix.build_opts }}
       run: |
         brew update

@@ -33,11 +33,16 @@ jobs:
     steps:
     - uses: actions/checkout@v5
 
+    - name: Tap emacs-head
+      run: |
+        brew tap daviderestivo/emacs-head
+
     - name: Build emacs-head ${{ matrix.build_opts }}
       run: |
         brew update
         brew upgrade || true
-        brew install --verbose Aliases/$(readlink Aliases/emacs-head) ${{ matrix.build_opts }}
+        brew install --verbose emacs-head ${{ matrix.build_opts }}
 
     - name: Test installation
-      run: brew test Aliases/$(readlink Aliases/emacs-head)
+      run: $(brew --prefix)/bin/emacs --batch --eval='(print (+ 2 2))'
+      working-directory: Formula

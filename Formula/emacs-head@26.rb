@@ -9,7 +9,6 @@ class EmacsHeadAT26 < EmacsBase
   revision 1
 
   depends_on "automake"   => :build
-  depends_on "cmake"      => :build
   depends_on "pkg-config" => :build
   depends_on "giflib"
   depends_on "gnutls"     => :recommended

@@ -15,8 +15,6 @@ class EmacsHeadAT27 < EmacsBase
   depends_on "autoconf"   => :build
   depends_on "gnu-sed"    => :build
   depends_on "texinfo"    => :build
-  depends_on "automake"   => :build
-  depends_on "cmake"      => :build
   depends_on "pkg-config" => :build
   depends_on "giflib"
   depends_on "gnutls"     => :recommended

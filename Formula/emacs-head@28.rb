@@ -16,8 +16,6 @@ class EmacsHeadAT28 < EmacsBase
   depends_on "coreutils"  => :build
   depends_on "gnu-sed"    => :build
   depends_on "texinfo"    => :build
-  depends_on "automake"   => :build
-  depends_on "cmake"      => :build
   depends_on "pkg-config" => :build
   depends_on "gcc"        => :build
   depends_on "giflib"

@@ -25,7 +25,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-13]
+        os: [macos-15]
         build_opts:
           # All options (imagemagick@7) + native-comp support
           - '--with-cocoa --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-native-comp --with-retro-icon-sink-bw'

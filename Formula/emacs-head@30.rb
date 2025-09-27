@@ -8,6 +8,10 @@ class EmacsHeadAT30 < EmacsBase
   version "30.2"
   revision 1
 
+  head do
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-30"
+  end
+
   depends_on "autoconf"   => :build
   depends_on "coreutils"  => :build
   depends_on "gnu-sed"    => :build

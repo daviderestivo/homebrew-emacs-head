@@ -42,7 +42,7 @@ jobs:
         brew update
         brew upgrade || true
         export HOMEBREW_DEVELOPER=1
-        brew install ./Formula/emacs-head@30.rb ${{ matrix.build_opts }} --verbose
+        brew install emacs-head@30.rb ${{ matrix.build_opts }} --verbose
       working-directory: Formula
 
     - name: Test installation

@@ -38,7 +38,7 @@ jobs:
         brew update
         brew upgrade || true
         export HOMEBREW_DEVELOPER=1
-        brew install --verbose ./Aliases/$(readlink Aliases/emacs-head) ${{ matrix.build_opts }}
+        brew install ./Aliases/$(readlink Aliases/emacs-head) ${{ matrix.build_opts }} --verbose
 
     - name: Test installation
       run: $(brew --prefix)/bin/emacs --batch --eval='(print (+ 2 2))'

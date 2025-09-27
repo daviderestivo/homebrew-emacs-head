@@ -8,6 +8,10 @@ class EmacsHeadAT26 < EmacsBase
   version "26.3"
   revision 1
 
+  head do
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-26"
+  end
+
   depends_on "pkg-config" => :build
   depends_on "giflib"
   depends_on "gnutls"     => :recommended

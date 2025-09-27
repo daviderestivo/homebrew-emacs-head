@@ -41,6 +41,13 @@ brew tap daviderestivo/emacs-head
 brew install emacs-head@26 --with-cocoa
 #+end_src
 
+If you wish to install the latest commit of the emacs-26 branch then:
+
+#+begin_src bash
+brew tap daviderestivo/emacs-head
+brew install --HEAD emacs-head@26 --with-cocoa
+#+end_src
+
 *** GNU Emacs 27
 #+begin_src bash
 brew tap daviderestivo/emacs-head
@@ -67,23 +74,30 @@ brew tap daviderestivo/emacs-head
 brew install --HEAD emacs-head@28 --with-cocoa
 #+end_src
 
-*** GNU Emacs 29 (default)
+*** GNU Emacs 29
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head --with-cocoa
+brew install emacs-head@29 --with-cocoa
 #+end_src
 
 If you wish to install the latest commit of the emacs-29 branch then:
 
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install --HEAD emacs-head --with-cocoa
+brew install --HEAD emacs-head@29 --with-cocoa
 #+end_src
 
-*** GNU Emacs 30
+*** GNU Emacs 30 (default)
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head@30 --with-cocoa
+brew install emacs-head --with-cocoa
+#+end_src
+
+If you wish to install the latest commit of the emacs-30 branch then:
+
+#+begin_src bash
+brew tap daviderestivo/emacs-head
+brew install --HEAD emacs-head --with-cocoa
 #+end_src
 
 *** GNU Emacs 31

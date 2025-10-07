@@ -2,8 +2,8 @@
 require_relative "../Library/EmacsBase"
 
 class EmacsHeadAT30 < EmacsBase
-  url "https://ftp.gnu.org/gnu/emacs/emacs-30.2.tar.xz"
-  mirror "https://ftpmirror.gnu.org/emacs/emacs-30.2.tar.xz"
+  url "https://ftpmirror.gnu.org/emacs/emacs-30.2.tar.xz"
+  mirror "https://ftp.gnu.org/gnu/emacs/emacs-30.2.tar.xz"
   sha256 "b3f36f18a6dd2715713370166257de2fae01f9d38cfe878ced9b1e6ded5befd9"
   version "30.2"
   revision 1

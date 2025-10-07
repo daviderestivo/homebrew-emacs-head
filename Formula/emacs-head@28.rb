@@ -2,8 +2,8 @@
 require_relative "../Library/EmacsBase"
 
 class EmacsHeadAT28 < EmacsBase
-  url "https://ftp.gnu.org/gnu/emacs/emacs-28.2.tar.xz"
-  mirror "https://ftpmirror.gnu.org/emacs/emacs-28.2.tar.xz"
+  url "https://ftpmirror.gnu.org/emacs/emacs-28.2.tar.xz"
+  mirror "https://ftp.gnu.org/gnu/emacs/emacs-28.2.tar.xz"
   sha256 "ee21182233ef3232dc97b486af2d86e14042dbb65bbc535df562c3a858232488"
   version "28.2"
   revision 1

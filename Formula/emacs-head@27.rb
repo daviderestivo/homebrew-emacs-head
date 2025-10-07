@@ -2,8 +2,8 @@
 require_relative "../Library/EmacsBase"
 
 class EmacsHeadAT27 < EmacsBase
-  url "https://ftp.gnu.org/gnu/emacs/emacs-27.2.tar.xz"
-  mirror "https://ftpmirror.gnu.org/emacs/emacs-27.2.tar.xz"
+  url "https://ftpmirror.gnu.org/emacs/emacs-27.2.tar.xz"
+  mirror "https://ftp.gnu.org/gnu/emacs/emacs-27.2.tar.xz"
   sha256 "b4a7cc4e78e63f378624e0919215b910af5bb2a0afc819fad298272e9f40c1b9"
   version "27.2"
   revision 1

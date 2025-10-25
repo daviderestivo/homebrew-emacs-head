@@ -26,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-15]
+        os: [macos-latest]
         build_opts:
           # All options (imagemagick@7) + native-comp support
           - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets --with-tree-sitter --with-native-comp --with-retro-icon-sink-bw'
@@ -40,8 +40,6 @@ jobs:
 
     - name: Build emacs-head@29 ${{ matrix.build_opts }}
       run: |
-        brew update
-        brew upgrade || true
         export HOMEBREW_DEVELOPER=1
         brew install emacs-head@29.rb ${{ matrix.build_opts }} --verbose
       working-directory: Formula

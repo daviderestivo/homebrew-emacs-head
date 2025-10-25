@@ -43,9 +43,8 @@ jobs:
 
     - name: Build emacs-head@27 ${{ matrix.build_opts }}
       run: |
-        brew update
-        brew upgrade || true
-        brew install --verbose emacs-head@27 ${{ matrix.build_opts }}
+        export HOMEBREW_DEVELOPER=1
+        brew install emacs-head@27 ${{ matrix.build_opts }} --verbose
       working-directory: Formula
 
     - name: Test installation

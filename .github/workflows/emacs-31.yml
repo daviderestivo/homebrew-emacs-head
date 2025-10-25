@@ -40,10 +40,6 @@ jobs:
 
     - name: Build emacs-head@31 ${{ matrix.build_opts }}
       run: |
-        brew update
-        brew upgrade || true
-        # Remove Homebrew cache locks
-        rm -rf ~/Library/Caches/Homebrew/locks
         export HOMEBREW_DEVELOPER=1
         brew install emacs-head@31.rb ${{ matrix.build_opts }} --verbose
       working-directory: Formula

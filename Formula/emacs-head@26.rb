@@ -53,32 +53,6 @@ class EmacsHeadAT26 < EmacsBase
     depends_on "imagemagick@6" => :recommended
   end
 
-  # All the patches and the icons have been declared as resources.
-  # They are downloaded unconditionally even if not used in order to
-  # overcome the reinstall issue mentioned here:
-  # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
-
-  # Patches
-  resource "0001-No-frame-refocus-cocoa" do
-    url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
-    sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
-  end
-
-  resource "0002-Patch-multicolor-font" do
-    url ResourcesResolver.get_resource_url("patches/0002-Patch-multicolor-font.patch")
-    sha256 "5af2587e986db70999d1a791fca58df027ccbabd75f45e4a2af1602c75511a8c"
-  end
-
-  resource "0006-Fix-unexec" do
-    url ResourcesResolver.get_resource_url("patches/0006-Fix-unexec.patch")
-    sha256 "a1fcfe8020301733a3846cf85b072b461b66e26d15b0154b978afb7a4ec3346b"
-  end
-
-  resource "0008-Fix-window-role.patch" do
-    url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
-    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
   # Icons
   load_icons
 

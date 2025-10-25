@@ -78,37 +78,6 @@ class EmacsHeadAT30 < EmacsBase
     depends_on "tree-sitter" => :optional
   end
 
-  # All the patches and the icons have been declared as resources.
-  # They are downloaded unconditionally even if not used in order to
-  # overcome the reinstall issue mentioned here:
-  # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
-
-  # Patches
-  resource "0003-Pdumper-size-increase" do
-    url ResourcesResolver.get_resource_url("patches/0003-Pdumper-size-increase.patch")
-    sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
-  end
-
-  resource "0005-System-appearance" do
-    url  ResourcesResolver.get_resource_url("patches/0005-System-appearance-30.patch")
-    sha256 "9eb3ce80640025bff96ebaeb5893430116368d6349f4eb0cb4ef8b3d58477db6"
-  end
-
-  resource "0008-Fix-window-role.patch" do
-    url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
-    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
-  resource "0012-BLOCK_ALIGN-30.patch" do
-    url ResourcesResolver.get_resource_url("patches/0012-BLOCK_ALIGN-30.patch")
-    sha256 "f2cc1832f260e86707dc2470c08e8f12c038db06b1f028769a26ebbece11a49e"
-  end
-
-  resource "0013-Native-sharing.patch" do
-    url ResourcesResolver.get_resource_url("patches/0013-Native-sharing.patch")
-    sha256 "9da832d581d2e3ba26c7f8a9a3bca97511480986c2a7038da29a60659069a1a7"
-  end
-
   # Icons
   load_icons
 

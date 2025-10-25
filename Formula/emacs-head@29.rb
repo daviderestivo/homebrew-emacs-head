@@ -77,32 +77,6 @@ class EmacsHeadAT29 < EmacsBase
     depends_on "tree-sitter" => :optional
   end
 
-  # All the patches and the icons have been declared as resources.
-  # They are downloaded unconditionally even if not used in order to
-  # overcome the reinstall issue mentioned here:
-  # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
-
-  # Patches
-  resource "0001-No-frame-refocus-cocoa" do
-    url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
-    sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
-  end
-
-  resource "0003-Pdumper-size-increase" do
-    url ResourcesResolver.get_resource_url("patches/0003-Pdumper-size-increase.patch")
-    sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
-  end
-
-  resource "0005-System-appearance" do
-    url  ResourcesResolver.get_resource_url("patches/0005-System-appearance-28-29.patch")
-    sha256 "d6ee159839b38b6af539d7b9bdff231263e451c1fd42eec0d125318c9db8cd92"
-  end
-
-  resource "0008-Fix-window-role.patch" do
-    url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
-    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
   # Icons
   load_icons
 

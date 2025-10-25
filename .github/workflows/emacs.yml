@@ -25,7 +25,7 @@ jobs:
         os: [macos-latest]
         build_opts:
           # All options (imagemagick@7)
-          - '--with-cocoa --with-no-frame-refocus --with-imagemagick --with-pdumper --with-xwidgets'
+          - '--with-cocoa --with-imagemagick --with-pdumper --with-xwidgets'
 
     env:
       HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY: ${{ github.repository }}

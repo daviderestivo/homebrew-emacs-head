@@ -81,22 +81,6 @@ class EmacsHeadAT31 < EmacsBase
     depends_on "libmps" => :recommended
   end
 
-  # All the patches and the icons have been declared as resources.
-  # They are downloaded unconditionally even if not used in order to
-  # overcome the reinstall issue mentioned here:
-  # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
-
-  # Patches
-  resource "0003-Pdumper-size-increase" do
-    url ResourcesResolver.get_resource_url("patches/0003-Pdumper-size-increase.patch")
-    sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
-  end
-
-  resource "0005-System-appearance" do
-    url  ResourcesResolver.get_resource_url("patches/0005-System-appearance.patch")
-    sha256 "964d88c723b1ed8f3ef37bb75110bf6e71ee0cd4fb2d835adfa9bac3a29cc1c0"
-  end
-
   # Icons
   load_icons
 

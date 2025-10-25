@@ -57,48 +57,6 @@ class EmacsHeadAT27 < EmacsBase
     depends_on "imagemagick" => :recommended
   end
 
-  # All the patches and the icons have been declared as resources.
-  # They are downloaded unconditionally even if not used in order to
-  # overcome the reinstall issue mentioned here:
-  # https://github.com/daviderestivo/homebrew-emacs-head/issues/28
-
-  # Patches
-  resource "0001-No-frame-refocus-cocoa" do
-    url ResourcesResolver.get_resource_url("patches/0001-No-frame-refocus-cocoa.patch")
-    sha256 "f004e6e65b969bbe83f5d6d53e4ba0e020631959da9ef9682479f7eeb09becd1"
-  end
-
-  resource "0003-Pdumper-size-increase" do
-    url ResourcesResolver.get_resource_url("patches/0003-Pdumper-size-increase.patch")
-    sha256 "38440720948f5144399cc700da5e40872cf0011cf2654fbb571684429d2162a1"
-  end
-
-  resource "0004-Xwidgets-webkit-in-cocoa-27" do
-    url ResourcesResolver.get_resource_url("patches/0004-Xwidgets-webkit-in-cocoa-27.patch")
-    sha256 "56406c03cbcea0d6d4c893074935404937cdae03259b8120b1b913971a948476"
-  end
-
-  resource "0005-System-appearance-27" do
-    url ResourcesResolver.get_resource_url("patches/0005-System-appearance-27.patch")
-    sha256 "d774e9da082352999fe3e9d2daa1065ea9bdaa670267caeebf86e01a77dc1d40"
-  end
-
-  # Link: https://www.reddit.com/r/emacs/comments/icem4s/emacs_271_freezes_when_using_font_ligatures/
-  resource "0007-Ligatures-freeze-fix-27" do
-    url ResourcesResolver.get_resource_url("patches/0007-Ligatures-freeze-fix-27.patch")
-    sha256 "9f81669cba1dedb2733e95d49b8ebe82df3455bf258f130749665cc6adf2afa9"
-  end
-
-  resource "0008-Fix-window-role.patch" do
-    url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
-    sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
-  resource "0010-Arm.patch" do
-    url ResourcesResolver.get_resource_url("patches/0010-Arm.patch")
-    sha256 "344fee330fec4071e29c900093fdf1e2d8a7328df1c75b17e6e9d9a954835741"
-  end
-
   # Icons
   load_icons
 

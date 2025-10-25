@@ -138,7 +138,7 @@ The following compilation options are available:
 | ~--with-xwidgets~         | Enable xwidgets support (not available on emacs-head@26)                                                                      |
 | ~--with-native-comp~      | Enable elisp native compilation support (not available on emacs-head@26 and emacs-head@27)                                    |
 | ~--with-native-full-aot~  | Enable elisp ahead-of-time native compilation support (not available on emacs-head@26 and emacs-head@27)                      |
-| ~--with-tree-sitter~      | Enable Tree-sitter support (emacs-head@29, emacs-head@30 and emacs-head@31)                                                   |
+| ~--with-tree-sitter~      | Enable Tree-sitter support (only on emacs-head@29, emacs-head@30 and emacs-head@31)                                           |
 | ~--with-mps~              | Use the Memory Pool System garbage collection library (only on emacs-head@31)                                                 |
 
 For the terminal version only of GNU Emacs please omit ~--with-cocoa~.

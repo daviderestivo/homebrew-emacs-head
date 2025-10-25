@@ -45,7 +45,8 @@ jobs:
       run: |
         brew update
         brew upgrade || true
-        brew cleanup
+        # Remove Homebrew cache locks
+        rm -rf ~/Library/Caches/Homebrew/locks
         brew install --verbose emacs-head@27 ${{ matrix.build_opts }}
       working-directory: Formula
 

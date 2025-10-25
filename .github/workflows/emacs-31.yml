@@ -42,7 +42,8 @@ jobs:
       run: |
         brew update
         brew upgrade || true
-        brew cleanup
+        # Remove Homebrew cache locks
+        rm -rf ~/Library/Caches/Homebrew/locks
         export HOMEBREW_DEVELOPER=1
         brew install emacs-head@31.rb ${{ matrix.build_opts }} --verbose
       working-directory: Formula

@@ -38,7 +38,8 @@ jobs:
       run: |
         brew update
         brew upgrade || true
-        brew cleanup
+        # Remove Homebrew cache locks
+        rm -rf ~/Library/Caches/Homebrew/locks
         export HOMEBREW_DEVELOPER=1
         brew install ./Aliases/$(readlink Aliases/emacs-head) ${{ matrix.build_opts }} --verbose
 

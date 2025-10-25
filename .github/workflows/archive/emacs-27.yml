@@ -45,6 +45,7 @@ jobs:
       run: |
         brew update
         brew upgrade || true
+        brew cleanup
         brew install --verbose emacs-head@27 ${{ matrix.build_opts }}
       working-directory: Formula
 

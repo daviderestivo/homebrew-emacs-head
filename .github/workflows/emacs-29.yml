@@ -42,6 +42,7 @@ jobs:
       run: |
         brew update
         brew upgrade || true
+        brew cleanup
         export HOMEBREW_DEVELOPER=1
         brew install emacs-head@29.rb ${{ matrix.build_opts }} --verbose
       working-directory: Formula

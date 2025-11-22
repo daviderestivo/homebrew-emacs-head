@@ -36,7 +36,7 @@ jobs:
       HOMEBREW_EMACS_HEAD_GITHUB_REPOSITORY_REF: ${{ github.head_ref || github.ref }}
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
 
     - name: Build emacs-head@29 ${{ matrix.build_opts }}
       run: |

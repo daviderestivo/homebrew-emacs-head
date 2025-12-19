@@ -197,6 +197,9 @@ class EmacsHeadAT30 < EmacsBase
     # 10000 (default is 1024)
     ENV.append "CFLAGS", "-O2 -march=native -pipe -DFD_SETSIZE=10000 -DDARWIN_UNLIMITED_SELECT"
 
+    # Fix: ISO C99 and later do not support implicit function declarations
+    ENV.append "CFLAGS", "-Wno-implicit-function-declaration"
+
     # Use GNU install
     ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"
     # Use GNU sed

@@ -129,6 +129,15 @@ class EmacsHeadAT30 < EmacsBase
     sha256 "9da832d581d2e3ba26c7f8a9a3bca97511480986c2a7038da29a60659069a1a7"
   end
 
+  if build.with? "tree-sitter"
+    # Fix tree-sitter compatibility with newer versions where ts_language_version
+    # has been replaced with ts_language_abi_version
+    patch do
+      url ResourcesResolver.get_resource_url("patches/0009-Treesit-compatibility-30.patch")
+      sha256 "81472b7009a141b0d856c2af2be60cbf25647ed4fb45cb58854df3a9fea8f19c"
+    end
+  end
+
   def install
     args = %W[
       --enable-locallisppath=#{HOMEBREW_PREFIX}/share/emacs/site-lisp

@@ -257,7 +257,7 @@ class EmacsHeadAT30 < EmacsBase
       prefix.install "nextstep/Emacs.app"
 
       # Install Assets.car for Tahoe icon support
-      EmacsHeadAT30.install_tahoe_assets_car("#{prefix}/Emacs.app/Contents/Resources", selected_icon)
+      install_tahoe_assets_car("#{prefix}/Emacs.app/Contents/Resources", selected_icon)
       (prefix/"Emacs.app/Contents").install "native-lisp" if build.with? "native-comp"
 
       # Replace the symlink with one that avoids starting Cocoa.

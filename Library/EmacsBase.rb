@@ -8,7 +8,7 @@ class EmacsBase < Formula
   # Install Assets.car sidecar file for macOS Tahoe icon support
   # This enables custom icons to work properly with macOS 26+ Tahoe system
   # which requires Assets.car files instead of traditional .icns files
-  def self.install_tahoe_assets_car(icons_dir, selected_icon)
+  def install_tahoe_assets_car(icons_dir, selected_icon)
     return if selected_icon.nil?
 
     # Check if running on macOS 26+ (Tahoe)

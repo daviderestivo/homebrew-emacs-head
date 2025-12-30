@@ -240,8 +240,8 @@ More details about MPS can be found in the below links:
 - [[https://memory-pool-system.readthedocs.io/en/latest/index.html][MPS docs]]
 
 ** Available icons
-| Option                                             | Description                                              | Image                                                  | URL  |
-|----------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------+------|
+| Option                                             | Description                                              | Image                                                          | URL  |
+|----------------------------------------------------+----------------------------------------------------------+----------------------------------------------------------------+------|
 | ~--with-modern-icon-sjrmanning~                      | Use a modern style icon by [[https://github.com/sjrmanning][Sjrmannings]]                   | [[/icons/preview/modern-icon-sjrmanning.png]]                      | [[https://github.com/sjrmanning/emacs-icon][Link]] |
 | ~--with-modern-icon-asingh4242~                      | Use a modern style icon by [[https://imgur.com/user/asingh4242][Asingh4242]]                    | [[/icons/preview/modern-icon-asingh4242.png]]                      | [[https://imgur.com/YGxjLZw][Link]] |
 | ~--with-modern-icon-paper-icons~                     | Use a modern style icon by [[https://github.com/snwh][Sam Hewitt]]                    | [[/icons/preview/modern-icon-paper-icons.png]]                     | [[https://github.com/snwh/paper-icon-theme/blob/master/Paper/512x512/apps/emacs.png][Link]] |
@@ -311,7 +311,7 @@ More details about MPS can be found in the below links:
 | ~--with-infinity-yak-shack~                          | Use a Infinite Yak icon by [[https://github.com/emacsfodder][Jasonm23]]                      | [[/icons/preview/infinity-yak-shack.png]]                          | [[https://github.com/emacsfodder/Infinite-Yak-Icons][Link]] |
 | ~--with-infinity-yak-topia~                          | Use a Infinite Yak icon by [[https://github.com/emacsfodder][Jasonm23]]                      | [[/icons/preview/infinity-yak-topia.png]]                          | [[https://github.com/emacsfodder/Infinite-Yak-Icons][Link]] |
 | ~--with-skamacs-icon~                                | Use a modern style icon by [[https://github.com/compufox][Compufox]]                      | [[/icons/preview/skamacs-icon.png]]                                | [[https://github.com/compufox/skamacs-icon][Link]] |
-| ~--with-liquid-glass~                                | Use a modern style icon by [[https://github.com/leaferiksen/emacs-liquid-glass-icon][Leaf Eriksen]]                  | [[/icons/preview/liquid-glass.png]]                                | [[https://github.com/leaferiksen/emacs-liquid-glass-icon][Link]] |
+| ~--with-liquid-glass~                                | Use a modern style icon by [[https://github.com/leaferiksen][Leaf Eriksen]]                  | [[/icons/preview/liquid-glass.png]]                                | [[https://github.com/leaferiksen/emacs-liquid-glass-icon][Link]] |
 
 ** Why yet another Homebrew GNU Emacs formula?
 Since the option ~--with-cocoa~ is not available anymore in the latest

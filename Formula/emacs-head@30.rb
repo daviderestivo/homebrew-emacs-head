@@ -233,6 +233,7 @@ class EmacsHeadAT30 < EmacsBase
       system "make", *make_flags
 
       icons_dir = buildpath/"nextstep/Emacs.app/Contents/Resources"
+      selected_icon = nil
 
       ICONS.each_key do |icon|
         if build.with? icon
@@ -241,6 +242,7 @@ class EmacsHeadAT30 < EmacsBase
             icons_dir.install Dir["*.icns*"].first => "Emacs.icns"
             ohai "Installing " + icon + " icon"
           end
+          selected_icon = icon
         end
       end
 
@@ -253,6 +255,9 @@ class EmacsHeadAT30 < EmacsBase
       end
 
       prefix.install "nextstep/Emacs.app"
+
+      # Install Assets.car for Tahoe icon support
+      EmacsHeadAT30.install_tahoe_assets_car("#{prefix}/Emacs.app/Contents/Resources", selected_icon)
       (prefix/"Emacs.app/Contents").install "native-lisp" if build.with? "native-comp"
 
       # Replace the symlink with one that avoids starting Cocoa.

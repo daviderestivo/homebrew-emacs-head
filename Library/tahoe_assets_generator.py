@@ -114,7 +114,7 @@ def process_icon(png_file, tahoe_dir, actool_path, step, total, dry_run=False, f
             actool_path, str(icon_file),
             "--compile", str(output_dir),
             "--platform", "macosx",
-            "--minimum-deployment-target", "11.0",
+            "--minimum-deployment-target", "26.0",
             "--app-icon", name,
             "--output-partial-info-plist", str(output_dir / "partial-info.plist"),
             "--enable-icon-stack-fallback-generation=disabled"

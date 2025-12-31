@@ -23,7 +23,7 @@ class EmacsBase < Formula
 
     ohai "Installing Assets.car for macOS 26+ Tahoe support"
 
-    car_file = "#{HOMEBREW_REPOSITORY}/Library/Taps/daviderestivo/homebrew-emacs-head/icons/tahoe/#{selected_icon}.car"
+    car_file = "#{HOMEBREW_REPOSITORY}/Library/Taps/daviderestivo/homebrew-emacs-head/icons/macos-26+/#{selected_icon}.car"
 
     if File.exist?(car_file)
       # Install the pre-compiled Assets.car file
@@ -41,7 +41,7 @@ class EmacsBase < Formula
     else
       opoo "Assets.car not found for '#{selected_icon}' at: #{car_file}"
       opoo "Icon will use fallback .icns format (may appear in 'icon jail' on macOS 26+)"
-      opoo "Run 'python3 Library/tahoe_assets_generator.py ' to generate Assets.car files"
+      opoo "Run 'python3 Library/generate_tahoe_assets_car.py' to generate Assets.car files"
     end
   end
 
@@ -52,7 +52,7 @@ class EmacsBase < Formula
       option "with-#{icon}", comment
       if build.with? "#{icon}"
         resource "#{icon}" do
-          url ResourcesResolver.get_resource_url("icons/" + icon + ".icns")
+          url ResourcesResolver.get_resource_url("icons/macos-legacy/" + icon + ".icns")
           sha256 sha
         end
       end

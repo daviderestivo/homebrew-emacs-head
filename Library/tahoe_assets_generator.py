@@ -73,7 +73,7 @@ def process_icon(png_file, tahoe_dir, actool_path, step, total, dry_run=False, f
         # Copy PNG to .icon/Assets/ folder
         shutil.copy2(png_file, icon_assets_dir / f"{name}.png")
 
-        # Create icon.json with exact same structure as bash script
+        # Create icon.json
         icon_json = {
             "fill": "automatic",
             "groups": [

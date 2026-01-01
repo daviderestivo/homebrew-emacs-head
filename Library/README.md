@@ -1,26 +1,32 @@
 # Icon Generation Scripts
 
-This directory contains three Python scripts for processing Emacs icons for macOS Tahoe compatibility.
+This directory contains Python scripts for processing Emacs icons into different formats for macOS compatibility and documentation.
 
 ## Overview
 
-These scripts work together to convert PNG icons into the proper formats needed for macOS 26+ (Tahoe) to display custom application icons without the "icon jail" overlay.
+There are two main workflows:
+
+1. **Icon Asset Generation** - Creates macOS-compatible icon formats for Homebrew formula
+2. **Preview Generation** - Creates standardized preview images for documentation
+
+## Workflow 1: Icon Asset Generation
+
+This workflow converts PNG source files into macOS-compatible icon formats to avoid the "icon jail" overlay on macOS 26+ (Tahoe).
 
 ### Pipeline Flow
-
 ```
-PNG files → .icon files → Assets.car files
-    ↓           ↓             ↓
-  Step 1     Step 2       Step 3
+PNG sources → .icon directories → Assets.car files
+     ↓              ↓                  ↓
+   Step 1         Step 2            Step 3
 ```
 
-## Scripts
+### Step 1: Generate .icon Files
 
-### 1. `generate_icon_files.py`
-Converts PNG files to macOS .icon directory format.
-
+**Script:** `generate_icon_files.py`  
 **Input:** `icons/originals/*.png`  
 **Output:** `icons/icon-files/*.icon`
+
+Converts PNG files to macOS .icon directory format with proper metadata.
 
 ```bash
 # Generate all .icon files
@@ -36,33 +42,13 @@ python3 Library/generate_icon_files.py --force
 python3 Library/generate_icon_files.py --icons-dir custom/path
 ```
 
-### 2. `generate_preview_files.py`
-Creates 128x128@72dpi preview images for documentation.
+### Step 2: Generate Assets.car Files
 
-**Input:** `icons/originals/*.png`  
-**Output:** `icons/previews/*.png`
-
-```bash
-# Generate all preview images
-python3 Library/generate_preview_files.py
-
-# Preview what would be done
-python3 Library/generate_preview_files.py --dry-run
-
-# Force regenerate all files
-python3 Library/generate_preview_files.py --force
-
-# Use custom source directory
-python3 Library/generate_preview_files.py --icons-dir custom/path
-```
-
-**Requirements:** macOS (uses `sips` command)
-
-### 3. `generate_tahoe_assets_car.py`
-Compiles .icon files to Assets.car files using Apple's actool.
-
+**Script:** `generate_tahoe_assets_car.py`  
 **Input:** `icons/icon-files/*.icon`  
 **Output:** `icons/macos-26+/*.car`
+
+Compiles .icon directories into Assets.car files using Apple's actool for modern macOS versions.
 
 ```bash
 # Compile all Assets.car files
@@ -80,6 +66,57 @@ python3 Library/generate_tahoe_assets_car.py --icons-dir custom/path
 
 **Requirements:** Xcode (provides `actool`)
 
+### Complete Icon Asset Workflow
+
+```bash
+# Run complete pipeline
+python3 Library/generate_icon_files.py
+python3 Library/generate_tahoe_assets_car.py
+
+# Or preview the complete pipeline
+python3 Library/generate_icon_files.py --dry-run
+python3 Library/generate_tahoe_assets_car.py --dry-run
+```
+
+## Workflow 2: Preview Generation
+
+This workflow creates standardized preview images for documentation and README files.
+
+### Single Step Process
+
+**Script:** `generate_preview_files.py`  
+**Input:** `icons/originals/*.png`  
+**Output:** `icons/previews/*.png`
+
+Creates 128x128@72dpi standardized preview images directly from PNG sources.
+
+```bash
+# Generate all preview images
+python3 Library/generate_preview_files.py
+
+# Preview what would be done
+python3 Library/generate_preview_files.py --dry-run
+
+# Force regenerate all files
+python3 Library/generate_preview_files.py --force
+
+# Use custom source directory
+python3 Library/generate_preview_files.py --icons-dir custom/path
+```
+
+**Requirements:** macOS (uses `sips` command)
+
+## Directory Structure
+
+```
+icons/
+├── originals/       # Source PNG files (input for both workflows)
+├── icon-files/      # Generated .icon directories (Workflow 1, Step 1)
+├── macos-26+/       # Modern Assets.car files (Workflow 1, Step 2)
+├── previews/        # 128x128 preview images (Workflow 2)
+└── macos-legacy/    # Legacy .icns files (for reference)
+```
+
 ## Common Options
 
 All scripts support these options:
@@ -89,47 +126,40 @@ All scripts support these options:
 - `--force` - Force regeneration even if files are up to date
 - `--icons-dir DIR` - Specify custom input directory
 
-## Quick Start
-
-### Complete Pipeline
-Run all three scripts in sequence:
-
-```bash
-# Step 1: Create .icon files from PNG sources
-python3 Library/generate_icon_files.py
-
-# Step 2: Create preview images (optional)
-python3 Library/generate_preview_files.py
-
-# Step 3: Compile Assets.car files
-python3 Library/generate_tahoe_assets_car.py
-```
-
-### Preview Mode
-Test the complete pipeline without making changes:
-
-```bash
-python3 Library/generate_icon_files.py --dry-run
-python3 Library/generate_preview_files.py --dry-run
-python3 Library/generate_tahoe_assets_car.py --dry-run
-```
-
-## Directory Structure
-
-```
-icons/
-├── originals/       # Source PNG files
-├── icon-files/     # Generated .icon directories
-├── previews/        # 128x128 preview images
-├── macos-legacy/   # Legacy .icns files for macOS < 26
-└── macos-26+/      # Modern Assets.car files for macOS 26+
-```
-
 ## Requirements
 
 - **Python 3.6+**
-- **macOS** (for `sips` command in preview generation)
-- **Xcode** (for `actool` in Assets.car compilation)
+- **macOS** (for preview generation using `sips`)
+- **Xcode** (for Assets.car compilation using `actool`)
+
+## Use Cases
+
+### Adding New Icons
+When adding new PNG files to `icons/originals/`:
+
+```bash
+# For Homebrew formula (icon assets)
+python3 Library/generate_icon_files.py
+python3 Library/generate_tahoe_assets_car.py
+
+# For documentation (previews)
+python3 Library/generate_preview_files.py
+```
+
+### Documentation Only
+When you only need preview images for README updates:
+
+```bash
+python3 Library/generate_preview_files.py
+```
+
+### Formula Development
+When working on Homebrew formula icon integration:
+
+```bash
+python3 Library/generate_icon_files.py
+python3 Library/generate_tahoe_assets_car.py
+```
 
 ## Troubleshooting
 
@@ -143,7 +173,7 @@ xcodebuild -runFirstLaunch
 Ensure PNG files are in `icons/originals/` directory or specify custom path with `--icons-dir`.
 
 ### Permission errors
-Ensure write permissions for output directories (`icons/icon-files/`, `icons/previews/`, `icons/tahoe/`).
+Ensure write permissions for output directories (`icons/icon-files/`, `icons/previews/`, `icons/macos-26+/`).
 
 ## Exit Codes
 
@@ -158,9 +188,10 @@ Ensure write permissions for output directories (`icons/icon-files/`, `icons/pre
 mkdir icons/custom
 cp icons/originals/my-icon.png icons/custom/
 
-# Process only those icons
+# Run workflows on subset
 python3 Library/generate_icon_files.py --icons-dir icons/custom
 python3 Library/generate_tahoe_assets_car.py --icons-dir icons/custom
+python3 Library/generate_preview_files.py --icons-dir icons/custom
 ```
 
 ### Force regeneration
@@ -168,6 +199,7 @@ python3 Library/generate_tahoe_assets_car.py --icons-dir icons/custom
 # Regenerate everything from scratch
 python3 Library/generate_icon_files.py --force
 python3 Library/generate_tahoe_assets_car.py --force
+python3 Library/generate_preview_files.py --force
 ```
 
 ### Check what needs updating
@@ -175,4 +207,5 @@ python3 Library/generate_tahoe_assets_car.py --force
 # See which files would be processed
 python3 Library/generate_icon_files.py --dry-run
 python3 Library/generate_tahoe_assets_car.py --dry-run
+python3 Library/generate_preview_files.py --dry-run
 ```

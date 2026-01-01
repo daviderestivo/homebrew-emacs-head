@@ -20,8 +20,8 @@ Features:
 - Comprehensive error handling and reporting
 
 Directory Structure:
-- Input:  icons/original/    (source PNG files from .icns conversion)
-- Output: icons/preview/     (128x128@72dpi standardized previews)
+- Input:  icons/originals/    (source PNG files from .icns conversion)
+- Output: icons/previews/     (128x128@72dpi standardized previews)
 
 Usage: python3 Library/generate_preview_files.py [--icons-dir DIR] [--dry-run] [--force]
 """
@@ -143,7 +143,7 @@ def main():
     Command Line Arguments:
         --dry-run: Preview operations without making changes
         --force: Regenerate all previews regardless of timestamps
-        --icons-dir: Specify custom source directory (default: icons/original)
+        --icons-dir: Specify custom source directory (default: icons/originals)
 
     Exit Codes:
         0: Success - all files processed without errors
@@ -160,14 +160,14 @@ Examples:
 
 Notes:
   - Requires macOS (uses sips command)
-  - Processes PNG files from original directory
-  - Outputs to icons/preview/ at 128x128@72dpi
+  - Processes PNG files from originals directory
+  - Outputs to icons/previews/ at 128x128@72dpi
         """,
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument("--dry-run", action="store_true", help="Show what would be processed without generating files")
     parser.add_argument("--force", action="store_true", help="Force regeneration of all preview files, even if up to date")
-    parser.add_argument("--icons-dir", default="icons/original", help="Directory containing source .png files (default: icons/original)")
+    parser.add_argument("--icons-dir", default="icons/originals", help="Directory containing source .png files (default: icons/originals)")
     args = parser.parse_args()
 
     print("==> Preview Generator for Emacs Icons")
@@ -182,7 +182,7 @@ Notes:
         sys.exit(1)
 
     # Create preview directory
-    preview_dir = Path("icons/preview")
+    preview_dir = Path("icons/previews")
     preview_dir.mkdir(exist_ok=True)
 
     # Check dependencies (skip in dry-run to avoid unnecessary checks)

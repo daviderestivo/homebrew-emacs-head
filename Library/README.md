@@ -19,7 +19,7 @@ PNG files → .icon files → Assets.car files
 ### 1. `generate_icon_files.py`
 Converts PNG files to macOS .icon directory format.
 
-**Input:** `icons/original/*.png`  
+**Input:** `icons/originals/*.png`  
 **Output:** `icons/icon-files/*.icon`
 
 ```bash
@@ -39,8 +39,8 @@ python3 Library/generate_icon_files.py --icons-dir custom/path
 ### 2. `generate_preview_files.py`
 Creates 128x128@72dpi preview images for documentation.
 
-**Input:** `icons/original/*.png`  
-**Output:** `icons/preview/*.png`
+**Input:** `icons/originals/*.png`  
+**Output:** `icons/previews/*.png`
 
 ```bash
 # Generate all preview images
@@ -118,9 +118,9 @@ python3 Library/generate_tahoe_assets_car.py --dry-run
 
 ```
 icons/
-├── original/       # Source PNG files
+├── originals/       # Source PNG files
 ├── icon-files/     # Generated .icon directories
-├── preview/        # 128x128 preview images
+├── previews/        # 128x128 preview images
 ├── macos-legacy/   # Legacy .icns files for macOS < 26
 └── macos-26+/      # Modern Assets.car files for macOS 26+
 ```
@@ -140,10 +140,10 @@ xcodebuild -runFirstLaunch
 ```
 
 ### No PNG files found
-Ensure PNG files are in `icons/original/` directory or specify custom path with `--icons-dir`.
+Ensure PNG files are in `icons/originals/` directory or specify custom path with `--icons-dir`.
 
 ### Permission errors
-Ensure write permissions for output directories (`icons/icon-files/`, `icons/preview/`, `icons/tahoe/`).
+Ensure write permissions for output directories (`icons/icon-files/`, `icons/previews/`, `icons/tahoe/`).
 
 ## Exit Codes
 
@@ -156,7 +156,7 @@ Ensure write permissions for output directories (`icons/icon-files/`, `icons/pre
 ```bash
 # Create custom directory with subset of icons
 mkdir icons/custom
-cp icons/original/my-icon.png icons/custom/
+cp icons/originals/my-icon.png icons/custom/
 
 # Process only those icons
 python3 Library/generate_icon_files.py --icons-dir icons/custom

@@ -19,7 +19,7 @@ Features:
 - Comprehensive error handling and reporting
 
 Directory Structure:
-- Input:  icons/original/     (source PNG files)
+- Input:  icons/originals/     (source PNG files)
 - Output: icons/icon-files/   (.icon directory structures)
 
 Usage: python3 Library/generate_icon_files.py [--icons-dir DIR] [--dry-run] [--force]
@@ -69,7 +69,7 @@ def generate_icon_json(name):
         }
     }
 
-def create_icon_file(png_file, original_dir, icon_files_dir, step, total, dry_run=False, force=False):
+def create_icon_file(png_file, originals_dir, icon_files_dir, step, total, dry_run=False, force=False):
     """
     Create a .icon file from a PNG source.
     
@@ -80,7 +80,7 @@ def create_icon_file(png_file, original_dir, icon_files_dir, step, total, dry_ru
     
     Args:
         png_file (Path): Path to source PNG file
-        original_dir (Path): Directory containing source PNG files
+        originals_dir (Path): Directory containing source PNG files
         icon_files_dir (Path): Output directory for .icon files
         step (int): Current processing step (for progress display)
         total (int): Total number of files to process
@@ -114,7 +114,7 @@ def create_icon_file(png_file, original_dir, icon_files_dir, step, total, dry_ru
         assets_dir.mkdir(parents=True, exist_ok=True)
         
         # Copy PNG to Assets folder
-        shutil.copy2(original_dir / png_file.name, assets_dir / f"{name}.png")
+        shutil.copy2(originals_dir / png_file.name, assets_dir / f"{name}.png")
         
         # Generate icon.json configuration file
         with open(icon_file / "icon.json", "w") as f:
@@ -155,7 +155,7 @@ Examples:
   python3 Library/generate_icon_files.py --icons-dir custom # Use custom directory
 
 Notes:
-  - Processes PNG files from original directory
+  - Processes PNG files from originals directory
   - Outputs to icons/icon-files/ as .icon directories
   - Use with generate_tahoe_assets_car.py for complete pipeline
         """,
@@ -163,7 +163,7 @@ Notes:
     )
     parser.add_argument("--dry-run", action="store_true", help="Show what would be processed without generating files")
     parser.add_argument("--force", action="store_true", help="Force regeneration of all .icon files, even if up to date")
-    parser.add_argument("--icons-dir", default="icons/original", help="Directory containing source .png files (default: icons/original)")
+    parser.add_argument("--icons-dir", default="icons/originals", help="Directory containing source .png files (default: icons/originals)")
     args = parser.parse_args()
 
     print("==> Icon Files Generator for Emacs Icons")

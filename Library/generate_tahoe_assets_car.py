@@ -35,13 +35,13 @@ from pathlib import Path
 def compile_icon_to_car(icon_file, icon_files_dir, macos26_dir, actool, step, total, dry_run=False, force=False):
     """
     Compile a .icon file to Assets.car using actool.
-    
+
     Processes a single .icon file through the Assets.car compilation pipeline:
     1. Creates temporary output directory
     2. Uses Apple's actool to compile .icon to Assets.car
     3. Moves compiled Assets.car to final location
     4. Cleans up temporary files
-    
+
     Args:
         icon_file (Path): Path to .icon file
         icon_files_dir (Path): Directory containing .icon files
@@ -51,13 +51,13 @@ def compile_icon_to_car(icon_file, icon_files_dir, macos26_dir, actool, step, to
         total (int): Total number of files to process
         dry_run (bool): If True, only show what would be done
         force (bool): If True, recompile even if file exists
-        
+
     Returns:
         bool: True if processing succeeded, False if failed
     """
     name = icon_file.stem.replace('.icon', '')
     car_file = macos26_dir / f"{name}.car"
-    
+
     print(f"[{step:>{len(str(total))}}/{total}] Processing {name}")
 
     # Dry run - just show what would happen
@@ -78,7 +78,7 @@ def compile_icon_to_car(icon_file, icon_files_dir, macos26_dir, actool, step, to
         # Create temporary output directory
         output_dir = macos26_dir / f"{name}_output"
         output_dir.mkdir(exist_ok=True)
-        
+
         # Use actool to compile .icon to Assets.car
         subprocess.run([
             actool, str(icon_file),
@@ -89,20 +89,20 @@ def compile_icon_to_car(icon_file, icon_files_dir, macos26_dir, actool, step, to
             "--output-partial-info-plist", str(output_dir / "partial-info.plist"),
             "--enable-icon-stack-fallback-generation=disabled"
         ], check=True, capture_output=True)
-        
+
         # Move Assets.car to final location
         assets_car = output_dir / "Assets.car"
         if assets_car.exists():
             shutil.copy2(assets_car, car_file)
-            
+
             # Check for backwards-compatible .icns
             icns_file = output_dir / f"{name}.icns"
             if icns_file.exists():
                 print(f"  -> Also generated {name}.icns")
-            
+
             # Clean up temporary directory
             shutil.rmtree(output_dir)
-            
+
             action = "Recompiled" if force and car_file.exists() else "Compiled"
             print(f"  -> {action}: {car_file}")
             print()
@@ -111,7 +111,7 @@ def compile_icon_to_car(icon_file, icon_files_dir, macos26_dir, actool, step, to
             print(f"  -> ERROR: No Assets.car generated")
             print()
             return False
-            
+
     except subprocess.CalledProcessError:
         print(f"  -> ERROR: actool compilation failed")
         print()
@@ -124,7 +124,7 @@ def compile_icon_to_car(icon_file, icon_files_dir, macos26_dir, actool, step, to
 def main():
     """
     Main function to process all .icon files and generate Assets.car files.
-    
+
     Orchestrates the complete Assets.car compilation process:
     1. Validates command line arguments and shows help if requested
     2. Checks for required dependencies (Xcode/actool)
@@ -132,7 +132,7 @@ def main():
     4. Discovers .icon source files
     5. Processes each .icon through the compilation pipeline
     6. Reports final results
-    
+
     Exit codes:
         0: Success - all icons compiled
         1: Error - missing dependencies, directories, or compilation failure
@@ -171,7 +171,7 @@ Notes:
         if not os.path.exists(actool):
             print("ERROR: actool not found. Please install Xcode")
             sys.exit(1)
-        
+
         try:
             subprocess.run([actool, "--version"], check=True, capture_output=True)
         except subprocess.CalledProcessError:

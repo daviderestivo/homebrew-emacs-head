@@ -35,10 +35,10 @@ from pathlib import Path
 def generate_icon_json(name):
     """
     Generate icon.json configuration for macOS icon compilation.
-    
+
     Args:
         name (str): Base name of the icon (without extension)
-        
+
     Returns:
         dict: Icon configuration dictionary
     """
@@ -72,12 +72,12 @@ def generate_icon_json(name):
 def create_icon_file(png_file, originals_dir, icon_files_dir, step, total, dry_run=False, force=False):
     """
     Create a .icon file from a PNG source.
-    
+
     Processes a single PNG file through the .icon creation pipeline:
     1. Creates .icon directory structure
     2. Copies PNG to Assets subfolder
     3. Generates icon.json metadata file
-    
+
     Args:
         png_file (Path): Path to source PNG file
         originals_dir (Path): Directory containing source PNG files
@@ -86,13 +86,13 @@ def create_icon_file(png_file, originals_dir, icon_files_dir, step, total, dry_r
         total (int): Total number of files to process
         dry_run (bool): If True, only show what would be done
         force (bool): If True, recreate even if file exists
-        
+
     Returns:
         bool: True if processing succeeded, False if failed
     """
     name = png_file.stem
     icon_file = icon_files_dir / f"{name}.icon"
-    
+
     print(f"[{step:>{len(str(total))}}/{total}] Processing {name}")
 
     # Dry run - just show what would happen
@@ -112,19 +112,19 @@ def create_icon_file(png_file, originals_dir, icon_files_dir, step, total, dry_r
         # Create .icon directory structure
         assets_dir = icon_file / "Assets"
         assets_dir.mkdir(parents=True, exist_ok=True)
-        
+
         # Copy PNG to Assets folder
         shutil.copy2(originals_dir / png_file.name, assets_dir / f"{name}.png")
-        
+
         # Generate icon.json configuration file
         with open(icon_file / "icon.json", "w") as f:
             json.dump(generate_icon_json(name), f, indent=2)
-        
+
         action = "Recreated" if force and icon_file.exists() else "Generated"
         print(f"  -> {action}: {icon_file}")
         print()
         return True
-        
+
     except Exception as e:
         print(f"  -> ERROR: {str(e)}")
         print()
@@ -133,14 +133,14 @@ def create_icon_file(png_file, originals_dir, icon_files_dir, step, total, dry_r
 def main():
     """
     Main function to process all PNG icons and generate .icon files.
-    
+
     Orchestrates the complete .icon file creation process:
     1. Validates command line arguments and shows help if requested
     2. Sets up directory structure
     3. Discovers PNG source files
     4. Processes each PNG through the .icon creation pipeline
     5. Reports final results
-    
+
     Exit codes:
         0: Success - all icons processed
         1: Error - missing directories, no source files, or processing failure

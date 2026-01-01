@@ -1,35 +1,40 @@
 {
-  "fill": "automatic",
-  "groups": [
+  "color-space-for-untagged-svg-colors" : "display-p3",
+  "fill" : {
+    "linear-gradient" : [
+      "display-p3:0.51373,0.50588,0.77255,1.00000",
+      "srgb:0.49412,0.33333,0.70196,1.00000"
+    ]
+  },
+  "groups" : [
     {
-      "layers": [
+      "layers" : [
         {
-          "hidden": false,
-          "image-name": "liquid-glass.png",
-          "name": "liquid-glass",
-          "position": {
-            "scale": 1.0,
-            "translation-in-points": [
+          "fill" : "automatic",
+          "image-name" : "liquid-glass.svg",
+          "name" : "liquid-glass",
+          "position" : {
+            "scale" : 23.5,
+            "translation-in-points" : [
               0,
               0
             ]
           }
         }
       ],
-      "shadow": {
-        "kind": "neutral",
-        "opacity": 0.3
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
       },
-      "translucency": {
-        "enabled": false,
-        "value": 0.0
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
       }
     }
   ],
-  "supported-platforms": {
-    "circles": [
-      "watchOS"
-    ],
-    "squares": "shared"
+  "supported-platforms" : {
+    "squares" : [
+      "macOS"
+    ]
   }
 }

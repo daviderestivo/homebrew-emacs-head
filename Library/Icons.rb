@@ -1,5 +1,6 @@
 ICONS = {
   # <icon_name> => [<SH256>, <description>]
+  "modern-icon"                                 => ["", "Use a modern style icon by Unknown"],
   "modern-icon-sjrmanning"                      => ["fc267d801432da90de5c0d2254f6de16557193b6c062ccaae30d91b3ada01ab9", "Use a modern style icon by @Sjrmanning"],
   "modern-icon-asingh4242"                      => ["ff37bd9447550da54d90bfe5cb2173c93799d4c4d64f5a018cc6bfe6537517e4", "Use a modern style icon by Asingh4242"],
   "modern-icon-paper-icons"                     => ["209f7ea9e3b04d9b152e0580642e926d7e875bd1e33242616d266dd596f74c7a", "Use a modern style icon by Sam Hewitt"],
@@ -29,6 +30,10 @@ ICONS = {
   "modern-icon-savchenkovaleriy-3d-curvy"       => ["d69852471cc711b2bcbe3ecc77262360e2a985bdc91f459eb38639c8838befee", "Use a modern 3D curvy style icon by Valeriy Savchenko"],
   "modern-icon-bokehlicia-captiva"              => ["8534f309b72812ba99375ebe2eb1d814bd68aec8898add2896594f4eecb10238", "Use a modern style icon by Bokehlicia"],
   "modern-icon-c9rgreen-sonoma"                 => ["0e80aec0c6ead0b49177d9e230cf0569ee16465e36dbacabe9e8e0a4152d9b62", "Use a modern style icon by @c9rgreen"],
+  "modern-icon-memplex-slim"                    => ["996429f79d1da9dec08ef5cdce16d4640db64a8dee945995145a9f5ff6b4e57c", "Use a modern style icon by Memplex"],
+  "modern-icon-memplex-wide"                    => ["0b0c0efdff384fb295abe2a124f3878f91abc090e7025f5218e8d40fb82c8e34", "Use a modern style icon by Memplex"],
+  "modern-icon-nobu417-big-sur"                 => ["ab37aca0301c266f51582acb3692ab6de8bcf6470569e116ea50bcd34f756813", "Use a modern style icon by Nobuyuki Sato"],
+  "modern-icon"                                 => ["dfb5900d0da3fc534dca0e891b2d57effd400f2dbdef673e065f790158aace5c", "Use a modern style icon by Unknown"],
   "modern-icon-nuvola"                          => ["c3701e25ff46116fd694bc37d8ccec7ad9ae58bb581063f0792ea3c50d84d997", "Use a modern style icon by David Vignoni (Nuvola Icon Theme)"],
   "modern-icon-black-gnu-head"                  => ["9ac25aaa986b53d268e94d24bb878689c290b237a7810790dead9162e6ddf54b", "Use a modern style icon by Aha-Soft"],
   "modern-icon-dragon"                          => ["a0a624e6a08971f2f9220d2a3aaa79e1f8aecc85df8a522ebb40310c54699c40", "Use a modern style icon by Will B Chang"],

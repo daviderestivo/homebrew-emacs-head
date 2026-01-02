@@ -1,0 +1,6 @@
+{
+  "skip_icons": [
+    "liquid-glass"
+  ],
+  "description": "Configuration for icon generation pipeline. Icons listed in 'skip_icons' will not have .icon or .car files generated."
+}

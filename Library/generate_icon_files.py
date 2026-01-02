@@ -13,14 +13,21 @@ proper icon integration with macOS without appearing in the "icon jail".
 Features:
 - Batch processing of all PNG files in the source directory
 - Smart timestamp-based up-to-date detection to avoid unnecessary regeneration
+- Configuration-based icon skipping via tahoe_config.json
 - Dry-run mode for previewing operations without making changes
 - Force mode to regenerate all .icon files regardless of existing files
 - Progress tracking with step counters and status reporting
 - Comprehensive error handling and reporting
 
+Configuration:
+- Config file: Library/tahoe_config.json
+- Skip icons by adding them to the "skip_icons" array
+- Example: {"skip_icons": ["liquid-glass", "other-icon"]}
+
 Directory Structure:
 - Input:  icons/originals/     (source PNG files)
 - Output: icons/icon-files/   (.icon directory structures)
+- Config: Library/tahoe_config.json (optional skip configuration)
 
 Usage: python3 Library/generate_icon_files.py [--icons-dir DIR] [--dry-run] [--force]
 """
@@ -31,6 +38,23 @@ import json
 import shutil
 import argparse
 from pathlib import Path
+
+def load_config():
+    """
+    Load configuration file for skipping icons.
+    
+    Returns:
+        set: Set of icon names to skip
+    """
+    config_file = Path(__file__).parent / "tahoe_config.json"
+    if config_file.exists():
+        try:
+            with open(config_file, 'r') as f:
+                config = json.load(f)
+                return set(config.get('skip_icons', []))
+        except (json.JSONDecodeError, KeyError):
+            print(f"WARNING: Invalid config file {config_file}, ignoring")
+    return set()
 
 def generate_icon_json(name):
     """
@@ -184,14 +208,33 @@ Notes:
     if not args.dry_run:
         icon_files_dir.mkdir(exist_ok=True)
 
+    # Load configuration for skipped icons
+    skip_icons = load_config()
+    if skip_icons:
+        print(f"Skipping icons from config: {', '.join(sorted(skip_icons))}")
+        print()
+
     # Find all .png files to process
     png_files = list(icons_dir.glob("*.png"))
     if not png_files:
         print(f"No .png files found in {args.icons_dir}/ directory")
         sys.exit(1)
 
+    # Filter out skipped icons
+    filtered_png_files = []
+    skipped_count = 0
+    for png_file in png_files:
+        icon_name = png_file.stem
+        if icon_name in skip_icons:
+            skipped_count += 1
+        else:
+            filtered_png_files.append(png_file)
+    
+    png_files = filtered_png_files
+
     # Show what will be processed
-    print(f"Found {len(png_files)} .png files:")
+    total_found = len(png_files) + skipped_count
+    print(f"Found {total_found} .png files ({len(png_files)} to process, {skipped_count} skipped):")
     for png_file in sorted(png_files):
         output_path = icon_files_dir / f"{png_file.stem}.icon"
         status = "missing"

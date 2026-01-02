@@ -116,8 +116,6 @@ class EmacsHeadAT29 < EmacsBase
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
   end
 
-
-
   def install
     args = %W[
       --enable-locallisppath=#{HOMEBREW_PREFIX}/share/emacs/site-lisp

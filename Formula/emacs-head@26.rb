@@ -12,17 +12,15 @@ class EmacsHeadAT26 < EmacsBase
     url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-26"
   end
 
+  depends_on "autoconf"   => :build
+  depends_on "coreutils"  => :build
+  depends_on "gnu-sed"    => :build
+  depends_on "texinfo"    => :build
   depends_on "automake"   => :build
   depends_on "pkg-config" => :build
+  depends_on "gcc"        => :build
+  depends_on "m4"         => :build
   depends_on "giflib"
-  depends_on "gnutls"     => :recommended
-  depends_on "librsvg"    => :recommended
-  depends_on "libxml2"    => :recommended
-  depends_on "dbus"       => :optional
-  depends_on "mailutils"  => :optional
-  # GNU Emacs 26.x does not support ImageMagick 7:
-  # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
-  depends_on "imagemagick@6" => :optional
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -50,7 +48,29 @@ class EmacsHeadAT26 < EmacsBase
          "Disable libxml2 support"
 
   if build.with? "imagemagick"
-    depends_on "imagemagick@6" => :recommended
+    # GNU Emacs 26.x does not support ImageMagick 7:
+    # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
+    depends_on "imagemagick@6"
+  end
+
+  if build.with? "dbus"
+    depends_on "dbus"
+  end
+
+  if build.with? "mailutils"
+    depends_on "mailutils"
+  end
+
+  unless build.without? "gnutls"
+    depends_on "gnutls"
+  end
+
+  unless build.without? "librsvg"
+    depends_on "librsvg"
+  end
+
+  unless build.without? "libxml2"
+    depends_on "libxml2"
   end
 
   # Icons

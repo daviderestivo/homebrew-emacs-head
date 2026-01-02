@@ -21,13 +21,7 @@ class EmacsHeadAT29 < EmacsBase
   depends_on "gcc"        => :build
   depends_on "m4"         => :build
   depends_on "giflib"
-  depends_on "gnutls"     => :recommended
-  depends_on "librsvg"    => :recommended
-  depends_on "libxml2"    => :recommended
   depends_on "jansson"
-  depends_on "dbus"        => :optional
-  depends_on "mailutils"   => :optional
-  depends_on "imagemagick" => :optional
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -63,18 +57,38 @@ class EmacsHeadAT29 < EmacsBase
          "Enable Tree-sitter support"
 
   if build.with? "imagemagick"
-    depends_on "imagemagick" => :recommended
+    depends_on "imagemagick"
+  end
+
+  if build.with? "dbus"
+    depends_on "dbus"
+  end
+
+  if build.with? "mailutils"
+    depends_on "mailutils"
+  end
+
+  unless build.without? "gnutls"
+    depends_on "gnutls"
+  end
+
+  unless build.without? "librsvg"
+    depends_on "librsvg"
+  end
+
+  unless build.without? "libxml2"
+    depends_on "libxml2"
   end
 
   if build.with? "native-comp"
     depends_on "gmp"       => :build
     depends_on "libjpeg"   => :build
     depends_on "zlib"      => :build
-    depends_on "libgccjit" => :recommended
+    depends_on "libgccjit"
   end
 
   if build.with? "tree-sitter"
-    depends_on "tree-sitter" => :optional
+    depends_on "tree-sitter@0.25"
   end
 
   # Icons
@@ -114,15 +128,6 @@ class EmacsHeadAT29 < EmacsBase
   patch do
     url ResourcesResolver.get_resource_url("patches/0008-Fix-window-role.patch")
     sha256 "1f8423ea7e6e66c9ac6dd8e37b119972daa1264de00172a24a79a710efcb8130"
-  end
-
-  if build.with? "tree-sitter"
-    # Fix tree-sitter compatibility with newer versions where ts_language_version
-    # has been replaced with ts_language_abi_version
-    patch do
-      url ResourcesResolver.get_resource_url("patches/0009-Treesit-compatibility-29.patch")
-      sha256 "8b5e3f856f6521333add1c90aa979a4246c6598a18fb54b9ca37670e55101e43"
-    end
   end
 
   def install

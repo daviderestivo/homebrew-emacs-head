@@ -25,8 +25,9 @@ PNG sources → .icon directories → Assets.car files
 **Script:** `generate_icon_files.py`  
 **Input:** `icons/originals/*.png`  
 **Output:** `icons/icon-files/*.icon`
+**Config:** `Library/tahoe_config.json` (optional)
 
-Converts PNG files to macOS .icon directory format with proper metadata.
+Converts PNG files to macOS .icon directory format with proper metadata. Supports configuration-based icon skipping via tahoe_config.json.
 
 ```bash
 # Generate all .icon files

@@ -29,7 +29,6 @@ class EmacsHeadAT30 < EmacsBase
   depends_on "dbus"        => :optional
   depends_on "mailutils"   => :optional
   depends_on "imagemagick" => :optional
-  depends_on "tree-sitter@0.25" => :optional
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -76,7 +75,7 @@ class EmacsHeadAT30 < EmacsBase
   end
 
   if build.with? "tree-sitter"
-    depends_on "tree-sitter@0.25" => :optional
+    depends_on "tree-sitter@0.25"
   end
 
   # Icons

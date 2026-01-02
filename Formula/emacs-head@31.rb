@@ -14,14 +14,8 @@ class EmacsHeadAT31 < EmacsBase
   depends_on "gcc"        => :build
   depends_on "m4"         => :build
   depends_on "giflib"
-  depends_on "gnutls"     => :recommended
-  depends_on "librsvg"    => :recommended
-  depends_on "libxml2"    => :recommended
   depends_on "jansson"
   depends_on "webp"
-  depends_on "dbus"        => :optional
-  depends_on "mailutils"   => :optional
-  depends_on "imagemagick" => :optional
 
   option "with-crash-debug",
          "Append `-g3` to CFLAGS to enable crash debugging"
@@ -56,29 +50,46 @@ class EmacsHeadAT31 < EmacsBase
   option "with-mps",
          "Experimental: use Memory Pool System garbage collector"
 
-  if build.with? "mps"
-    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/igc"
-  else
-    url "https://github.com/emacs-mirror/emacs.git"
+  if build.with? "imagemagick"
+    depends_on "imagemagick"
   end
 
-  if build.with? "imagemagick"
-    depends_on "imagemagick" => :recommended
+  if build.with? "dbus"
+    depends_on "dbus"
+  end
+
+  if build.with? "mailutils"
+    depends_on "mailutils"
+  end
+
+  unless build.without? "gnutls"
+    depends_on "gnutls"
+  end
+
+  unless build.without? "librsvg"
+    depends_on "librsvg"
+  end
+
+  unless build.without? "libxml2"
+    depends_on "libxml2"
   end
 
   if build.with? "native-comp"
     depends_on "gmp"       => :build
     depends_on "libjpeg"   => :build
     depends_on "zlib"      => :build
-    depends_on "libgccjit" => :recommended
+    depends_on "libgccjit"
   end
 
   if build.with? "tree-sitter"
-    depends_on "tree-sitter" => :optional
+    depends_on "tree-sitter"
   end
 
   if build.with? "mps"
-    depends_on "libmps" => :recommended
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/igc"
+    depends_on "libmps"
+  else
+    url "https://github.com/emacs-mirror/emacs.git"
   end
 
   # Icons

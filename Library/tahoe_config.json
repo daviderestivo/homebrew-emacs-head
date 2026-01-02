@@ -1,0 +1,6 @@
+{
+  "skip_icons": [
+    "liquid-glass"
+  ],
+  "description": "Configuration for Tahoe Assets.car generation. Icons listed in 'skip_icons' will not have .car files generated."
+}

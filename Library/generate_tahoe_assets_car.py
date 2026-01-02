@@ -13,24 +13,49 @@ appear with a generic folder overlay indicating improper system integration.
 Features:
 - Batch processing of all .icon files in the source directory
 - Smart timestamp-based up-to-date detection to avoid unnecessary recompilation
+- Configuration-based icon skipping via tahoe_config.json
 - Dry-run mode for previewing operations without making changes
 - Force mode to recompile all Assets.car files regardless of existing files
 - Progress tracking with step counters and status reporting
 - Comprehensive error handling and reporting
 
+Configuration:
+- Config file: Library/tahoe_config.json
+- Skip icons by adding them to the "skip_icons" array
+- Example: {"skip_icons": ["liquid-glass", "other-icon"]}
+
 Directory Structure:
 - Input:  icons/icon-files/  (.icon directory structures)
 - Output: icons/macos-26+/   (Assets.car compiled files)
+- Config: Library/tahoe_config.json (optional skip configuration)
 
 Usage: python3 Library/generate_tahoe_assets_car.py [--icons-dir DIR] [--dry-run] [--force]
 """
 
 import os
 import sys
+import json
 import shutil
 import subprocess
 import argparse
 from pathlib import Path
+
+def load_config():
+    """
+    Load configuration file for skipping icons.
+    
+    Returns:
+        set: Set of icon names to skip
+    """
+    config_file = Path(__file__).parent / "tahoe_config.json"
+    if config_file.exists():
+        try:
+            with open(config_file, 'r') as f:
+                config = json.load(f)
+                return set(config.get('skip_icons', []))
+        except (json.JSONDecodeError, KeyError):
+            print(f"WARNING: Invalid config file {config_file}, ignoring")
+    return set()
 
 def compile_icon_to_car(icon_file, icon_files_dir, macos26_dir, actool, step, total, dry_run=False, force=False):
     """
@@ -190,6 +215,12 @@ Notes:
     if not args.dry_run:
         macos26_dir.mkdir(exist_ok=True)
 
+    # Load configuration for skipped icons
+    skip_icons = load_config()
+    if skip_icons:
+        print(f"Skipping icons from config: {', '.join(sorted(skip_icons))}")
+        print()
+
     # Find all .icon files to process
     icon_files = list(icons_dir.glob("*.icon"))
     if not icon_files:
@@ -197,8 +228,21 @@ Notes:
         print("Run generate_icon_files.py first")
         sys.exit(1)
 
+    # Filter out skipped icons
+    filtered_icon_files = []
+    skipped_count = 0
+    for icon_file in icon_files:
+        icon_name = icon_file.stem.replace('.icon', '')
+        if icon_name in skip_icons:
+            skipped_count += 1
+        else:
+            filtered_icon_files.append(icon_file)
+    
+    icon_files = filtered_icon_files
+
     # Show what will be processed
-    print(f"Found {len(icon_files)} .icon files:")
+    total_found = len(icon_files) + skipped_count
+    print(f"Found {total_found} .icon files ({len(icon_files)} to process, {skipped_count} skipped):")
     for icon_file in sorted(icon_files):
         output_path = macos26_dir / f"{icon_file.stem.replace('.icon', '')}.car"
         status = "missing"

@@ -47,8 +47,9 @@ python3 Library/generate_icon_files.py --icons-dir custom/path
 **Script:** `generate_tahoe_assets_car.py`  
 **Input:** `icons/icon-files/*.icon`  
 **Output:** `icons/macos-26+/*.car`
+**Config:** `Library/tahoe_config.json` (optional)
 
-Compiles .icon directories into Assets.car files using Apple's actool for modern macOS versions.
+Compiles .icon directories into Assets.car files using Apple's actool for modern macOS versions. Supports configuration-based icon skipping via tahoe_config.json.
 
 ```bash
 # Compile all Assets.car files
@@ -65,6 +66,22 @@ python3 Library/generate_tahoe_assets_car.py --icons-dir custom/path
 ```
 
 **Requirements:** Xcode (provides `actool`)
+
+#### Configuration File
+
+Create `Library/tahoe_config.json` to skip specific icons from .car generation:
+
+```json
+{
+  "skip_icons": [
+    "liquid-glass",
+    "other-icon-name"
+  ],
+  "description": "Icons listed here will not have .car files generated"
+}
+```
+
+Icons in the skip list will still have .icns files for legacy compatibility but won't generate .car files for macOS 26+.
 
 ### Complete Icon Asset Workflow
 

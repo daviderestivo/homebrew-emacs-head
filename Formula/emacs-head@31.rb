@@ -86,7 +86,7 @@ class EmacsHeadAT31 < EmacsBase
   end
 
   if build.with? "mps"
-    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/igc"
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/igc3"
     depends_on "libmps"
   else
     url "https://github.com/emacs-mirror/emacs.git"

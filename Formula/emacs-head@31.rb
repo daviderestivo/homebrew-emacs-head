@@ -128,6 +128,14 @@ class EmacsHeadAT31 < EmacsBase
     sha256 "964d88c723b1ed8f3ef37bb75110bf6e71ee0cd4fb2d835adfa9bac3a29cc1c0"
   end
 
+  # [CI] Fix "emacs: Could not read <PATH>/emacs-src/etc/rgb.txt"
+  # It seems the root cause is due to this commit:
+  # https://github.com/emacs-mirror/emacs/commit/b7aca342e69c398cc8c3a7b8557ccf19cf7d444b
+  patch do
+    url ResourcesResolver.get_resource_url("patches/0014-Skip_ns_color_initialization_in_batch_mode.patch")
+    sha256 "fa02356ed53bb8c229027d437259ec3af67399de42e8752071088f04eb2c5fbb"
+  end
+
   def install
     args = %W[
       --enable-locallisppath=#{HOMEBREW_PREFIX}/share/emacs/site-lisp

@@ -133,7 +133,7 @@ class EmacsHeadAT31 < EmacsBase
   # https://github.com/emacs-mirror/emacs/commit/b7aca342e69c398cc8c3a7b8557ccf19cf7d444b
   patch do
     url ResourcesResolver.get_resource_url("patches/0014-Skip_ns_color_initialization_in_batch_mode.patch")
-    sha256 "fa02356ed53bb8c229027d437259ec3af67399de42e8752071088f04eb2c5fbb"
+    sha256 "eae3f6d1442b3c9831046799cb72fb984e1653ba2537d236a8f58a1764807137"
   end
 
   def install

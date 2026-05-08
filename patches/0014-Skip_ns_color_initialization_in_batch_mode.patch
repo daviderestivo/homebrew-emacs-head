@@ -14,15 +14,14 @@ not have the full color list.  This is acceptable because batch mode
 has no display and color queries are meaningless there.
 
 diff --git a/src/emacs.c b/src/emacs.c
-index 8e3d528dcea..01a971095bd 100644
+index 11fe567737a..b8d5758eada 100644
 --- a/src/emacs.c
 +++ b/src/emacs.c
-@@ -2066,7 +2066,7 @@ Using an Emacs configured with --with-x-toolkit=lucid does not have this problem
-
+@@ -2292,7 +2292,7 @@ Using an Emacs configured with --with-x-toolkit=lucid does not have this problem
  #ifdef HAVE_NS
-   /* For early calls to ns_lisp_to_color or Fns_list_colors.  */
+   /* For early calls to ns_lisp_to_color or Fns_list_colors.
+      Must follow init_callproc which sets data-directory.  */
 -  if (!dump_mode)
 +  if (!dump_mode && !noninteractive)
      ns_init_colors ();
-
-   if (!noninteractive)
+ #endif

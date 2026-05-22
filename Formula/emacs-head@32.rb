@@ -1,9 +1,8 @@
 # coding: utf-8
 require_relative "../Library/EmacsBase"
 
-class EmacsHeadAT31 < EmacsBase
-  version "31.0.60"
-  url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-31"
+class EmacsHeadAT32 < EmacsBase
+  version "32.0.50"
   revision 1
 
   depends_on "autoconf"   => :build

@@ -33,7 +33,7 @@ This formula currently supports:
 - GNU Emacs 28.2 (or emacs-28 branch)
 - GNU Emacs 29.4 (or emacs-29 branch)
 - GNU Emacs 30.2 (or emacs-30 branch)
-- GNU Emacs 31.0.60 (emacs-31 branch)
+- GNU Emacs 31.1 (or emacs-31 branch)
 - GNU Emacs HEAD (currently 32.0.50)
 
 ** Installation
@@ -91,10 +91,10 @@ brew tap daviderestivo/emacs-head
 brew install --HEAD emacs-head@29 --with-cocoa
 #+end_src
 
-*** GNU Emacs 30 (default)
+*** GNU Emacs 30
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head --with-cocoa
+brew install emacs-head@30 --with-cocoa
 #+end_src
 
 If you wish to install the latest commit of the emacs-30 branch then:
@@ -104,10 +104,10 @@ brew tap daviderestivo/emacs-head
 brew install --HEAD emacs-head --with-cocoa
 #+end_src
 
-*** GNU Emacs 31
+*** GNU Emacs 31 (default)
 #+begin_src bash
 brew tap daviderestivo/emacs-head
-brew install emacs-head@31 --with-cocoa
+brew install emacs-head --with-cocoa
 #+end_src
 
 *** GNU Emacs 32

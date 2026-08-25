@@ -2,9 +2,15 @@
 require_relative "../Library/EmacsBase"
 
 class EmacsHeadAT31 < EmacsBase
-  version "31.0.60"
-  url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-31"
+  url "https://ftpmirror.gnu.org/emacs/emacs-31.1.tar.xz"
+  mirror "https://ftp.gnu.org/gnu/emacs/emacs-31.1.tar.xz"
+  sha256 "1da5790d9580c81932b5bf700633114468da7b3412d69faa767daebf974f4586"
+  version "31.1"
   revision 1
+
+  head do
+    url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-31"
+  end
 
   depends_on "autoconf"   => :build
   depends_on "coreutils"  => :build
@@ -108,7 +114,7 @@ class EmacsHeadAT31 < EmacsBase
   # https://github.com/emacs-mirror/emacs/commit/5427ef23b8b3ef52faf4ab1e8401303220c2d1d1
   if build.with? "no-frame-refocus"
     # Show a warning to the user
-    opoo "The option --with-no-frame-refocus is not required anymore in emacs-head@30."
+    opoo "The option --with-no-frame-refocus is not required anymore in emacs-head@31."
   end
 
   if build.with? "pdumper"

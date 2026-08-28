@@ -54,8 +54,6 @@ class EmacsHeadAT31 < EmacsBase
          "Enable Elisp Ahead-of-Time native compilation support"
   option "with-tree-sitter",
          "Enable Tree-sitter support"
-  option "with-mps",
-         "Experimental: use Memory Pool System garbage collector"
 
   if build.with? "imagemagick"
     depends_on "imagemagick"
@@ -90,13 +88,6 @@ class EmacsHeadAT31 < EmacsBase
 
   if build.with? "tree-sitter"
     depends_on "tree-sitter"
-  end
-
-  if build.with? "mps"
-    url "https://github.com/emacs-mirror/emacs.git", :branch => "feature/igc3"
-    depends_on "libmps"
-  else
-    url "https://github.com/emacs-mirror/emacs.git"
   end
 
   # Icons

@@ -149,7 +149,7 @@ The following compilation options are available:
 | ~--with-native-comp~      | Enable elisp native compilation support (not available on emacs-head@26 and emacs-head@27)                    |
 | ~--with-native-full-aot~  | Enable elisp ahead-of-time native compilation support (not available on emacs-head@26 and emacs-head@27)      |
 | ~--with-tree-sitter~      | Enable Tree-sitter support (only on emacs-head >=29)                                                          |
-| ~--with-mps~              | Use the Memory Pool System garbage collection library (only on emacs-head >=31)                               |
+| ~--with-mps~              | Use the Memory Pool System garbage collection library (only on emacs-head@32)                                 |
 
 For the terminal version only of GNU Emacs please omit ~--with-cocoa~.
 
@@ -237,7 +237,7 @@ Additional useful links:
 - [[https://gist.github.com/mikroskeem/0a5c909c1880408adf732ceba6d3f9ab][gccemacs on OS X]]
 
 ** MPS garbage collector
-Note: MPS is only supported on emacs-head >=31
+Note: MPS is only supported on emacs-head@32
 
 This formula supports the MPS garbage collector which theoretically can improve
 performance. It is a stable system that has been in use for years.

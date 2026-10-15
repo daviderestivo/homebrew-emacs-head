@@ -58,4 +58,16 @@ class EmacsBase < Formula
       end
     end
   end
+
+  # Install a launcher script in libexec that post_install_steps can call.
+  # The launcher knows the tap checkout path, which a literal `run` step cannot.
+  def install_postinstall_launcher
+    tap_dir = "#{HOMEBREW_REPOSITORY}/Library/Taps/daviderestivo/homebrew-emacs-head"
+    launcher = libexec/"emacs-head-postinstall"
+    launcher.write <<~SH
+      #!/bin/bash
+      exec "#{tap_dir}/scripts/emacs-head-postinstall" "$@"
+    SH
+    launcher.chmod 0755
+  end
 end

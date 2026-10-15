@@ -284,13 +284,20 @@ class EmacsHeadAT31 < EmacsBase
       system "make", *make_flags
       system "make", "install"
     end
+
+    # Launcher for post_install_steps, see EmacsBase#install_postinstall_launcher
+    install_postinstall_launcher
   end
 
-  def post_install
-    emacs_info_dir = info/"emacs"
-    Dir.glob(emacs_info_dir/"*.info") do |info_filename|
-      system "install-info", "--info-dir=#{emacs_info_dir}", info_filename
-    end
+  # Post-install setup: info manuals.
+  # post_install_steps only takes literal steps, so the Ruby in Library/ runs
+  # through scripts/formula-postinstall as a `run` step, via the launcher
+  # `install` left in libexec (it knows where the tap checkout is).
+  post_install_steps do
+    run "emacs-head-postinstall",
+        base: :libexec,
+        args: ["--prefix", "{{prefix}}", "--install-info"],
+        print_stdout: true
   end
 
   def caveats

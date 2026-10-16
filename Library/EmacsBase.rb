@@ -60,20 +60,58 @@ class EmacsBase < Formula
   end
 
   # post_install_steps can only run a literal command and knows nothing about
-  # the tap checkout, so `install` leaves a launcher in libexec that execs
-  # scripts/emacs-head-postinstall from the checkout this formula was loaded
-  # from. Running from the checkout keeps `brew postinstall` picking up the
-  # current Library/ files, the way post_install did.
+  # the tap checkout. The launcher must be self-contained because in CI or
+  # when installing from a bottle, the tap checkout may not exist.
+  #
+  # We embed a minimal Ruby script directly in the launcher that handles
+  # the install-info task without external dependencies.
   def install_postinstall_launcher
-    tap_dir = Tap.fetch("daviderestivo", "emacs-head").path
-
     libexec.mkpath
     launcher = libexec/"emacs-head-postinstall"
-    launcher.write <<~EOS
+    launcher.write <<~'LAUNCHER'
       #!/bin/bash
-      # Written by the emacs-head formula for post_install_steps.
-      exec "#{tap_dir}/scripts/emacs-head-postinstall" "$@"
-    EOS
+      # Self-contained post-install script for emacs-head formulas.
+      # Embedded at install time to work without tap checkout (bottles, CI).
+      set -euo pipefail
+
+      # Find a Ruby interpreter
+      ruby=""
+      for candidate in \
+          "${HOMEBREW_RUBY_PATH:-}" \
+          "${HOMEBREW_PREFIX:-/opt/homebrew}/Library/Homebrew/vendor/portable-ruby/current/bin/ruby" \
+          /usr/local/Homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby \
+          /usr/bin/ruby; do
+        if [[ -n "$candidate" && -x "$candidate" ]]; then
+          ruby="$candidate"
+          break
+        fi
+      done
+
+      if [[ -z "$ruby" ]]; then
+        echo "Warning: no ruby found for emacs-head post-install, skipping info registration" >&2
+        exit 0
+      fi
+
+      exec "$ruby" - "$@" <<'RUBY'
+      require "optparse"
+
+      options = {}
+      OptionParser.new do |opts|
+        opts.on("--prefix PREFIX") { |v| options[:prefix] = v }
+        opts.on("--install-info") { options[:install_info] = true }
+      end.parse!
+
+      if options[:install_info] && options[:prefix]
+        info_dir = File.join(options[:prefix], "share", "info", "emacs")
+        if Dir.exist?(info_dir)
+          Dir.glob(File.join(info_dir, "*.info{,.gz}")).each do |f|
+            puts "Installing info: #{File.basename(f)}"
+            system("install-info", "--info-dir=#{info_dir}", f)
+          end
+        end
+      end
+      RUBY
+    LAUNCHER
     launcher.chmod 0755
   end
 end

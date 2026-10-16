@@ -58,7 +58,8 @@ module EmacsHeadPostinstallCLI
     info_dir = File.join(prefix, "share", "info", "emacs")
     return unless Dir.exist?(info_dir)
 
-    Dir.glob(File.join(info_dir, "*.info")) do |info_file|
+    # Match both .info and .info.gz files (Emacs installs gzipped info files)
+    Dir.glob(File.join(info_dir, "*.info{,.gz}")) do |info_file|
       puts "Installing info: #{File.basename(info_file)}"
       system("install-info", "--info-dir=#{info_dir}", info_file)
     end

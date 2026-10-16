@@ -58,4 +58,22 @@ class EmacsBase < Formula
       end
     end
   end
+
+  # post_install_steps can only run a literal command and knows nothing about
+  # the tap checkout, so `install` leaves a launcher in libexec that execs
+  # scripts/emacs-head-postinstall from the checkout this formula was loaded
+  # from. Running from the checkout keeps `brew postinstall` picking up the
+  # current Library/ files, the way post_install did.
+  def install_postinstall_launcher
+    tap_dir = Tap.fetch("daviderestivo", "emacs-head").path
+
+    libexec.mkpath
+    launcher = libexec/"emacs-head-postinstall"
+    launcher.write <<~EOS
+      #!/bin/bash
+      # Written by the emacs-head formula for post_install_steps.
+      exec "#{tap_dir}/scripts/emacs-head-postinstall" "$@"
+    EOS
+    launcher.chmod 0755
+  end
 end

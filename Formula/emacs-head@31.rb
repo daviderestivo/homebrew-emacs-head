@@ -289,10 +289,9 @@ class EmacsHeadAT31 < EmacsBase
     install_postinstall_launcher
   end
 
-  # Post-install setup: info manuals.
-  # post_install_steps only takes literal steps, so the Ruby in Library/ runs
-  # through scripts/formula-postinstall as a `run` step, via the launcher
-  # `install` left in libexec (it knows where the tap checkout is).
+  # Post-install setup: register info manuals.
+  # The launcher in libexec is self-contained (embeds the Ruby logic)
+  # so it works in CI and from bottles without the tap checkout.
   post_install_steps do
     run "emacs-head-postinstall",
         base: :libexec,
